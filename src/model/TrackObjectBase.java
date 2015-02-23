@@ -14,4 +14,9 @@ public abstract class TrackObjectBase {
         return false;
     }
 
+    public boolean hit (TrackObjectBase otherObject) {
+        //TBD
+        return false;
+    }
+
 }

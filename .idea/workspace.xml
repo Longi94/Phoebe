@@ -106,8 +106,8 @@
       <file leaf-file-name="TrackObjectBase.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/model/TrackObjectBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4225352" vertical-offset="0" max-vertical-offset="426">
-              <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.63380283" vertical-offset="0" max-vertical-offset="426">
+              <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -530,7 +530,13 @@
       <option name="project" value="LOCAL" />
       <updated>1424713582197</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="hit függvény hogy az adott pont ütközik-e vele">
+      <created>1424713667726</created>
+      <option name="number" value="00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1424713667726</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -597,7 +603,8 @@
     <MESSAGE value="Ősosztályként hozzáadva" />
     <MESSAGE value="Absztraktá lett ősosztály" />
     <MESSAGE value="Position is az absztrakt ősosztályba került" />
-    <option name="LAST_COMMIT_MESSAGE" value="Position is az absztrakt ősosztályba került" />
+    <MESSAGE value="hit függvény hogy az adott pont ütközik-e vele" />
+    <option name="LAST_COMMIT_MESSAGE" value="hit függvény hogy az adott pont ütközik-e vele" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -691,8 +698,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/TrackObjectBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4225352" vertical-offset="0" max-vertical-offset="426">
-          <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.63380283" vertical-offset="0" max-vertical-offset="426">
+          <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
           <folding />
         </state>
       </provider>
