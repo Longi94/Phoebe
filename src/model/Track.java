@@ -17,4 +17,18 @@ public class Track {
         _pickups = new ArrayList<Pickup>();
     }
 
+    /*public boolean addObstacle(Obstacle obs) {
+        return _obstacles.add(obs);
+    }
+
+    public boolean addRobot(Robot robot) {
+        return _robots.add(robot);
+    }
+
+    public boolean addPickup(Pickup pickup) {
+        return _pickups.add(pickup);
+    }*/
+
+
+
 }
