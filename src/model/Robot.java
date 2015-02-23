@@ -1,5 +1,7 @@
 package model;
 
+import model.basic.Velocity;
+
 /**
  * Created by bence on 2015.02.23..
  */
@@ -36,28 +38,7 @@ public class Robot {
         }
     }
 
-    /**
-     * Beső osztály a sebességnek
-     */
-    private class Velocity {
 
-        /**
-         * A sebességének nagysága
-         */
-        private double _radius;
-        /**
-         * A sebességének iránya
-         */
-        private double _angle;
-
-        /**
-         * Konstruktor
-         */
-        public Velocity() {
-            this._angle = 0;
-            this._radius = 0;
-        }
-    }
 
     private static double ROBOT_RADIUS = 0.5;
 
