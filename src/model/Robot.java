@@ -1,43 +1,12 @@
 package model;
 
+import model.basic.Position;
 import model.basic.Velocity;
 
 /**
  * Created by bence on 2015.02.23..
  */
 public class Robot {
-
-    /**
-     * Belső osztály a pozíciónak
-     */
-    private class Position {
-        /**
-         * x koordináta
-         */
-        private double _posX;
-        /**
-         * y koordináta
-         */
-        private double _posY;
-
-        /**
-         * Konstruktor
-         * @param x x koordináta
-         * @param y y koordináta
-         */
-        public Position (double x, double y) {
-            this._posX = x;
-            this._posY = y;
-        }
-
-        /**
-         * Paraméter nélküli konstuktor
-         */
-        public Position() {
-            this(0,0);
-        }
-    }
-
 
 
     private static double ROBOT_RADIUS = 0.5;
