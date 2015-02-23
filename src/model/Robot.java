@@ -6,10 +6,7 @@ import model.basic.Velocity;
 /**
  * Created by bence on 2015.02.23..
  */
-public class Robot {
-
-
-    private static double ROBOT_RADIUS = 0.5;
+public class Robot extends TrackObjectBase{
 
     private Position _pos;
     private Velocity _vel;
