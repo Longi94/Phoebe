@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3c530e42-b6d8-4e96-8d0b-c31181cb56c3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/model/Oil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Obstacle.java" afterPath="$PROJECT_DIR$/src/model/Obstacle.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Phoebe.iws" />
@@ -48,8 +48,8 @@
       <file leaf-file-name="Obstacle.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/model/Obstacle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.17605634" vertical-offset="0" max-vertical-offset="426">
-              <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+            <state vertical-scroll-proportion="0.5633803" vertical-offset="0" max-vertical-offset="426">
+              <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -85,8 +85,8 @@
       <list>
         <option value="$PROJECT_DIR$/src/Robot.java" />
         <option value="$PROJECT_DIR$/src/model/Robot.java" />
-        <option value="$PROJECT_DIR$/src/model/Obstacle.java" />
         <option value="$PROJECT_DIR$/src/model/Oil.java" />
+        <option value="$PROJECT_DIR$/src/model/Obstacle.java" />
       </list>
     </option>
   </component>
@@ -361,7 +361,13 @@
       <option name="project" value="LOCAL" />
       <updated>1424712059769</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Oil osztaly">
+      <created>1424712182247</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1424712182247</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -413,7 +419,8 @@
     <MESSAGE value="Alapvető opciók fejlécei felvéve" />
     <MESSAGE value="Akadaly osztaly felveve" />
     <MESSAGE value="Akadaly osztaly absztrakt&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Akadaly osztaly absztrakt&#10;" />
+    <MESSAGE value="Oil osztaly" />
+    <option name="LAST_COMMIT_MESSAGE" value="Oil osztaly" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -460,8 +467,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Obstacle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17605634" vertical-offset="0" max-vertical-offset="426">
-          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+        <state vertical-scroll-proportion="0.5633803" vertical-offset="0" max-vertical-offset="426">
+          <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
           <folding />
         </state>
       </provider>
