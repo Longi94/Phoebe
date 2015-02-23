@@ -8,7 +8,6 @@ import model.basic.Velocity;
  */
 public class Robot extends TrackObjectBase{
 
-    private Position _pos;
     private Velocity _vel;
 
     public Robot (Position pos) {
