@@ -17,4 +17,13 @@ public abstract class Obstacle {
         _life_left_rounds = MAXIMUM_ROUNDS;
     }
 
+    public void hit () {
+        _life_left_hits -=1;
+    }
+
+    public boolean newRound() {
+        _life_left_rounds -=1;
+        return (_life_left_rounds > 0) && (_life_left_hits > 0);
+    }
+
 }

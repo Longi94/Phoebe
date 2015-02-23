@@ -48,9 +48,12 @@
       <file leaf-file-name="Obstacle.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/model/Obstacle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5633803" vertical-offset="0" max-vertical-offset="426">
-              <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
-              <folding />
+            <state vertical-scroll-proportion="0.80985916" vertical-offset="0" max-vertical-offset="525">
+              <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+              <folding>
+                <element signature="e#444#445#0" expanded="true" />
+                <element signature="e#479#480#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -367,7 +370,13 @@
       <option name="project" value="LOCAL" />
       <updated>1424712182247</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Akadaly osztaly ket tagvaltozoja a hatralevo korok szama es a hatralevo belemenesek szama&#10;">
+      <created>1424712301830</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1424712301830</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -420,7 +429,8 @@
     <MESSAGE value="Akadaly osztaly felveve" />
     <MESSAGE value="Akadaly osztaly absztrakt&#10;" />
     <MESSAGE value="Oil osztaly" />
-    <option name="LAST_COMMIT_MESSAGE" value="Oil osztaly" />
+    <MESSAGE value="Akadaly osztaly ket tagvaltozoja a hatralevo korok szama es a hatralevo belemenesek szama&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Akadaly osztaly ket tagvaltozoja a hatralevo korok szama es a hatralevo belemenesek szama&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -467,9 +477,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Obstacle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5633803" vertical-offset="0" max-vertical-offset="426">
-          <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
-          <folding />
+        <state vertical-scroll-proportion="0.80985916" vertical-offset="0" max-vertical-offset="525">
+          <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+          <folding>
+            <element signature="e#444#445#0" expanded="true" />
+            <element signature="e#479#480#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
