@@ -29,6 +29,8 @@ public class Track {
         return _pickups.add(pickup);
     }*/
 
-
+    public void newTurn (List<Robot> robotsNewPos, List<Obstacle> obstaclesPlaced) {
+        //TBD
+    }
 
 }
