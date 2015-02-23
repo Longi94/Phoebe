@@ -69,5 +69,21 @@ public class Robot {
         _vel = new Velocity();
     }
 
+    public void jump(Velocity v) {
+        //TBD
+    }
+
+    public boolean putOil() {
+        return true;
+    }
+
+    public boolean putPutty() {
+        return true;
+    }
+
+    public void forfit() {
+        
+    }
+
 
 }
