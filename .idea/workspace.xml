@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3c530e42-b6d8-4e96-8d0b-c31181cb56c3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/TrackObjectBase.java" afterPath="$PROJECT_DIR$/src/model/TrackObjectBase.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Track.java" afterPath="$PROJECT_DIR$/src/model/Track.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Phoebe.iws" />
@@ -103,12 +103,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TrackObjectBase.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TrackObjectBase.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/TrackObjectBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.63380283" vertical-offset="0" max-vertical-offset="426">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
               <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Track.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/model/Track.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.59859157" vertical-offset="0" max-vertical-offset="426">
+              <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -150,6 +162,7 @@
         <option value="$PROJECT_DIR$/src/model/Pickup.java" />
         <option value="$PROJECT_DIR$/src/model/Robot.java" />
         <option value="$PROJECT_DIR$/src/model/TrackObjectBase.java" />
+        <option value="$PROJECT_DIR$/src/model/Track.java" />
       </list>
     </option>
   </component>
@@ -536,7 +549,13 @@
       <option name="project" value="LOCAL" />
       <updated>1424713667726</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="hit függvény hogy egy másik objektum ütközik-e vele">
+      <created>1424713729572</created>
+      <option name="number" value="00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1424713729572</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -604,7 +623,8 @@
     <MESSAGE value="Absztraktá lett ősosztály" />
     <MESSAGE value="Position is az absztrakt ősosztályba került" />
     <MESSAGE value="hit függvény hogy az adott pont ütközik-e vele" />
-    <option name="LAST_COMMIT_MESSAGE" value="hit függvény hogy az adott pont ütközik-e vele" />
+    <MESSAGE value="hit függvény hogy egy másik objektum ütközik-e vele" />
+    <option name="LAST_COMMIT_MESSAGE" value="hit függvény hogy egy másik objektum ütközik-e vele" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -698,9 +718,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/TrackObjectBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63380283" vertical-offset="0" max-vertical-offset="426">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
           <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Track.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.59859157" vertical-offset="0" max-vertical-offset="426">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
