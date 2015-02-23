@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3c530e42-b6d8-4e96-8d0b-c31181cb56c3" name="Default" comment="Robot konstruktora változott">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Pickup.java" afterPath="$PROJECT_DIR$/src/model/Pickup.java" />
+    <list default="true" id="3c530e42-b6d8-4e96-8d0b-c31181cb56c3" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/model/TrackObjectBase.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Phoebe.iws" />
@@ -90,15 +90,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Pickup.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Pickup.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/Pickup.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.28169015" vertical-offset="0" max-vertical-offset="426">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding>
                 <element signature="e#316#317#0" expanded="true" />
                 <element signature="e#343#344#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TrackObjectBase.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/model/TrackObjectBase.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.2112676" vertical-offset="0" max-vertical-offset="426">
+              <caret line="6" column="48" selection-start-line="6" selection-start-column="48" selection-end-line="6" selection-end-column="48" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -139,6 +149,7 @@
         <option value="$PROJECT_DIR$/src/model/basic/Position.java" />
         <option value="$PROJECT_DIR$/src/model/Robot.java" />
         <option value="$PROJECT_DIR$/src/model/Pickup.java" />
+        <option value="$PROJECT_DIR$/src/model/TrackObjectBase.java" />
       </list>
     </option>
   </component>
@@ -489,7 +500,13 @@
       <option name="project" value="LOCAL" />
       <updated>1424713054757</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Pickup osztály változott&#10;">
+      <created>1424713230892</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1424713230892</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -550,7 +567,8 @@
     <MESSAGE value="A position osztály is" />
     <MESSAGE value="Pickup konstruktor" />
     <MESSAGE value="Robot konstruktora változott" />
-    <option name="LAST_COMMIT_MESSAGE" value="Robot konstruktora változott" />
+    <MESSAGE value="Pickup osztály változott&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pickup osztály változott&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -633,12 +651,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Pickup.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28169015" vertical-offset="0" max-vertical-offset="426">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding>
             <element signature="e#316#317#0" expanded="true" />
             <element signature="e#343#344#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/TrackObjectBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2112676" vertical-offset="0" max-vertical-offset="426">
+          <caret line="6" column="48" selection-start-line="6" selection-start-column="48" selection-end-line="6" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>
