@@ -7,10 +7,10 @@ public class Robot {
 
     private static double ROBOT_RADIUS = 0.5;
 
-    private int _posX;
-    private int _posY;
+    private double _posX;
+    private double _posY;
 
-    public Robot (int x,int y) {
+    public Robot (double x,double y) {
         _posX = x;
         _posY = y;
     }
