@@ -14,8 +14,8 @@ public class Robot {
     private Position _pos;
     private Velocity _vel;
 
-    public Robot (double x,double y) {
-        _pos = new Position(x,y);
+    public Robot (Position pos) {
+        _pos = pos;
         _vel = new Velocity();
     }
 
