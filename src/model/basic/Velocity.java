@@ -15,6 +15,8 @@ public class Velocity {
      */
     private double angle;
 
+    //ide kéne vagy getter setter meg lehet hogy két velocity összeadása is
+
     /**
      * Konstruktor
      */

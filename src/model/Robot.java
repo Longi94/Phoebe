@@ -17,6 +17,14 @@ public class Robot extends TrackObjectBase{
     public int oilAmmount; //rendelkezésre álló olajfoltok mennyisége
     public int puttyAmmount; //rendelkezésre álló ragacsfoltok mennyisége
 
+    /**
+     * Erre két okból lesz szükség. Egyrészt azért, hogy miután lépett, akkor utána ne tudjon vele még egyet lépni a játékos.
+     * Másrészt, hogyha olajfolton áll éppen akkor ne tudjon módosítani a sebességén
+     * Alapból minden kör elején true, hogyha olajfolton áll éppen akkor false.
+     * Miután lépett, akkor újra false lesz, amíg egy újabb kör nem indul
+     */
+
+    public boolean canMove;
 
     public Robot (String name,Position pos) {
         oilAmmount = START_OIL_AMMOUNT;
@@ -34,10 +42,12 @@ public class Robot extends TrackObjectBase{
 
 
     public boolean putOil() {
+        oilAmmount -= 1;
         return true;
     }
 
     public boolean putPutty() {
+        puttyAmmount -= 1;
         return true;
     }
 

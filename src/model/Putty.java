@@ -5,9 +5,12 @@ package model;
  */
 public class Putty extends Obstacle {
 
-
+    /**
+     * Az adott akadály milyen hatással van a robotra aki át haladrajta
+     * @param r a robot, aki áthalad az akadályon
+     */
     @Override
     public void takeEffect(Robot r) {
-
+        //megfelezi a sebességet, de lehetőség van annak változtatására
     }
 }
