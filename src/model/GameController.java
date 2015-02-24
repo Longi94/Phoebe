@@ -5,4 +5,12 @@ package model;
  */
 public class GameController {
 
+    private Robot _myRobot; //kezelt robot;
+    private Track _track; //kezelt pálya
+
+
+    public GameController() {
+        //TBD
+    }
+
 }
