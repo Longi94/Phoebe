@@ -20,17 +20,6 @@ public class Track {
         pickups = new ArrayList<Pickup>();
     }
 
-    /*public boolean addObstacle(Obstacle obs) {
-        return _obstacles.add(obs);
-    }
-
-    public boolean addRobot(Robot robot) {
-        return _robots.add(robot);
-    }
-
-    public boolean addPickup(Pickup pickup) {
-        return _pickups.add(pickup);
-    }*/
 
     public void refreshModel (List<Robot> robotsNewPos, List<Obstacle> obstaclesPlaced, List<Pickup> pickupsPicked) {
         //TBD

@@ -16,6 +16,9 @@ public abstract class Obstacle extends TrackObjectBase {
         life_left_rounds = MAXIMUM_ROUNDS;
     }
 
+    //mi történik a robottal, ha rámegy?
+    public abstract void takeEffect(Robot r);
+
     public void hit () {
         life_left_hits -=1;
     }
