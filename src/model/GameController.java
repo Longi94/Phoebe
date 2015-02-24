@@ -5,6 +5,7 @@ package model;
  */
 public class GameController {
     public static int DEFAULT_TURN_NUMBER = 40;
+    public static int TIME_TO_MOVE = 30; // in seconds
 
     public int turnsLeft;
 
@@ -22,8 +23,17 @@ public class GameController {
 
     }
 
-    public void endGame() {
+    public void reciveDataFromServer(String stream) {
+        //feldolgozás
+        newTurn();
+    }
 
+    public boolean placeOil() {
+        return myRobot.putOil();
+    }
+
+    public boolean placePutty() {
+        return myRobot.putPutty();
     }
 
     public void newTurn() {
@@ -31,6 +41,18 @@ public class GameController {
         if (turnsLeft == 0) {
             endGame();
         }
+        //do stuff and wait
+        String stream = new String();
+        sendDataToServer(stream);
     }
+
+    public void sendDataToServer(String stream) {
+
+    }
+
+    public void endGame() {
+
+    }
+
 
 }
