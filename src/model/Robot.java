@@ -8,14 +8,15 @@ import model.basic.Velocity;
  */
 public class Robot extends TrackObjectBase{
     private static int ID_COUNT = 0;
-    private static int START_OIL_AMMOUNT = 1;
-    private static int START_PUTTY_AMMOUNT = 1;
+    private static int START_OIL_AMOUNT = 1;
+    private static int START_PUTTY_AMOUNT = 1;
     private int id;
     private String name;
+    private double distanceCompleted;
 
     private Velocity vel;
-    public int oilAmmount; //rendelkezésre álló olajfoltok mennyisége
-    public int puttyAmmount; //rendelkezésre álló ragacsfoltok mennyisége
+    public int oilAmount; //rendelkezésre álló olajfoltok mennyisége
+    public int puttyAmount; //rendelkezésre álló ragacsfoltok mennyisége
 
     /**
      * Erre két okból lesz szükség. Egyrészt azért, hogy miután lépett, akkor utána ne tudjon vele még egyet lépni a játékos.
@@ -27,8 +28,8 @@ public class Robot extends TrackObjectBase{
     public boolean canMove;
 
     public Robot (String name,Position pos) {
-        oilAmmount = START_OIL_AMMOUNT;
-        puttyAmmount = START_PUTTY_AMMOUNT;
+        oilAmount = START_OIL_AMOUNT;
+        puttyAmount = START_PUTTY_AMOUNT;
         id = ID_COUNT;
         this.name = name;
         ID_COUNT += 1;
@@ -42,12 +43,12 @@ public class Robot extends TrackObjectBase{
 
 
     public boolean putOil() {
-        oilAmmount -= 1;
+        oilAmount -= 1;
         return true;
     }
 
     public boolean putPutty() {
-        puttyAmmount -= 1;
+        puttyAmount -= 1;
         return true;
     }
 
