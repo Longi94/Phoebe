@@ -18,6 +18,10 @@ public class GameController {
 
     }
 
+    public void initGame() {
+
+    }
+
     public void endGame() {
 
     }
