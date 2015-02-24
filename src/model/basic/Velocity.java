@@ -9,7 +9,7 @@ public class Velocity {
     /**
      * A sebességének nagysága
      */
-    private double radius;
+    private double magnitude;
     /**
      * A sebességének iránya
      */
@@ -20,6 +20,6 @@ public class Velocity {
      */
     public Velocity() {
         this.angle = 0;
-        this.radius = 0;
+        this.magnitude = 0;
     }
 }
