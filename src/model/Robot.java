@@ -42,10 +42,12 @@ public class Robot extends TrackObjectBase{
 
 
     public boolean putOil() {
+        oilAmmount -= 1;
         return true;
     }
 
     public boolean putPutty() {
+        puttyAmmount -= 1;
         return true;
     }
 
