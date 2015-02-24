@@ -6,4 +6,8 @@ package model;
 public class Oil extends Obstacle{
 
 
+    @Override
+    public void takeEffect(Robot r) {
+
+    }
 }
