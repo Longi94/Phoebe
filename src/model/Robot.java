@@ -8,11 +8,18 @@ import model.basic.Velocity;
  */
 public class Robot extends TrackObjectBase{
     private static int ID_COUNT = 0;
+    private static int START_OIL_AMMOUNT = 1;
+    private static int START_PUTTY_AMMOUNT = 1;
     private int id;
 
     private Velocity vel;
+    public int oilAmmount; //rendelkezésre álló olajfoltok mennyisége
+    public int puttyAmmount; //rendelkezésre álló ragacsfoltok mennyisége
+
 
     public Robot (Position pos) {
+        oilAmmount = START_OIL_AMMOUNT;
+        puttyAmmount = START_PUTTY_AMMOUNT;
         id = ID_COUNT;
         ID_COUNT += 1;
         pos = pos;
@@ -22,6 +29,7 @@ public class Robot extends TrackObjectBase{
     public void jump(Velocity v) {
         //TBD
     }
+
 
     public boolean putOil() {
         return true;
