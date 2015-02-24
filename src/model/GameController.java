@@ -18,4 +18,15 @@ public class GameController {
 
     }
 
+    public void endGame() {
+
+    }
+
+    public void newTurn() {
+        _turns_left -= 1;
+        if (_turns_left == 0) {
+            endGame();
+        }
+    }
+
 }
