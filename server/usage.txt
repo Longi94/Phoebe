@@ -1,14 +1,16 @@
 java -jar PhoebeServer.jar <port>
 
-announce <üzenet> - üzenet küldése minden kliensnek, le kell zárni 13-as karakterrel
-send <id> <üzenet> - üzenet küldése egy kliensnek, le kell zárni 13-as karakterrel
-list - csatlakozott kliensek kilistázása (cím és id)
-drop <id> - kapcsolat bontása klienssel
-stop - szerver leállítása
+announce <Ã¼zenet> - Ã¼zenet kÃ¼ldÃ©se minden kliensnek, le kell zÃ¡rni 13-as karakterrel
+send <id> <Ã¼zenet> - Ã¼zenet kÃ¼ldÃ©se egy kliensnek, le kell zÃ¡rni 13-as karakterrel
+list - csatlakozott kliensek kilistÃ¡zÃ¡sa (cÃ­m Ã©s id)
+drop <id> - kapcsolat bontÃ¡sa klienssel
+stop - szerver leÃ¡llÃ­tÃ¡sa
 
 java -jar PhoebeTestClient.jar
 
-connect <host cím> <port> - csatlakozás szerverhez
-disconnect - kapcsolat bontása szerverrel
-send <üzenet> - üzenet küldése szerverrel, le kell zárni 13-as karakterrel
-exit - kilépés
+connect <host cÃ­m> <port> - csatlakozÃ¡s szerverhez
+disconnect - kapcsolat bontÃ¡sa szerverrel
+send <Ã¼zenet> - Ã¼zenet kÃ¼ldÃ©se szerverrel, le kell zÃ¡rni 13-as karakterrel
+exit - kilÃ©pÃ©s
+
+PARAMÃ‰TEREKKEL VIGYÃZNI! NINCS RENDES KIVÃ‰TEL KEZELÃ‰S!
