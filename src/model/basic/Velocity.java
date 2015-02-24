@@ -9,17 +9,17 @@ public class Velocity {
     /**
      * A sebességének nagysága
      */
-    private double _radius;
+    private double radius;
     /**
      * A sebességének iránya
      */
-    private double _angle;
+    private double angle;
 
     /**
      * Konstruktor
      */
     public Velocity() {
-        this._angle = 0;
-        this._radius = 0;
+        this.angle = 0;
+        this.radius = 0;
     }
 }

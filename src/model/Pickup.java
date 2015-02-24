@@ -7,14 +7,14 @@ import model.basic.Position;
  */
 public class Pickup extends TrackObjectBase {
 
-    private Obstacle _obs;
+    private Obstacle obs;
 
     public Pickup (Position pos) {
         //random generálódik hogy mi legyen az obstacle
-        _pos = pos;
+        pos = pos;
     }
 
     public Obstacle get_obs() {
-        return _obs;
+        return obs;
     }
 }

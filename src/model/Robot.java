@@ -8,15 +8,15 @@ import model.basic.Velocity;
  */
 public class Robot extends TrackObjectBase{
     private static int ID_COUNT = 0;
-    private int _id;
+    private int id;
 
-    private Velocity _vel;
+    private Velocity vel;
 
     public Robot (Position pos) {
-        _id = ID_COUNT;
+        id = ID_COUNT;
         ID_COUNT += 1;
-        _pos = pos;
-        _vel = new Velocity();
+        pos = pos;
+        vel = new Velocity();
     }
 
     public void jump(Velocity v) {

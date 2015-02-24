@@ -8,16 +8,16 @@ import java.util.List;
  */
 public class Track {
 
-    public List<Obstacle> _obstacles;
-    public List<Robot> _robots;
-    public List<Pickup> _pickups;
+    public List<Obstacle> obstacles;
+    public List<Robot> robots;
+    public List<Pickup> pickups;
 
 
     public Track() {
         //TBD ez nagyon nem ilyen lesz
-        _obstacles = new ArrayList<Obstacle>();
-        _robots = new ArrayList<Robot>();
-        _pickups = new ArrayList<Pickup>();
+        obstacles = new ArrayList<Obstacle>();
+        robots = new ArrayList<Robot>();
+        pickups = new ArrayList<Pickup>();
     }
 
     /*public boolean addObstacle(Obstacle obs) {

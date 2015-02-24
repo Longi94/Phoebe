@@ -7,11 +7,11 @@ public class Position {
     /**
      * x koordináta
      */
-    private double _posX;
+    private double posX;
     /**
      * y koordináta
      */
-    private double _posY;
+    private double posY;
 
     /**
      * Konstruktor
@@ -19,8 +19,8 @@ public class Position {
      * @param y y koordináta
      */
     public Position (double x, double y) {
-        this._posX = x;
-        this._posY = y;
+        this.posX = x;
+        this.posY = y;
     }
 
     /**
