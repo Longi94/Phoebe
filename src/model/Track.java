@@ -32,7 +32,7 @@ public class Track {
         return _pickups.add(pickup);
     }*/
 
-    public void newTurn (List<Robot> robotsNewPos, List<Obstacle> obstaclesPlaced) {
+    public void refreshModel (List<Robot> robotsNewPos, List<Obstacle> obstaclesPlaced, List<Pickup> pickupsPicked) {
         //TBD
     }
 
