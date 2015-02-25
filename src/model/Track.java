@@ -22,7 +22,7 @@ public class Track {
 
 
     public void refreshModel (List<Robot> robotsNewPos, List<Obstacle> obstaclesPlaced, List<Pickup> pickupsPicked) {
-        //TODO ezt meg kell csinálni
+        //TODO ezt meg kell csinálni még
     }
 
 }
