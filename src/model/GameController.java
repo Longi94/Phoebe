@@ -14,7 +14,7 @@ public class GameController {
 
 
     public GameController() {
-        //TBD
+        //TODO
         turnsLeft = DEFAULT_TURN_NUMBER;
 
     }

@@ -38,7 +38,7 @@ public class Robot extends TrackObjectBase{
     }
 
     public void jump(Velocity v) {
-        //TBD
+        //TODO
     }
 
 
@@ -53,7 +53,7 @@ public class Robot extends TrackObjectBase{
     }
 
     public void forfit() {
-        //TBD
+        //TODO
     }
 
 
