@@ -14,7 +14,7 @@ public class Track {
 
 
     public Track() {
-        //TBD ez nagyon nem ilyen lesz
+        //TODO ez nagyon nem ilyen lesz
         obstacles = new ArrayList<Obstacle>();
         robots = new ArrayList<Robot>();
         pickups = new ArrayList<Pickup>();
@@ -22,7 +22,7 @@ public class Track {
 
 
     public void refreshModel (List<Robot> robotsNewPos, List<Obstacle> obstaclesPlaced, List<Pickup> pickupsPicked) {
-        //TBD
+        //TODO
     }
 
 }
