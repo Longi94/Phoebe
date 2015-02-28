@@ -1,6 +1,5 @@
 package model;
 
-import model.basic.Position;
 import model.basic.Velocity;
 
 /**
@@ -22,7 +21,7 @@ public class Robot extends TrackObjectBase{
      * Miután lépett, akkor újra false lesz, amíg egy újabb kör nem indul
      */
 
-    public boolean disabled;
+    public boolean canMove;
 
     public Robot () {
         oilAmount = START_OIL_AMOUNT;
