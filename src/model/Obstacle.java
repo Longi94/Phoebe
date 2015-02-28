@@ -4,16 +4,16 @@ package model;
  * Created by bence on 2015.02.23..
  */
 public abstract class Obstacle extends TrackObjectBase {
-    private static int MAXIMUM_HITS = 3;
-    private static int MAXIMUM_ROUNDS = 20;
+    private static final int MAXIMUM_HITS = 3;
+    private static final int MAXIMUM_ROUNDS = 20;
 
-    private double life_left_hits;
-    private double life_left_rounds;
+    private int hitsLeft;
+    private int roundsLeft;
 
 
     public Obstacle () {
-        life_left_hits = MAXIMUM_HITS;
-        life_left_rounds = MAXIMUM_ROUNDS;
+        hitsLeft = MAXIMUM_HITS;
+        roundsLeft = MAXIMUM_ROUNDS;
     }
 
 
@@ -23,13 +23,15 @@ public abstract class Obstacle extends TrackObjectBase {
      */
     public abstract void takeEffect(Robot r);
 
-    public void hit () {
-        life_left_hits -=1;
+    @Override
+    public void collide(Robot r) {
+        hitsLeft -=1;
+        takeEffect(r);
     }
 
     public boolean newRound() {
-        life_left_rounds -=1;
-        return (life_left_rounds > 0) && (life_left_hits > 0);
+        roundsLeft -=1;
+        return (roundsLeft > 0) && (hitsLeft > 0);
     }
 
 }

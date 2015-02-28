@@ -1,22 +1,23 @@
 package model;
 
-import model.basic.Position;
 import model.basic.Velocity;
 
 /**
  * Created by bence on 2015.02.23..
  */
 public class Robot extends TrackObjectBase{
-    private static int ID_COUNT = 0;
-    private static int START_OIL_AMOUNT = 1;
-    private static int START_PUTTY_AMOUNT = 1;
-    private int id;
-    private String name;
+    private static final int START_OIL_AMOUNT = 1;
+    private static final int START_PUTTY_AMOUNT = 1;
+    private static int idCount = 0;
+
     private double distanceCompleted;
 
     private Velocity vel;
-    public int oilAmount; //rendelkezésre álló olajfoltok mennyisége
-    public int puttyAmount; //rendelkezésre álló ragacsfoltok mennyisége
+    private int oilAmount; //rendelkezésre álló olajfoltok mennyisége
+    private int puttyAmount; //rendelkezésre álló ragacsfoltok mennyisége
+
+    private int id;
+    private String name;
 
     /**
      * Erre két okból lesz szükség. Egyrészt azért, hogy miután lépett, akkor utána ne tudjon vele még egyet lépni a játékos.
@@ -27,13 +28,14 @@ public class Robot extends TrackObjectBase{
 
     public boolean canMove;
 
-    public Robot (String name,Position pos) {
+    public Robot () {
         oilAmount = START_OIL_AMOUNT;
         puttyAmount = START_PUTTY_AMOUNT;
-        id = ID_COUNT;
+
+        id = idCount;
         this.name = name;
-        ID_COUNT += 1;
-        pos = pos;
+        idCount += 1;
+
         vel = new Velocity();
     }
 
@@ -42,19 +44,14 @@ public class Robot extends TrackObjectBase{
     }
 
 
-    public boolean putOil() {
+    public void putOil() {
         oilAmount -= 1;
-        return true;
     }
 
-    public boolean putPutty() {
+    public void putPutty() {
         puttyAmount -= 1;
-        return true;
     }
 
-    public void forfit() {
-        //TODO
-    }
 
 
 }

@@ -17,6 +17,10 @@ public class Velocity {
 
     //ide kéne vagy getter setter meg lehet hogy két velocity összeadása is
 
+    public void add(Velocity v) {
+
+    }
+
     /**
      * Konstruktor
      */
