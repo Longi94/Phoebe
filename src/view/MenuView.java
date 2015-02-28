@@ -9,9 +9,13 @@ import model.GameController;
  * Itt lehet indítani a játékot és itt lehet beállítani az új játékhoz a játékosok számát
  *
  * @author Reményi Gergely
+ * @since 2015-02-28
  */
 public class MenuView {
 
+    /**
+     * GameController referencia
+     */
     GameController gameController;
 
     /**

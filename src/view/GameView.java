@@ -9,9 +9,13 @@ import model.GameController;
  * megjelenik majd a többi view objektum.
  *
  * @author Reményi Gergely
+ * @since 2015-02-28
  */
 public class GameView {
 
+    /**
+     * GameController referencia
+     */
     GameController gameController;
 
     /**
