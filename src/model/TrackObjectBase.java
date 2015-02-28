@@ -8,6 +8,7 @@ import model.basic.Position;
 public abstract class TrackObjectBase {
     protected static final double RADIUS = 0.5;
     protected Position pos;
+    protected Track track;
 
     public boolean hit (Position pos) {
         // TODO

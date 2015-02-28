@@ -16,6 +16,14 @@ public class Track {
     }
 
 
+    public void addObject(TrackObjectBase object) {
+
+    }
+
+    public void removeObject(TrackObjectBase object) {
+
+    }
+
     public void refreshModel () {
         //hasznos komment    |
         //                  \|/
