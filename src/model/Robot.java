@@ -11,8 +11,8 @@ public class Robot extends TrackObjectBase{
     private double distanceCompleted;
 
     private Velocity vel;
-    public int oilAmount; //rendelkezésre álló olajfoltok mennyisége
-    public int puttyAmount; //rendelkezésre álló ragacsfoltok mennyisége
+    private int oilAmount; //rendelkezésre álló olajfoltok mennyisége
+    private int puttyAmount; //rendelkezésre álló ragacsfoltok mennyisége
 
     /**
      * Erre két okból lesz szükség. Egyrészt azért, hogy miután lépett, akkor utána ne tudjon vele még egyet lépni a játékos.
