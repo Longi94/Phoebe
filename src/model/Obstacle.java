@@ -4,8 +4,8 @@ package model;
  * Created by bence on 2015.02.23..
  */
 public abstract class Obstacle extends TrackObjectBase {
-    private static int MAXIMUM_HITS = 3;
-    private static int MAXIMUM_ROUNDS = 20;
+    private static final int MAXIMUM_HITS = 3;
+    private static final int MAXIMUM_ROUNDS = 20;
 
     private double life_left_hits;
     private double life_left_rounds;

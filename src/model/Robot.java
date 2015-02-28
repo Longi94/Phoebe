@@ -7,8 +7,8 @@ import model.basic.Velocity;
  * Created by bence on 2015.02.23..
  */
 public class Robot extends TrackObjectBase{
-    private static int START_OIL_AMOUNT = 1;
-    private static int START_PUTTY_AMOUNT = 1;
+    private static final int START_OIL_AMOUNT = 1;
+    private static final int START_PUTTY_AMOUNT = 1;
     private double distanceCompleted;
 
     private Velocity vel;

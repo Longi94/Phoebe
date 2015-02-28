@@ -6,8 +6,8 @@ import java.util.List;
  * Created by bence on 2015.02.24..
  */
 public class GameController {
-    public static int DEFAULT_TURN_NUMBER = 40;
-    public static int TIME_TO_MOVE = 30; // in seconds
+    public static final int DEFAULT_TURN_NUMBER = 40;
+    public static final int TIME_TO_MOVE = 30; // in seconds
 
     public int turnsLeft;
 
