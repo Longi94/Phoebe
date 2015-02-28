@@ -8,21 +8,21 @@ import java.util.List;
  */
 public class Track {
 
-    public List<Obstacle> obstacles;
-    public List<Robot> robots;
-    public List<Pickup> pickups;
-
+    public List<TrackObjectBase> items;
 
     public Track() {
         //TODO ez nagyon nem ilyen lesz
-        obstacles = new ArrayList<Obstacle>();
-        robots = new ArrayList<Robot>();
-        pickups = new ArrayList<Pickup>();
+        items = new ArrayList<TrackObjectBase>();
     }
 
 
-    public void refreshModel (List<Robot> robotsNewPos, List<Obstacle> obstaclesPlaced, List<Pickup> pickupsPicked) {
+    public void refreshModel () {
+        //hasznos komment    |
+        //                  \|/
+        //                   V
         //TODO ezt meg kell csinálni
+
+
     }
 
 }
