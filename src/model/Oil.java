@@ -12,6 +12,6 @@ public class Oil extends Obstacle{
     @Override
     public void takeEffect(Robot r) {
         //megtartja a sebességet, és tiltja annak módosítását
-        r.canMove = false;
+        r.enabled = false;
     }
 }
