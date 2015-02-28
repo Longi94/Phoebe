@@ -18,12 +18,12 @@ public class Player {
     }
 
 
-    public boolean placeOil() {
-        return myRobot.putOil();
+    public void placeOil() {
+        myRobot.putOil();
     }
 
-    public boolean placePutty() {
-        return myRobot.putPutty();
+    public void placePutty() {
+        myRobot.putPutty();
     }
 
     public void move() {}
