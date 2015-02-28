@@ -8,8 +8,7 @@ import model.basic.Position;
 public class Pickup extends TrackObjectBase {
 
     public Pickup (Position pos) {
-        //random generálódik hogy mi legyen az obstacle
-        pos = pos;
+
     }
 
     @Override
