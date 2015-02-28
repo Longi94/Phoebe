@@ -7,11 +7,8 @@ import model.basic.Velocity;
  * Created by bence on 2015.02.23..
  */
 public class Robot extends TrackObjectBase{
-    private static int ID_COUNT = 0;
     private static int START_OIL_AMOUNT = 1;
     private static int START_PUTTY_AMOUNT = 1;
-    private int id;
-    private String name;
     private double distanceCompleted;
 
     private Velocity vel;
@@ -27,13 +24,10 @@ public class Robot extends TrackObjectBase{
 
     public boolean canMove;
 
-    public Robot (String name,Position pos) {
+    public Robot () {
         oilAmount = START_OIL_AMOUNT;
         puttyAmount = START_PUTTY_AMOUNT;
-        id = ID_COUNT;
-        this.name = name;
-        ID_COUNT += 1;
-        pos = pos;
+
         vel = new Velocity();
     }
 
@@ -52,9 +46,6 @@ public class Robot extends TrackObjectBase{
         return true;
     }
 
-    public void forfit() {
-        //TODO
-    }
 
 
 }
