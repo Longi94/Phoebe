@@ -1,5 +1,7 @@
 package model;
 
+import model.basic.Position;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,12 +11,17 @@ import java.util.List;
 public class Track {
 
     public List<TrackObjectBase> items;
+    public List<Position> innerArc;
+    public List<Position> outerArc;
 
     public Track() {
         //TODO ez nagyon nem ilyen lesz
         items = new ArrayList<TrackObjectBase>();
     }
 
+    public boolean inTrack(Position pos) {
+        return true;
+    }
 
     public boolean addObject(TrackObjectBase object) {
         return false;
