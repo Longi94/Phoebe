@@ -12,7 +12,7 @@ public class GameController {
     public int turnsLeft;
 
     private Track track; //kezelt pálya
-    private List<Player> players; //játékosok
+    private List<Robot> players; //játékosok
 
 
     public GameController() {
