@@ -24,13 +24,5 @@ public class Track {
         return false;
     }
 
-    public void refreshModel () {
-        //hasznos komment    |
-        //                  \|/
-        //                   V
-        //TODO ezt meg kell csinálni
-
-
-    }
 
 }
