@@ -16,12 +16,12 @@ public class Track {
     }
 
 
-    public void addObject(TrackObjectBase object) {
-
+    public boolean addObject(TrackObjectBase object) {
+        return false;
     }
 
-    public void removeObject(TrackObjectBase object) {
-
+    public boolean removeObject(TrackObjectBase object) {
+        return false;
     }
 
     public void refreshModel () {
