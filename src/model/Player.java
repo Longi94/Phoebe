@@ -5,16 +5,16 @@ package model;
  */
 public class Player {
 
-    private static int ID_COUNT = 0;
+    private static int idCount = 0;
 
     private Robot myRobot;
     private int id;
     private String name;
 
     public Player() {
-        id = ID_COUNT;
+        id = idCount;
         this.name = name;
-        ID_COUNT += 1;
+        idCount += 1;
     }
 
 
