@@ -32,6 +32,6 @@ public class Player {
 
     public void waitInstructions() {}
 
-    public void forfit() {}
+    public void forfeit() {}
 
 }
