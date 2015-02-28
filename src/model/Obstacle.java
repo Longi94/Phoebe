@@ -23,8 +23,10 @@ public abstract class Obstacle extends TrackObjectBase {
      */
     public abstract void takeEffect(Robot r);
 
-    public void hit() {
+    @Override
+    public void collide(Robot r) {
         hitsLeft -=1;
+        takeEffect(r);
     }
 
     public boolean newRound() {

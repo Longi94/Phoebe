@@ -52,6 +52,10 @@ public class Robot extends TrackObjectBase{
         puttyAmount -= 1;
     }
 
+    @Override
+    public void collide(Robot r) {
+
+    }
 
 
 }
