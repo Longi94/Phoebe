@@ -19,4 +19,8 @@ public abstract class TrackObjectBase {
         return false;
     }
 
+    public void collide (Robot r)  {
+
+    }
+
 }
