@@ -29,9 +29,9 @@ public abstract class Obstacle extends TrackObjectBase {
         takeEffect(r);
     }
 
-    public boolean newRound() {
+    @Override
+    public void newRound() {
         roundsLeft -=1;
-        return (roundsLeft > 0) && (hitsLeft > 0);
     }
 
 }
