@@ -56,4 +56,6 @@ public class Robot extends TrackObjectBase{
 
     public void addPutty() {}
 
+    public void halfVelocity() {}
+
 }
