@@ -26,7 +26,7 @@ public class Robot extends TrackObjectBase{
      * Miután lépett, akkor újra false lesz, amíg egy újabb kör nem indul
      */
 
-    public boolean enabled;
+    private boolean enabled;
 
     public Robot () {
         oilAmount = START_OIL_AMOUNT;
