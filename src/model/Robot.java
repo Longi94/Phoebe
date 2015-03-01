@@ -52,6 +52,12 @@ public class Robot extends TrackObjectBase{
         puttyAmount -= 1;
     }
 
+    public void addOil() {}
 
+    public void addPutty() {}
+
+    public void halveVelocity() {}
+
+    public void disable() {}
 
 }
