@@ -19,7 +19,7 @@ public class Track {
         items = new ArrayList<TrackObjectBase>();
     }
 
-    public boolean inTrack(Position pos) {
+    public boolean isInTrack(Position pos) {
         return true;
     }
 
