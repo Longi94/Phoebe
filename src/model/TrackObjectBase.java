@@ -24,4 +24,6 @@ public abstract class TrackObjectBase {
 
     }
 
+    public void newRound() {}
+
 }
