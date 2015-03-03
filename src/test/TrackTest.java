@@ -32,20 +32,10 @@ public class TrackTest {
 
         this.t = new Track(in,out);
 
-        this.p = new Position (1,1);
+        this.p = new Position (0,5);
 
 
     }
-
-    @Test
-    public void testOverLine() throws Exception {
-        Position p2 = new Position (0,0);
-        Position p3 = new Position (7,1);
-        Position p4 = new Position (2,2);
-        Position p5 = new Position (6,3);
-        Assert.assertEquals(-1, Track.overLine(p2,p4,this.p) * Track.overLine(p3,p5,this.p));
-    }
-
 
     @Test
     public void testIsInTrack() {
