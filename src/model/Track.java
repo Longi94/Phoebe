@@ -98,19 +98,20 @@ public class Track {
         int siz = innerArc.size();
         for (int i = 0; i<siz; i++) {
             Position i1 = innerArc.get(i);
-            Position i2 = innerArc.get( i+1 % siz ); //az utolsó pont utáni az az első
+            Position i2 = innerArc.get( i+1 % siz );        //az utolsó pont utáni az az első
             Position o1 = outerArc.get(i);
             Position o2 = outerArc.get( i+1 % siz);
 
-            int overInner = overLine(i1,i2,pos);
-            int overOuter = overLine(o1,o2,pos);
-            int overTop = overLine(i2, o2, pos);
-            int overBottom = overLine(i1, o1, pos);
+            int overInner = overLine(i1,i2,pos);            //melyik oldalára esik a pont a pálya belső ívének?
+            int overOuter = overLine(o1,o2,pos);            //melyik oldalára esik a pont a pálya külső ívének?
+            int overTop = overLine(i2, o2, pos);            //Belépett-e egyáltalán a robot az adott szakaszba?
+            int overBottom = overLine(i1, o1, pos);         //Kilépett-e már a robot az adott szakaszból?
+
             //az kell, hogy az egyiken túl legyen a másikon meg ne, és mind a külső belső, mind a felső-alsó határok tekintetébe
-            if (overInner * overOuter < 0 && overTop * overBottom < 0) {
-                return true;
-            }
-            return false;
+            return (overInner * overOuter < 0 && overTop * overBottom < 0);
+
+            //TODO fel lehetne gyorsítani, ha rögtön kiugranák, ha innerOver * innerOuter +1, és megspórol két overLine hívást
+
         }
 
         return true;
