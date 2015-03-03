@@ -10,11 +10,6 @@ public abstract class TrackObjectBase {
     protected Position pos;
     protected Track track;
 
-    public boolean hit (Position pos) {
-        // TODO
-        return false;
-    }
-
     public boolean hit (TrackObjectBase otherObject) {
         //TODO
         return false;
