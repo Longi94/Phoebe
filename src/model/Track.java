@@ -84,6 +84,9 @@ public class Track {
         * Két végpontjával (A,B) adott egyenes egyenlete
         * A_Y + (B_Y - A_Y) * (X - A_X) / (B_X - A_X) = Y
         */
+        if (i1.getX() == i2.getX()) {
+            return (pos.getX() - i1.getX()) > 0 ? 1 : -1;
+        }
        return (i1.getY() + (i2.getY() - i1.getY()) * (pos.getX() - i1 . getX()) /(i2.getX() - i1.getX()) - pos.getY() > 0) ? 1 : -1;
     }
 
