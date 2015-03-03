@@ -28,7 +28,7 @@ public class Track {
      * @param innerArc belső ív
      * @param outerArc külső ív
      */
-    public Track(ArrayList<Position> innerArc,ArrayList<Position> outerArc) {
+    public Track(List<Position> innerArc,List<Position> outerArc) {
         items = new ArrayList<TrackObjectBase>();
         this.innerArc = innerArc;
         this.outerArc = outerArc;
