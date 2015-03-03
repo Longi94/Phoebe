@@ -14,21 +14,51 @@ public class Track {
     public List<Position> innerArc;
     public List<Position> outerArc;
 
-    public Track() {
-        //TODO ez nagyon nem ilyen lesz
+    /**
+     * Konstruktor, új pályát hoz létre egy külső ív és egy belső ív tömbből
+     * @param innerArc belső ív
+     * @param outerArc külső ív
+     */
+    public Track(ArrayList<Position> innerArc,ArrayList<Position> outerArc) {
         items = new ArrayList<TrackObjectBase>();
+        this.innerArc = innerArc;
+        this.outerArc = outerArc;
     }
 
+    /**
+     * Getter a pályán található elemekhez
+     * @return az elemek List-je
+     */
+    public List<TrackObjectBase> getItems() {
+        return items;
+    }
+
+    /**
+     * Megmondja hogy az adott pozíció a pályán van-e
+     * @param pos a pozíció, aminek kiváncsiak vagyunk a státuszára
+     * @return true, ha a pályán van és false ha a pályán kívlüre esik.
+     */
     public boolean isInTrack(Position pos) {
+        //TODO
         return true;
     }
 
+    /**
+     * Hozzáad egy elemet a pályaelemek tömbjéhez
+     * @param object a hozzáadandó elem
+     * @return sikeres volt-e a hozzáadás vagy nem
+     */
     public boolean addObject(TrackObjectBase object) {
-        return false;
+        return items.add(object);
     }
 
+    /**
+     * Eltávolít egy elemet a pályaelemek tömbjéből
+     * @param object az eltávolítandó elem
+     * @return sikeres volt-e az eltávolítás, vagy sem
+     */
     public boolean removeObject(TrackObjectBase object) {
-        return false;
+        return items.remove(object);
     }
 
 
