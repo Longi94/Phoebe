@@ -87,6 +87,14 @@ public class Track {
         if (i1.getX() == i2.getX()) {
             return (pos.getX() - i1.getX()) > 0 ? 1 : -1;
         }
+
+        String str = i1.getY() + " + (" + i2.getY() + "-" + i1.getY() + ") *(" +
+                pos.getX() + " - " + i1.getX() +  ") / (" + i2.getX() + " - " + i1.getX() + ") - " +
+                pos.getY() + "=";
+
+        System.out.println(str
+                        + (i1.getY() + (i2.getY() - i1.getY()) * (pos.getX() - i1 . getX()) /(i2.getX() - i1.getX()) - pos.getY()));
+
        return (i1.getY() + (i2.getY() - i1.getY()) * (pos.getX() - i1 . getX()) /(i2.getX() - i1.getX()) - pos.getY() > 0) ? 1 : -1;
     }
 
