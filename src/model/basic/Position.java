@@ -13,6 +13,10 @@ public class Position {
      */
     private double posY;
 
+    //=============================================================================================
+    // KONSTRUKTOROK
+    //=============================================================================================
+
     /**
      * Konstruktor
      * @param x x koordináta
@@ -29,5 +33,42 @@ public class Position {
     public Position() {
         this(0,0);
     }
+
+    //=============================================================================================
+    // GETTER-SETTER-EK
+    //=============================================================================================
+
+    /**
+     *
+     * @return pozíció x koordinátája
+     */
+    public double getPosX() {
+        return posX;
+    }
+
+    /**
+     * Beállítja a pozíció x koordinátáját
+     * @param posX a beállítandó x koordináta
+     */
+    public void setPosX(double posX) {
+        this.posX = posX;
+    }
+
+    /**
+     *
+     * @return pozíció y koordinátája
+     */
+    public double getPosY() {
+        return posY;
+    }
+
+    /**
+     * Beállítja a pozíció y koordinátáját
+     * @param posY a beállítandó y koordináta
+     */
+    public void setPosY(double posY) {
+        this.posY = posY;
+    }
+
 }
 
