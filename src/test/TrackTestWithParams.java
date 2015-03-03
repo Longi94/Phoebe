@@ -15,10 +15,11 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class TrackTest {
+@RunWith(Parameterized.class)
+public class TrackTestWithParams {
 
     Track t;
-    Position p;
+    double param;
 
     @Before
     public void setUp() {
@@ -35,14 +36,32 @@ public class TrackTest {
         out.add(new Position(-5,9));
 
         this.t = new Track(in,out);
-        this.p = new Position(3.99,2.5);
+    }
+
+    public TrackTestWithParams (double posY) {
+        param = posY;
     }
 
 
     @Test
-    public void testIsInTrack() {
-        Assert.assertFalse(this.t.isInTrack(this.p));
+    public void testIsInTrackParams() {
+        Position pos = new Position(0,param);
+        if ( (param >= 7 && param < 9) || (param > 0 && param < 4.5) ) {
+            Assert.assertTrue(t.isInTrack(pos));
+        } else {
+            Assert.assertFalse(t.isInTrack(pos));
+        }
     }
 
+    @Parameters
+    public static List<Object[]> parameters() {
+        List<Object[]> params = new ArrayList<Object[]>();
+
+
+        for (double i = -1; i< 11; i = i + 0.5) {
+            params.add(new Object[] {i});
+        }
+        return params;
+    }
 
 }

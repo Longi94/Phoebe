@@ -73,21 +73,26 @@ public class Track {
     //=============================================================================================
 
     /**
-     * Megmutatja, hogy egy adott pont a poligon belsejében van-e. (Ray casting algorithm)
+     * Megmutatja, hogy egy adott pont a poligon belsejében van-e. (Ray casting algorithm) -> http://stackoverflow.com/questions/11716268/point-in-polygon-algorithm
      * @param arc a poligon pontjainak listája
      * @param pos a pont, aminek státuszát teszteljük
      * @return igaz, ha pont a poligon területén belül van, különben hamis
      */
     public static boolean insidePolygon(List<Position> arc, Position pos) {
-        int nvert = arc.size();
         double posX = pos.getX();
         double posY = pos.getY();
-        int i, j;
         boolean c = false;
-        for (i = 0, j = nvert-1; i < nvert; j = i++) {
+        for (int i = 0, j = arc.size()-1; i < arc.size(); j = i++) {
+            /* That's for release
             if ( ((arc.get(i).getY()>posY) != (arc.get(j).getY()>posY)) &&
                     (posX < (arc.get(j).getX()-arc.get(i).getX()) *
                             (posY-arc.get(i).getY()) / (arc.get(j).getY()-arc.get(i).getY()) + arc.get(i).getX()) )
+            */
+            double iX = arc.get(i).getX();
+            double iY = arc.get(i).getY();
+            double jX = arc.get(j).getX();
+            double jY = arc.get(j).getY();
+            if (((iY > posY) != (jY > posY)) && (posX < (jX-iX) * (posY - iY) / (jY - iY) + iX ) )
                 c = !c;
         }
         return c;
@@ -95,7 +100,7 @@ public class Track {
     }
 
     /**
-     * Megmondja hogy az adott pozíció a pályán van-e
+     * Megmondja hogy az adott pozíció a pályán van-e. Egy pont a pályán van, ha külső íven belül, és a belső íven kívül, vagy a belső íven található
      * @param pos a pozíció, aminek kiváncsiak vagyunk a státuszára
      * @return true, ha a pályán van és false ha a pályán kívlüre esik.
      */
