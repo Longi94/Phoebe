@@ -42,7 +42,7 @@ public class Position {
      *
      * @return pozíció x koordinátája
      */
-    public double getPosX() {
+    public double getX() {
         return posX;
     }
 
@@ -50,7 +50,7 @@ public class Position {
      * Beállítja a pozíció x koordinátáját
      * @param posX a beállítandó x koordináta
      */
-    public void setPosX(double posX) {
+    public void setX(double posX) {
         this.posX = posX;
     }
 
@@ -58,7 +58,7 @@ public class Position {
      *
      * @return pozíció y koordinátája
      */
-    public double getPosY() {
+    public double getY() {
         return posY;
     }
 
@@ -66,7 +66,7 @@ public class Position {
      * Beállítja a pozíció y koordinátáját
      * @param posY a beállítandó y koordináta
      */
-    public void setPosY(double posY) {
+    public void setY(double posY) {
         this.posY = posY;
     }
 
