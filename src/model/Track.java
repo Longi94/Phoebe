@@ -111,13 +111,15 @@ public class Track {
             int overBottom = overLine(i1, o1, pos);         //Kilépett-e már a robot az adott szakaszból?
 
             //az kell, hogy az egyiken túl legyen a másikon meg ne, és mind a külső belső, mind a felső-alsó határok tekintetébe
-            return (overInner * overOuter < 0 && overTop * overBottom < 0);
+            if (overInner * overOuter < 0 && overTop * overBottom < 0) {
+                return true;
+            }
 
             //TODO fel lehetne gyorsítani, ha rögtön kiugranák, ha innerOver * innerOuter +1, és megspórol két overLine hívást
 
         }
 
-        return true;
+        return false;
     }
 
 }

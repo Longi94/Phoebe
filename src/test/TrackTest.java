@@ -43,4 +43,9 @@ public class TrackTest {
         Position p5 = new Position (10,10);
         Assert.assertEquals(-1, Track.overLine(p2,p3,p1) * Track.overLine(p4,p5,p1));
     }
+
+    public void testIsInTrack() {
+        Position p = new Position (8,5);
+        Assert.assertTrue(t.isInTrack(p));
+    }
 }
