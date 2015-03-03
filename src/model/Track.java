@@ -79,7 +79,7 @@ public class Track {
      * @param pos A pont, amiről el kell dönteni, hogy melyik oldalára esik
      * @return 1, hogyha a pont az egyenes i1-i2 vektor irányba vett jobb oldalára esik, különben -1
      */
-    private int overLine(Position i1, Position i2, Position pos) {
+    public int overLine(Position i1, Position i2, Position pos) {
         /*
         * Két végpontjával (A,B) adott egyenes egyenlete
         * A_Y + (B_Y - A_Y) * (X - A_X) / (B_X - A_X) = Y
