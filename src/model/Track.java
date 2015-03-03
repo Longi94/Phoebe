@@ -101,9 +101,9 @@ public class Track {
         int siz = innerArc.size();
         for (int i = 0; i<siz; i++) {
             Position i1 = innerArc.get(i);
-            Position i2 = innerArc.get( i+1 % siz );        //az utolsó pont utáni az az első
+            Position i2 = innerArc.get( (i+1) % siz );        //az utolsó pont utáni az az első
             Position o1 = outerArc.get(i);
-            Position o2 = outerArc.get( i+1 % siz);
+            Position o2 = outerArc.get( (i+1) % siz );
 
             int overInner = overLine(i1,i2,pos);            //melyik oldalára esik a pont a pálya belső ívének?
             int overOuter = overLine(o1,o2,pos);            //melyik oldalára esik a pont a pálya külső ívének?
