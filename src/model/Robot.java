@@ -60,7 +60,10 @@ public class Robot extends TrackObjectBase{
 
     public void addPutty() {}
 
-    public void halveVelocity() {}
+    public void halveVelocity() {
+        //Sebesség megfelezése
+        vel.setMagnitude(vel.getMagnitude() / 2.0);
+    }
 
     public void disable() {}
 
