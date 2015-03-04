@@ -2,6 +2,7 @@ package model;
 
 import model.basic.Position;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,8 +25,20 @@ public class GameController {
     }
 
     public void initGame() {
-        //TODO: Kell egy dummy pálya, elég lenne egy négyzet a tesztelése, de nem tudom mekkora legyen.
-        track = new Track(null, null);
+
+        List<Position> in = new ArrayList<Position>();
+        List<Position> out = new ArrayList<Position>();
+        in.add(new Position(2,2));
+        in.add(new Position(6,3));
+        in.add(new Position(6, 7));
+        in.add(new Position(-2,7));
+
+        out.add(new Position(0,0));
+        out.add(new Position(7,1));
+        out.add(new Position(7,9));
+        out.add(new Position(-5,9));
+
+        track = new Track(in,out);
 
         //Robotok inicalizálása
         for (int i = 0; i < numberOfPlayers; i++){
