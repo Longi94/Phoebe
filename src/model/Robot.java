@@ -42,9 +42,21 @@ public class Robot extends TrackObjectBase{
     public void jump(Velocity v) {
         //TODO
         //Vektor hozzáadása a robot sebességvektoráhaz.
-        vel.add(v);
-
+        if (v != null) {
+            vel.add(v);
+        }
+        //Kezdő pozíció elmentése
         Position oldPos = new Position(pos.getX(), pos.getY());
+
+        //Robot mozgatása új pozícióba
+        pos.move(vel);
+
+        for (TrackObjectBase item : track.getItems()){
+            //Magával ne ütközzön
+            if (item != this && hit(item)) {
+                item.collide(this);
+            }
+        }
 
         disable();
     }

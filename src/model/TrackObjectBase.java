@@ -14,11 +14,11 @@ public abstract class TrackObjectBase {
         return RADIUS;
     }
 
-
+    //TODO rosszul van paraméterezve szekvencia diagrammon
     public boolean hit(TrackObjectBase otherObject) {
         double distance = Math.sqrt(Math.pow(this.pos.getX() - otherObject.pos.getX(), 2) + Math.pow(this.pos.getY() - otherObject.pos.getY(), 2));
 
-        return distance <= RADIUS + otherObject.getRadius();
+        return distance <= RADIUS + otherObject.getRadius(); //Szerintem semmi baj a 2*RADIUS-szal
     }
 
 
