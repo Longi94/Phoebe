@@ -42,6 +42,27 @@ public class GameController {
     }
 
     public void newTurn() {
+
+        //Robot ugrásának elvégzése
+        for (Robot robot : players) {
+            Position position = robot.getPos();
+
+            if (track.isInTrack(position)) {
+                robot.jump(null /*TODO módosító velocity lekérdezése*/);
+            } else {
+                //TODO a robot lement a pályáról, kikell törölni a picsába
+                track.removeObject(robot);
+
+                players.remove(robot); //Nemtom fog e kelleni, egyenlőre itt hagyom.
+            }
+        }
+
+        //newRound meghívása minden pályán lévő objektumnak
+        List<TrackObjectBase> allItemsOnTrack = track.getItems();
+        for (TrackObjectBase item : allItemsOnTrack) {
+            item.newRound();
+        }
+
         turnsLeft -= 1;
         if (turnsLeft == 0) {
             endGame();
