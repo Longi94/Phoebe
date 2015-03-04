@@ -9,7 +9,7 @@ import java.util.Random;
  */
 public class Pickup extends TrackObjectBase {
 
-    private Random random = new Random();
+    private static Random random = new Random();
 
     /**
      * Konstruktor
