@@ -1,5 +1,6 @@
 package model;
 
+import model.basic.Position;
 import model.basic.Velocity;
 
 /**
@@ -10,7 +11,7 @@ public class Robot extends TrackObjectBase{
     private static final int START_PUTTY_AMOUNT = 1;
     private static int idCount = 0;
 
-    private double distanceCompleted;
+    private double distanceCompleted = 0;
 
     private Velocity vel;
     private int oilAmount; //rendelkezésre álló olajfoltok mennyisége
@@ -41,8 +42,11 @@ public class Robot extends TrackObjectBase{
 
     public void jump(Velocity v) {
         //TODO
-    }
+        //Vektor hozzáadása a robot sebességvektoráhaz.
+        vel.add(v);
 
+        Position oldPos = new Position(pos.getX(), pos.getY());
+    }
 
     public void putOil() {
         oilAmount -= 1;
