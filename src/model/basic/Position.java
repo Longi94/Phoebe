@@ -79,5 +79,14 @@ public class Position {
         return Math.sqrt(Math.pow(posX - p.getX(), 2) + Math.pow(posY - p.getY(), 2));
     }
 
+    /**
+     * Pozíció módosítása sebességvektor alapján TODO: lehet hogy nem ide kéne, mert csak a Robot használja
+     * @param v a sebességvektor
+     */
+    public void move(Velocity v) {
+        posX += v.getVelocityX();
+        posY += v.getVelocityY();
+    }
+
 }
 
