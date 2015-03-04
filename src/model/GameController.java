@@ -58,8 +58,7 @@ public class GameController {
         }
 
         //newRound meghívása minden pályán lévő objektumnak
-        List<TrackObjectBase> allItemsOnTrack = track.getItems();
-        for (TrackObjectBase item : allItemsOnTrack) {
+        for (TrackObjectBase item : track.getItems()) {
             item.newRound();
         }
 

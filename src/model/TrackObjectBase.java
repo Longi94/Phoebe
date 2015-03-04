@@ -49,7 +49,7 @@ public abstract class TrackObjectBase {
 
     /**
      * Új kör esetén meghívódó függvény
-      */
+     */
     public void newRound() {}
 
     public Position getPos() {
