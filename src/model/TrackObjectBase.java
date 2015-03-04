@@ -18,7 +18,7 @@ public abstract class TrackObjectBase {
     public void collide (Robot r)  {
 
     }
-
+    // TODO a Beni itt még nem járt
     public void newRound() {}
 
 }
