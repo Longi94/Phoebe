@@ -10,10 +10,17 @@ public abstract class TrackObjectBase {
     protected Position pos;
     protected Track track;
 
-    public boolean hit (TrackObjectBase otherObject) {
-        //TODO
-        return false;
+    public static double getRadius() {
+        return RADIUS;
     }
+
+
+    public boolean hit(TrackObjectBase otherObject) {
+        double distance = Math.sqrt(Math.pow(this.pos.getX() - otherObject.pos.getX(), 2) + Math.pow(this.pos.getY() - otherObject.pos.getY(), 2));
+
+        return distance <= RADIUS * 2;
+    }
+
 
     public void collide (Robot r)  {
 
