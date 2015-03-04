@@ -9,20 +9,22 @@ public class Pickup extends TrackObjectBase {
 
     /**
      * Konstruktor
-     * @param pos az objektum pozíciója
+     *
+     * @param pos   az objektum pozíciója
      * @param track a pálya, amin az objektum található
      */
-    public Pickup (Position pos,Track track) {
-        super(pos,track);
+    public Pickup(Position pos, Track track) {
+        super(pos, track);
     }
 
     /**
      * Akkor hívódik meg, ha egy robot felszedi (ütközik vele)
+     *
      * @param r a robot, ami rá ugrott
      */
     @Override
     public void collide(Robot r) {
-        if ( (Math.random()% 2) == 1) {
+        if (((int) (Math.random() * 10) % 2) == 1) {
             r.addOil();
         } else {
             r.addPutty();
