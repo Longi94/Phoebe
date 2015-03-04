@@ -1,3 +1,5 @@
+import model.GameController;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -44,6 +46,12 @@ public class Phoebe {
                 System.out.println("Rossz formatum");
             }
         }
+
+        //controller inicalizálása és elindítása
+        GameController controller = new GameController();
+        controller.setNumberOfPlayers(playerCount);
+        controller.initGame();
+
     }
 
     // ===========================================================

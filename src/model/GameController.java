@@ -12,6 +12,7 @@ public class GameController {
 
     private Track track; //kezelt pálya
     private List<Robot> players; //játékosok
+    private int numberOfPlayers;
 
 
     public GameController() {
@@ -41,4 +42,7 @@ public class GameController {
     }
 
 
+    public void setNumberOfPlayers(int numberOfPlayers) {
+        this.numberOfPlayers = numberOfPlayers;
+    }
 }
