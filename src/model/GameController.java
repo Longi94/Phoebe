@@ -7,7 +7,6 @@ import java.util.List;
  */
 public class GameController {
     public static final int DEFAULT_TURN_NUMBER = 40;
-    public static final int TIME_TO_MOVE = 30; // in seconds
 
     public int turnsLeft;
 
