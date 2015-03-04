@@ -12,7 +12,11 @@ public abstract class Obstacle extends TrackObjectBase {
     private int hitsLeft;
     private int roundsLeft;
 
-
+    /**
+     * Konstruktor
+     * @param pos az objektum pozíciója
+     * @param track a pálya, amin az objektum található
+     */
     public Obstacle (Position pos, Track track) {
         super(pos,track);
         hitsLeft = MAXIMUM_HITS;
