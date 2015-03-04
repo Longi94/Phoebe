@@ -1,5 +1,7 @@
 package model;
 
+import model.basic.Position;
+
 import java.util.List;
 
 /**
@@ -22,7 +24,21 @@ public class GameController {
     }
 
     public void initGame() {
+        //TODO: Kell egy dummy pálya, elég lenne egy négyzet a tesztelése, de nem tudom mekkora legyen.
+        track = new Track(null, null);
 
+        //Robotok inicalizálása
+        for (int i = 0; i < numberOfPlayers; i++){
+            Robot r = new Robot();
+            players.add(r);
+            //TODO: kell kezdő pozíció
+            track.addObject(r);
+        }
+
+        //TODO: Pickupok, random vagy megadott helyeken? nem emlékszem...
+        for (int i = 0; i < 10/*dummy pickup szám*/; i++){
+            track.addObject(new Pickup(new Position(/*TODO*/)));
+        }
     }
 
     public void newTurn() {
