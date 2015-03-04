@@ -11,6 +11,16 @@ public abstract class TrackObjectBase {
     protected Track track;
 
     /**
+     * Konstruktor
+     * @param pos az objektum pozíciója
+     * @param track a pálya, amin az objektum található
+     */
+    public TrackObjectBase(Position pos, Track track) {
+        this.pos = pos;
+        this.track = track;
+    }
+
+    /**
      * Getter a sugárhoz
      * @return a sugár
      */
