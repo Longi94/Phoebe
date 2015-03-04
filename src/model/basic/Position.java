@@ -70,5 +70,14 @@ public class Position {
         this.posY = posY;
     }
 
+    /**
+     * E pont távolságát adja meg p-től
+     * @param p a pont amelytől távolságot kérünk
+     * @return a távolság p-től
+     */
+    public double getDistance(Position p){
+        return Math.sqrt(Math.pow(posX - p.getX(), 2) + Math.pow(posY - p.getY(), 2));
+    }
+
 }
 

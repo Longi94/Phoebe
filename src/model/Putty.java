@@ -12,5 +12,6 @@ public class Putty extends Obstacle {
     @Override
     public void takeEffect(Robot r) {
         //megfelezi a sebességet, de lehetőség van annak változtatására
+        r.halveVelocity();
     }
 }

@@ -10,23 +10,39 @@ public abstract class TrackObjectBase {
     protected Position pos;
     protected Track track;
 
+    /**
+     * Getter a sugárhoz
+     * @return a sugár
+     */
     public static double getRadius() {
         return RADIUS;
     }
 
-
+    /**
+     * Megvizsgálja, ütközik-e az adott objektummal az objektum
+     * @param otherObject az objektum amivel vizsgáljuk hogy ütközik-e
+     * @return true, ha ütköznek és false ha nem
+     */
     public boolean hit(TrackObjectBase otherObject) {
         double distance = Math.sqrt(Math.pow(this.pos.getX() - otherObject.pos.getX(), 2) + Math.pow(this.pos.getY() - otherObject.pos.getY(), 2));
 
-        return distance <= RADIUS * 2;
-        
+        return distance <= RADIUS + otherObject.getRadius();
     }
 
-    public void collide(Robot r) {
+    /**
+     * Akkor hívódik meg,ha ütközik az objektummal egy robot
+     * @param r a robot, amivel ütközik
+     */
+    public void collide (Robot r)  {
 
     }
 
-    public void newRound() {
-    }
+    /**
+     * Új kör esetén meghívódó függvény
+      */
+    public void newRound() {}
 
+    public Position getPos() {
+        return pos;
+    }
 }

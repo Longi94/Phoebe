@@ -1,5 +1,6 @@
 package model;
 
+import model.basic.Position;
 import model.basic.Velocity;
 
 /**
@@ -10,7 +11,7 @@ public class Robot extends TrackObjectBase{
     private static final int START_PUTTY_AMOUNT = 1;
     private static int idCount = 0;
 
-    private double distanceCompleted;
+    private double distanceCompleted = 0;
 
     private Velocity vel;
     private int oilAmount; //rendelkezésre álló olajfoltok mennyisége
@@ -25,7 +26,6 @@ public class Robot extends TrackObjectBase{
      * Alapból minden kör elején true, hogyha olajfolton áll éppen akkor false.
      * Miután lépett, akkor újra false lesz, amíg egy újabb kör nem indul
      */
-
     private boolean enabled;
 
     public Robot () {
@@ -41,8 +41,13 @@ public class Robot extends TrackObjectBase{
 
     public void jump(Velocity v) {
         //TODO
-    }
+        //Vektor hozzáadása a robot sebességvektoráhaz.
+        vel.add(v);
 
+        Position oldPos = new Position(pos.getX(), pos.getY());
+
+        disable();
+    }
 
     public void putOil() {
         oilAmount -= 1;
@@ -56,8 +61,13 @@ public class Robot extends TrackObjectBase{
 
     public void addPutty() {}
 
-    public void halveVelocity() {}
+    public void halveVelocity() {
+        //Sebesség megfelezése
+        vel.setMagnitude(vel.getMagnitude() / 2.0);
+    }
 
-    public void disable() {}
+    public void disable() {
+        enabled = false;
+    }
 
 }
