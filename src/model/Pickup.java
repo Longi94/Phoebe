@@ -13,8 +13,13 @@ public class Pickup extends TrackObjectBase {
 
     @Override
     public void collide(Robot r) {
-        //sorsol és ad a robotnak egy akadályt
+        if ( (Math.random()% 2) == 1) {
+            r.addOil();
+        } else {
+            r.addPutty();
+        }
         //kitörli magát a pályáról
+        track.removeObject(this);
     }
 
 }
