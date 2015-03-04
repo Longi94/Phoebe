@@ -1,9 +1,20 @@
 package model;
 
+import model.basic.Position;
+
 /**
  * Created by bence on 2015.02.23..
  */
 public class Oil extends Obstacle{
+
+    /**
+     * Konstruktor
+     * @param pos az olajfolt pozíciója
+     * @param track a pálya, amire az olajfolt található
+     */
+    public Oil(Position pos, Track track) {
+        super(pos, track);
+    }
 
     /**
      * Az adott akadály milyen hatással van a robotra aki át haladrajta
