@@ -60,14 +60,13 @@ public class GameController {
         for (int i = 0; i < numberOfPlayers; i++){
             Robot r = new Robot(new Position(0,0),track);
             players.add(r);
-            //TODO: kell kezdő pozíció
             track.addObject(r);
             playerOrder.add(i);
         }
 
-        //TODO: Pickupok, random vagy megadott helyeken? nem emlékszem...
+        //TODO: Pickupok előre megadott helyeken
         for (int i = 0; i < 10/*dummy pickup szám*/; i++){
-            track.addObject(new Pickup(new Position(0,0),track));
+            track.addObject(new Pickup(new Position(1,1),track));
         }
     }
 
@@ -84,6 +83,7 @@ public class GameController {
                 robot.jump(null /*TODO módosító velocity lekérdezése*/);
             } else {
                 //TODO a robot lement a pályáról, kikell törölni a picsába
+                //TODO nem azt mondtuk, hogy akkor se törli le, ha lement?
                 track.removeObject(robot);
 
                 players.remove(robot); //Nemtom fog e kelleni, egyenlőre itt hagyom.
