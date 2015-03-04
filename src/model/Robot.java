@@ -28,7 +28,14 @@ public class Robot extends TrackObjectBase{
      */
     private boolean enabled;
 
-    public Robot () {
+    /**
+     * Konstruktor
+     * @param pos az objektum pozíciója
+     * @param track a pálya, amin az objektum található
+     */
+    public Robot (Position pos, Track track) {
+        super(pos,track);
+
         oilAmount = START_OIL_AMOUNT;
         puttyAmount = START_PUTTY_AMOUNT;
 

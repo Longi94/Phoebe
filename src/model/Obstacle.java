@@ -1,5 +1,7 @@
 package model;
 
+import model.basic.Position;
+
 /**
  * Created by bence on 2015.02.23..
  */
@@ -10,8 +12,13 @@ public abstract class Obstacle extends TrackObjectBase {
     private int hitsLeft;
     private int roundsLeft;
 
-
-    public Obstacle () {
+    /**
+     * Konstruktor
+     * @param pos az objektum pozíciója
+     * @param track a pálya, amin az objektum található
+     */
+    public Obstacle (Position pos, Track track) {
+        super(pos,track);
         hitsLeft = MAXIMUM_HITS;
         roundsLeft = MAXIMUM_ROUNDS;
     }
