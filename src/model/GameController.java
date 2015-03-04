@@ -2,6 +2,7 @@ package model;
 
 import model.basic.Position;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,12 +25,24 @@ public class GameController {
     }
 
     public void initGame() {
-        //TODO: Kell egy dummy pálya, elég lenne egy négyzet a tesztelése, de nem tudom mekkora legyen.
-        track = new Track(null, null);
+
+        List<Position> in = new ArrayList<Position>();
+        List<Position> out = new ArrayList<Position>();
+        in.add(new Position(2,2));
+        in.add(new Position(6,3));
+        in.add(new Position(6, 7));
+        in.add(new Position(-2,7));
+
+        out.add(new Position(0,0));
+        out.add(new Position(7,1));
+        out.add(new Position(7,9));
+        out.add(new Position(-5,9));
+
+        track = new Track(in,out);
 
         //Robotok inicalizálása
         for (int i = 0; i < numberOfPlayers; i++){
-            Robot r = new Robot();
+            Robot r = new Robot(new Position(0,0),track);
             players.add(r);
             //TODO: kell kezdő pozíció
             track.addObject(r);
@@ -37,7 +50,7 @@ public class GameController {
 
         //TODO: Pickupok, random vagy megadott helyeken? nem emlékszem...
         for (int i = 0; i < 10/*dummy pickup szám*/; i++){
-            track.addObject(new Pickup(new Position(/*TODO*/)));
+            track.addObject(new Pickup(new Position(0,0),track));
         }
     }
 
@@ -58,8 +71,7 @@ public class GameController {
         }
 
         //newRound meghívása minden pályán lévő objektumnak
-        List<TrackObjectBase> allItemsOnTrack = track.getItems();
-        for (TrackObjectBase item : allItemsOnTrack) {
+        for (TrackObjectBase item : track.getItems()) {
             item.newRound();
         }
 

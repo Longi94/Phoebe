@@ -7,14 +7,28 @@ import model.basic.Position;
  */
 public class Pickup extends TrackObjectBase {
 
-    public Pickup (Position pos) {
-
+    /**
+     * Konstruktor
+     * @param pos az objektum pozíciója
+     * @param track a pálya, amin az objektum található
+     */
+    public Pickup (Position pos,Track track) {
+        super(pos,track);
     }
 
+    /**
+     * Akkor hívódik meg, ha egy robot felszedi (ütközik vele)
+     * @param r a robot, ami rá ugrott
+     */
     @Override
     public void collide(Robot r) {
-        //sorsol és ad a robotnak egy akadályt
+        if ( (Math.random()% 2) == 1) {
+            r.addOil();
+        } else {
+            r.addPutty();
+        }
         //kitörli magát a pályáról
+        track.removeObject(this);
     }
 
 }

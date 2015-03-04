@@ -28,7 +28,14 @@ public class Robot extends TrackObjectBase{
      */
     private boolean enabled;
 
-    public Robot () {
+    /**
+     * Konstruktor
+     * @param pos az objektum pozíciója
+     * @param track a pálya, amin az objektum található
+     */
+    public Robot (Position pos, Track track) {
+        super(pos,track);
+
         oilAmount = START_OIL_AMOUNT;
         puttyAmount = START_PUTTY_AMOUNT;
 
@@ -39,33 +46,81 @@ public class Robot extends TrackObjectBase{
         vel = new Velocity();
     }
 
+    /**
+     * Robot ugratása.
+     * @param v módosító sebességvektor
+     */
     public void jump(Velocity v) {
         //TODO
         //Vektor hozzáadása a robot sebességvektoráhaz.
-        vel.add(v);
-
+        if (v != null) {
+            vel.add(v);
+        }
+        //Kezdő pozíció elmentése
         Position oldPos = new Position(pos.getX(), pos.getY());
+
+        //Robot mozgatása új pozícióba
+        pos.move(vel);
+
+        for (TrackObjectBase item : track.getItems()){
+            //Magával ne ütközzön
+            if (item != this && hit(item)) {
+                item.collide(this);
+            }
+        }
 
         disable();
     }
 
+    /**
+     * Olaj lerakása
+     */
     public void putOil() {
-        oilAmount -= 1;
+        if (oilAmount > 0) {
+            oilAmount -= 1;
+            track.addObject(new Oil(pos, track));
+        } else {
+            throw new IllegalStateException("Elfogyott az olaj");
+        }
     }
 
+    /**
+     * Ragacs lerakása
+     */
     public void putPutty() {
-        puttyAmount -= 1;
+        if (puttyAmount > 0) {
+            puttyAmount -= 1;
+            track.addObject(new Putty(pos, track));
+        } else {
+            throw new IllegalStateException("Elfogyott az ragacs");
+        }
     }
 
-    public void addOil() {}
+    /**
+     * Olaj hozzáadása a készlethez
+     */
+    public void addOil() {
+        oilAmount++;
+    }
 
-    public void addPutty() {}
+    /**
+     * Ragacs hozzáadása a készlethez
+     */
+    public void addPutty() {
+        puttyAmount++;
+    }
 
+    /**
+     * A sebesség megfelezése
+     */
     public void halveVelocity() {
         //Sebesség megfelezése
         vel.setMagnitude(vel.getMagnitude() / 2.0);
     }
 
+    /**
+     * Robot letiltása
+     */
     public void disable() {
         enabled = false;
     }
