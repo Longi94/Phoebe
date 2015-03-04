@@ -19,6 +19,7 @@ public abstract class TrackObjectBase {
         double distance = Math.sqrt(Math.pow(this.pos.getX() - otherObject.pos.getX(), 2) + Math.pow(this.pos.getY() - otherObject.pos.getY(), 2));
 
         return distance <= RADIUS * 2;
+        
     }
 
     public void collide(Robot r) {
