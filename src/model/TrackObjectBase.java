@@ -29,4 +29,7 @@ public abstract class TrackObjectBase {
     
     public void newRound() {}
 
+    public Position getPos() {
+        return pos;
+    }
 }
