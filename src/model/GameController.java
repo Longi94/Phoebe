@@ -29,7 +29,7 @@ public class GameController {
 
         //Robotok inicalizálása
         for (int i = 0; i < numberOfPlayers; i++){
-            Robot r = new Robot();
+            Robot r = new Robot(new Position(0,0),track);
             players.add(r);
             //TODO: kell kezdő pozíció
             track.addObject(r);
@@ -37,7 +37,7 @@ public class GameController {
 
         //TODO: Pickupok, random vagy megadott helyeken? nem emlékszem...
         for (int i = 0; i < 10/*dummy pickup szám*/; i++){
-            track.addObject(new Pickup(new Position(/*TODO*/)));
+            track.addObject(new Pickup(new Position(0,0),track));
         }
     }
 
