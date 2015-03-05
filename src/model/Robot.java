@@ -67,6 +67,8 @@ public class Robot extends TrackObjectBase {
 
         //Megtett táv növelése
         distanceCompleted += pos.getDistance(oldPos);
+        //TODO Nem így kell számolni. Attól függ, mennyit haladt előre a belső íven...
+        //TODO Mert így az nyer, aki sokat kacsázik, nem az, aki egyenesen megy
 
         track.robotJumped(this);
 
