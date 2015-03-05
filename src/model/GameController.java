@@ -147,34 +147,40 @@ public class GameController {
      */
     public void getPlayerInputs() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int angle;
 
         for (int i : playerOrder) {
             Robot currentPlayer = players.get(i);
-            System.out.print(currentPlayer.getName() + "'s turn: ");
-            int angle = -2;
-            String[] command = {};
-            //Játékos parancsának bekérése
-            do {
-                try {
-                    command = br.readLine().split(" ");
-                    angle = Integer.parseInt(command[0]);
-                } catch (IOException e) {
-                    System.out.println("Valami nagyon nem jo ha ez kiirodik");
-                } catch (NumberFormatException e) {
-                    System.out.println("Rossz formatum");
-                }
-            } while ((angle < 0 || angle >= 360) && angle != -1);
-            //TODO eléggé meghal -1-re...
+            if (currentPlayer.isEnabled()) {
+                System.out.print(currentPlayer.getName() + "'s turn: ");
+                angle = -2;
+                String[] command = {};
+                //Játékos parancsának bekérése
+                do {
+                    try {
+                        command = br.readLine().split(" ");
+                        angle = Integer.parseInt(command[0]);
+                    } catch (IOException e) {
+                        System.out.println("Valami nagyon nem jo ha ez kiirodik");
+                    } catch (NumberFormatException e) {
+                        System.out.println("Rossz formatum");
+                    }
+                } while ((angle < 0 || angle >= 360) && angle != -1);
 
-            //TODO bekért command lekezelése (valszeg tárolni kell, ha végig akarunk iterálni
+                //TODO eléggé meghal -1-re...
 
-            //Akadály lerakása ha a játékos akarta
-            if (command.length > 1 && command[1] != null) {
-                if (command[1].equals("-o")) {
-                    currentPlayer.putOil();
-                } else if (command[1].equals("-p")) {
-                    currentPlayer.putPutty();
+                //TODO bekért command lekezelése (valszeg tárolni kell, ha végig akarunk iterálni
+
+                //Akadály lerakása ha a játékos akarta
+                if (command.length > 1 && command[1] != null) {
+                    if (command[1].equals("-o")) {
+                        currentPlayer.putOil();
+                    } else if (command[1].equals("-p")) {
+                        currentPlayer.putPutty();
+                    }
                 }
+            } else {
+                angle = -1;
             }
             //szerintem csapathatja itt az ugrást, most azon már nem múlik...
 

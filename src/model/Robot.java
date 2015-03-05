@@ -26,7 +26,7 @@ public class Robot extends TrackObjectBase {
      * Alapból minden kör elején true, hogyha olajfolton áll éppen akkor false.
      * Miután lépett, akkor újra false lesz, amíg egy újabb kör nem indul
      */
-    private boolean enabled;
+    private boolean enabled = true;
 
     /**
      * Konstruktor
@@ -43,6 +43,8 @@ public class Robot extends TrackObjectBase {
         id = idCount;
         this.name = name;
         idCount += 1;
+
+        this.enabled = true;
 
         vel = new Velocity();
     }
@@ -70,6 +72,19 @@ public class Robot extends TrackObjectBase {
 
         //nem gondolom szükségesnek, csak az olaj állíthatja szerintem
         //enabled = false;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    /**
+     * Robot letiltása vagy engedélyezése
+     *
+     * @param enabled robot állapota
+     */
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     /**
@@ -116,15 +131,6 @@ public class Robot extends TrackObjectBase {
     public void halveVelocity() {
         //Sebesség megfelezése
         vel.setMagnitude(vel.getMagnitude() / 2.0);
-    }
-
-    /**
-     * Robot letiltása vagy engedélyezése
-     *
-     * @param enabled robot állapota
-     */
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 
     public String getName() {
