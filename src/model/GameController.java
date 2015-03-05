@@ -151,7 +151,7 @@ public class GameController {
         for (int i : playerOrder) {
             Robot currentPlayer = players.get(i);
             System.out.print(currentPlayer.getName() + "'s turn: ");
-            int angle = -1;
+            int angle = -2;
             String[] command = {};
             //Játékos parancsának bekérése
             do {
@@ -163,7 +163,7 @@ public class GameController {
                 } catch (NumberFormatException e) {
                     System.out.println("Rossz formatum");
                 }
-            } while (angle < 0 || angle >= 360);
+            } while ((angle < 0 || angle >= 360) && angle != -1);
             //TODO eléggé meghal -1-re...
 
             //TODO bekért command lekezelése (valszeg tárolni kell, ha végig akarunk iterálni
