@@ -23,7 +23,16 @@ public abstract class Obstacle extends TrackObjectBase {
         roundsLeft = MAXIMUM_ROUNDS;
     }
 
+    /**
+     * Sajnos ez is kell ahhoz, hogy a radiust overrideoljuk
+     * @return az akadály sugara
+     */
+    public static double getRadius() {
+        return RADIUS;
+    }
+
     protected static double RADIUS = 0.7;
+
 
 
     /**

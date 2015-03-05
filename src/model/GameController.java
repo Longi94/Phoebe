@@ -29,6 +29,7 @@ public class GameController {
 
     }
 
+
     /**
      * Játék elindítása
      */
@@ -40,6 +41,14 @@ public class GameController {
 
         //Játékosok sorrendjét meghatározó lista
         playerOrder = new ArrayList<Integer>();
+
+
+        System.out.println("OBSTACLE =" + Obstacle.getRadius());
+
+        System.out.println("ROBOT =" + Robot.getRadius());
+
+        System.out.println("PICKUP =" + Pickup.getRadius());
+
 
         //Dummy pálya
         List<Position> in = new ArrayList<Position>();
@@ -64,7 +73,6 @@ public class GameController {
             playerOrder.add(i);
         }
 
-        System.out.println(Obstacle.getRadius());
 
         //TODO: Pickupok előre megadott helyeken
         for (int i = 0; i < 10/*dummy pickup szám*/; i++) {
