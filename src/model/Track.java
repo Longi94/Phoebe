@@ -128,7 +128,7 @@ public class Track {
      */
     public void robotJumped(Robot r) {
 
-        List<TrackObjectBase> tmp = new ArrayList<TrackObjectBase>();
+      /*  List<TrackObjectBase> tmp = new ArrayList<TrackObjectBase>();
 
         for (TrackObjectBase item : items) {
             //Magával ne ütközzön
@@ -140,9 +140,15 @@ public class Track {
         for (TrackObjectBase item : tmp) {
             item.collide(r);
         }
-
-        tmp.clear();
-
+       */
+       int  i = 0;
+        while (i < items.size()) {
+            TrackObjectBase item = items.get(i);
+            if (item != r && r.hit(item)) {
+                item.collide(r);
+            }
+            if (item == items.get(i)) i++;
+        }
     }
 
 
