@@ -66,6 +66,7 @@ public class Robot extends TrackObjectBase {
         //Megtett táv növelése
         distanceCompleted += pos.getDistance(oldPos);
 
+        //TODO .ConcurrentModificationException - dob
         for (TrackObjectBase item : track.getItems()) {
             //Magával ne ütközzön
             if (item != this && hit(item)) {

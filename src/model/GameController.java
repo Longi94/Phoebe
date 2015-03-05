@@ -108,8 +108,9 @@ public class GameController {
 
         System.out.println("Jatek kezdese...");
         System.out.println("Parancs formatum: <szog> [-o] [-p]");
-        System.out.println(" - <szog>: egy eges szam 0 és 359 kozott. -1 ha nem akar valtoztatin");
-        newTurn();
+        System.out.println(" - <szog>: egy eges szam 0 és 359 kozott. -1 ha nem akar valtoztatni");
+
+        getPlayerInputs();
     }
 
     /**
@@ -139,11 +140,15 @@ public class GameController {
         } else {
             //Játékosok sorrendjéne összekeverése, persze ez nem túl optimális játék élmény szempontjából
             Collections.shuffle(playerOrder);
-            nextPlayer();
+            getPlayerInputs();
         }
     }
 
-    public void nextPlayer() {
+    /**
+     * Sorban bekéri a játékosoktól a parancsokat
+     * TODO: egyáltalán nem teljes
+     */
+    public void getPlayerInputs() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         for (int i : playerOrder) {
@@ -163,6 +168,8 @@ public class GameController {
                 }
             } while (angle < 0 || angle >= 360);
 
+            //TODO bekért command lekezelése (valszeg tárolni kell, ha végig akarunk iterálni
+
             //Akadály lerakása ha a játékos akarta
             if (command.length > 1 && command[1] != null) {
                 if (command[1].equals("-o")) {
@@ -181,7 +188,9 @@ public class GameController {
         //TODO
     }
 
-
+    /**
+     * @param numberOfPlayers a kívánt játékosok száma
+     */
     public void setNumberOfPlayers(int numberOfPlayers) {
         this.numberOfPlayers = numberOfPlayers;
     }
