@@ -46,43 +46,6 @@ public class Track {
     //=============================================================================================
 
     /**
-     * Getter a pályán található elemekhez
-     *
-     * @return az elemek List-je
-     */
-    public List<TrackObjectBase> getItems() {
-        return items;
-    }
-
-    //=============================================================================================
-    // LIST-EK KEZELÉSE
-    //=============================================================================================
-
-    /**
-     * Hozzáad egy elemet a pályaelemek tömbjéhez
-     *
-     * @param object a hozzáadandó elem
-     * @return sikeres volt-e a hozzáadás vagy nem
-     */
-    public boolean addObject(TrackObjectBase object) {
-        return items.add(object);
-    }
-
-    /**
-     * Eltávolít egy elemet a pályaelemek tömbjéből
-     *
-     * @param object az eltávolítandó elem
-     * @return sikeres volt-e az eltávolítás, vagy sem
-     */
-    public boolean removeObject(TrackObjectBase object) {
-        return items.remove(object);
-    }
-
-    //=============================================================================================
-    // EGYÉB FÜGGVÉNYEK
-    //=============================================================================================
-
-    /**
      * Megmutatja, hogy egy adott pont a poligon belsejében van-e. (Ray casting algorithm) -> http://stackoverflow.com/questions/11716268/point-in-polygon-algorithm
      *
      * @param arc a poligon pontjainak listája
@@ -108,6 +71,43 @@ public class Track {
         }
         return c;
 
+    }
+
+    //=============================================================================================
+    // LIST-EK KEZELÉSE
+    //=============================================================================================
+
+    /**
+     * Getter a pályán található elemekhez
+     *
+     * @return az elemek List-je
+     */
+    public List<TrackObjectBase> getItems() {
+        return items;
+    }
+
+    /**
+     * Hozzáad egy elemet a pályaelemek tömbjéhez
+     *
+     * @param object a hozzáadandó elem
+     * @return sikeres volt-e a hozzáadás vagy nem
+     */
+    public boolean addObject(TrackObjectBase object) {
+        return items.add(object);
+    }
+
+    //=============================================================================================
+    // EGYÉB FÜGGVÉNYEK
+    //=============================================================================================
+
+    /**
+     * Eltávolít egy elemet a pályaelemek tömbjéből
+     *
+     * @param object az eltávolítandó elem
+     * @return sikeres volt-e az eltávolítás, vagy sem
+     */
+    public boolean removeObject(TrackObjectBase object) {
+        return items.remove(object);
     }
 
     /**

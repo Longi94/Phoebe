@@ -44,13 +44,13 @@ public class GameController {
         //Játékosok sorrendjét meghatározó lista
         playerOrder = new ArrayList<Integer>();
 
+        //Csak hogy lássátok, működik a dolog
+        System.out.println("RADIUS OF OBSTACLES=" + Obstacle.getRadius());
 
-        System.out.println("OBSTACLE =" + Obstacle.getRadius());
+        System.out.println("RADIUS OF ROBOTS =" + Robot.getRadius());
 
-        System.out.println("ROBOT =" + Robot.getRadius());
-
-        System.out.println("PICKUP =" + Pickup.getRadius());
-
+        System.out.println("RADIUS OF PICKUPS =" + Pickup.getRadius());
+        //
 
         //Dummy pálya
         List<Position> in = new ArrayList<Position>();

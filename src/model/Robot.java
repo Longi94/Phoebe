@@ -6,7 +6,7 @@ import model.basic.Velocity;
 /**
  * Created by bence on 2015.02.23..
  */
-public class Robot extends TrackObjectBase{
+public class Robot extends TrackObjectBase {
     private static final int START_OIL_AMOUNT = 1;
     private static final int START_PUTTY_AMOUNT = 1;
     private static int idCount = 0;
@@ -30,11 +30,12 @@ public class Robot extends TrackObjectBase{
 
     /**
      * Konstruktor
-     * @param pos az objektum pozíciója
+     *
+     * @param pos   az objektum pozíciója
      * @param track a pálya, amin az objektum található
      */
-    public Robot (Position pos, Track track, String name) {
-        super(pos,track);
+    public Robot(Position pos, Track track, String name) {
+        super(pos, track);
 
         oilAmount = START_OIL_AMOUNT;
         puttyAmount = START_PUTTY_AMOUNT;
@@ -48,6 +49,7 @@ public class Robot extends TrackObjectBase{
 
     /**
      * Robot ugratása.
+     *
      * @param v módosító sebességvektor
      */
     public void jump(Velocity v) {
@@ -64,7 +66,7 @@ public class Robot extends TrackObjectBase{
         //Megtett táv növelése
         distanceCompleted += pos.getDistance(oldPos);
 
-        for (TrackObjectBase item : track.getItems()){
+        for (TrackObjectBase item : track.getItems()) {
             //Magával ne ütközzön
             if (item != this && hit(item)) {
                 item.collide(this);
@@ -122,6 +124,7 @@ public class Robot extends TrackObjectBase{
 
     /**
      * Robot letiltása vagy engedélyezése
+     *
      * @param enabled robot állapota
      */
     public void setEnabled(boolean enabled) {
