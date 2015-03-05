@@ -119,17 +119,6 @@ public class GameController {
      */
     public void newTurn() {
 
-        //Robot ugrásának elvégzése
-        for (Robot robot : players) {
-            Position position = robot.getPos();
-
-            if (track.isInTrack(position)) {
-                robot.jump(null /*TODO módosító velocity lekérdezése*/);
-            } else {
-                playerOrder.remove(new Integer(players.indexOf(robot)));
-            }
-        }
-
         //newRound meghívása minden pályán lévő objektumnak
         for (TrackObjectBase item : track.getItems()) {
             item.newRound();
@@ -168,7 +157,7 @@ public class GameController {
                     System.out.println("Rossz formatum");
                 }
             } while (angle < 0 || angle >= 360);
-            //TODO eléggé meghal -1-re... ja és a robotok nem ugrálnak :(
+            //TODO eléggé meghal -1-re...
 
             //TODO bekért command lekezelése (valszeg tárolni kell, ha végig akarunk iterálni
 
@@ -180,10 +169,16 @@ public class GameController {
                     currentPlayer.putPutty();
                 }
             }
-            Velocity v = new Velocity();
-            v.setAngle(angle);
-            v.setMagnitude(angle==-1 ? 0 : 1);
-            currentPlayer.jump(v);
+            //szerintem csapathatja itt az ugrást, most azon már nem múlik...
+            if (track.isInTrack(currentPlayer.getPos())) {
+                Velocity v = new Velocity();
+                v.setAngle(angle);
+                v.setMagnitude(angle==-1 ? 0 : 1);
+                currentPlayer.jump(v);
+            } else {
+                playerOrder.remove(new Integer(players.indexOf(currentPlayer)));
+            }
+
 
         }
 
