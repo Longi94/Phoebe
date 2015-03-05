@@ -23,6 +23,8 @@ public abstract class Obstacle extends TrackObjectBase {
         roundsLeft = MAXIMUM_ROUNDS;
     }
 
+    protected static double RADIUS = 0.7;
+
 
     /**
      * Az adott akadály milyen hatással van a robotra aki át haladrajta

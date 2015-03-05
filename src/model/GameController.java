@@ -64,6 +64,8 @@ public class GameController {
             playerOrder.add(i);
         }
 
+        System.out.println(Obstacle.getRadius());
+
         //TODO: Pickupok előre megadott helyeken
         for (int i = 0; i < 10/*dummy pickup szám*/; i++) {
             track.addObject(new Pickup(new Position(1, 1), track));
