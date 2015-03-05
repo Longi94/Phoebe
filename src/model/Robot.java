@@ -26,7 +26,7 @@ public class Robot extends TrackObjectBase {
      * Alapból minden kör elején true, hogyha olajfolton áll éppen akkor false.
      * Miután lépett, akkor újra false lesz, amíg egy újabb kör nem indul
      */
-    private boolean enabled;
+    private boolean enabled = true;
 
     /**
      * Konstruktor
@@ -43,6 +43,8 @@ public class Robot extends TrackObjectBase {
         id = idCount;
         this.name = name;
         idCount += 1;
+
+        this.enabled = true;
 
         vel = new Velocity();
     }
@@ -65,16 +67,26 @@ public class Robot extends TrackObjectBase {
 
         //Megtett táv növelése
         distanceCompleted += pos.getDistance(oldPos);
+        //TODO Nem így kell számolni. Attól függ, mennyit haladt előre a belső íven...
+        //TODO Mert így az nyer, aki sokat kacsázik, nem az, aki egyenesen megy
 
-        //TODO .ConcurrentModificationException - dob
-        for (TrackObjectBase item : track.getItems()) {
-            //Magával ne ütközzön
-            if (item != this && hit(item)) {
-                item.collide(this);
-            }
-        }
+        track.robotJumped(this);
 
-        enabled = false;
+        //nem gondolom szükségesnek, csak az olaj állíthatja szerintem
+        //enabled = false;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    /**
+     * Robot letiltása vagy engedélyezése
+     *
+     * @param enabled robot állapota
+     */
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     /**
@@ -123,16 +135,21 @@ public class Robot extends TrackObjectBase {
         vel.setMagnitude(vel.getMagnitude() / 2.0);
     }
 
-    /**
-     * Robot letiltása vagy engedélyezése
-     *
-     * @param enabled robot állapota
-     */
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Robot{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", " + super.toString() +
+                ", distanceCompleted=" + (double) Math.round(100 * distanceCompleted) / 100 +
+                ", vel=" + vel +
+                ", oilAmount=" + oilAmount +
+                ", puttyAmount=" + puttyAmount +
+                ", enabled=" + enabled +
+                '}';
     }
 }

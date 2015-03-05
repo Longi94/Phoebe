@@ -91,5 +91,10 @@ public class Position {
         posY += v.getVelocityY();
     }
 
+    @Override
+    public String toString() {
+        return "posX=" + (double) Math.round(100 * posX) / 100 +
+                ", posY=" + (double) Math.round(100 * posY) / 100 + " ";
+    }
 }
 

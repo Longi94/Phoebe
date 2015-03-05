@@ -1,6 +1,7 @@
 package model;
 
 import model.basic.Position;
+import model.basic.Velocity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -55,10 +56,10 @@ public class GameController {
         //Azért így csináltam meg, mert ha egy külső fájlból loadoljuk be a track-et akkor úgyse lesz benne a pálya referenciája, csak a pickupok pozíciója.
 
         List<Position> pickupPos = new ArrayList<Position>();
-        pickupPos.add(new Position(1,1));
+        pickupPos.add(new Position(1, 1));
 
-        while (pickupPos.size()>0) {
-            track.addObject(new Pickup(pickupPos.remove(0),track));
+        while (pickupPos.size() > 0) {
+            track.addObject(new Pickup(pickupPos.remove(0), track));
         }
 
     }
@@ -118,13 +119,9 @@ public class GameController {
      */
     public void newTurn() {
 
-        //Robot ugrásának elvégzése
+        //Robotot kiszedjük, ha kiugrott
         for (Robot robot : players) {
-            Position position = robot.getPos();
-
-            if (track.isInTrack(position)) {
-                robot.jump(null /*TODO módosító velocity lekérdezése*/);
-            } else {
+            if (!track.isInTrack(robot.getPos())) {
                 playerOrder.remove(new Integer(players.indexOf(robot)));
             }
         }
@@ -150,34 +147,50 @@ public class GameController {
      */
     public void getPlayerInputs() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int angle;
 
         for (int i : playerOrder) {
             Robot currentPlayer = players.get(i);
-            System.out.print(currentPlayer.getName() + "'s turn: ");
-            int angle = -1;
-            String[] command = {};
-            //Játékos parancsának bekérése
-            do {
-                try {
-                    command = br.readLine().split(" ");
-                    angle = Integer.parseInt(command[0]);
-                } catch (IOException e) {
-                    System.out.println("Valami nagyon nem jo ha ez kiirodik");
-                } catch (NumberFormatException e) {
-                    System.out.println("Rossz formatum");
-                }
-            } while (angle < 0 || angle >= 360);
+            if (currentPlayer.isEnabled()) {
+                System.out.print(currentPlayer.getName() + "'s turn: ");
+                angle = -2;
+                String[] command = {};
+                //Játékos parancsának bekérése
+                do {
+                    try {
+                        command = br.readLine().split(" ");
+                        angle = Integer.parseInt(command[0]);
+                    } catch (IOException e) {
+                        System.out.println("Valami nagyon nem jo ha ez kiirodik");
+                    } catch (NumberFormatException e) {
+                        System.out.println("Rossz formatum");
+                    }
+                } while ((angle < 0 || angle >= 360) && angle != -1);
 
-            //TODO bekért command lekezelése (valszeg tárolni kell, ha végig akarunk iterálni
+                //TODO eléggé meghal -1-re...
 
-            //Akadály lerakása ha a játékos akarta
-            if (command.length > 1 && command[1] != null) {
-                if (command[1].equals("-o")) {
-                    currentPlayer.putOil();
-                } else if (command[1].equals("-p")){
-                    currentPlayer.putPutty();
+                //TODO bekért command lekezelése (valszeg tárolni kell, ha végig akarunk iterálni
+
+                //Akadály lerakása ha a játékos akarta
+                if (command.length > 1 && command[1] != null) {
+                    if (command[1].equals("-o")) {
+                        currentPlayer.putOil();
+                    } else if (command[1].equals("-p")) {
+                        currentPlayer.putPutty();
+                    }
                 }
+            } else {
+                angle = -1;
             }
+            //szerintem csapathatja itt az ugrást, most azon már nem múlik...
+
+            Velocity v = new Velocity();
+            v.setAngle((double) angle / 180 * Math.PI); //ne feledjük hogy radián kell
+            v.setMagnitude(angle == -1 ? 0 : 1);
+            currentPlayer.jump(v);
+
+            System.out.println(track.toString());
+
         }
 
         newTurn();
