@@ -62,4 +62,9 @@ public abstract class TrackObjectBase {
     public Position getPos() {
         return pos;
     }
+
+    @Override
+    public String toString() {
+        return "pos=" + pos;
+    }
 }

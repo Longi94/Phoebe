@@ -27,4 +27,9 @@ public class Oil extends Obstacle {
         //megtartja a sebességet, és tiltja annak módosítását
         r.setEnabled(false);
     }
+
+    @Override
+    public String toString() {
+        return "Oil{" + super.toString() +"}";
+    }
 }

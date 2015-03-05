@@ -27,4 +27,9 @@ public class Putty extends Obstacle {
         //megfelezi a sebességet, de lehetőség van annak változtatására
         r.halveVelocity();
     }
+
+    @Override
+    public String toString() {
+        return "Putty{" + super.toString() + "}";
+    }
 }

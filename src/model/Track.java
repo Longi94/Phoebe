@@ -152,5 +152,12 @@ public class Track {
         }
     }
 
-
+    @Override
+    public String toString() {
+        String toRet = "";
+        for (TrackObjectBase item: items) {
+            toRet += item.toString() + "\n";
+        }
+        return toRet;
+    }
 }

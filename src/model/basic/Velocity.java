@@ -135,4 +135,10 @@ public class Velocity {
         this.setDescartes(tempX, tempY);
     }
 
+    @Override
+    public String toString() {
+        return "magnitude=" + magnitude +
+                ", angle=" + angle +
+                ' ';
+    }
 }

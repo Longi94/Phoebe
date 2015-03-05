@@ -38,4 +38,8 @@ public class Pickup extends TrackObjectBase {
         track.removeObject(this);
     }
 
+    @Override
+    public String toString() {
+        return "Pickup{" + super.toString() + "}";
+    }
 }

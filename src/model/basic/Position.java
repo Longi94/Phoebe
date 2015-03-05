@@ -91,5 +91,10 @@ public class Position {
         posY += v.getVelocityY();
     }
 
+    @Override
+    public String toString() {
+        return "posX=" + posX +
+                ", posY=" + posY + " ";
+    }
 }
 
