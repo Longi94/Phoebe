@@ -56,10 +56,10 @@ public class GameController {
         //Azért így csináltam meg, mert ha egy külső fájlból loadoljuk be a track-et akkor úgyse lesz benne a pálya referenciája, csak a pickupok pozíciója.
 
         List<Position> pickupPos = new ArrayList<Position>();
-        pickupPos.add(new Position(1,1));
+        pickupPos.add(new Position(1, 1));
 
-        while (pickupPos.size()>0) {
-            track.addObject(new Pickup(pickupPos.remove(0),track));
+        while (pickupPos.size() > 0) {
+            track.addObject(new Pickup(pickupPos.remove(0), track));
         }
 
     }

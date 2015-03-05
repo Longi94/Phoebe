@@ -124,6 +124,7 @@ public class Track {
     /**
      * Robot ugrása esetén végrehajtódó függvény
      * Szerintem elegánsabb mint a getteres, mert úgy is a pálya felelőssége, hogy ki áll ott, nem a roboté
+     *
      * @param r a robot aki ugrott a pályán
      */
     public void robotJumped(Robot r) {
@@ -141,7 +142,7 @@ public class Track {
             item.collide(r);
         }
        */
-       int  i = 0;
+        int i = 0;
         while (i < items.size()) {
             TrackObjectBase item = items.get(i);
             if (item != r && r.hit(item)) {
