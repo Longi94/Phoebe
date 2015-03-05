@@ -44,29 +44,29 @@ public class GameController {
         //Dummy pálya
         List<Position> in = new ArrayList<Position>();
         List<Position> out = new ArrayList<Position>();
-        in.add(new Position(2,2));
-        in.add(new Position(6,3));
+        in.add(new Position(2, 2));
+        in.add(new Position(6, 3));
         in.add(new Position(6, 7));
-        in.add(new Position(-2,7));
+        in.add(new Position(-2, 7));
 
-        out.add(new Position(0,0));
-        out.add(new Position(7,1));
-        out.add(new Position(7,9));
-        out.add(new Position(-5,9));
+        out.add(new Position(0, 0));
+        out.add(new Position(7, 1));
+        out.add(new Position(7, 9));
+        out.add(new Position(-5, 9));
 
-        track = new Track(in,out);
+        track = new Track(in, out);
 
         //Robotok inicalizálása
-        for (int i = 0; i < numberOfPlayers; i++){
-            Robot r = new Robot(new Position(0,0),track);
+        for (int i = 0; i < numberOfPlayers; i++) {
+            Robot r = new Robot(new Position(0, 0), track, "R2D" + i);
             players.add(r);
             track.addObject(r);
             playerOrder.add(i);
         }
 
         //TODO: Pickupok előre megadott helyeken
-        for (int i = 0; i < 10/*dummy pickup szám*/; i++){
-            track.addObject(new Pickup(new Position(1,1),track));
+        for (int i = 0; i < 10/*dummy pickup szám*/; i++) {
+            track.addObject(new Pickup(new Position(1, 1), track));
         }
     }
 

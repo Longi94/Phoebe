@@ -33,7 +33,7 @@ public class Robot extends TrackObjectBase{
      * @param pos az objektum pozíciója
      * @param track a pálya, amin az objektum található
      */
-    public Robot (Position pos, Track track) {
+    public Robot (Position pos, Track track, String name) {
         super(pos,track);
 
         oilAmount = START_OIL_AMOUNT;
