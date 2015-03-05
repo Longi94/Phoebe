@@ -39,6 +39,8 @@ public class GameController {
             throw new IllegalArgumentException("Nem megengedett jatekos szam");
         }
 
+        players = new ArrayList<Robot>();
+
         //Játékosok sorrendjét meghatározó lista
         playerOrder = new ArrayList<Integer>();
 
