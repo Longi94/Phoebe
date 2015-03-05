@@ -34,11 +34,19 @@ public abstract class Obstacle extends TrackObjectBase {
     public void collide(Robot r) {
         hitsLeft -=1;
         takeEffect(r);
+
+        if (hitsLeft == 0) {
+            track.removeObject(this);
+        }
     }
 
     @Override
     public void newRound() {
         roundsLeft -=1;
+
+        if (roundsLeft == 0) {
+            track.removeObject(this);
+        }
     }
 
 }

@@ -51,7 +51,6 @@ public class Robot extends TrackObjectBase{
      * @param v módosító sebességvektor
      */
     public void jump(Velocity v) {
-        //TODO
         //Vektor hozzáadása a robot sebességvektoráhaz.
         if (v != null) {
             vel.add(v);
@@ -62,6 +61,9 @@ public class Robot extends TrackObjectBase{
         //Robot mozgatása új pozícióba
         pos.move(vel);
 
+        //Megtett táv növelése
+        distanceCompleted += pos.getDistance(oldPos);
+
         for (TrackObjectBase item : track.getItems()){
             //Magával ne ütközzön
             if (item != this && hit(item)) {
@@ -69,7 +71,7 @@ public class Robot extends TrackObjectBase{
             }
         }
 
-        disable();
+        enabled = false;
     }
 
     /**
@@ -119,10 +121,11 @@ public class Robot extends TrackObjectBase{
     }
 
     /**
-     * Robot letiltása
+     * Robot letiltása vagy engedélyezése
+     * @param enabled robot állapota
      */
-    public void disable() {
-        enabled = false;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
 }

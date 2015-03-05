@@ -2,10 +2,14 @@ package model;
 
 import model.basic.Position;
 
+import java.util.Random;
+
 /**
  * Created by bence on 2015.02.23..
  */
 public class Pickup extends TrackObjectBase {
+
+    private static Random random = new Random();
 
     /**
      * Konstruktor
@@ -24,7 +28,8 @@ public class Pickup extends TrackObjectBase {
      */
     @Override
     public void collide(Robot r) {
-        if (((int) (Math.random() * 10) % 2) == 1) {
+        //Random.nextInt(n) is both more efficient and less biased than Math.random() * n
+        if (random.nextInt(2) == 1) {
             r.addOil();
         } else {
             r.addPutty();
