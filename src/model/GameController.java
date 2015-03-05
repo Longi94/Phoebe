@@ -1,6 +1,7 @@
 package model;
 
 import model.basic.Position;
+import model.basic.Velocity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -167,6 +168,7 @@ public class GameController {
                     System.out.println("Rossz formatum");
                 }
             } while (angle < 0 || angle >= 360);
+            //TODO eléggé meghal -1-re... ja és a robotok nem ugrálnak :(
 
             //TODO bekért command lekezelése (valszeg tárolni kell, ha végig akarunk iterálni
 
@@ -178,6 +180,11 @@ public class GameController {
                     currentPlayer.putPutty();
                 }
             }
+            Velocity v = new Velocity();
+            v.setAngle(angle);
+            v.setMagnitude(angle==-1 ? 0 : 1);
+            currentPlayer.jump(v);
+
         }
 
         newTurn();
