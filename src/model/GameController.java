@@ -11,6 +11,7 @@ import java.util.List;
  */
 public class GameController {
     public static final int DEFAULT_TURN_NUMBER = 40;
+    private static final int MAX_PLAYER_NUMBER = 6;
 
     public int turnsLeft;
 
@@ -25,7 +26,6 @@ public class GameController {
      */
     public GameController() {
         //TODO
-        turnsLeft = DEFAULT_TURN_NUMBER;
 
     }
 
@@ -35,7 +35,9 @@ public class GameController {
      */
     public void initGame() {
 
-        if (numberOfPlayers <= 0 && numberOfPlayers >= 7) {//TODO max játékos szám mennyi?
+        turnsLeft = DEFAULT_TURN_NUMBER;
+
+        if (numberOfPlayers <= 0 && numberOfPlayers > MAX_PLAYER_NUMBER) {//TODO max játékos szám mennyi? Ennyi!
             throw new IllegalArgumentException("Nem megengedett jatekos szam");
         }
 
