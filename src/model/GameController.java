@@ -119,6 +119,13 @@ public class GameController {
      */
     public void newTurn() {
 
+        //Robotot kiszedjük, ha kiugrott
+        for (Robot robot : players) {
+            if (!track.isInTrack(robot.getPos())) {
+                playerOrder.remove(new Integer(players.indexOf(robot)));
+            }
+        }
+
         //newRound meghívása minden pályán lévő objektumnak
         for (TrackObjectBase item : track.getItems()) {
             item.newRound();
@@ -165,19 +172,15 @@ public class GameController {
             if (command.length > 1 && command[1] != null) {
                 if (command[1].equals("-o")) {
                     currentPlayer.putOil();
-                } else if (command[1].equals("-p")){
+                } else if (command[1].equals("-p")) {
                     currentPlayer.putPutty();
                 }
             }
             //szerintem csapathatja itt az ugrást, most azon már nem múlik...
-            if (track.isInTrack(currentPlayer.getPos())) {
-                Velocity v = new Velocity();
-                v.setAngle(angle);
-                v.setMagnitude(angle==-1 ? 0 : 1);
-                currentPlayer.jump(v);
-            } else {
-                playerOrder.remove(new Integer(players.indexOf(currentPlayer)));
-            }
+            Velocity v = new Velocity();
+            v.setAngle(angle);
+            v.setMagnitude(angle == -1 ? 0 : 1);
+            currentPlayer.jump(v);
 
 
         }
