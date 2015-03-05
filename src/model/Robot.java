@@ -68,7 +68,8 @@ public class Robot extends TrackObjectBase {
 
         track.robotJumped(this);
 
-        enabled = false;
+        //nem gondolom szükségesnek, csak az olaj állíthatja szerintem
+        //enabled = false;
     }
 
     /**
@@ -136,7 +137,7 @@ public class Robot extends TrackObjectBase {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", " + super.toString() +
-                ", distanceCompleted=" + (double)Math.round(100*distanceCompleted)/100 +
+                ", distanceCompleted=" + (double) Math.round(100 * distanceCompleted) / 100 +
                 ", vel=" + vel +
                 ", oilAmount=" + oilAmount +
                 ", puttyAmount=" + puttyAmount +

@@ -179,7 +179,7 @@ public class GameController {
             //szerintem csapathatja itt az ugrást, most azon már nem múlik...
 
             Velocity v = new Velocity();
-            v.setAngle((double)angle/180*Math.PI); //ne feledjük hogy radián kell
+            v.setAngle((double) angle / 180 * Math.PI); //ne feledjük hogy radián kell
             v.setMagnitude(angle == -1 ? 0 : 1);
             currentPlayer.jump(v);
 
