@@ -31,10 +31,10 @@ public class GameController {
 
     /**
      * Betölt egy pályát
-     * @return a pálya
      */
-    private Track loadTrack(/*TODO ide jöhet valami filename, vagy vmi ami alapján megtalálja*/) {
+    private void loadTrack(/*TODO ide jöhet valami filename, vagy vmi ami alapján megtalálja*/) {
         //Dummy pálya
+
         List<Position> in = new ArrayList<Position>();
         List<Position> out = new ArrayList<Position>();
         in.add(new Position(2, 2));
@@ -47,7 +47,17 @@ public class GameController {
         out.add(new Position(7, 9));
         out.add(new Position(-5, 9));
 
-        return new Track(in, out);
+        track = new Track(in, out);
+
+        //Azért így csináltam meg, mert ha egy külső fájlból loadoljuk be a track-et akkor úgyse lesz benne a pálya referenciája, csak a pickupok pozíciója.
+
+        List<Position> pickupPos = new ArrayList<Position>();
+        pickupPos.add(new Position(1,1));
+
+        while (pickupPos.size()>0) {
+            track.addObject(new Pickup(pickupPos.remove(0),track));
+        }
+
     }
 
 
@@ -85,11 +95,6 @@ public class GameController {
             playerOrder.add(i);
         }
 
-
-        //TODO: Pickupok előre megadott helyeken
-        for (int i = 0; i < 10/*dummy pickup szám*/; i++) {
-            track.addObject(new Pickup(new Position(1, 1), track));
-        }
     }
 
     /**
