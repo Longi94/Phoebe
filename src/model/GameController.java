@@ -106,6 +106,8 @@ public class GameController {
             e.printStackTrace();
         }
 
+        System.out.println("Jatek kezdese...");
+        newTurn();
     }
 
     /**
@@ -120,14 +122,7 @@ public class GameController {
             if (track.isInTrack(position)) {
                 robot.jump(null /*TODO módosító velocity lekérdezése*/);
             } else {
-                //TODO a robot lement a pályáról, kikell törölni a picsába
-                //TODO nem azt mondtuk, hogy akkor se törli le, ha lement?
-                //TODO de lehet nemtudom
-                track.removeObject(robot);
-
-                players.remove(robot); //Nemtom fog e kelleni, egyenlőre itt hagyom.
-                //kivesszük a legnagyobb elemet
-                playerOrder.remove(new Integer(playerOrder.size() - 1));
+                playerOrder.remove(new Integer(players.indexOf(robot)));
             }
         }
 
@@ -142,11 +137,41 @@ public class GameController {
         } else {
             //Játékosok sorrendjéne összekeverése, persze ez nem túl optimális játék élmény szempontjából
             Collections.shuffle(playerOrder);
+            nextPlayer();
         }
     }
 
     public void nextPlayer() {
-        //TODO
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        for (int i : playerOrder) {
+            Robot currentPlayer = players.get(i);
+            System.out.print(currentPlayer.getName() + "'s turn: ");
+            int angle = -1;
+            String[] command = {};
+            //Játékos parancsának bekérése
+            do {
+                try {
+                    command = br.readLine().split(" ");
+                    angle = Integer.parseInt(command[0]);
+                } catch (IOException e) {
+                    System.out.println("Valami nagyon nem jo ha ez kiirodik");
+                } catch (NumberFormatException e) {
+                    System.out.println("Rossz formatum");
+                }
+            } while (angle < 0 || angle >= 360);
+
+            //Akadály lerakása ha a játékos akarta
+            if (command.length > 1 && command[1] != null) {
+                if (command[1].equals("-o")) {
+                    currentPlayer.putOil();
+                } else if (command[1].equals("-p")){
+                    currentPlayer.putPutty();
+                }
+            }
+        }
+
+        newTurn();
     }
 
 

@@ -131,4 +131,7 @@ public class Robot extends TrackObjectBase {
         this.enabled = enabled;
     }
 
+    public String getName() {
+        return name;
+    }
 }
