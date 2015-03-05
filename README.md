@@ -11,6 +11,8 @@
 - Sync 'master'
 - Switch to 'Beni' branch
 - Sync 'Beni'
+#Konfliktus kezelés
+- Pánikolj és szólj másnak
 
 ## Waffle.io
 Nemtom mennyire lesz hasznos.
