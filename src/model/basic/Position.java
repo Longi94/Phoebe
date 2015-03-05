@@ -93,8 +93,8 @@ public class Position {
 
     @Override
     public String toString() {
-        return "posX=" + posX +
-                ", posY=" + posY + " ";
+        return "posX=" + (double)Math.round(100*posX)/100 +
+                ", posY=" + (double)Math.round(100*posX)/100 + " ";
     }
 }
 
