@@ -97,7 +97,7 @@ public class GameController {
             for (int i = 0; i < numberOfPlayers; i++) {
                 System.out.print("" + (i + 1) + ". Jatekos neve: ");
                 String name = br.readLine();
-                Robot r = new Robot(new Position(0, 0), track, name);
+                Robot r = new Robot(new Position(1, 1), track, name);
                 players.add(r);
                 track.addObject(r);
                 playerOrder.add(i);
@@ -107,6 +107,8 @@ public class GameController {
         }
 
         System.out.println("Jatek kezdese...");
+        System.out.println("Parancs formatum: <szog> [-o] [-p]");
+        System.out.println(" - <szog>: egy eges szam 0 és 359 kozott. -1 ha nem akar valtoztatin");
         newTurn();
     }
 
