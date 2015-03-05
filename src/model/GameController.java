@@ -2,6 +2,9 @@ package model;
 
 import model.basic.Position;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -68,7 +71,7 @@ public class GameController {
 
         turnsLeft = DEFAULT_TURN_NUMBER;
 
-        if (numberOfPlayers <= 0 && numberOfPlayers > MAX_PLAYER_NUMBER) {//TODO max játékos szám mennyi? Ennyi!
+        if (numberOfPlayers <= 0 && numberOfPlayers > MAX_PLAYER_NUMBER) {
             throw new IllegalArgumentException("Nem megengedett jatekos szam");
         }
 
@@ -87,12 +90,20 @@ public class GameController {
 
         loadTrack();
 
-        //Robotok inicalizálása
-        for (int i = 0; i < numberOfPlayers; i++) {
-            Robot r = new Robot(new Position(0, 0), track, "R2D" + i);
-            players.add(r);
-            track.addObject(r);
-            playerOrder.add(i);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        try {
+            //Robotok inicalizálása
+            for (int i = 0; i < numberOfPlayers; i++) {
+                System.out.print("" + (i + 1) + ". Jatekos neve: ");
+                String name = br.readLine();
+                Robot r = new Robot(new Position(0, 0), track, name);
+                players.add(r);
+                track.addObject(r);
+                playerOrder.add(i);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
@@ -111,6 +122,7 @@ public class GameController {
             } else {
                 //TODO a robot lement a pályáról, kikell törölni a picsába
                 //TODO nem azt mondtuk, hogy akkor se törli le, ha lement?
+                //TODO de lehet nemtudom
                 track.removeObject(robot);
 
                 players.remove(robot); //Nemtom fog e kelleni, egyenlőre itt hagyom.
