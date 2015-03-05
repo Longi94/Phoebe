@@ -136,7 +136,7 @@ public class Robot extends TrackObjectBase {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", " + super.toString() +
-                ", distanceCompleted=" + distanceCompleted +
+                ", distanceCompleted=" + (double)Math.round(100*distanceCompleted)/100 +
                 ", vel=" + vel +
                 ", oilAmount=" + oilAmount +
                 ", puttyAmount=" + puttyAmount +
