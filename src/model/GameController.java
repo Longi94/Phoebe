@@ -178,13 +178,12 @@ public class GameController {
             }
             //szerintem csapathatja itt az ugrást, most azon már nem múlik...
 
-            System.out.println(track.toString());
-
             Velocity v = new Velocity();
             v.setAngle(angle);
             v.setMagnitude(angle == -1 ? 0 : 1);
             currentPlayer.jump(v);
 
+            System.out.println(track.toString());
 
         }
 
