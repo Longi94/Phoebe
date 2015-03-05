@@ -1,8 +1,10 @@
 # Phoebe
 
 ##GitHub Guide Beninek (GitHub for Windows grafikus klienssel)
+- 'Beni' branchben vagy
 - Kód módosítása
 - Commit
+- Sync
 - Switch to 'master' branch
 - Sync
 - Manage branches
