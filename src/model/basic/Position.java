@@ -19,10 +19,11 @@ public class Position {
 
     /**
      * Konstruktor
+     *
      * @param x x koordináta
      * @param y y koordináta
      */
-    public Position (double x, double y) {
+    public Position(double x, double y) {
         this.posX = x;
         this.posY = y;
     }
@@ -31,7 +32,7 @@ public class Position {
      * Paraméter nélküli konstuktor
      */
     public Position() {
-        this(0,0);
+        this(0, 0);
     }
 
     //=============================================================================================
@@ -39,7 +40,6 @@ public class Position {
     //=============================================================================================
 
     /**
-     *
      * @return pozíció x koordinátája
      */
     public double getX() {
@@ -48,6 +48,7 @@ public class Position {
 
     /**
      * Beállítja a pozíció x koordinátáját
+     *
      * @param posX a beállítandó x koordináta
      */
     public void setX(double posX) {
@@ -55,7 +56,6 @@ public class Position {
     }
 
     /**
-     *
      * @return pozíció y koordinátája
      */
     public double getY() {
@@ -64,6 +64,7 @@ public class Position {
 
     /**
      * Beállítja a pozíció y koordinátáját
+     *
      * @param posY a beállítandó y koordináta
      */
     public void setY(double posY) {
@@ -72,15 +73,17 @@ public class Position {
 
     /**
      * E pont távolságát adja meg p-től
+     *
      * @param p a pont amelytől távolságot kérünk
      * @return a távolság p-től
      */
-    public double getDistance(Position p){
+    public double getDistance(Position p) {
         return Math.sqrt(Math.pow(posX - p.getX(), 2) + Math.pow(posY - p.getY(), 2));
     }
 
     /**
      * Pozíció módosítása sebességvektor alapján TODO: lehet hogy nem ide kéne, mert csak a Robot használja
+     *
      * @param v a sebességvektor
      */
     public void move(Velocity v) {

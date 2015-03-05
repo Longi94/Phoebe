@@ -10,13 +10,19 @@ import java.util.List;
  */
 public class Track {
 
-    /** A pályán található elemek listája */
+    /**
+     * A pályán található elemek listája
+     */
     public List<TrackObjectBase> items;
 
-    /** A pálya belső ívéhez tartozó pontok listája */
+    /**
+     * A pálya belső ívéhez tartozó pontok listája
+     */
     public List<Position> innerArc;
 
-    /** A pálya külső ívéhez tartozó pontok listája */
+    /**
+     * A pálya külső ívéhez tartozó pontok listája
+     */
     public List<Position> outerArc;
 
     //=============================================================================================
@@ -25,10 +31,11 @@ public class Track {
 
     /**
      * Konstruktor, új pályát hoz létre egy külső ív és egy belső ív tömbből
+     *
      * @param innerArc belső ív
      * @param outerArc külső ív
      */
-    public Track(List<Position> innerArc,List<Position> outerArc) {
+    public Track(List<Position> innerArc, List<Position> outerArc) {
         items = new ArrayList<TrackObjectBase>();
         this.innerArc = innerArc;
         this.outerArc = outerArc;
@@ -40,6 +47,7 @@ public class Track {
 
     /**
      * Getter a pályán található elemekhez
+     *
      * @return az elemek List-je
      */
     public List<TrackObjectBase> getItems() {
@@ -52,6 +60,7 @@ public class Track {
 
     /**
      * Hozzáad egy elemet a pályaelemek tömbjéhez
+     *
      * @param object a hozzáadandó elem
      * @return sikeres volt-e a hozzáadás vagy nem
      */
@@ -61,6 +70,7 @@ public class Track {
 
     /**
      * Eltávolít egy elemet a pályaelemek tömbjéből
+     *
      * @param object az eltávolítandó elem
      * @return sikeres volt-e az eltávolítás, vagy sem
      */
@@ -74,6 +84,7 @@ public class Track {
 
     /**
      * Megmutatja, hogy egy adott pont a poligon belsejében van-e. (Ray casting algorithm) -> http://stackoverflow.com/questions/11716268/point-in-polygon-algorithm
+     *
      * @param arc a poligon pontjainak listája
      * @param pos a pont, aminek státuszát teszteljük
      * @return igaz, ha pont a poligon területén belül van, különben hamis
@@ -82,7 +93,7 @@ public class Track {
         double posX = pos.getX();
         double posY = pos.getY();
         boolean c = false;
-        for (int i = 0, j = arc.size()-1; i < arc.size(); j = i++) {
+        for (int i = 0, j = arc.size() - 1; i < arc.size(); j = i++) {
             /* That's for release
             if ( ((arc.get(i).getY()>posY) != (arc.get(j).getY()>posY)) &&
                     (posX < (arc.get(j).getX()-arc.get(i).getX()) *
@@ -92,7 +103,7 @@ public class Track {
             double iY = arc.get(i).getY();
             double jX = arc.get(j).getX();
             double jY = arc.get(j).getY();
-            if (((iY > posY) != (jY > posY)) && (posX < (jX-iX) * (posY - iY) / (jY - iY) + iX ) )
+            if (((iY > posY) != (jY > posY)) && (posX < (jX - iX) * (posY - iY) / (jY - iY) + iX))
                 c = !c;
         }
         return c;
@@ -101,6 +112,7 @@ public class Track {
 
     /**
      * Megmondja hogy az adott pozíció a pályán van-e. Egy pont a pályán van, ha külső íven belül, és a belső íven kívül, vagy a belső íven található
+     *
      * @param pos a pozíció, aminek kiváncsiak vagyunk a státuszára
      * @return true, ha a pályán van és false ha a pályán kívlüre esik.
      */

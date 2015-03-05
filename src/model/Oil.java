@@ -5,11 +5,12 @@ import model.basic.Position;
 /**
  * Created by bence on 2015.02.23..
  */
-public class Oil extends Obstacle{
+public class Oil extends Obstacle {
 
     /**
      * Konstruktor
-     * @param pos az olajfolt pozíciója
+     *
+     * @param pos   az olajfolt pozíciója
      * @param track a pálya, amire az olajfolt található
      */
     public Oil(Position pos, Track track) {
@@ -18,6 +19,7 @@ public class Oil extends Obstacle{
 
     /**
      * A robot sebességváltoztatását tiltja le
+     *
      * @param r a robot, aki áthalad az akadályon
      */
     @Override

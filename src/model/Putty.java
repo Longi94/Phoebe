@@ -9,7 +9,8 @@ public class Putty extends Obstacle {
 
     /**
      * Konstruktor
-     * @param pos a ragacs pozíciója
+     *
+     * @param pos   a ragacs pozíciója
      * @param track a pálya, amin a ragacs található
      */
     public Putty(Position pos, Track track) {
@@ -18,6 +19,7 @@ public class Putty extends Obstacle {
 
     /**
      * Megfelezi a rajta áthaladó robot sebességét
+     *
      * @param r a robot, aki áthalad az akadályon
      */
     @Override

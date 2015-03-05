@@ -12,7 +12,8 @@ public abstract class TrackObjectBase {
 
     /**
      * Konstruktor
-     * @param pos az objektum pozíciója
+     *
+     * @param pos   az objektum pozíciója
      * @param track a pálya, amin az objektum található
      */
     public TrackObjectBase(Position pos, Track track) {
@@ -22,6 +23,7 @@ public abstract class TrackObjectBase {
 
     /**
      * Getter a sugárhoz
+     *
      * @return a sugár
      */
     public static double getRadius() {
@@ -30,6 +32,7 @@ public abstract class TrackObjectBase {
 
     /**
      * Megvizsgálja, ütközik-e az adott objektummal az objektum
+     *
      * @param otherObject az objektum amivel vizsgáljuk hogy ütközik-e
      * @return true, ha ütköznek és false ha nem
      */
@@ -41,16 +44,19 @@ public abstract class TrackObjectBase {
 
     /**
      * Akkor hívódik meg,ha ütközik az objektummal egy robot
+     *
      * @param r a robot, amivel ütközik
      */
-    public void collide (Robot r)  {
+    public void collide(Robot r) {
 
     }
 
     /**
      * Új kör esetén meghívódó függvény
      */
-    public void newRound() {}
+    public void newRound() {
+
+    }
 
     public Position getPos() {
         return pos;
