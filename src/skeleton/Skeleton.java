@@ -13,10 +13,10 @@ public class Skeleton {
      * Dummy main függvény
      * @param args
      */
-    public static void main_skeleton (String[] args) {
+    public static void main(String[] args) {
         boolean ever = true;
         int option = 1;
-        for(;ever;) {
+        for(;ever;) { //Hát ez nagyon rossz
             System.out.println("Válassz opciót!");
             System.out.println("0 : kilépés");
 
