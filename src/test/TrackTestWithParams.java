@@ -1,9 +1,8 @@
 package test;
 
-import model.Obstacle;
-import org.junit.Assert;
 import model.Track;
 import model.basic.Position;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,8 +11,6 @@ import org.junit.runners.Parameterized.Parameters;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @RunWith(Parameterized.class)
 public class TrackTestWithParams {

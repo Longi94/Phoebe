@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Phoebe.iml" filepath="$PROJECT_DIR$/Phoebe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/PhoebeServer/PhoebeServer.iml" filepath="$PROJECT_DIR$/server/PhoebeServer/PhoebeServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/PhoebeTestClient/PhoebeTestClient.iml" filepath="$PROJECT_DIR$/server/PhoebeTestClient/PhoebeTestClient.iml" />
     </modules>
   </component>
 </project>
