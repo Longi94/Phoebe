@@ -44,6 +44,22 @@ public abstract class TrackObjectBase {
     }
 
     /**
+     * @return a pálya, amin az objektum van
+     */
+    public Track getTrack() {
+        return track;
+    }
+
+    /**
+     * beállítja az objektum pályáját
+     *
+     * @param track a beállítandó pálya
+     */
+    public void setTrack(Track track) {
+        this.track = track;
+    }
+
+    /**
      * Akkor hívódik meg,ha ütközik az objektummal egy robot
      *
      * @param r a robot, amivel ütközik
