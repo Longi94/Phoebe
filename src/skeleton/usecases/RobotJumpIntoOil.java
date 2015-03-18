@@ -1,4 +1,4 @@
-package skeleton;
+package skeleton.usecases;
 
 import model.Oil;
 import model.Robot;
