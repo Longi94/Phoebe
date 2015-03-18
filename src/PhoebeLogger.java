@@ -4,7 +4,7 @@ import java.util.List;
 /**
  * Created by ThanhLong on 2015.03.16..
  */
-public class Log {
+public class PhoebeLogger {
 
     private static List<Integer> indexes = new ArrayList<Integer>();
     private static boolean returned = false;
