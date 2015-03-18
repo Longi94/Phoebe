@@ -36,7 +36,7 @@ public class RobotJumpIntoOil {
 
         Track t = new Track(in,out);
 
-        Robot r = new Robot(new Position(0,0), t, "Robot1");
+        Robot r = new Robot(new Position(0,0), t, "Marwin");
 
         t.addObject(r);
         t.addObject(new Oil(new Position(1,0),t));

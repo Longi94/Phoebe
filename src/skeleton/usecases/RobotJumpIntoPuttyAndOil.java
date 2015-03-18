@@ -1,5 +1,6 @@
 package skeleton.usecases;
 
+import model.Oil;
 import model.Putty;
 import model.Robot;
 import model.Track;
@@ -12,9 +13,9 @@ import java.util.ArrayList;
 /**
  * Created by bence on 2015.03.18..
  */
-public class RobotJumpIntoPutty {
+public class RobotJumpIntoPuttyAndOil {
 
-    public RobotJumpIntoPutty() {
+    public RobotJumpIntoPuttyAndOil() {
 
         PhoebeLogger.enableLogging(false);
         PhoebeLogger.clear();
@@ -36,15 +37,17 @@ public class RobotJumpIntoPutty {
 
         Track t = new Track(in,out);
 
-        Robot r = new Robot(new Position(0,0), t, "WALL-E");
+        Robot r = new Robot(new Position(0,0), t, "R2D2");
 
         t.addObject(r);
-        t.addObject(new Putty(new Position(1,0),t));
+        t.addObject(new Oil(new Position(1,0.1),t));
+        t.addObject(new Putty(new Position(1,-0.1),t));
+        //'cos same position is mainstream - de elvileg az is műkszik
 
         PhoebeLogger.enableLogging(true);
 
         r.jump(new Velocity(Math.PI/2, 1)); // remélem ez a vízszintesen egyet jobbra
-        r.jump(new Velocity(Math.PI/2-0.1,1)); //kanyarodjunk egy kicsit, just for fun
+        r.jump(new Velocity(Math.PI/2-0.1,1)); //úgyis megcsúszik
 
         PhoebeLogger.clear();
         PhoebeLogger.enableLogging(false);
