@@ -2,35 +2,31 @@
  * Created by ThanhLong on 2015.03.16..
  */
 public class Log {
-    // ===========================================================
-    // Constants
-    // ===========================================================
 
-    // ===========================================================
-    // Fields
-    // ===========================================================
+    /**
+     * Függvény hívás
+     *
+     * @param objectName ojbektum neve amelyen meghívták a függvényt
+     * @param methodName meghívott metódus neve
+     * @param parameters metódusnak átadott paraméterek
+     */
+    public static void message(String objectName, String methodName, String... parameters) {
 
-    // ===========================================================
-    // Constructors
-    // ===========================================================
-
-    // ===========================================================
-    // Getter & Setter
-    // ===========================================================
-
-    // ===========================================================
-    // Methods for/from SuperClass/Interfaces
-    // ===========================================================
-
-    // ===========================================================
-    // Methods
-    // ===========================================================
-
-    public static void v(String... params){
-        //lol android
-        System.out.println("asdasdasdasd");
     }
-    // ===========================================================
-    // Inner and Anonymous Classes
-    // ===========================================================
+
+    /**
+     * Visszatérés paraméter nélkül.
+     */
+    public static void returnMessage() {
+        System.out.println("<----");
+    }
+
+    /**
+     * Visszatérés paraméterrel
+     *
+     * @param returnParameter a visszaadott paraméter
+     */
+    public static void returnMessage(String returnParameter) {
+        System.out.println("<----" + returnParameter);
+    }
 }
