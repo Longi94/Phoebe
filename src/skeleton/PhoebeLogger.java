@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class PhoebeLogger {
 
+    private static boolean enabled = false;
     private static List<Integer> indexes = new ArrayList<Integer>();
     private static boolean returned = false;
 
@@ -19,6 +20,7 @@ public class PhoebeLogger {
      * @param parameters metódusnak átadott paraméterek
      */
     public static void message(String objectName, String methodName, String... parameters) {
+        if (!enabled) return;
 
         String log = "----";
 
@@ -68,6 +70,7 @@ public class PhoebeLogger {
      * @param returnParameter a visszaadott paraméter
      */
     public static void returnMessage(String returnParameter) {
+        if (!enabled) return;
 
         if (indexes.size() == 0)
             throw new IllegalStateException();
@@ -90,5 +93,13 @@ public class PhoebeLogger {
      */
     public static void clear() {
         indexes.clear();
+    }
+
+    /**
+     * Loggolás tiltása vagy engedélyezése. (Alapból tiltva van)
+     * @param enabled booooooool
+     */
+    private static void enableLogging(boolean enabled) {
+        PhoebeLogger.enabled = enabled;
     }
 }
