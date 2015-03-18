@@ -59,17 +59,7 @@ public class PhoebeLogger {
      * Visszatérés paraméter nélkül.
      */
     public static void returnMessage() {
-
-        String log = "";
-        if (returned) {
-            indexes.remove(indexes.size() - 1);
-        }
-        for (int i = 0; i < indexes.size() - 1; i++) {
-            log += "    ";
-        }
-        log += "<----";
-        System.out.println(log);
-        returned = true;
+        returnMessage("");
     }
 
     /**
@@ -78,6 +68,9 @@ public class PhoebeLogger {
      * @param returnParameter a visszaadott paraméter
      */
     public static void returnMessage(String returnParameter) {
+
+        if (indexes.size() == 0)
+            throw new IllegalStateException();
 
         String log = "";
         if (returned) {
@@ -89,5 +82,13 @@ public class PhoebeLogger {
         log += "<----";
         System.out.println(log + returnParameter);
         returned = true;
+
+    }
+
+    /**
+     * Számozás újra kezdése, érdemes meghívni use-case elején és végén.
+     */
+    public static void clear() {
+        indexes.clear();
     }
 }
