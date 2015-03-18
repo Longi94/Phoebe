@@ -13,24 +13,6 @@ public class Skeleton {
      * Dummy main függvény
      */
     public static void main(String[] args) {
-
-        PhoebeLogger.message("testObject1", "testMethod1");
-        PhoebeLogger.message("testObject2", "testMethod2");
-        PhoebeLogger.message("testObject1", "testMethod1");
-        PhoebeLogger.returnMessage();
-        PhoebeLogger.message("testObject3", "testMethod3", "testParameter1", "testParameter1");
-        PhoebeLogger.returnMessage("testReturn1");
-        PhoebeLogger.message("testObject4", "testMethod4", "testParameter1");
-        PhoebeLogger.message("testObject1", "testMethod1");
-        PhoebeLogger.returnMessage();
-        PhoebeLogger.returnMessage();
-        PhoebeLogger.returnMessage("testReturn1");
-        PhoebeLogger.message("testObject1", "testMethod1");
-        PhoebeLogger.message("testObject1", "testMethod1");
-        PhoebeLogger.returnMessage();
-        PhoebeLogger.returnMessage();
-        PhoebeLogger.returnMessage("testReturn1");
-
         boolean ever = true;
         int option = 1;
         for(;ever;) { //Hát ez nagyon rossz
@@ -63,28 +45,40 @@ public class Skeleton {
                     ever = false;
                     break;
                 case 1:
+                    //TODO geri
                     break;
                 case 2:
+                    //TODO bence
                     break;
                 case 3:
+                    //TODO bence
                     break;
                 case 4:
+                    //TODO longi
                     break;
                 case 5:
+                    //TODO beni
                     break;
                 case 6:
+                    //TODO beni
                     break;
                 case 7:
+                    //TODO beni
                     break;
                 case 8:
+                    //TODO beni
                     break;
                 case 9:
+                    //TODO geri
                     break;
                 case 10:
+                    //TODO bence
                     break;
                 case 11:
+                    //TODO geri
                     break;
                 case 12:
+                    //TODO geri
                     break;
                 default:
                     System.out.println("Nincs ilyen számú use-case.\n");
