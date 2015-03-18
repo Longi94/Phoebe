@@ -43,7 +43,8 @@ public class RobotJumpIntoOil {
 
         PhoebeLogger.enableLogging(true);
 
-        r.jump(new Velocity());
+        r.jump(new Velocity(Math.PI/2, 1)); // remélem ez a vízszintesen egyet jobbra
+        r.jump(new Velocity(0,0)); //úgyis disabled lesz (elvileg)
 
         PhoebeLogger.clear();
         PhoebeLogger.enableLogging(false);
