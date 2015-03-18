@@ -20,7 +20,7 @@ public class PhoebeLogger {
      */
     public static void message(String objectName, String methodName, String... parameters) {
 
-        String log = "";
+        String log = "----";
 
         if (!returned) {
             indexes.add(1);
@@ -46,18 +46,29 @@ public class PhoebeLogger {
             for (int i = 0; i < parameters.length - 1; i++) {
                 log += parameters[i] + ", ";
             }
+            log += parameters[parameters.length - 1] + ")";
+        } else {
+            log += ")";
         }
-        log += parameters[parameters.length - 1] + ")";
 
-        returned = false;
         System.out.println(log);
+        returned = false;
     }
 
     /**
      * Visszatérés paraméter nélkül.
      */
     public static void returnMessage() {
-        System.out.println("<----");
+
+        String log = "";
+        if (returned) {
+            indexes.remove(indexes.size() - 1);
+        }
+        for (int i = 0; i < indexes.size() - 1; i++) {
+            log += "    ";
+        }
+        log += "<----";
+        System.out.println(log);
         returned = true;
     }
 
@@ -67,7 +78,16 @@ public class PhoebeLogger {
      * @param returnParameter a visszaadott paraméter
      */
     public static void returnMessage(String returnParameter) {
-        System.out.println("<----" + returnParameter);
+
+        String log = "";
+        if (returned) {
+            indexes.remove(indexes.size() - 1);
+        }
+        for (int i = 0; i < indexes.size() - 1; i++) {
+            log += "    ";
+        }
+        log += "<----";
+        System.out.println(log + returnParameter);
         returned = true;
     }
 }
