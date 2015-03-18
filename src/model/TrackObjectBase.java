@@ -23,6 +23,17 @@ public abstract class TrackObjectBase {
     }
 
     /**
+     * Konstruktor pálya nélkül
+     *
+     * @param pos   az objektum pozíciója
+     */
+    public TrackObjectBase(Position pos) {
+        this.pos = pos;
+    }
+
+
+
+    /**
      * Getter a sugárhoz
      *
      * @return a sugár
