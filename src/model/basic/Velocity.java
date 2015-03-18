@@ -44,6 +44,16 @@ public class Velocity {
         this.magnitude = 0;
     }
 
+    /**
+     * Kétparaméteres konstruktor
+     * @param angle a szög
+     * @param magnitude a nagyság
+     */
+    public Velocity(double angle, double magnitude) {
+        this.angle = angle;
+        this.magnitude = magnitude;
+    }
+
     //=============================================================================================
     // GETTER-SETTER-EK
     //=============================================================================================
