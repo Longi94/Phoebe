@@ -13,24 +13,6 @@ public class Skeleton {
      * Dummy main függvény
      */
     public static void main(String[] args) {
-
-        PhoebeLogger.message("testObject1", "testMethod1");
-        PhoebeLogger.message("testObject2", "testMethod2");
-        PhoebeLogger.message("testObject1", "testMethod1");
-        PhoebeLogger.returnMessage();
-        PhoebeLogger.message("testObject3", "testMethod3", "testParameter1", "testParameter1");
-        PhoebeLogger.returnMessage("testReturn1");
-        PhoebeLogger.message("testObject4", "testMethod4", "testParameter1");
-        PhoebeLogger.message("testObject1", "testMethod1");
-        PhoebeLogger.returnMessage();
-        PhoebeLogger.returnMessage();
-        PhoebeLogger.returnMessage("testReturn1");
-        PhoebeLogger.message("testObject1", "testMethod1");
-        PhoebeLogger.message("testObject1", "testMethod1");
-        PhoebeLogger.returnMessage();
-        PhoebeLogger.returnMessage();
-        PhoebeLogger.returnMessage("testReturn1");
-
         boolean ever = true;
         int option = 1;
         for(;ever;) { //Hát ez nagyon rossz
