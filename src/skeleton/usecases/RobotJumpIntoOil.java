@@ -5,6 +5,7 @@ import model.Robot;
 import model.Track;
 import model.basic.Position;
 import model.basic.Velocity;
+import skeleton.PhoebeLogger;
 
 import java.util.ArrayList;
 
@@ -14,6 +15,9 @@ import java.util.ArrayList;
 public class RobotJumpIntoOil {
 
     public RobotJumpIntoOil() {
+
+        PhoebeLogger.enableLogging(false);
+        PhoebeLogger.clear();
 
         ArrayList<Position> in = new ArrayList<Position>();
         ArrayList<Position> out = new ArrayList<Position>();
@@ -25,7 +29,12 @@ public class RobotJumpIntoOil {
         t.addObject(r);
         t.addObject(new Oil(new Position(1,1),t));
 
+        PhoebeLogger.enableLogging(true);
+
         r.jump(new Velocity());
+
+        PhoebeLogger.clear();
+        PhoebeLogger.enableLogging(false);
 
     }
 

@@ -99,7 +99,7 @@ public class PhoebeLogger {
      * Loggolás tiltása vagy engedélyezése. (Alapból tiltva van)
      * @param enabled booooooool
      */
-    private static void enableLogging(boolean enabled) {
+    public static void enableLogging(boolean enabled) {
         PhoebeLogger.enabled = enabled;
     }
 }
