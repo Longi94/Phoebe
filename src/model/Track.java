@@ -70,7 +70,6 @@ public class Track {
             if (((iY > posY) != (jY > posY)) && (posX < (jX - iX) * (posY - iY) / (jY - iY) + iX))
                 c = !c;
         }
-        PhoebeLogger.returnMessage("c");
         return c;
 
     }

@@ -1,5 +1,7 @@
 package model.basic;
 
+import skeleton.PhoebeLogger;
+
 /**
  * Created by bence on 2015.02.23..
  */
@@ -143,6 +145,7 @@ public class Velocity {
         double tempX = v.getVelocityX() + this.getVelocityX();
         double tempY = v.getVelocityY() + this.getVelocityY();
         this.setDescartes(tempX, tempY);
+        PhoebeLogger.returnMessage();
     }
 
     @Override
