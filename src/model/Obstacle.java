@@ -1,6 +1,7 @@
 package model;
 
 import model.basic.Position;
+import skeleton.PhoebeLogger;
 
 /**
  * Created by bence on 2015.02.23..
@@ -43,9 +44,11 @@ public abstract class Obstacle extends TrackObjectBase {
     @Override
     public void collide(Robot r) {
         hitsLeft -= 1;
+        PhoebeLogger.message("Obstacle", "takeEffect", "r");
         takeEffect(r);
 
         if (hitsLeft == 0) {
+            PhoebeLogger.message("Track", "takeEffect", "r");
             track.removeObject(this);
         }
     }
@@ -55,6 +58,7 @@ public abstract class Obstacle extends TrackObjectBase {
         roundsLeft -= 1;
 
         if (roundsLeft == 0) {
+            PhoebeLogger.message("Track", "removeObject", "this");
             track.removeObject(this);
         }
     }

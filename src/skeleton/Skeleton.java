@@ -1,5 +1,7 @@
 package skeleton;
 
+import skeleton.usecases.RobotJumpOutOfTrack;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -57,7 +59,7 @@ public class Skeleton {
                     //TODO longi
                     break;
                 case 5:
-                    //TODO beni
+                    new RobotJumpOutOfTrack();
                     break;
                 case 6:
                     //TODO beni

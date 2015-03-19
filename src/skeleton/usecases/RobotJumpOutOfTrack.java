@@ -37,8 +37,13 @@ public class RobotJumpOutOfTrack {
 
         t.addObject(r);
 
-        r.jump(new Velocity(90, 1));
+        PhoebeLogger.enableLogging(true);
 
+        r.jump(new Velocity(90, 1));
+        boolean isR2D2InTrack = t.isInTrack(r.getPos());
+
+        PhoebeLogger.enableLogging(false);
+        PhoebeLogger.clear();
     }
 
 }
