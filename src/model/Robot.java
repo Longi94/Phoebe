@@ -2,6 +2,7 @@ package model;
 
 import model.basic.Position;
 import model.basic.Velocity;
+import skeleton.PhoebeLogger;
 
 /**
  * Created by bence on 2015.02.23..
@@ -57,12 +58,14 @@ public class Robot extends TrackObjectBase {
     public void jump(Velocity v) {
         //Vektor hozzáadása a robot sebességvektoráhaz.
         if (v != null) {
+            PhoebeLogger.message("vel", "add", "v");
             vel.add(v);
         }
         //Kezdő pozíció elmentése
         Position oldPos = new Position(pos.getX(), pos.getY());
 
         //Robot mozgatása új pozícióba
+        PhoebeLogger.message("pos", "move", "vel");
         pos.move(vel);
 
         //Megtett táv növelése
@@ -70,10 +73,13 @@ public class Robot extends TrackObjectBase {
         //TODO Nem így kell számolni. Attól függ, mennyit haladt előre a belső íven...
         //TODO Mert így az nyer, aki sokat kacsázik, nem az, aki egyenesen megy
 
+        PhoebeLogger.message("track", "robotJumped", "this");
         track.robotJumped(this);
 
         //nem gondolom szükségesnek, csak az olaj állíthatja szerintem
         //enabled = false;
+
+        PhoebeLogger.returnMessage();
     }
 
     public boolean isEnabled() {
@@ -95,10 +101,13 @@ public class Robot extends TrackObjectBase {
     public void putOil() {
         if (oilAmount > 0) {
             oilAmount -= 1;
+            PhoebeLogger.message("track", "addObject", "new Oil(pos, track)");
             track.addObject(new Oil(pos, track));
         } else {
             throw new IllegalStateException("Elfogyott az olaj");
         }
+
+        PhoebeLogger.returnMessage();
     }
 
     /**
@@ -107,10 +116,13 @@ public class Robot extends TrackObjectBase {
     public void putPutty() {
         if (puttyAmount > 0) {
             puttyAmount -= 1;
+            PhoebeLogger.message("track", "addObject", "new Putty(pos, track)");
             track.addObject(new Putty(pos, track));
         } else {
             throw new IllegalStateException("Elfogyott az ragacs");
         }
+
+        PhoebeLogger.returnMessage();
     }
 
     /**

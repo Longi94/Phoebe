@@ -1,6 +1,7 @@
 package model;
 
 import model.basic.Position;
+import skeleton.PhoebeLogger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,6 +95,7 @@ public class Track {
      */
     public boolean addObject(TrackObjectBase object) {
         object.setTrack(this);
+        PhoebeLogger.returnMessage("items.add(object)");
         return items.add(object);
     }
 
@@ -108,7 +110,9 @@ public class Track {
      * @return sikeres volt-e az eltávolítás, vagy sem
      */
     public boolean removeObject(TrackObjectBase object) {
-        return items.remove(object);
+        Boolean b = items.remove(object);
+        PhoebeLogger.returnMessage(Boolean.toString(b));
+        return b;
     }
 
     /**
@@ -118,8 +122,9 @@ public class Track {
      * @return true, ha a pályán van és false ha a pályán kívlüre esik.
      */
     public boolean isInTrack(Position pos) {
-        return insidePolygon(outerArc, pos) && !insidePolygon(innerArc, pos);
-
+        boolean b = insidePolygon(outerArc, pos) && !insidePolygon(innerArc, pos);
+        PhoebeLogger.returnMessage(Boolean.toString(b));
+        return b;
     }
 
     /**
@@ -147,10 +152,12 @@ public class Track {
         while (i < items.size()) {
             TrackObjectBase item = items.get(i);
             if (item != r && r.hit(item)) {
+                PhoebeLogger.message("item", "collide", "r");
                 item.collide(r);
             }
             if (item == items.get(i)) i++;
         }
+        PhoebeLogger.returnMessage();
     }
 
     @Override

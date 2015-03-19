@@ -2,6 +2,7 @@ package model;
 
 import model.basic.Position;
 import model.basic.Velocity;
+import skeleton.PhoebeLogger;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -99,8 +100,14 @@ public class GameController {
                 System.out.print("" + (i + 1) + ". Jatekos neve: ");
                 String name = br.readLine();
                 Robot r = new Robot(new Position(1, 1), track, name);
+
+                PhoebeLogger.message("players", "add", "r");
                 players.add(r);
+
+                PhoebeLogger.message("track", "addObject", "r");
                 track.addObject(r);
+
+                PhoebeLogger.message("playerOrder", "add", "i");
                 playerOrder.add(i);
             }
         } catch (IOException e) {
@@ -111,7 +118,10 @@ public class GameController {
         System.out.println("Parancs formatum: <szog> [-o] [-p]");
         System.out.println(" - <szog>: egy eges szam 0 és 359 kozott. -1 ha nem akar valtoztatni");
 
+        PhoebeLogger.message("GameController", "getPlayerInputs");
         getPlayerInputs();
+
+        PhoebeLogger.returnMessage();
     }
 
     /**
@@ -122,23 +132,29 @@ public class GameController {
         //Robotot kiszedjük, ha kiugrott
         for (Robot robot : players) {
             if (!track.isInTrack(robot.getPos())) {
+                PhoebeLogger.message("playerOrder", "remove", "new Integer(players.indexOf(robot))");
                 playerOrder.remove(new Integer(players.indexOf(robot)));
             }
         }
 
         //newRound meghívása minden pályán lévő objektumnak
         for (TrackObjectBase item : track.getItems()) {
+            PhoebeLogger.message("item", "newRound");
             item.newRound();
         }
 
         turnsLeft -= 1;
         if (turnsLeft == 0) {
+            PhoebeLogger.message("GameController", "endGame");
             endGame();
         } else {
             //Játékosok sorrendjéne összekeverése, persze ez nem túl optimális játék élmény szempontjából
             Collections.shuffle(playerOrder);
+            PhoebeLogger.message("GameController", "getPlayerInputs");
             getPlayerInputs();
         }
+
+        PhoebeLogger.returnMessage();
     }
 
     /**
@@ -174,8 +190,10 @@ public class GameController {
                 //Akadály lerakása ha a játékos akarta
                 if (command.length > 1 && command[1] != null) {
                     if (command[1].equals("-o")) {
+                        PhoebeLogger.message("currentPlayer", "putOil");
                         currentPlayer.putOil();
                     } else if (command[1].equals("-p")) {
+                        PhoebeLogger.message("currentPlayer", "putPutty");
                         currentPlayer.putPutty();
                     }
                 }
@@ -187,18 +205,25 @@ public class GameController {
             Velocity v = new Velocity();
             v.setAngle((double) angle / 180 * Math.PI); //ne feledjük hogy radián kell
             v.setMagnitude(angle == -1 ? 0 : 1);
+
+            PhoebeLogger.message("currentPlayer", "jump", "v");
             currentPlayer.jump(v);
 
             System.out.println(track.toString());
 
         }
 
+        PhoebeLogger.message("GameController", "newTurn");
         newTurn();
+
+        PhoebeLogger.returnMessage();
     }
 
 
     public void endGame() {
         //TODO
+
+        PhoebeLogger.returnMessage();
     }
 
     /**

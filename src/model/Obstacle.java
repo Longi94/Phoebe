@@ -46,13 +46,12 @@ public abstract class Obstacle extends TrackObjectBase {
         hitsLeft -= 1;
         PhoebeLogger.message("Obstacle", "takeEffect", "r");
         takeEffect(r);
-        PhoebeLogger.returnMessage();
 
         if (hitsLeft == 0) {
             PhoebeLogger.message("Track", "takeEffect", "r");
             track.removeObject(this);
-            PhoebeLogger.returnMessage();
         }
+        PhoebeLogger.returnMessage();
     }
 
     @Override
@@ -62,8 +61,9 @@ public abstract class Obstacle extends TrackObjectBase {
         if (roundsLeft == 0) {
             PhoebeLogger.message("Track", "removeObject", "this");
             track.removeObject(this);
-            PhoebeLogger.returnMessage();
         }
+
+        PhoebeLogger.returnMessage();
     }
 
     @Override
