@@ -158,6 +158,7 @@ public class Track {
             }
             if (item == items.get(i)) i++;
         }
+        PhoebeLogger.returnMessage();
     }
 
     @Override

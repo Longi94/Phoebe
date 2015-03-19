@@ -1,5 +1,7 @@
 package model.basic;
 
+import skeleton.PhoebeLogger;
+
 /**
  * Created by bence on 2015.02.23..
  */
@@ -89,6 +91,7 @@ public class Position {
     public void move(Velocity v) {
         posX += v.getVelocityX();
         posY += v.getVelocityY();
+        PhoebeLogger.returnMessage();
     }
 
     @Override
