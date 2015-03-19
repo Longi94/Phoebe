@@ -8,7 +8,7 @@ import model.basic.Position;
 public abstract class Obstacle extends TrackObjectBase {
     private static final int MAXIMUM_HITS = 3;
     private static final int MAXIMUM_ROUNDS = 20;
-    protected static double RADIUS = 0.7;
+    protected static double RADIUS = 0.35;
     private int hitsLeft;
     private int roundsLeft;
 

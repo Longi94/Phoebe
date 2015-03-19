@@ -45,29 +45,40 @@ public class Skeleton {
                     ever = false;
                     break;
                 case 1:
-
+                    //TODO geri
                     break;
                 case 2:
+                    //TODO bence
                     break;
                 case 3:
+                    //TODO bence
                     break;
                 case 4:
+                    //TODO longi
                     break;
                 case 5:
+                    //TODO beni
                     break;
                 case 6:
+                    //TODO beni
                     break;
                 case 7:
+                    //TODO beni
                     break;
                 case 8:
+                    //TODO beni
                     break;
                 case 9:
+                    //TODO geri
                     break;
                 case 10:
+                    //TODO bence
                     break;
                 case 11:
+                    //TODO geri
                     break;
                 case 12:
+                    //TODO geri
                     break;
                 default:
                     System.out.println("Nincs ilyen számú use-case.\n");

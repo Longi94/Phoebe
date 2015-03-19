@@ -93,6 +93,7 @@ public class Track {
      * @return sikeres volt-e a hozzáadás vagy nem
      */
     public boolean addObject(TrackObjectBase object) {
+        object.setTrack(this);
         return items.add(object);
     }
 
