@@ -43,8 +43,8 @@ public class RobotJumpIntoPutty {
 
         PhoebeLogger.enableLogging(true);
 
-        r.jump(new Velocity(Math.PI/2, 1)); // remélem ez a vízszintesen egyet jobbra
-        r.jump(new Velocity(Math.PI/2-0.1,1)); //kanyarodjunk egy kicsit, just for fun
+        r.jump(new Velocity(90, 1)); // remélem ez a vízszintesen egyet jobbra
+        r.jump(new Velocity(90-0.1,1)); //kanyarodjunk egy kicsit, just for fun
 
         PhoebeLogger.clear();
         PhoebeLogger.enableLogging(false);
