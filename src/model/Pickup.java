@@ -40,6 +40,8 @@ public class Pickup extends TrackObjectBase {
         //kitörli magát a pályáról
         PhoebeLogger.message("track", "removeObject", "this");
         track.removeObject(this);
+
+        PhoebeLogger.returnMessage();
     }
 
     @Override

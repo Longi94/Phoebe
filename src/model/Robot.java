@@ -78,6 +78,8 @@ public class Robot extends TrackObjectBase {
 
         //nem gondolom szükségesnek, csak az olaj állíthatja szerintem
         //enabled = false;
+
+        PhoebeLogger.returnMessage();
     }
 
     public boolean isEnabled() {
@@ -104,6 +106,8 @@ public class Robot extends TrackObjectBase {
         } else {
             throw new IllegalStateException("Elfogyott az olaj");
         }
+
+        PhoebeLogger.returnMessage();
     }
 
     /**
@@ -117,6 +121,8 @@ public class Robot extends TrackObjectBase {
         } else {
             throw new IllegalStateException("Elfogyott az ragacs");
         }
+
+        PhoebeLogger.returnMessage();
     }
 
     /**

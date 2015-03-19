@@ -51,6 +51,7 @@ public abstract class Obstacle extends TrackObjectBase {
             PhoebeLogger.message("Track", "takeEffect", "r");
             track.removeObject(this);
         }
+        PhoebeLogger.returnMessage();
     }
 
     @Override
@@ -61,6 +62,8 @@ public abstract class Obstacle extends TrackObjectBase {
             PhoebeLogger.message("Track", "removeObject", "this");
             track.removeObject(this);
         }
+
+        PhoebeLogger.returnMessage();
     }
 
     @Override
