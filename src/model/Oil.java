@@ -28,6 +28,7 @@ public class Oil extends Obstacle {
         //megtartja a sebességet, és tiltja annak módosítását
         PhoebeLogger.message("r", "setEnabled", "false");
         r.setEnabled(false);
+        PhoebeLogger.returnMessage();
     }
 
     @Override

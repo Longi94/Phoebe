@@ -33,13 +33,16 @@ public class Pickup extends TrackObjectBase {
         if (random.nextInt(2) == 1) {
             PhoebeLogger.message("r", "addOil");
             r.addOil();
+            PhoebeLogger.returnMessage();
         } else {
             PhoebeLogger.message("r", "addPutty");
             r.addPutty();
+            PhoebeLogger.returnMessage();
         }
         //kitörli magát a pályáról
         PhoebeLogger.message("track", "removeObject", "this");
         track.removeObject(this);
+        PhoebeLogger.returnMessage();
     }
 
     @Override
