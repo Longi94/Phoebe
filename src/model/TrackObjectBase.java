@@ -89,6 +89,7 @@ public abstract class TrackObjectBase {
     }
 
     public Position getPos() {
+        PhoebeLogger.returnMessage("pos");
         return pos;
     }
 
