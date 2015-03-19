@@ -1,6 +1,7 @@
 package model;
 
 import model.basic.Position;
+import skeleton.PhoebeLogger;
 
 /**
  * Created by bence on 2015.02.23..
@@ -50,8 +51,9 @@ public abstract class TrackObjectBase {
      */
     public boolean hit(TrackObjectBase otherObject) {
         double distance = Math.sqrt(Math.pow(this.pos.getX() - otherObject.pos.getX(), 2) + Math.pow(this.pos.getY() - otherObject.pos.getY(), 2));
-
-        return distance <= RADIUS + otherObject.getRadius();
+        Boolean b = distance <= RADIUS + otherObject.getRadius();
+        PhoebeLogger.returnMessage(Boolean.toString(b));
+        return b;
     }
 
     /**
