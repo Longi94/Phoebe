@@ -1,6 +1,7 @@
 package model;
 
 import model.basic.Position;
+import skeleton.PhoebeLogger;
 
 /**
  * Created by bence on 2015.02.23..
@@ -25,6 +26,7 @@ public class Oil extends Obstacle {
     @Override
     public void takeEffect(Robot r) {
         //megtartja a sebességet, és tiltja annak módosítását
+        PhoebeLogger.message("r", "setEnabled", "false");
         r.setEnabled(false);
     }
 

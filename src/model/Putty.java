@@ -1,6 +1,7 @@
 package model;
 
 import model.basic.Position;
+import skeleton.PhoebeLogger;
 
 /**
  * Created by bence on 2015.02.23..
@@ -25,6 +26,7 @@ public class Putty extends Obstacle {
     @Override
     public void takeEffect(Robot r) {
         //megfelezi a sebességet, de lehetőség van annak változtatására
+        PhoebeLogger.message("r", "halveVelocity");
         r.halveVelocity();
     }
 

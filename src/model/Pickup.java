@@ -1,6 +1,7 @@
 package model;
 
 import model.basic.Position;
+import skeleton.PhoebeLogger;
 
 import java.util.Random;
 
@@ -30,11 +31,14 @@ public class Pickup extends TrackObjectBase {
     public void collide(Robot r) {
         //Random.nextInt(n) is both more efficient and less biased than Math.random() * n
         if (random.nextInt(2) == 1) {
+            PhoebeLogger.message("r", "addOil");
             r.addOil();
         } else {
+            PhoebeLogger.message("r", "addPutty");
             r.addPutty();
         }
         //kitörli magát a pályáról
+        PhoebeLogger.message("track", "removeObject", "this");
         track.removeObject(this);
     }
 
