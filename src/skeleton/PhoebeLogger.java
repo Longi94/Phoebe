@@ -93,6 +93,7 @@ public class PhoebeLogger {
      */
     public static void clear() {
         indexes.clear();
+        returned = false;
     }
 
     /**

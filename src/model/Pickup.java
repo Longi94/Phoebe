@@ -42,7 +42,7 @@ public class Pickup extends TrackObjectBase {
             } catch (IOException e) {
                 System.out.println("Valami nagyon nem jo ha ez kiirodik");
             }
-        } while (!pickupOption.equals("o") || !pickupOption.equals("p"));
+        } while (!pickupOption.equals("o") && !pickupOption.equals("p"));
 
         //Random.nextInt(n) is both more efficient and less biased than Math.random() * n
         if (/*random.nextInt(2) == 1*/ pickupOption.equals("o")) {
