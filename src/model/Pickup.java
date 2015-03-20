@@ -3,6 +3,9 @@ package model;
 import model.basic.Position;
 import skeleton.PhoebeLogger;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Random;
 
 /**
@@ -29,8 +32,20 @@ public class Pickup extends TrackObjectBase {
      */
     @Override
     public void collide(Robot r) {
+        String pickupOption = "";
+
+        do {
+            try {
+                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                System.out.println("o vagy p?");
+                pickupOption = br.readLine();
+            } catch (IOException e) {
+                System.out.println("Valami nagyon nem jo ha ez kiirodik");
+            }
+        } while (!pickupOption.equals("o") || !pickupOption.equals("p"));
+
         //Random.nextInt(n) is both more efficient and less biased than Math.random() * n
-        if (random.nextInt(2) == 1) {
+        if (/*random.nextInt(2) == 1*/ pickupOption.equals("o")) {
             PhoebeLogger.message("r", "addOil");
             r.addOil();
         } else {
