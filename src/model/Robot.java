@@ -130,6 +130,7 @@ public class Robot extends TrackObjectBase {
      */
     public void addOil() {
         oilAmount++;
+        PhoebeLogger.returnMessage();
     }
 
     /**
@@ -137,6 +138,7 @@ public class Robot extends TrackObjectBase {
      */
     public void addPutty() {
         puttyAmount++;
+        PhoebeLogger.returnMessage();
     }
 
     /**
