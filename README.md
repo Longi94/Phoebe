@@ -14,6 +14,9 @@
 13. Grafikus változat beadása **40/**
 14. Összefoglalás **30/**
 
+# HA NAGYON NEM AKAR IGNOREOLNI VALAMIT A GIT
+http://stackoverflow.com/a/1139797/2968428
+
 ##GitHub Guide Beninek (GitHub for Windows grafikus klienssel)
 - 'Beni' branchben vagy
 - Kód módosítása
