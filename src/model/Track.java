@@ -151,9 +151,12 @@ public class Track {
         int i = 0;
         while (i < items.size()) {
             TrackObjectBase item = items.get(i);
-            if (item != r && r.hit(item)) {
-                PhoebeLogger.message("item", "collide", "r");
-                item.collide(r);
+            if (item != r) {
+                PhoebeLogger.message("r", "hit", "item");
+                if (r.hit(item)) {
+                    PhoebeLogger.message("item", "collide", "r");
+                    item.collide(r);
+                }
             }
             if (item == items.get(i)) i++;
         }

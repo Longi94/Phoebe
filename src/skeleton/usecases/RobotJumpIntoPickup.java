@@ -43,7 +43,10 @@ public class RobotJumpIntoPickup {
 
         PhoebeLogger.enableLogging(true);
 
+        PhoebeLogger.message("r", "jump", "v");
         r.jump(new Velocity(90, 1)); // remélem ez a vízszintesen egyet jobbra
+
+        PhoebeLogger.message("r", "jump", "v");
         r.jump(new Velocity(0,0)); //úgyis disabled lesz (elvileg)
 
         PhoebeLogger.clear();
