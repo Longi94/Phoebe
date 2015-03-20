@@ -158,7 +158,7 @@ public class Track {
                     item.collide(r);
                 }
             }
-            if (item == items.get(i)) i++;
+            if (i < items.size() && item == items.get(i)) i++;
         }
         PhoebeLogger.returnMessage();
     }
