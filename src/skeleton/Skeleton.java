@@ -1,5 +1,6 @@
 package skeleton;
 
+import skeleton.usecases.RobotJumpIntoPickup;
 import skeleton.usecases.RobotJumpOutOfTrack;
 
 import java.io.BufferedReader;
@@ -56,7 +57,7 @@ public class Skeleton {
                     //TODO bence
                     break;
                 case 4:
-                    //TODO longi
+                    new RobotJumpIntoPickup();
                     break;
                 case 5:
                     new RobotJumpOutOfTrack();
