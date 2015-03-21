@@ -26,6 +26,17 @@ public abstract class Obstacle extends TrackObjectBase {
     }
 
     /**
+     * Konstruktor
+     *
+     * @param pos   az objektum pozíciója
+     */
+    public Obstacle(Position pos) {
+        super(pos);
+        hitsLeft = MAXIMUM_HITS;
+        roundsLeft = MAXIMUM_ROUNDS;
+    }
+
+    /**
      * Sajnos ez is kell ahhoz, hogy a radiust overrideoljuk
      *
      * @return az akadály sugara

@@ -19,6 +19,14 @@ public class Oil extends Obstacle {
     }
 
     /**
+     * Konstruktor
+     *
+     * @param pos   az olajfolt pozíciója
+     */
+    public Oil(Position pos) {
+        super(pos);
+    }
+    /**
      * A robot sebességváltoztatását tiltja le
      *
      * @param r a robot, aki áthalad az akadályon

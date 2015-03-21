@@ -1,5 +1,6 @@
 package skeleton.usecases;
 
+import model.Obstacle;
 import model.Oil;
 import model.Robot;
 import model.Track;
@@ -7,6 +8,9 @@ import model.basic.Position;
 import model.basic.Velocity;
 import skeleton.PhoebeLogger;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
@@ -39,12 +43,27 @@ public class RobotJumpIntoOil {
         Robot r = new Robot(new Position(0,0), t, "Marwin");
 
         t.addObject(r);
-        t.addObject(new Oil(new Position(1,0),t));
+        Obstacle o = new Oil(new Position(1,0));
+        int i = -1;
+        do {
+            try {
+                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                System.out.println("Hany utkozes van hatra az akadaly eletebol?");
+                String str = br.readLine();
+                i = Integer.parseInt(str);
+            } catch (NumberFormatException e) {
+                System.out.println("Hibás számformátum");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } while ( i < 1 );
+        o.setHitsLeft(i);
+        t.addObject(o);
 
         PhoebeLogger.enableLogging(true);
         PhoebeLogger.message("r", "jump", "dv");
 
-        r.jump(new Velocity(Math.PI/2, 1)); // remélem ez a vízszintesen egyet jobbra
+        r.jump(new Velocity(Math.PI / 2, 1)); // remélem ez a vízszintesen egyet jobbra
 
         PhoebeLogger.message("r", "jump", "dv");
         r.jump(new Velocity(0,0)); //úgyis disabled lesz (elvileg)
