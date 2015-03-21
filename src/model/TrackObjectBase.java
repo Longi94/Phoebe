@@ -7,7 +7,7 @@ import skeleton.PhoebeLogger;
  * Created by bence on 2015.02.23..
  */
 public abstract class TrackObjectBase {
-    protected static double RADIUS = 0.5;
+    protected static double RADIUS = 0.4;
     protected Position pos;
     protected Track track;
     protected double radius;

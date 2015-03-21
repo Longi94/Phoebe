@@ -57,7 +57,7 @@ public class Robot extends TrackObjectBase {
      */
     public void jump(Velocity v) {
         //Vektor hozzáadása a robot sebességvektoráhaz.
-        if (v != null) {
+        if (v != null && enabled) {
             PhoebeLogger.message("vel", "add", "v");
             vel.add(v);
         }
@@ -67,6 +67,12 @@ public class Robot extends TrackObjectBase {
         //Robot mozgatása új pozícióba
         PhoebeLogger.message("pos", "move", "vel");
         pos.move(vel);
+
+        if (enabled == false) {
+            PhoebeLogger.message("this", "setEnabled", "true");
+            setEnabled(true);
+        }
+
 
         //Megtett táv növelése
         distanceCompleted += pos.getDistance(oldPos);
