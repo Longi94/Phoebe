@@ -1,7 +1,6 @@
 package skeleton;
 
-import skeleton.usecases.RobotJumpIntoPickup;
-import skeleton.usecases.RobotJumpOutOfTrack;
+import skeleton.usecases.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -51,10 +50,10 @@ public class Skeleton {
                     //TODO geri
                     break;
                 case 2:
-                    //TODO bence
+                    new RobotJumpIntoOil();
                     break;
                 case 3:
-                    //TODO bence
+                    new RobotJumpIntoPutty();
                     break;
                 case 4:
                     new RobotJumpIntoPickup();
@@ -75,7 +74,7 @@ public class Skeleton {
                     //TODO geri
                     break;
                 case 10:
-                    //TODO bence
+                    new RobotJumpIntoPuttyAndOil();
                     break;
                 case 11:
                     //TODO geri
