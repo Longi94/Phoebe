@@ -147,8 +147,9 @@ public class Robot extends TrackObjectBase {
      */
     public void halveVelocity() {
         //Sebesség megfelezése
-        vel.setMagnitude(vel.getMagnitude() / 2.0);
-
+            PhoebeLogger.message("vel", "setMagnitude", "vel.magnitude/2");
+                vel.setMagnitude(vel.getMagnitude() / 2.0);
+            PhoebeLogger.returnMessage();
         PhoebeLogger.returnMessage();
     }
 
