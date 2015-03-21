@@ -78,7 +78,7 @@ public abstract class TrackObjectBase {
      * @param r a robot, amivel ütközik
      */
     public void collide(Robot r) {
-
+       PhoebeLogger.returnMessage();
     }
 
     /**

@@ -92,8 +92,8 @@ public class Robot extends TrackObjectBase {
      * @param enabled robot állapota
      */
     public void setEnabled(boolean enabled) {
-        PhoebeLogger.returnMessage();
         this.enabled = enabled;
+        PhoebeLogger.returnMessage();
     }
 
     /**
@@ -148,6 +148,8 @@ public class Robot extends TrackObjectBase {
     public void halveVelocity() {
         //Sebesség megfelezése
         vel.setMagnitude(vel.getMagnitude() / 2.0);
+
+        PhoebeLogger.returnMessage();
     }
 
     public String getName() {
