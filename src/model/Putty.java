@@ -19,6 +19,14 @@ public class Putty extends Obstacle {
     }
 
     /**
+     * Konstruktor
+     * @param pos   a ragacs pozíciója
+     */
+    public Putty(Position pos) {
+        super(pos);
+    }
+
+    /**
      * Megfelezi a rajta áthaladó robot sebességét
      *
      * @param r a robot, aki áthalad az akadályon
