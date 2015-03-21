@@ -92,6 +92,7 @@ public class Robot extends TrackObjectBase {
      * @param enabled robot állapota
      */
     public void setEnabled(boolean enabled) {
+        PhoebeLogger.returnMessage();
         this.enabled = enabled;
     }
 
