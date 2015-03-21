@@ -59,7 +59,7 @@ public abstract class Obstacle extends TrackObjectBase {
         takeEffect(r);
 
         if (hitsLeft == 0) {
-            PhoebeLogger.message("Track", "takeEffect", "r");
+            PhoebeLogger.message("Track", "removeObject", "this");
             track.removeObject(this);
         }
         PhoebeLogger.returnMessage();
