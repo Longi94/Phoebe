@@ -54,6 +54,14 @@ public abstract class Obstacle extends TrackObjectBase {
         PhoebeLogger.returnMessage();
     }
 
+    public void setHitsLeft(int hitsLeft) {
+        this.hitsLeft = hitsLeft;
+    }
+
+    public void setRoundsLeft(int roundsLeft) {
+        this.roundsLeft = roundsLeft;
+    }
+
     @Override
     public void newRound() {
         roundsLeft -= 1;

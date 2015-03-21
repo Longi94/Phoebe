@@ -26,12 +26,11 @@ public abstract class TrackObjectBase {
     /**
      * Konstruktor pálya nélkül
      *
-     * @param pos   az objektum pozíciója
+     * @param pos az objektum pozíciója
      */
     public TrackObjectBase(Position pos) {
         this.pos = pos;
     }
-
 
 
     /**
@@ -78,7 +77,7 @@ public abstract class TrackObjectBase {
      * @param r a robot, amivel ütközik
      */
     public void collide(Robot r) {
-       PhoebeLogger.returnMessage();
+        PhoebeLogger.returnMessage();
     }
 
     /**

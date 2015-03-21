@@ -48,7 +48,8 @@ public class Velocity {
 
     /**
      * Kétparaméteres konstruktor
-     * @param angle a szög
+     *
+     * @param angle     a szög
      * @param magnitude a nagyság
      */
     public Velocity(double angle, double magnitude) {
