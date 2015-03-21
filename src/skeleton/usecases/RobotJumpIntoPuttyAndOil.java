@@ -40,8 +40,8 @@ public class RobotJumpIntoPuttyAndOil {
         Robot r = new Robot(new Position(0,0), t, "R2D2");
 
         t.addObject(r);
-        t.addObject(new Oil(new Position(1,0.1),t));
-        t.addObject(new Putty(new Position(1,-0.1),t));
+        t.addObject(new Oil(new Position(0.81,0.6),t));
+        t.addObject(new Putty(new Position(0.81,-0.6),t));
         //'cos same position is mainstream - de elvileg az is műkszik
 
         PhoebeLogger.enableLogging(true);
