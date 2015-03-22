@@ -9,13 +9,17 @@ import skeleton.PhoebeLogger;
 import java.util.ArrayList;
 
 /**
- * Created by Benedek on 2015.03.22..
+ * Olajat rak le a robot a pályára usecase
+ *
+ * @author Benedek Fábián
+ * @since 2015.03.22
  */
 public class RobotPutsOilOnTrack {
     public RobotPutsOilOnTrack(){
         PhoebeLogger.enableLogging(false);
         PhoebeLogger.clear();
 
+        // Pálya inicializálása
         ArrayList<Position> in = new ArrayList<Position>();
         ArrayList<Position> out = new ArrayList<Position>();
 
@@ -29,16 +33,16 @@ public class RobotPutsOilOnTrack {
         in.add(new Position(9,9));
         in.add(new Position(1,9));
 
-        //DUMMY NÉGYZET ALAKÚ PÁLYA
-
         Track t = new Track(in,out);
 
+        // Robot inicializálása
         Robot r = new Robot(new Position(0,0), t, "R2D2");
 
         t.addObject(r);
 
         PhoebeLogger.enableLogging(true);
 
+        // Esemény lejátszása
         PhoebeLogger.message("r", "putOil");
         r.putOil();
 

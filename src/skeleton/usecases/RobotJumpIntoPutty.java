@@ -11,7 +11,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
- * Created by bence on 2015.03.18..
+ * Robot ragacsba ugrik
+ *
+ * @author Bence Czipó
+ * @since 2015.03.18.
  */
 public class RobotJumpIntoPutty {
 
@@ -20,6 +23,7 @@ public class RobotJumpIntoPutty {
         PhoebeLogger.enableLogging(false);
         PhoebeLogger.clear();
 
+        // Pálya inicializálása
         ArrayList<Position> in = new ArrayList<Position>();
         ArrayList<Position> out = new ArrayList<Position>();
 
@@ -33,15 +37,17 @@ public class RobotJumpIntoPutty {
         in.add(new Position(9,9));
         in.add(new Position(1,9));
 
-        //DUMMY NÉGYZET ALAKÚ PÁLYA
-
         Track t = new Track(in,out);
 
+        // Robot inicializálása
         Robot r = new Robot(new Position(0,0), t, "WALL-E");
 
         t.addObject(r);
 
+        // Ragacs inicializálása
         Obstacle o = new Putty(new Position(1,0));
+
+        //Felhasználói döntésre várakozás
         int i = -1;
         do {
             try {
@@ -63,6 +69,7 @@ public class RobotJumpIntoPutty {
 
         PhoebeLogger.message("r", "jump", "dv");
 
+        // Esemény lejátszása
         r.jump(new Velocity(Math.PI / 2, 1)); // remélem ez a vízszintesen egyet jobbra
 
         PhoebeLogger.message("r", "jump", "dv");

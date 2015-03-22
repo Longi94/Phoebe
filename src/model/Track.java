@@ -10,6 +10,9 @@ import java.util.List;
  * A pályát megvalósító osztály
  *
  * @author Bence Czipó
+ * @author Benedek Fábián
+ * @author Gergely Reményi
+ * @author Thanh Long Tran
  * @since 2015.02.23.
  */
 public class Track {

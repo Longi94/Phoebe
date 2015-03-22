@@ -9,7 +9,10 @@ import skeleton.PhoebeLogger;
 import java.util.ArrayList;
 
 /**
- * Created by geri on 2015. 03. 21..
+ * Robot ugrás use-case
+ *
+ * @author Gergely Reményi
+ * @since 2015.03.21.
  */
 public class RobotJump {
 
@@ -18,6 +21,7 @@ public class RobotJump {
         PhoebeLogger.enableLogging(false);
         PhoebeLogger.clear();
 
+        // Pálya inicializálása
         ArrayList<Position> in = new ArrayList<Position>();
         ArrayList<Position> out = new ArrayList<Position>();
 
@@ -33,10 +37,12 @@ public class RobotJump {
 
         Track t = new Track(in,out);
 
+        // Robot inicializálása
         Robot r = new Robot(new Position(0,0), t, "IronMan");
 
         t.addObject(r);
 
+        // Robot ugrik esemény lejátszása
         PhoebeLogger.enableLogging(true);
         PhoebeLogger.message("r", "jump", "dv");
 

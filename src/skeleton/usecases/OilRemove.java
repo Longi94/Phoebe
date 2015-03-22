@@ -12,7 +12,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
- * Created by geri on 2015. 03. 21..
+ * Olaj felszívódása a kör elején use-case
+ *
+ * @author Gergely Reményi
+ * @since 2015.03.21
  */
 public class OilRemove {
 
@@ -20,6 +23,7 @@ public class OilRemove {
         PhoebeLogger.enableLogging(false);
         PhoebeLogger.clear();
 
+        // Pálya inicializálása
         ArrayList<Position> in = new ArrayList<Position>();
         ArrayList<Position> out = new ArrayList<Position>();
 
@@ -35,10 +39,11 @@ public class OilRemove {
 
         Track t = new Track(in,out);
 
+        // Olajfolt létrehozása és hozzáadása a pályához
         Obstacle o = new Oil(new Position(1,0));
-
         t.addObject(o);
 
+        // Döntés bekérése a felhasználótól
         int i = -1;
         do {
             try {
@@ -56,6 +61,7 @@ public class OilRemove {
 
         PhoebeLogger.enableLogging(true);
 
+        // Új kör eleji felszívódás lejátszása, ha már csak 1 élete marad az olajfoltnak
         PhoebeLogger.message("o", "newRound", "");
 
         o.newRound();

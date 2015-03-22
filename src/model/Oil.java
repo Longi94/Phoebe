@@ -7,6 +7,9 @@ import skeleton.PhoebeLogger;
  * Olajt megvalósító osztályt
  *
  * @author Bence Czipó
+ * @author Benedek Fábián
+ * @author Gergely Reményi
+ * @author Thanh Long Tran
  * @since 2015.02.23
  */
 public class Oil extends Obstacle {

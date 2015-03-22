@@ -7,7 +7,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Created by bence on 2015.03.14..
+ * Skeleton főprogram
+ *
+ * @author Bence Czipó
+ * @since 2015.03.14.
  */
 public class Skeleton {
 

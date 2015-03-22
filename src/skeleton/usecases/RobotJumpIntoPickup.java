@@ -10,7 +10,10 @@ import skeleton.PhoebeLogger;
 import java.util.ArrayList;
 
 /**
- * Created by ThanhLong on 2015.03.20..
+ * Robot pickupba ugrik use-case
+ *
+ * @author Thanh Long Tran
+ * @since 2015.03.20.
  */
 public class RobotJumpIntoPickup {
 
@@ -19,6 +22,7 @@ public class RobotJumpIntoPickup {
         PhoebeLogger.enableLogging(false);
         PhoebeLogger.clear();
 
+        // Pálya inicializálása
         ArrayList<Position> in = new ArrayList<Position>();
         ArrayList<Position> out = new ArrayList<Position>();
 
@@ -32,17 +36,19 @@ public class RobotJumpIntoPickup {
         in.add(new Position(9,9));
         in.add(new Position(1,9));
 
-        //DUMMY NÉGYZET ALAKÚ PÁLYA
-
         Track t = new Track(in,out);
 
+        // Robot inicializálása
         Robot r = new Robot(new Position(0,0), t, "TARS");
 
         t.addObject(r);
+
+        // Pickup létrehozása
         t.addObject(new Pickup(new Position(1,0),t));
 
         PhoebeLogger.enableLogging(true);
 
+        // Esemény lejátszása
         PhoebeLogger.message("r", "jump", "v");
         r.jump(new Velocity(90, 1)); // remélem ez a vízszintesen egyet jobbra
 

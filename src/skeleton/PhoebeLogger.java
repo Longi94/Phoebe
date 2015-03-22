@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by ThanhLong on 2015.03.16..
+ * Logger osztály
+ *
+ * @author Thanh Long Tran
+ * @since 2015.03.16.
  */
 public class PhoebeLogger {
 

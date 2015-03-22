@@ -13,7 +13,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
- * Created by geri on 2015. 03. 21..
+ * Ragacs felszívódása a kör elején use-case
+ *
+ * @author Gergely Reményi
+ * @since 2015.03.21.
  */
 public class PuttyRemove {
 
@@ -21,6 +24,7 @@ public class PuttyRemove {
         PhoebeLogger.enableLogging(false);
         PhoebeLogger.clear();
 
+        // Pálya inicializálása
         ArrayList<Position> in = new ArrayList<Position>();
         ArrayList<Position> out = new ArrayList<Position>();
 
@@ -36,10 +40,12 @@ public class PuttyRemove {
 
         Track t = new Track(in,out);
 
+        // Ragacs inicializálása
         Obstacle p = new Putty(new Position(1,0));
 
         t.addObject(p);
 
+        // Döntés megkérdezése a felhasználótól
         int i = -1;
         do {
             try {
@@ -57,6 +63,7 @@ public class PuttyRemove {
 
         PhoebeLogger.enableLogging(true);
 
+        // Felszívódás lejátszása ha már csak egy élete van hára a ragacsnak
         PhoebeLogger.message("p", "newRound", "");
 
         p.newRound();

@@ -10,7 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by geri on 2015. 03. 21..
+ * Új játék indítása use-case
+ *
+ * @author Gergely Reményi
+ * @since 2015.03.21.
  */
 public class NewGame {
 
@@ -20,18 +23,22 @@ public class NewGame {
 
         PhoebeLogger.enableLogging(true);
 
+        // Játékosok létrehozása
         PhoebeLogger.create("List<Robot>","players");
         List<Robot> players = new ArrayList<Robot>();
         PhoebeLogger.returnMessage();
 
+        // Külső pályaív létrehozása
         PhoebeLogger.create("List<Position>","in");
         List<Position> in = new ArrayList<Position>();
         PhoebeLogger.returnMessage();
 
+        // Belső pályaív létrehozása
         PhoebeLogger.create("List<Position>","out");
         List<Position> out = new ArrayList<Position>();
         PhoebeLogger.returnMessage();
 
+        // Belső pályaív feltöltése
         PhoebeLogger.create("Position","pi1");
         PhoebeLogger.returnMessage();
         PhoebeLogger.message("in", "add", "pi1");
@@ -53,6 +60,7 @@ public class NewGame {
         in.add(new Position(1, 9));
         PhoebeLogger.returnMessage();
 
+        // Külső pályaív feltöltése
         PhoebeLogger.create("Position","po1");
         PhoebeLogger.returnMessage();
         PhoebeLogger.message("out", "add", "po1");
@@ -74,10 +82,12 @@ public class NewGame {
         out.add(new Position(-1, 11));
         PhoebeLogger.returnMessage();
 
+        // Pálya létrehozása
         PhoebeLogger.create("Track","(in,out)track");
         Track track = new Track(in,out);
         PhoebeLogger.returnMessage();
 
+        // Pickupok létrehozása
         PhoebeLogger.create("Pickup", "p1");
         PhoebeLogger.returnMessage();
         PhoebeLogger.message("track", "addObject", "p1");
@@ -87,6 +97,7 @@ public class NewGame {
         PhoebeLogger.message("track", "addObject", "p2");
         track.addObject(new Pickup(new Position(9, 0), track));
 
+        // Robotok létrehozása és hozzáadása a pályához
         PhoebeLogger.create("Robot","r1");
         Robot r1 = new Robot(new Position(0,0),track,"Marwin");
         PhoebeLogger.returnMessage();

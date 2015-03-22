@@ -14,7 +14,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
- * Created by bence on 2015.03.18..
+ * Robot olajba ugrik use-case
+ *
+ * @author Bence Czipó
+ * @since 2015.03.18.
  */
 public class RobotJumpIntoOil {
 
@@ -23,6 +26,7 @@ public class RobotJumpIntoOil {
         PhoebeLogger.enableLogging(false);
         PhoebeLogger.clear();
 
+        // Pálya inicializálása
         ArrayList<Position> in = new ArrayList<Position>();
         ArrayList<Position> out = new ArrayList<Position>();
 
@@ -36,14 +40,18 @@ public class RobotJumpIntoOil {
         in.add(new Position(9,9));
         in.add(new Position(1,9));
 
-        //DUMMY NÉGYZET ALAKÚ PÁLYA
 
         Track t = new Track(in,out);
 
+        // Robot inicializálása
         Robot r = new Robot(new Position(0,0), t, "Marwin");
 
         t.addObject(r);
+
+        // Olaj inicializálása
         Obstacle o = new Oil(new Position(1,0));
+
+        // felhasználói döntés várása
         int i = -1;
         do {
             try {
@@ -60,6 +68,7 @@ public class RobotJumpIntoOil {
         o.setHitsLeft(i);
         t.addObject(o);
 
+        // Esemény lejátszása
         PhoebeLogger.enableLogging(true);
         PhoebeLogger.message("r", "jump", "dv");
 
