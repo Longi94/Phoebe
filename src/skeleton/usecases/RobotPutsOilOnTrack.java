@@ -3,6 +3,7 @@ package skeleton.usecases;
 import model.Robot;
 import model.Track;
 import model.basic.Position;
+import model.basic.Velocity;
 import skeleton.PhoebeLogger;
 
 import java.util.ArrayList;
@@ -41,7 +42,8 @@ public class RobotPutsOilOnTrack {
         PhoebeLogger.message("r", "putOil");
         r.putOil();
 
-
+        PhoebeLogger.message("r", "jump", "dV");
+        r.jump(new Velocity(Math.PI / 2, 1));
 
 
         PhoebeLogger.enableLogging(false);

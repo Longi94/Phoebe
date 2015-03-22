@@ -40,7 +40,7 @@ public class RobotJumpOutOfTrack {
         PhoebeLogger.enableLogging(true);
 
         PhoebeLogger.message("r", "jump", "new Velocity(90, 1)");
-        r.jump(new Velocity(90, 1));
+        r.jump(new Velocity(Math.PI / 2, 1));
 
         PhoebeLogger.message("r", "getPos");
         Position pos = r.getPos();
