@@ -120,6 +120,8 @@ public class PhoebeLogger {
             indexes.set(indexes.size() - 1, ++temp);
         }
 
+        returned = false;
+
         String log = "----";
 
         for (int i = 1; i < indexes.size(); i++) {
