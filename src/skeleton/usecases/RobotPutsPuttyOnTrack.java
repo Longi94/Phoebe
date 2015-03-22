@@ -39,13 +39,11 @@ public class RobotPutsPuttyOnTrack {
 
         PhoebeLogger.enableLogging(true);
 
-        PhoebeLogger.message("r", "jump", "new Velocity(90, 1)");
-        r.jump(new Velocity(90, 1));
+        PhoebeLogger.message("r", "putOil");
+        r.putPutty();
 
-        PhoebeLogger.message("r", "getPos");
-        Position pos = r.getPos();
-        PhoebeLogger.message("t", "isInTrack", "pos");
-        boolean isR2D2InTrack = t.isInTrack(pos);
+        PhoebeLogger.message("r", "jump", "dV");
+        r.jump(new Velocity(Math.PI / 2, 1));
 
         PhoebeLogger.enableLogging(false);
         PhoebeLogger.clear();
