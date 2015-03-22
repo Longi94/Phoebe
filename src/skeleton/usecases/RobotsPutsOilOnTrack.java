@@ -38,6 +38,11 @@ public class RobotsPutsOilOnTrack {
 
         PhoebeLogger.enableLogging(true);
 
+        PhoebeLogger.message("r", "putOil");
+        r.putOil();
+
+
+
 
         PhoebeLogger.enableLogging(false);
         PhoebeLogger.clear();
