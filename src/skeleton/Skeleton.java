@@ -62,7 +62,7 @@ public class Skeleton {
                     new RobotJumpOutOfTrack();
                     break;
                 case 6:
-                    new RobotsPutsOilOnTrack();
+                    new RobotPutsOilOnTrack();
                     break;
                 case 7:
                     new RobotPutsPuttyOnTrack();

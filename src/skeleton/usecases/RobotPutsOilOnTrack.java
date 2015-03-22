@@ -10,8 +10,8 @@ import java.util.ArrayList;
 /**
  * Created by Benedek on 2015.03.22..
  */
-public class RobotsPutsOilOnTrack {
-    public RobotsPutsOilOnTrack(){
+public class RobotPutsOilOnTrack {
+    public RobotPutsOilOnTrack(){
         PhoebeLogger.enableLogging(false);
         PhoebeLogger.clear();
 

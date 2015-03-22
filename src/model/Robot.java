@@ -166,6 +166,7 @@ public class Robot extends TrackObjectBase {
     public void forfeit(){
         PhoebeLogger.message("track", "removeObject", "this");
         track.removeObject(this);
+        PhoebeLogger.returnMessage();
     }
 
     @Override
