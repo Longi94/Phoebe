@@ -112,8 +112,13 @@ public class PhoebeLogger {
      * @param variableName változó neve
      */
     public static void create(String className, String variableName) {
-        int temp = indexes.get(indexes.size() - 1);
-        indexes.set(indexes.size() - 1, ++temp);
+
+        if (!returned) {
+            indexes.add(1);
+        } else {
+            int temp = indexes.get(indexes.size() - 1);
+            indexes.set(indexes.size() - 1, ++temp);
+        }
 
         String log = "----";
 
@@ -121,12 +126,12 @@ public class PhoebeLogger {
             log += "----";
         }
 
-        log += "><<create>>";
+        log += ">";
 
         for (int i = 0; i < indexes.size() - 1; i++) {
             log += "" + indexes.get(i) + ".";
         }
-        log += indexes.get(indexes.size() - 1) + ":";
+        log += indexes.get(indexes.size() - 1) + ":<<create>>";
 
         log += variableName + ":" + className;
 
