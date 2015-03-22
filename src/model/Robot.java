@@ -108,7 +108,9 @@ public class Robot extends TrackObjectBase {
     public void putOil() {
         if (oilAmount > 0) {
             oilAmount -= 1;
-            PhoebeLogger.message("track", "addObject", "new Oil(pos, track)");
+            PhoebeLogger.create("Oil", "oil");
+            PhoebeLogger.returnMessage();
+            PhoebeLogger.message("track", "addObject", "oil");
             track.addObject(new Oil(pos, track));
         } else {
             throw new IllegalStateException("Elfogyott az olaj");
@@ -123,7 +125,9 @@ public class Robot extends TrackObjectBase {
     public void putPutty() {
         if (puttyAmount > 0) {
             puttyAmount -= 1;
-            PhoebeLogger.message("track", "addObject", "new Putty(pos, track)");
+            PhoebeLogger.create("Putty", "putty");
+            PhoebeLogger.returnMessage();
+            PhoebeLogger.message("track", "addObject", "putty");
             track.addObject(new Putty(pos, track));
         } else {
             throw new IllegalStateException("Elfogyott az ragacs");
