@@ -98,9 +98,38 @@ public class PhoebeLogger {
 
     /**
      * Loggolás tiltása vagy engedélyezése. (Alapból tiltva van)
+     *
      * @param enabled booooooool
      */
     public static void enableLogging(boolean enabled) {
         PhoebeLogger.enabled = enabled;
+    }
+
+    /**
+     * Objectum létrehozása
+     *
+     * @param className osztály neve
+     * @param variableName változó neve
+     */
+    public static void create(String className, String variableName) {
+        int temp = indexes.get(indexes.size() - 1);
+        indexes.set(indexes.size() - 1, ++temp);
+
+        String log = "----";
+
+        for (int i = 1; i < indexes.size(); i++) {
+            log += "----";
+        }
+
+        log += "><<create>>";
+
+        for (int i = 0; i < indexes.size() - 1; i++) {
+            log += "" + indexes.get(i) + ".";
+        }
+        log += indexes.get(indexes.size() - 1) + ":";
+
+        log += variableName + ":" + className;
+
+        System.out.println(log);
     }
 }
