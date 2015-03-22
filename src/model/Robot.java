@@ -163,6 +163,11 @@ public class Robot extends TrackObjectBase {
         return name;
     }
 
+    public void forfeit(){
+        PhoebeLogger.message("track", "removeObject", "this");
+        track.removeObject(this);
+    }
+
     @Override
     public String toString() {
         return "Robot{" +

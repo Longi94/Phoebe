@@ -62,13 +62,13 @@ public class Skeleton {
                     new RobotJumpOutOfTrack();
                     break;
                 case 6:
-                    //TODO beni
+                    new RobotsPutsOilOnTrack();
                     break;
                 case 7:
-                    //TODO beni
+                    new RobotPutsPuttyOnTrack();
                     break;
                 case 8:
-                    //TODO beni
+                    new RobotForfeitsGame();
                     break;
                 case 9:
                     new NewGame();
