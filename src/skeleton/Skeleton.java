@@ -47,7 +47,7 @@ public class Skeleton {
                     ever = false;
                     break;
                 case 1:
-                    //TODO geri
+                    new RobotJump();
                     break;
                 case 2:
                     new RobotJumpIntoOil();
@@ -71,16 +71,16 @@ public class Skeleton {
                     //TODO beni
                     break;
                 case 9:
-                    //TODO geri
+                    new NewGame();
                     break;
                 case 10:
                     new RobotJumpIntoPuttyAndOil();
                     break;
                 case 11:
-                    //TODO geri
+                    new OilRemove();
                     break;
                 case 12:
-                    //TODO geri
+                    new PuttyRemove();
                     break;
                 default:
                     System.out.println("Nincs ilyen számú use-case.\n");
