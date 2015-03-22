@@ -4,26 +4,34 @@ import model.basic.Position;
 import skeleton.PhoebeLogger;
 
 /**
- * Created by bence on 2015.02.23..
+ * Ragacsot megvalósító osztály
+ *
+ * @author Bence Czipó
+ * @since 2015.02.23
  */
 public class Putty extends Obstacle {
 
     /**
-     * Konstruktor
+     * Konstruktor egy paraméterrel
+     *
+     * Csak poziciót kap
+     *
+     * @param pos   a ragacs pozíciója
+     */
+    public Putty(Position pos) {
+        super(pos);
+    }
+
+    /**
+     * Konstruktor két paraméterrel
+     *
+     * Megkap egy poziciót és a pályát is
      *
      * @param pos   a ragacs pozíciója
      * @param track a pálya, amin a ragacs található
      */
     public Putty(Position pos, Track track) {
         super(pos, track);
-    }
-
-    /**
-     * Konstruktor
-     * @param pos   a ragacs pozíciója
-     */
-    public Putty(Position pos) {
-        super(pos);
     }
 
     /**
@@ -40,6 +48,11 @@ public class Putty extends Obstacle {
         PhoebeLogger.returnMessage();
     }
 
+    /**
+     * Ragacs olvasható formában való kiiratásához
+     *
+     * @return olvasható ragacs
+     */
     @Override
     public String toString() {
         return "Putty{" + super.toString() + "}";

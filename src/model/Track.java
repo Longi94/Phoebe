@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by geri on 2015. 02. 23..
+ * A pályát megvalósító osztály
+ *
+ * @author Bence Czipó
+ * @since 2015.02.23.
  */
 public class Track {
 
@@ -26,12 +29,11 @@ public class Track {
      */
     public List<Position> outerArc;
 
-    //=============================================================================================
-    // KONSTRUKTOROK
-    //=============================================================================================
 
     /**
-     * Konstruktor, új pályát hoz létre egy külső ív és egy belső ív tömbből
+     * Konstruktor
+     *
+     * Új pályát hoz létre egy külső ív és egy belső ív tömbből
      *
      * @param innerArc belső ív
      * @param outerArc külső ív
@@ -42,15 +44,13 @@ public class Track {
         this.outerArc = outerArc;
     }
 
-    //=============================================================================================
-    // GETTER-SETTEREK
-    //=============================================================================================
-
     /**
-     * Megmutatja, hogy egy adott pont a poligon belsejében van-e. (Ray casting algorithm) -> http://stackoverflow.com/questions/11716268/point-in-polygon-algorithm
+     * Megmutatja, hogy egy adott pont a poligon belsejében van-e.
+     * (Ray casting algorithm) -> http://stackoverflow.com/questions/11716268/point-in-polygon-algorithm
      *
      * @param arc a poligon pontjainak listája
      * @param pos a pont, aminek státuszát teszteljük
+     *
      * @return igaz, ha pont a poligon területén belül van, különben hamis
      */
     public static boolean insidePolygon(List<Position> arc, Position pos) {
@@ -74,10 +74,6 @@ public class Track {
 
     }
 
-    //=============================================================================================
-    // LIST-EK KEZELÉSE
-    //=============================================================================================
-
     /**
      * Getter a pályán található elemekhez
      *
@@ -91,6 +87,7 @@ public class Track {
      * Hozzáad egy elemet a pályaelemek tömbjéhez
      *
      * @param object a hozzáadandó elem
+     *
      * @return sikeres volt-e a hozzáadás vagy nem
      */
     public boolean addObject(TrackObjectBase object) {
@@ -99,14 +96,11 @@ public class Track {
         return items.add(object);
     }
 
-    //=============================================================================================
-    // EGYÉB FÜGGVÉNYEK
-    //=============================================================================================
-
     /**
      * Eltávolít egy elemet a pályaelemek tömbjéből
      *
      * @param object az eltávolítandó elem
+     *
      * @return sikeres volt-e az eltávolítás, vagy sem
      */
     public boolean removeObject(TrackObjectBase object) {
@@ -116,9 +110,11 @@ public class Track {
     }
 
     /**
-     * Megmondja hogy az adott pozíció a pályán van-e. Egy pont a pályán van, ha külső íven belül, és a belső íven kívül, vagy a belső íven található
+     * Megmondja hogy az adott pozíció a pályán van-e.
+     * Egy pont a pályán van, ha külső íven belül, és a belső íven kívül, vagy a belső íven található
      *
      * @param pos a pozíció, aminek kiváncsiak vagyunk a státuszára
+     *
      * @return true, ha a pályán van és false ha a pályán kívlüre esik.
      */
     public boolean isInTrack(Position pos) {
@@ -163,6 +159,11 @@ public class Track {
         PhoebeLogger.returnMessage();
     }
 
+    /**
+     * Pálya kiiratásához olvasható formátumra hozása
+     *
+     * @return olvasható pálya
+     */
     @Override
     public String toString() {
         String toRet = "";

@@ -9,14 +9,22 @@ import java.io.InputStreamReader;
 import java.util.Random;
 
 /**
- * Created by bence on 2015.02.23..
+ * Pickupot megvalósító osztály
+ *
+ * @author Bence Czipó
+ * @since 2015.02.23.
  */
 public class Pickup extends TrackObjectBase {
 
+    /**
+     * Véletlen esemény ahhoz, hogy ragacs, vagy olaj sorsolódjon
+     */
     private static Random random = new Random();
 
     /**
-     * Konstruktor
+     * Konstruktor két paraméterrel
+     *
+     * Megkap egy poziciót és a pálya referenciát is
      *
      * @param pos   az objektum pozíciója
      * @param track a pálya, amin az objektum található
@@ -59,6 +67,11 @@ public class Pickup extends TrackObjectBase {
         PhoebeLogger.returnMessage();
     }
 
+    /**
+     * Pickup olvasható formában való kiiratásához
+     *
+     * @return szép pickup
+     */
     @Override
     public String toString() {
         return "Pickup{" + super.toString() + "}";

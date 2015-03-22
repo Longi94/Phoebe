@@ -5,20 +5,56 @@ import model.basic.Velocity;
 import skeleton.PhoebeLogger;
 
 /**
- * Created by bence on 2015.02.23..
+ * Robotot megvalósító osztály
+ *
+ * @author Bence Czipó
+ * @since 2015.02.23.
  */
 public class Robot extends TrackObjectBase {
+
+    /**
+     * Robot inicializálásakor kezdő olaj mennyiség
+     */
     private static final int START_OIL_AMOUNT = 1;
+
+    /**
+     * Robot inicializálásakor kezdő ragacs mennyiség
+     */
     private static final int START_PUTTY_AMOUNT = 1;
+
+    /**
+     *
+     */
     private static int idCount = 0;
 
+    /**
+     * Eddig megtett összes távolság
+     */
     private double distanceCompleted = 0;
 
+    /**
+     * Aktuális sebesség
+     */
     private Velocity vel;
-    private int oilAmount; //rendelkezésre álló olajfoltok mennyisége
-    private int puttyAmount; //rendelkezésre álló ragacsfoltok mennyisége
 
+    /**
+     * Rendelkezésre álló olajfoltok mennyisége
+     */
+    private int oilAmount;
+
+    /**
+     * Rendelkezésre álló ragacsfoltok mennyisége
+     */
+    private int puttyAmount;
+
+    /**
+     * Azonosító
+     */
     private int id;
+
+    /**
+     * Robot neve
+     */
     private String name;
 
     /**
@@ -30,10 +66,11 @@ public class Robot extends TrackObjectBase {
     private boolean enabled = true;
 
     /**
-     * Konstruktor
+     * Konstruktor három paraméterrel
      *
      * @param pos   az objektum pozíciója
      * @param track a pálya, amin az objektum található
+     * @param name  a robot neve
      */
     public Robot(Position pos, Track track, String name) {
         super(pos, track);
@@ -88,6 +125,11 @@ public class Robot extends TrackObjectBase {
         PhoebeLogger.returnMessage();
     }
 
+    /**
+     * Azt vizsgálja, hogy a robot az adott körben léphet-e
+     *
+     * @return léphet-e
+     */
     public boolean isEnabled() {
         return enabled;
     }
@@ -159,16 +201,29 @@ public class Robot extends TrackObjectBase {
         PhoebeLogger.returnMessage();
     }
 
+    /**
+     * Név getter függvény
+     *
+     * @return a robot neve
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Játék feladása
+     */
     public void forfeit(){
         PhoebeLogger.message("track", "removeObject", "this");
         track.removeObject(this);
         PhoebeLogger.returnMessage();
     }
 
+    /**
+     * Robot adatainak kiiratásához olvasható formátum
+     *
+     * @return olvasható robot
+     */
     @Override
     public String toString() {
         return "Robot{" +

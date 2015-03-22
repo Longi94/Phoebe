@@ -3,24 +3,34 @@ package model.basic;
 import skeleton.PhoebeLogger;
 
 /**
- * Created by bence on 2015.02.23..
+ * Pozíciókat megvalósító osztály
+ *
+ * @author Bence Czipó
+ * @since 2015.02.23.
  */
 public class Position {
     /**
-     * x koordináta
+     * X koordináta
      */
     private double posX;
+
     /**
-     * y koordináta
+     * Y koordináta
      */
     private double posY;
 
-    //=============================================================================================
-    // KONSTRUKTOROK
-    //=============================================================================================
-
     /**
-     * Konstruktor
+     * Paraméter nélküli konstuktor
+     *
+     * Inicializálja a pozíciót a (0,0) pontba
+     */
+    public Position() {
+        this(0, 0);
+    }
+
+    /** Konstruktor
+     *
+     * A paraméterül kapott két double értéket állítja be a pozíciónak
      *
      * @param x x koordináta
      * @param y y koordináta
@@ -29,17 +39,6 @@ public class Position {
         this.posX = x;
         this.posY = y;
     }
-
-    /**
-     * Paraméter nélküli konstuktor
-     */
-    public Position() {
-        this(0, 0);
-    }
-
-    //=============================================================================================
-    // GETTER-SETTER-EK
-    //=============================================================================================
 
     /**
      * @return pozíció x koordinátája
@@ -77,6 +76,7 @@ public class Position {
      * E pont távolságát adja meg p-től
      *
      * @param p a pont amelytől távolságot kérünk
+     *
      * @return a távolság p-től
      */
     public double getDistance(Position p) {
@@ -94,6 +94,11 @@ public class Position {
         PhoebeLogger.returnMessage();
     }
 
+    /**
+     * Pozició olvasható formában való megjelenítéséhez
+     *
+     * @return A pozíció olvasható formában
+     */
     @Override
     public String toString() {
         return "posX=" + (double) Math.round(100 * posX) / 100 +

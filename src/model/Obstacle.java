@@ -4,17 +4,55 @@ import model.basic.Position;
 import skeleton.PhoebeLogger;
 
 /**
- * Created by bence on 2015.02.23..
+ * Akadályokat megvalósító osztály
+ *
+ * @author Bence Czipó
+ * @since 2015.02.23.
  */
 public abstract class Obstacle extends TrackObjectBase {
+
+    /**
+     * Ennyi ütközés után tűnik el egy akadály
+     */
     private static final int MAXIMUM_HITS = 3;
+
+    /**
+     * Ennyi kör után tűnik el egy akadály
+     */
     private static final int MAXIMUM_ROUNDS = 20;
+
+    /**
+     * Akadály sugara
+     */
     protected static double RADIUS = 0.35;
+
+    /**
+     * Hátralevő ütközése száma az eltűnésig
+     */
     private int hitsLeft;
+
+    /**
+     * Hátralevő körök szám az eltűnésig
+     */
     private int roundsLeft;
 
     /**
-     * Konstruktor
+     * Konstruktor egy paraméterrel
+     *
+     * Csak poziciót kap paraméterül
+     *
+     * @param pos   az objektum pozíciója
+     */
+    public Obstacle(Position pos) {
+        super(pos);
+        hitsLeft = MAXIMUM_HITS;
+        roundsLeft = MAXIMUM_ROUNDS;
+    }
+
+    /**
+     * Konstruktor két paraméterrel
+     *
+     * Megkapja paraméterül a poziciót és pálya referenciát is
      *
      * @param pos   az objektum pozíciója
      * @param track a pálya, amin az objektum található
@@ -26,18 +64,7 @@ public abstract class Obstacle extends TrackObjectBase {
     }
 
     /**
-     * Konstruktor
-     *
-     * @param pos   az objektum pozíciója
-     */
-    public Obstacle(Position pos) {
-        super(pos);
-        hitsLeft = MAXIMUM_HITS;
-        roundsLeft = MAXIMUM_ROUNDS;
-    }
-
-    /**
-     * Sajnos ez is kell ahhoz, hogy a radiust overrideoljuk
+     * Sugár getter függvénye
      *
      * @return az akadály sugara
      */
@@ -52,6 +79,11 @@ public abstract class Obstacle extends TrackObjectBase {
      */
     public abstract void takeEffect(Robot r);
 
+    /**
+     * Egy robot ugrik (ütközik) az akadályra (akadállyal)
+     *
+     * @param r a robot, amivel ütközik
+     */
     @Override
     public void collide(Robot r) {
         hitsLeft -= 1;
@@ -65,14 +97,27 @@ public abstract class Obstacle extends TrackObjectBase {
         PhoebeLogger.returnMessage();
     }
 
+    /**
+     * Hátralevő ütközések az eltűnés előtt setter függvény
+     *
+     * @param hitsLeft Hátralevő ütközések
+     */
     public void setHitsLeft(int hitsLeft) {
         this.hitsLeft = hitsLeft;
     }
 
+    /**
+     * Hátralevő körök az eltűnés előtt setter függvény
+     *
+     * @param roundsLeft
+     */
     public void setRoundsLeft(int roundsLeft) {
         this.roundsLeft = roundsLeft;
     }
 
+    /**
+     * Új kör esetén lefutó függvény
+     */
     @Override
     public void newRound() {
         roundsLeft -= 1;
@@ -85,6 +130,11 @@ public abstract class Obstacle extends TrackObjectBase {
         PhoebeLogger.returnMessage();
     }
 
+    /**
+     * Akadály kiírása olvasható formában
+     *
+     * @return Akadály szépen
+     */
     @Override
     public String toString() {
         return super.toString() + "hitsLeft=" + hitsLeft +

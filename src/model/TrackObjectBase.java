@@ -4,16 +4,48 @@ import model.basic.Position;
 import skeleton.PhoebeLogger;
 
 /**
- * Created by bence on 2015.02.23..
+ * Pályaelemek absztrakt ősosztálya
+ *
+ * @author Bence Czipó
+ * @since 2015.02.23.
  */
 public abstract class TrackObjectBase {
+
+    /**
+     * Pályaelem default sugara
+     */
     protected static double RADIUS = 0.4;
+
+    /**
+     * Pályaelem pozíciója
+     */
     protected Position pos;
+
+    /**
+     * Pálya referencia
+     */
     protected Track track;
+
+    /**
+     * Pályaelem sugara
+     */
     protected double radius;
 
     /**
-     * Konstruktor
+     * Konstruktor egy paraméterrel
+     *
+     * Csak a pozíciót kapja paraméterül
+     *
+     * @param pos az objektum pozíciója
+     */
+    public TrackObjectBase(Position pos) {
+        this.pos = pos;
+    }
+
+    /**
+     * Konstruktor két paraméterrel
+     *
+     * Egy pozíciót és a pályát is paraméterül kapja
      *
      * @param pos   az objektum pozíciója
      * @param track a pálya, amin az objektum található
@@ -22,16 +54,6 @@ public abstract class TrackObjectBase {
         this.pos = pos;
         this.track = track;
     }
-
-    /**
-     * Konstruktor pálya nélkül
-     *
-     * @param pos az objektum pozíciója
-     */
-    public TrackObjectBase(Position pos) {
-        this.pos = pos;
-    }
-
 
     /**
      * Getter a sugárhoz
@@ -46,6 +68,7 @@ public abstract class TrackObjectBase {
      * Megvizsgálja, ütközik-e az adott objektummal az objektum
      *
      * @param otherObject az objektum amivel vizsgáljuk hogy ütközik-e
+     *
      * @return true, ha ütköznek és false ha nem
      */
     public boolean hit(TrackObjectBase otherObject) {
@@ -87,11 +110,21 @@ public abstract class TrackObjectBase {
 
     }
 
+    /**
+     * Pozició getter függvénye
+     *
+     * @return a pályaelem pozíciója
+     */
     public Position getPos() {
         PhoebeLogger.returnMessage("pos");
         return pos;
     }
 
+    /**
+     * A pályaelem kiiratásához olvasható formátum
+     *
+     * @return olvasható pályaelem
+     */
     @Override
     public String toString() {
         return "pos=" + pos;

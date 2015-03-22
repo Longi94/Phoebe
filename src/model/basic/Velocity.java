@@ -3,14 +3,15 @@ package model.basic;
 import skeleton.PhoebeLogger;
 
 /**
- * Created by bence on 2015.02.23..
+ * Sebességet megvalóstó osztály
+ *
+ * @author Bence Czipó
+ * @since 2015.02.23.
  */
-
 public class Velocity {
 
     /**
-     * ULTIMATE HELPER ÁBRA
-     *        x <- a bezárt szög
+     * SEGÍTSÉG
      *        |
      *       ||
      *       |v /
@@ -28,26 +29,25 @@ public class Velocity {
      * A sebességének nagysága
      */
     private double magnitude;
+
     /**
      * A sebesség iránya.A szöget a függőleges tengelytől (y tengely) óramutató járásával megegyezően számítjuk.
      */
     private double angle;
 
-    //=============================================================================================
-    // KONSTRUKTOROK
-    //=============================================================================================
-
     /**
      * Paraméter nélküli konstruktor
+     *
+     * Inicializálja a sebességet 0 nagyságúra és 0 fokos szöggel
      */
-
     public Velocity() {
-        this.angle = 0;
-        this.magnitude = 0;
+        this(0,0);
     }
 
     /**
      * Kétparaméteres konstruktor
+     *
+     * Inicializálja a sebességet a paraméterül kapott két double értékkel
      *
      * @param angle     a szög
      * @param magnitude a nagyság
@@ -56,10 +56,6 @@ public class Velocity {
         this.angle = angle;
         this.magnitude = magnitude;
     }
-
-    //=============================================================================================
-    // GETTER-SETTER-EK
-    //=============================================================================================
 
     /**
      * Sebesség suggara polárkotdinátás számítás esetén
@@ -133,10 +129,6 @@ public class Velocity {
         }
     }
 
-    //=============================================================================================
-    // EGYÉB FÜGGVÉNYEK
-    //=============================================================================================
-
     /**
      * Hozzáad a sebességhez egy másikat
      *
@@ -149,6 +141,11 @@ public class Velocity {
         PhoebeLogger.returnMessage();
     }
 
+    /**
+     * Sebesség olvasható formában való megjelenítéséhez
+     *
+     * @return A sebesség olvasható formában
+     */
     @Override
     public String toString() {
         return "magnitude=" + (double) Math.round(100 * magnitude) / 100 +
