@@ -33,6 +33,8 @@ public class RobotJumpOutOfTrack {
         in.add(new Position(9,9));
         in.add(new Position(1,9));
 
+        //DUMMY NÉGYZET ALAKÚ PÁLYA
+
         Track t = new Track(in,out);
 
         // Robot inicializálása
@@ -42,8 +44,7 @@ public class RobotJumpOutOfTrack {
 
         PhoebeLogger.enableLogging(true);
 
-        // Esemény lejátszása
-        PhoebeLogger.message("r", "jump", "new Velocity(90, 1)");
+        PhoebeLogger.message("r", "jump", "new Velocity(Math.PI / 2, 1)");
         r.jump(new Velocity(Math.PI / 2, 1));
 
         PhoebeLogger.message("r", "getPos");
