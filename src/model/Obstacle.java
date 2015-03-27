@@ -41,10 +41,10 @@ public abstract class Obstacle extends TrackObjectBase {
 
     /**
      * Konstruktor egy paraméterrel
-     *
+     * <p/>
      * Csak poziciót kap paraméterül
      *
-     * @param pos   az objektum pozíciója
+     * @param pos az objektum pozíciója
      */
     public Obstacle(Position pos) {
         super(pos);
@@ -54,7 +54,7 @@ public abstract class Obstacle extends TrackObjectBase {
 
     /**
      * Konstruktor két paraméterrel
-     *
+     * <p/>
      * Megkapja paraméterül a poziciót és pálya referenciát is
      *
      * @param pos   az objektum pozíciója
@@ -102,11 +102,12 @@ public abstract class Obstacle extends TrackObjectBase {
 
     /**
      * Egy takarítórobot ütközik az akadállyal (feltörli azt)
+     *
      * @param cr a takarítórobot
      */
     @Override
     public void collide(CleaningRobot cr) {
-        if (cr.getActuallyCleaning() != null && cr.getActuallyCleaning() != this) {
+        if (cr.getActuallyCleaning() == null) { //ha még nem takarít senkit
             cr.setActuallyCleaning(this);
         }
     }

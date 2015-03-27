@@ -35,7 +35,7 @@ public class Track {
 
     /**
      * Konstruktor
-     *
+     * <p/>
      * Új pályát hoz létre egy külső ív és egy belső ív tömbből
      *
      * @param innerArc belső ív
@@ -53,7 +53,6 @@ public class Track {
      *
      * @param arc a poligon pontjainak listája
      * @param pos a pont, aminek státuszát teszteljük
-     *
      * @return igaz, ha pont a poligon területén belül van, különben hamis
      */
     public static boolean insidePolygon(List<Position> arc, Position pos) {
@@ -90,7 +89,6 @@ public class Track {
      * Hozzáad egy elemet a pályaelemek tömbjéhez
      *
      * @param object a hozzáadandó elem
-     *
      * @return sikeres volt-e a hozzáadás vagy nem
      */
     public boolean addObject(TrackObjectBase object) {
@@ -103,7 +101,6 @@ public class Track {
      * Eltávolít egy elemet a pályaelemek tömbjéből
      *
      * @param object az eltávolítandó elem
-     *
      * @return sikeres volt-e az eltávolítás, vagy sem
      */
     public boolean removeObject(TrackObjectBase object) {
@@ -117,7 +114,6 @@ public class Track {
      * Egy pont a pályán van, ha külső íven belül, és a belső íven kívül, vagy a belső íven található
      *
      * @param pos a pozíció, aminek kiváncsiak vagyunk a státuszára
-     *
      * @return true, ha a pályán van és false ha a pályán kívlüre esik.
      */
     public boolean isInTrack(Position pos) {

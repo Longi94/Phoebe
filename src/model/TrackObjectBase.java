@@ -36,7 +36,7 @@ public abstract class TrackObjectBase {
 
     /**
      * Konstruktor egy paraméterrel
-     *
+     * <p/>
      * Csak a pozíciót kapja paraméterül
      *
      * @param pos az objektum pozíciója
@@ -47,7 +47,7 @@ public abstract class TrackObjectBase {
 
     /**
      * Konstruktor két paraméterrel
-     *
+     * <p/>
      * Egy pozíciót és a pályát is paraméterül kapja
      *
      * @param pos   az objektum pozíciója
@@ -71,7 +71,6 @@ public abstract class TrackObjectBase {
      * Megvizsgálja, ütközik-e az adott objektummal az objektum
      *
      * @param otherObject az objektum amivel vizsgáljuk hogy ütközik-e
-     *
      * @return true, ha ütköznek és false ha nem
      */
     public boolean hit(TrackObjectBase otherObject) {
@@ -111,7 +110,8 @@ public abstract class TrackObjectBase {
      *
      * @param cr a takarítórobot
      */
-    public void collide(CleaningRobot cr) {}
+    public void collide(CleaningRobot cr) {
+    }
 
     /**
      * Új kör esetén meghívódó függvény

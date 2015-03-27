@@ -24,15 +24,16 @@ public class Position {
 
     /**
      * Paraméter nélküli konstuktor
-     *
+     * <p/>
      * Inicializálja a pozíciót a (0,0) pontba
      */
     public Position() {
         this(0, 0);
     }
 
-    /** Konstruktor
-     *
+    /**
+     * Konstruktor
+     * <p/>
      * A paraméterül kapott két double értéket állítja be a pozíciónak
      *
      * @param x x koordináta
@@ -79,7 +80,6 @@ public class Position {
      * E pont távolságát adja meg p-től
      *
      * @param p a pont amelytől távolságot kérünk
-     *
      * @return a távolság p-től
      */
     public double getDistance(Position p) {

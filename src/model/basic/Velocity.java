@@ -40,16 +40,16 @@ public class Velocity {
 
     /**
      * Paraméter nélküli konstruktor
-     *
+     * <p/>
      * Inicializálja a sebességet 0 nagyságúra és 0 fokos szöggel
      */
     public Velocity() {
-        this(0,0);
+        this(0, 0);
     }
 
     /**
      * Kétparaméteres konstruktor
-     *
+     * <p/>
      * Inicializálja a sebességet a paraméterül kapott két double értékkel
      *
      * @param angle     a szög

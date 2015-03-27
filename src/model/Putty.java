@@ -16,10 +16,10 @@ public class Putty extends Obstacle {
 
     /**
      * Konstruktor egy paraméterrel
-     *
+     * <p/>
      * Csak poziciót kap
      *
-     * @param pos   a ragacs pozíciója
+     * @param pos a ragacs pozíciója
      */
     public Putty(Position pos) {
         super(pos);
@@ -27,7 +27,7 @@ public class Putty extends Obstacle {
 
     /**
      * Konstruktor két paraméterrel
-     *
+     * <p/>
      * Megkap egy poziciót és a pályát is
      *
      * @param pos   a ragacs pozíciója

@@ -26,7 +26,7 @@ public class Pickup extends TrackObjectBase {
 
     /**
      * Konstruktor két paraméterrel
-     *
+     * <p/>
      * Megkap egy poziciót és a pálya referenciát is
      *
      * @param pos   az objektum pozíciója

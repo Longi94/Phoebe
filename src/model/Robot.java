@@ -137,16 +137,6 @@ public class Robot extends TrackObjectBase {
         return enabled;
     }
 
-    @Override
-    public void collide(Robot r) {
-        //TODO két robot ütközik, a lassabb megsemmisül
-    }
-
-    @Override
-    public void collide(CleaningRobot cr) {
-        //TODO a kis robot irányt vált
-    }
-
     /**
      * Robot letiltása vagy engedélyezése
      *
@@ -155,6 +145,16 @@ public class Robot extends TrackObjectBase {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
         PhoebeLogger.returnMessage();
+    }
+
+    @Override
+    public void collide(Robot r) {
+        //TODO két robot ütközik, a lassabb megsemmisül
+    }
+
+    @Override
+    public void collide(CleaningRobot cr) {
+        //TODO a kis robot irányt vált
     }
 
     /**
@@ -212,9 +212,9 @@ public class Robot extends TrackObjectBase {
      */
     public void halveVelocity() {
         //Sebesség megfelezése
-            PhoebeLogger.message("vel", "setMagnitude", "vel.magnitude/2");
-                vel.setMagnitude(vel.getMagnitude() / 2.0);
-            PhoebeLogger.returnMessage();
+        PhoebeLogger.message("vel", "setMagnitude", "vel.magnitude/2");
+        vel.setMagnitude(vel.getMagnitude() / 2.0);
+        PhoebeLogger.returnMessage();
         PhoebeLogger.returnMessage();
     }
 
@@ -230,7 +230,7 @@ public class Robot extends TrackObjectBase {
     /**
      * Játék feladása
      */
-    public void forfeit(){
+    public void forfeit() {
         PhoebeLogger.message("track", "removeObject", "this");
         track.removeObject(this);
         PhoebeLogger.returnMessage();

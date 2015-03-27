@@ -13,8 +13,9 @@ public class CleaningRobot extends TrackObjectBase {
 
     private int cleanTurnsLeft;
 
-    public int getCleanTurnsLeft() {
-        return cleanTurnsLeft;
+    public CleaningRobot(Position pos) {
+        super(pos);
+        actuallyCleaning = null;                        //nem takarít semmit
     }
 
     public Obstacle getActuallyCleaning() {
@@ -22,16 +23,8 @@ public class CleaningRobot extends TrackObjectBase {
     }
 
     public void setActuallyCleaning(Obstacle actuallyCleaning) {
+        cleanTurnsLeft = CLEAN_TURNS;                               //nyilván most kezdte takarítani, eltart még egy darabig
         this.actuallyCleaning = actuallyCleaning;
-    }
-
-    public void setCleanTurnsLeft(int cleanTurnsLeft) {
-        this.cleanTurnsLeft = cleanTurnsLeft;
-    }
-
-    public CleaningRobot(Position pos) {
-        super(pos);
-        actuallyCleaning = null;                        //nem takarít semmit
     }
 
     @Override
@@ -45,7 +38,7 @@ public class CleaningRobot extends TrackObjectBase {
     }
 
     @Override
-    public void newRound(){
+    public void newRound() {
         if (--cleanTurnsLeft == 0) {
             track.removeObject(actuallyCleaning);
             actuallyCleaning = null;

@@ -16,10 +16,10 @@ public class Oil extends Obstacle {
 
     /**
      * Konstruktor egy paraméterrel
-     *
+     * <p/>
      * Csak poziciót kap paraméterül
      *
-     * @param pos   az olajfolt pozíciója
+     * @param pos az olajfolt pozíciója
      */
     public Oil(Position pos) {
         super(pos);
@@ -27,7 +27,7 @@ public class Oil extends Obstacle {
 
     /**
      * Konstruktor két paraméterrel
-     *
+     * <p/>
      * Poziciót és a pályát is megkapja paraméterül
      *
      * @param pos   az olajfolt pozíciója
