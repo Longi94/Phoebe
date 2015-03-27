@@ -106,7 +106,9 @@ public abstract class Obstacle extends TrackObjectBase {
      */
     @Override
     public void collide(CleaningRobot cr) {
-        track.removeObject(this);               //törli magát
+        if (cr.getActuallyCleaning() != null && cr.getActuallyCleaning() != this) {
+            cr.setActuallyCleaning(this);
+        }
     }
 
     /**

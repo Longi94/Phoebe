@@ -7,13 +7,31 @@ import model.basic.Position;
  */
 public class CleaningRobot extends TrackObjectBase {
 
-    private static final int TURNS = 4;             //4 körig marad életben
+    private static final int CLEAN_TURNS = 2;             //2 körig takarítja a foltot
 
-    private int turnsLeft;
+    private Obstacle actuallyCleaning;                   // az akadály, amit éppen takarít
+
+    private int cleanTurnsLeft;
+
+    public int getCleanTurnsLeft() {
+        return cleanTurnsLeft;
+    }
+
+    public Obstacle getActuallyCleaning() {
+        return actuallyCleaning;
+    }
+
+    public void setActuallyCleaning(Obstacle actuallyCleaning) {
+        this.actuallyCleaning = actuallyCleaning;
+    }
+
+    public void setCleanTurnsLeft(int cleanTurnsLeft) {
+        this.cleanTurnsLeft = cleanTurnsLeft;
+    }
 
     public CleaningRobot(Position pos) {
         super(pos);
-        turnsLeft = TURNS;
+        actuallyCleaning = null;                        //nem takarít semmit
     }
 
     @Override
@@ -28,9 +46,9 @@ public class CleaningRobot extends TrackObjectBase {
 
     @Override
     public void newRound(){
-        turnsLeft--;
-        if (turnsLeft == 0) {
-            track.removeObject(this);           //azonnal kampec neki
+        if (--cleanTurnsLeft == 0) {
+            track.removeObject(actuallyCleaning);
+            actuallyCleaning = null;
         }
     }
 
