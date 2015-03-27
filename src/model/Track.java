@@ -159,6 +159,25 @@ public class Track {
     }
 
     /**
+     * CleaningRobot ugrása esetén végrehajtódó függvény
+     *
+     * @param cr a takarító robot aki ugrott a pályán
+     */
+    public void cleaningRobotJumped(CleaningRobot cr) {
+        int i = 0;
+        while (i < items.size()) {
+            TrackObjectBase item = items.get(i);
+            if (item != cr) {
+                if (cr.hit(item)) {
+                    item.collide(cr);
+                }
+            }
+            if (i < items.size() && item == items.get(i)) i++;
+        }
+        PhoebeLogger.returnMessage();
+    }
+
+    /**
      * Pálya kiiratásához olvasható formátumra hozása
      *
      * @return olvasható pálya
