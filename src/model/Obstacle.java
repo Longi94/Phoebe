@@ -15,14 +15,20 @@ import skeleton.PhoebeLogger;
 public abstract class Obstacle extends TrackObjectBase {
 
     /**
+     * Azért függvény, és azért nem static, mert szeretnénk overrideolni
      * Ennyi ütközés után tűnik el egy akadály
      */
-    private static final int MAXIMUM_HITS = 3;
+    private int GET_MAXIMUM_HITS() {
+        return -1;  //alapból örökké él
+    }
 
     /**
+     * Azért függvény, és azért nem static, mert szeretnénk overrideolni
      * Ennyi kör után tűnik el egy akadály
      */
-    private static final int MAXIMUM_ROUNDS = 20;
+    private int GET_MAXIMUM_ROUNDS() {
+        return -1;  //alapból örökké él
+    }
 
     /**
      * Akadály sugara
@@ -48,8 +54,8 @@ public abstract class Obstacle extends TrackObjectBase {
      */
     public Obstacle(Position pos) {
         super(pos);
-        hitsLeft = MAXIMUM_HITS;
-        roundsLeft = MAXIMUM_ROUNDS;
+        hitsLeft = GET_MAXIMUM_HITS();
+        roundsLeft = GET_MAXIMUM_ROUNDS();
     }
 
     /**
@@ -62,8 +68,8 @@ public abstract class Obstacle extends TrackObjectBase {
      */
     public Obstacle(Position pos, Track track) {
         super(pos, track);
-        hitsLeft = MAXIMUM_HITS;
-        roundsLeft = MAXIMUM_ROUNDS;
+        hitsLeft = GET_MAXIMUM_HITS();
+        roundsLeft = GET_MAXIMUM_ROUNDS();
     }
 
     /**
@@ -74,6 +80,7 @@ public abstract class Obstacle extends TrackObjectBase {
     public static double getRadius() {
         return RADIUS;
     }
+    //TODO nem működik, staticot nem lehet overrideolni
 
     /**
      * Az adott akadály milyen hatással van a robotra aki át haladrajta
@@ -89,7 +96,9 @@ public abstract class Obstacle extends TrackObjectBase {
      */
     @Override
     public void collide(Robot r) {
-        hitsLeft -= 1;
+        if (hitsLeft > 0) {
+            --hitsLeft;
+        }
         PhoebeLogger.message("Obstacle", "takeEffect", "r");
         takeEffect(r);
 
@@ -135,7 +144,9 @@ public abstract class Obstacle extends TrackObjectBase {
      */
     @Override
     public void newRound() {
-        roundsLeft -= 1;
+        if (roundsLeft > 0) {
+            --roundsLeft;
+        }
 
         if (roundsLeft == 0) {
             PhoebeLogger.message("Track", "removeObject", "this");
