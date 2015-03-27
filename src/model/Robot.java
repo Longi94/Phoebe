@@ -154,7 +154,9 @@ public class Robot extends TrackObjectBase {
         } else {
             track.removeObject(this);   //egyenloseg eseten marad, akire ralepnek (pl jatek elejen jol johet)
         }
-        //igazából a többi objectel ütközést megállíthatnánk, de fölösleges, mert elvileg úgyis minden egyidőben zajlik le (és az, hogy kivettük a többől, nem okoz durva problémát)
+        // igazából a többi objectel ütközést megállíthatnánk, de fölösleges, mert elvileg úgyis minden egyidőben zajlik le (és az, hogy kivettük a többől, nem okoz durva problémát)
+        // a gc addig nem öli meg, amíg van rá referencia
+        //TODO gameControllernek jelezni, hogy kiesett
     }
 
     @Override
