@@ -161,7 +161,7 @@ public class Robot extends TrackObjectBase {
 
     @Override
     public void collide(CleaningRobot cr) {
-        cr.setAngle(cr.getAngle() + Math.PI/2);
+        cr.setAngle(cr.getAngle() + Math.PI / 2);
     }
 
     /**

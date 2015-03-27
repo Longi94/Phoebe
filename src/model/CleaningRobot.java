@@ -49,6 +49,8 @@ public class CleaningRobot extends TrackObjectBase {
 
     public double targetClosestObstacle() {
         //TODO kiszámítja milyen irányba esik a legközelebbi akadály (belevéve, hogy nem mehet ki a pályáról)
+        //TODO figyelembe kell venni, hogy underCleaningeshez nem megyünk
+        //különben ugye mivel takarítják, ütközik az ottani robottal, majd újra odamegy, újra ütközik, egyszóval fasza :D
         return 0;
     }
 

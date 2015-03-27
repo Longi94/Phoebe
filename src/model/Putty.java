@@ -52,7 +52,7 @@ public class Putty extends Obstacle {
     }
 
     @Override
-    protected int GET_MAXIMUM_HITS () {
+    protected int GET_MAXIMUM_HITS() {
         return 4;                       //négy robot ráugrása után a ragacs eltűnik a pályáról
     }
 

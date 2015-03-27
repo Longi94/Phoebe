@@ -15,35 +15,22 @@ import skeleton.PhoebeLogger;
 public abstract class Obstacle extends TrackObjectBase {
 
     /**
-     * Azért függvény, és azért nem static, mert szeretnénk overrideolni
-     * Ennyi ütközés után tűnik el egy akadály
-     */
-    protected int GET_MAXIMUM_HITS() {
-        return -1;  //alapból örökké él
-    }
-
-    /**
-     * Azért függvény, és azért nem static, mert szeretnénk overrideolni
-     * Ennyi kör után tűnik el egy akadály
-     */
-    protected int GET_MAXIMUM_ROUNDS() {
-        return -1;  //alapból örökké él
-    }
-
-    /**
      * Akadály sugara
      */
     protected static double RADIUS = 0.35;
-
     /**
      * Hátralevő ütközése száma az eltűnésig
      */
     private int hitsLeft;
-
     /**
      * Hátralevő körök szám az eltűnésig
      */
     private int roundsLeft;
+
+    /**
+     * Takarítás alatt áll-e éppen az akadály
+     */
+    private boolean underCleaning;
 
     /**
      * Konstruktor egy paraméterrel
@@ -79,6 +66,30 @@ public abstract class Obstacle extends TrackObjectBase {
      */
     public static double getRadius() {
         return RADIUS;
+    }
+
+    public boolean isUnderCleaning() {
+        return underCleaning;
+    }
+
+    public void setUnderCleaning(boolean underCleaning) {
+        this.underCleaning = underCleaning;
+    }
+
+    /**
+     * Azért függvény, és azért nem static, mert szeretnénk overrideolni
+     * Ennyi ütközés után tűnik el egy akadály
+     */
+    protected int GET_MAXIMUM_HITS() {
+        return -1;  //alapból örökké él
+    }
+
+    /**
+     * Azért függvény, és azért nem static, mert szeretnénk overrideolni
+     * Ennyi kör után tűnik el egy akadály
+     */
+    protected int GET_MAXIMUM_ROUNDS() {
+        return -1;  //alapból örökké él
     }
     //TODO nem működik, staticot nem lehet overrideolni
 
@@ -118,6 +129,7 @@ public abstract class Obstacle extends TrackObjectBase {
     public void collide(CleaningRobot cr) {
         if (cr.getActuallyCleaning() == null) { //ha még nem takarít senkit
             cr.setActuallyCleaning(this);
+            this.setUnderCleaning(true);    //beállítjuk, hogy ő takarítás alatt van
         }
     }
 
