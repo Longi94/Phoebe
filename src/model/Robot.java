@@ -137,6 +137,16 @@ public class Robot extends TrackObjectBase {
         return enabled;
     }
 
+    @Override
+    public void collide(Robot r) {
+        //TODO két robot ütközik, a lassabb megsemmisül
+    }
+
+    @Override
+    public void collide(CleaningRobot cr) {
+        //TODO a kis robot irányt vált
+    }
+
     /**
      * Robot letiltása vagy engedélyezése
      *

@@ -11,4 +11,16 @@ public class CleaningRobot extends TrackObjectBase {
         super(pos);
     }
 
+    @Override
+    public void collide(Robot r) {
+        //TODO a kis robot megsemmisül, helyette olajfolt keletkezik
+    }
+
+    @Override
+    public void collide(CleaningRobot cr) {
+        //TODO a cleaningRobot irányt vált
+    }
+
+
+
 }

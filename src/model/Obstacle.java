@@ -101,6 +101,15 @@ public abstract class Obstacle extends TrackObjectBase {
     }
 
     /**
+     * Egy takarítórobot ütközik az akadállyal (feltörli azt)
+     * @param cr a takarítórobot
+     */
+    @Override
+    public void collide(CleaningRobot cr) {
+        track.removeObject(this);               //törli magát
+    }
+
+    /**
      * Hátralevő ütközések az eltűnés előtt setter függvény
      *
      * @param hitsLeft Hátralevő ütközések
