@@ -18,7 +18,7 @@ public abstract class Obstacle extends TrackObjectBase {
      * Azért függvény, és azért nem static, mert szeretnénk overrideolni
      * Ennyi ütközés után tűnik el egy akadály
      */
-    private int GET_MAXIMUM_HITS() {
+    protected int GET_MAXIMUM_HITS() {
         return -1;  //alapból örökké él
     }
 
@@ -26,7 +26,7 @@ public abstract class Obstacle extends TrackObjectBase {
      * Azért függvény, és azért nem static, mert szeretnénk overrideolni
      * Ennyi kör után tűnik el egy akadály
      */
-    private int GET_MAXIMUM_ROUNDS() {
+    protected int GET_MAXIMUM_ROUNDS() {
         return -1;  //alapból örökké él
     }
 

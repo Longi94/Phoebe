@@ -51,6 +51,11 @@ public class Putty extends Obstacle {
         PhoebeLogger.returnMessage();
     }
 
+    @Override
+    protected int GET_MAXIMUM_HITS () {
+        return 4;                       //négy robot ráugrása után a ragacs eltűnik a pályáról
+    }
+
     /**
      * Ragacs olvasható formában való kiiratásához
      *

@@ -51,6 +51,11 @@ public class Oil extends Obstacle {
         PhoebeLogger.returnMessage();
     }
 
+    @Override
+    protected int GET_MAXIMUM_ROUNDS() {
+        return 20;                       //az olajfoltok 20 kört élnek
+    }
+
     /**
      * Olaj olvasható formában való kiiratása
      *
