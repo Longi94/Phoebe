@@ -174,7 +174,28 @@ public class Track {
             }
             if (i < items.size() && item == items.get(i)) i++;
         }
-        PhoebeLogger.returnMessage();
+    }
+
+    /**
+     * Megadja a legközelebbi akadály pozícióját a pályán
+     *
+     * @param p a pozíció, amihez képest viszonyítunk
+     * @return null, ha nincs több akadály a pályán, különben a legközelebbi pozíciója
+     */
+    public Position getClosestObstaclePos(Position p) {
+        int i = 0;
+        double min = -1;
+        Position minPos = null;
+        while (i < items.size()) {
+            TrackObjectBase item = items.get(i);
+            double dist = item.obstacleDistance(p);
+            if (dist < min || (min == -1 && dist != -1)) {
+                min = dist;
+                minPos = item.getPos();
+            }
+            if (i < items.size() && item == items.get(i)) i++;
+        }
+        return minPos;
     }
 
     /**
