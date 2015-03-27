@@ -107,6 +107,13 @@ public abstract class TrackObjectBase {
     }
 
     /**
+     * Akkor hívódik meg, ha ütközik az objektummal egy takarítórobot
+     *
+     * @param cr a takarítórobot
+     */
+    public void collide(CleaningRobot cr) {}
+
+    /**
      * Új kör esetén meghívódó függvény
      */
     public void newRound() {
