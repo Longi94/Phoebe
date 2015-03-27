@@ -108,7 +108,7 @@ public class Robot extends TrackObjectBase {
         PhoebeLogger.message("pos", "move", "vel");
         pos.move(vel);
 
-        if (enabled == false) {
+        if (!enabled) {
             PhoebeLogger.message("this", "setEnabled", "true");
             setEnabled(true);
         }
@@ -149,12 +149,17 @@ public class Robot extends TrackObjectBase {
 
     @Override
     public void collide(Robot r) {
-        //TODO két robot ütközik, a lassabb megsemmisül
+        if (vel.getMagnitude() >= r.vel.getMagnitude()) {
+            track.removeObject(r);
+        } else {
+            track.removeObject(this);   //egyenloseg eseten marad, akire ralepnek (pl jatek elejen jol johet)
+        }
+        //igazából a többi objectel ütközést megállíthatnánk, de fölösleges, mert elvileg úgyis minden egyidőben zajlik le (és az, hogy kivettük a többől, nem okoz durva problémát)
     }
 
     @Override
     public void collide(CleaningRobot cr) {
-        //TODO a kis robot irányt vált
+        cr.setAngle(cr.getAngle() + Math.PI/2);
     }
 
     /**

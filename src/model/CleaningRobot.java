@@ -67,6 +67,7 @@ public class CleaningRobot extends TrackObjectBase {
             }
         } else {
             step();                             //azért lép előbb, mint hogy irányt vált, mert csak így oldható meg hogy ütközéskor arréb menjen
+            //TODO mivanha elhagyja a pályát
             targetClosestObstacle();
         }
     }
