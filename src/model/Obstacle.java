@@ -133,6 +133,14 @@ public abstract class Obstacle extends TrackObjectBase {
         }
     }
 
+    @Override
+    public double obstacleDistance(Position p) {
+        if (underCleaning) {
+            return -1;                      // ide már ne jöjjön
+        }
+        return Math.sqrt(Math.pow(p.getX() - pos.getX(), 2) + Math.pow(p.getY() - pos.getY(), 2));
+    }
+
     /**
      * Hátralevő ütközések az eltűnés előtt setter függvény
      *

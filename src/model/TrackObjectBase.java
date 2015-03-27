@@ -114,6 +114,16 @@ public abstract class TrackObjectBase {
     }
 
     /**
+     * P pozíciótól a távolságot adja vissza, ha akadályról van szó, különben -1-et
+     *
+     * @param p
+     * @return
+     */
+    public double obstacleDistance(Position p) {
+        return -1;
+    }
+
+    /**
      * Új kör esetén meghívódó függvény
      */
     public void newRound() {
