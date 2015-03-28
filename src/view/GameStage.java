@@ -42,12 +42,13 @@ public class GameStage extends Application {
      *
      * Indulás után rögtön elindul
      *
-     * @param primaryStage
+     * @param primaryStage Az elsődleges ablak
      *
      * @throws Exception
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         primaryStage.setTitle("Phoebe");
 
         MenuLayout menu = new MenuLayout(primaryStage);

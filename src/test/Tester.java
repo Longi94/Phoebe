@@ -13,21 +13,6 @@ import java.util.Map;
 public class Tester {
 
     /**
-     * Teszt várható eredményeit tartalmazó mapp
-     */
-    private File expectedDirectory;
-
-    /**
-     * Teszt bemeneteket tartalmazó mappa
-     */
-    private File inDirectory;
-
-    /**
-     * Teszt kimeneteket tartalmazó mapp
-     */
-    private File outDirectory;
-
-    /**
      * Lefuttatandó tesztesetek száma
      */
     private int testNumber;
@@ -42,66 +27,102 @@ public class Tester {
      */
     private Map<String,Boolean> tests;
 
-    public Tester(String inDirectoryName, String expectedDirectoryName, String outDirectoryName) throws FileNotFoundException {
+    public Tester(String in, String expected, String out) throws FileNotFoundException {
 
-        inDirectory = new File("/assets/test/" + inDirectoryName);
-        // Ha helytelen a bemeneti mappa
-        if(!inDirectory.exists()) {
-            throw new FileNotFoundException("Nem talalhato a teszt bemeneti mappa!");
-        }
-
-        expectedDirectory = new File("/assets/test/" + expectedDirectoryName);
-        // Ha helytelen a varhato mappa
-        if(!inDirectory.exists()) {
-            throw new FileNotFoundException("Nem talalhato a teszt varhato mappa!");
-        }
-
-        // Ha helytelen a kimeneti mappa
-        outDirectory = new File("/assest/test/" + outDirectoryName);
-        if(!inDirectory.exists()) {
-            // Létrehozza azt a mappát
-            outDirectory.mkdir();
-        }
-
-        // A bemeneti mappában található fájlok száma lesz a tesztesetek száma
-        testNumber = inDirectory.listFiles().length;
+        // Alapértelmezetten 1 teszt fut le, de ha mappát hívtunk akkor átállítja
+        // az majd a megfelelő számúra
+        testNumber = 1;
         testSuccess = 0;
-
         tests = new LinkedHashMap<String,Boolean>();
-    }
 
-    /**
-     * Összes teszt lefuttatása a bemeneti mappából, amely tesztfájl
-     *
-     * @throws FileNotFoundException Ha nem található valamelyik mappa vagy fájl
-     */
-    public void runAllTests() throws FileNotFoundException {
+        File testIn = new File(in);
+        File testExpected = new File(expected);
+        File testOut = new File(out);
 
-        for(final File testInFile : inDirectory.listFiles()) {
-            if(!testInFile.isDirectory() && getFileExt(testInFile).equals("in")) {
-                File testExpectedFile = new File(expectedDirectory + getFileName(testInFile) + ".exp");
-                if(testExpectedFile.exists()) {
-                    File testOutFile = new File(outDirectory + getFileName(testInFile) + ".out");
-                    //TODO parancsértelmező(testInFile,outDirectory.getName + getFileName(testInFile) + "out")
-                    // Ez létrehozza az out fájlt ha minden fain.
-
-                    if(testOutFile.exists()){
-                        if(compareFiles(testExpectedFile,testOutFile)) {
-                            testSuccess +=1;
-                            tests.put(testInFile.getName(),true);
-                        }
-                        else {
-                            tests.put(testInFile.getName(),false);
-                        }
-                    }
-                    else {
-                        throw new FileNotFoundException("Nem jott letre a teszt kimeneti fajlja! (" + testOutFile.getName() + ")");
+        if(testIn.exists() && testExpected.exists()) {
+            // Ha mappákat kap
+            if(testIn.isDirectory() && testExpected.isDirectory()) {
+                // Ha nem létezik a megadott out mappa
+                if(testOut.isDirectory()) {
+                    try {
+                        runAllTestsInDirectory(testIn,testExpected,testOut);
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
                 else {
-                    throw new FileNotFoundException("Nem talalhato a tesztelendő fajl elvart kimenete! (" + testExpectedFile.getName() + ")");
+                    throw new FileNotFoundException("A megadott kimeneti mappa nem letezik!");
                 }
             }
+            // Ha sima fajlokat akkor lefuttatja az egy tesztes esetet
+            else {
+                runTest(testIn,testExpected,testOut);
+            }
+        }
+        else {
+            throw new FileNotFoundException("Az input vagy a vart eredmenyeket tartalmazo mappa/fajl eleresi utja helytelen");
+        }
+
+    }
+
+    /**
+     * Összes teszt lefuttatása a megkapott mappában
+     *
+     * @throws FileNotFoundException Ha nem található valamelyik mappa vagy fájl
+     */
+    private void runAllTestsInDirectory(File in, File expected, File out) throws Exception {
+
+        // In mappában lévő fájlok listázása (csak a .in-re végződőek)
+        File[] filesIn = in.listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.toLowerCase().endsWith(".in");
+            }
+        });
+
+        // Expected mappában lévő fájlok listázása (csak a .in-re végződőek)
+        File[] filesExpected = expected.listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.toLowerCase().endsWith(".exp");
+            }
+        });
+
+        if(filesExpected.length != filesIn.length) {
+            throw new Exception("A bemeneti fajlok szama nem egyezik meg a vart eredmenyeket tartalmazo fajlok szamaval!");
+        }
+
+        testNumber = filesIn.length;
+
+        for(int i = 0; i<filesIn.length; i++) {
+            runTest(filesIn[i],filesExpected[i],new File(out.getPath() + "/" + getFileName(filesIn[i]) + ".out"));
+        }
+
+    }
+
+    /**
+     * Egy teszt lefuttatása
+     *
+     * @param in Parancsokat tartalmazó fájl
+     * @throws FileNotFoundException nem talál valamilyen fájlt
+     */
+    private void runTest(File in, File expected, File out) throws FileNotFoundException {
+
+        // Mindig újra elkészíti az out file-t, amit majd átad a parancsértelmezőnek
+        try {
+            if(out.exists())
+                out.delete();
+            out.createNewFile();
+            //TODO parancsértelmező(in,out)
+            if(compareFiles(expected,out)) {
+                testSuccess +=1;
+                tests.put(getFileName(in),true);
+            }
+            else {
+                tests.put(getFileName(in),false);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
@@ -116,18 +137,6 @@ public class Tester {
     public String getFileName(File file) {
         String[] tokens = file.getName().split("\\.(?=[^\\.]+$)");
         return tokens[0];
-    }
-
-    /**
-     * Fájl kiterjesztésének lekérdezése
-     *
-     * @param file A fájl
-     *
-     * @return A kiterjesztés
-     */
-    public String getFileExt(File file) {
-        String[] tokens = file.getName().split("\\.(?=[^\\.]+$)");
-        return tokens[1];
     }
 
     /**
@@ -188,11 +197,14 @@ public class Tester {
 
         returnValue += "Tesztelési eredmények:\n";
         returnValue += "======================\n\n";
-        returnValue += testNumber + "/" + testSuccess + "\n";
+        returnValue += testSuccess + "/" + testNumber + "\n\n";
 
         for(Map.Entry<String,Boolean> test : tests.entrySet()) {
-            returnValue += test.getKey() + "\t";
-            returnValue += test.getValue() + "\n";
+            returnValue += test.getKey() + "\t\t\t";
+            if(test.getValue())
+                returnValue += "OK\n";
+            else
+                returnValue += "FAIL\n";
         }
 
         return returnValue;

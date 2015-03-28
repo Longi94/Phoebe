@@ -8,8 +8,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import model.GameController;
 
 import java.io.File;
 
@@ -70,6 +71,12 @@ public class MenuLayout extends StackPane implements EventHandler<ActionEvent> {
 
         this.getChildren().add(buttonContainer);
         this.setAlignment(Pos.CENTER);
+
+        // Play music
+        File sound = new File("assets/sound/menu_sound.mp3");
+        Media hit = new Media("file:///" + sound.getAbsolutePath().replace("\\", "/"));
+        MediaPlayer mediaPlayer = new MediaPlayer(hit);
+        mediaPlayer.play();
 
 
     }
