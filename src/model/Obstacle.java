@@ -126,7 +126,7 @@ public abstract class Obstacle extends TrackObjectBase {
      */
     @Override
     public void collide(CleaningRobot cr) {
-        if (cr.getActuallyCleaning() == null) { //ha még nem takarít senkit
+        if (cr.getActuallyCleaning() == null && !this.underCleaning) { //ha még nem takarít senkit
             cr.setActuallyCleaning(this);
             this.setUnderCleaning(true);    //beállítjuk, hogy ő takarítás alatt van
         }

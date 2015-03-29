@@ -39,6 +39,7 @@ public class CleaningRobot extends TrackObjectBase {
     @Override
     public void collide(Robot r) {
         track.addObject(new Oil(this.getPos()));                   //ahol eddig volt, ott olaj lesz
+        actuallyCleaning.setUnderCleaning(false);                   //többé már nem takarítják
         track.removeObject(this);
     }
 

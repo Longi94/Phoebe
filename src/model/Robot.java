@@ -147,11 +147,23 @@ public class Robot extends TrackObjectBase {
         PhoebeLogger.returnMessage();
     }
 
+    public Velocity getVel() {
+        return vel;
+    }
+
+    public void setVel(Velocity vel) {
+        this.vel = vel;
+    }
+
     @Override
     public void collide(Robot r) {
         if (vel.getMagnitude() >= r.vel.getMagnitude()) {
+            vel.add(r.getVel());
+            halveVelocity();
             track.removeObject(r);
         } else {
+            r.getVel().add(this.vel);
+            r.halveVelocity();
             track.removeObject(this);   //egyenloseg eseten marad, akire ralepnek (pl jatek elejen jol johet)
         }
         // igazából a többi objectel ütközést megállíthatnánk, de fölösleges, mert elvileg úgyis minden egyidőben zajlik le (és az, hogy kivettük a többől, nem okoz durva problémát)
