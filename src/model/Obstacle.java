@@ -64,7 +64,7 @@ public abstract class Obstacle extends TrackObjectBase {
      *
      * @return az akadály sugara
      */
-    public static double getRadius() {
+    public double getRadius() {
         return RADIUS;
     }
 
@@ -91,7 +91,6 @@ public abstract class Obstacle extends TrackObjectBase {
     protected int GET_MAXIMUM_ROUNDS() {
         return -1;  //alapból örökké él
     }
-    //TODO nem működik, staticot nem lehet overrideolni
 
     /**
      * Az adott akadály milyen hatással van a robotra aki át haladrajta

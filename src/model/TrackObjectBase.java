@@ -63,7 +63,7 @@ public abstract class TrackObjectBase {
      *
      * @return a sugár
      */
-    public static double getRadius() {
+    public double getRadius() {
         return RADIUS;
     }
 

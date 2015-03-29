@@ -82,12 +82,19 @@ public class GameController {
         //Játékosok sorrendjét meghatározó lista
         playerOrder = new ArrayList<Integer>();
 
+        Position p = new Position(10,10);
+
+        TrackObjectBase robot = new Robot(p,track,"R2");
+        TrackObjectBase pu = new Pickup(p,track);
+        TrackObjectBase oil = new Oil(p,track);
+
+
         //Csak hogy lássátok, működik a dolog
-        System.out.println("RADIUS OF OBSTACLES=" + Obstacle.getRadius());
+        System.out.println("RADIUS OF OBSTACLES=" + oil.getRadius());
 
-        System.out.println("RADIUS OF ROBOTS =" + Robot.getRadius());
+        System.out.println("RADIUS OF ROBOTS =" + robot.getRadius());
 
-        System.out.println("RADIUS OF PICKUPS =" + Pickup.getRadius());
+        System.out.println("RADIUS OF PICKUPS =" + pu.getRadius());
         //
 
         loadTrack();
