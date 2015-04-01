@@ -1,0 +1,2 @@
+player marvin 0 0 2 90
+player walle 0 2 1 270

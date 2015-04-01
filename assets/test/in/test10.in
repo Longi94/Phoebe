@@ -1,0 +1,4 @@
+loadtrack track10.txt
+jump 90 o
+report
+quit

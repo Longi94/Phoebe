@@ -1,0 +1,2 @@
+player marvin 0 0 1 90
+janitor 0 2

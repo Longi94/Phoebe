@@ -1,0 +1,1 @@
+player walle 0 0 1 90

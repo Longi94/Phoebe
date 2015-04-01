@@ -1,0 +1,3 @@
+random off
+player marvin 0 0 1 90
+pickup 0 2 p

@@ -1,0 +1,4 @@
+loadtrack track24.txt
+newround
+report
+quit

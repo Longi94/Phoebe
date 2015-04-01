@@ -1,0 +1,3 @@
+player r2d2 0 0 1 90
+oil 0 1.8 4 -1
+putty 0 2.2 4 -1

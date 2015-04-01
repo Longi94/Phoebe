@@ -1,0 +1,5 @@
+loadtrack track18.txt
+jump 90 o
+janitor 0 0
+report
+quit
