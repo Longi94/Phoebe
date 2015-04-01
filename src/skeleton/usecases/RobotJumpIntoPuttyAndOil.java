@@ -54,11 +54,11 @@ public class RobotJumpIntoPuttyAndOil {
         // esemény lejátszára
         PhoebeLogger.message("r", "jump", "dv");
 
-        r.jump(new Velocity(Math.PI/2, 1)); // remélem ez a vízszintesen egyet jobbra
+        r.jump(new Velocity(0, 1)); // remélem ez a vízszintesen egyet jobbra
 
         PhoebeLogger.message("r", "jump", "dv");
 
-        r.jump(new Velocity(Math.PI/2 - 0.1, 1)); //úgyis megcsúszik
+        r.jump(new Velocity(0.1, 1)); //úgyis megcsúszik
 
         PhoebeLogger.clear();
         PhoebeLogger.enableLogging(false);

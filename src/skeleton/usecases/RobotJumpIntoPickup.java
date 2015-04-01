@@ -50,7 +50,7 @@ public class RobotJumpIntoPickup {
 
         // Esemény lejátszása
         PhoebeLogger.message("r", "jump", "v");
-        r.jump(new Velocity(90, 1)); // remélem ez a vízszintesen egyet jobbra
+        r.jump(new Velocity(0, 1)); // remélem ez a vízszintesen egyet jobbra
 
         PhoebeLogger.clear();
         PhoebeLogger.enableLogging(false);

@@ -47,7 +47,7 @@ public class RobotPutsPuttyOnTrack {
         r.putPutty();
 
         PhoebeLogger.message("r", "jump", "dV");
-        r.jump(new Velocity(Math.PI / 2, 1));
+        r.jump(new Velocity(0, 1));
 
         PhoebeLogger.enableLogging(false);
         PhoebeLogger.clear();
