@@ -15,16 +15,16 @@ public class Velocity {
 
     /**
      * SEGÍTSÉG
-     *        |
-     *       ||
-     *       |v /
-     *       | /
+     *                az ott a szög
+     *       |       /
+     *       |  /   /
+     *       | /   V
      * ______|/_______
      *       |
      *       |
      *       |
-     *    y = r * cos (x)
-     *    x = r * sin(x)
+     *    x = r * cos (x)
+     *    y = r * sin(x)
      *
      */
 
@@ -125,11 +125,12 @@ public class Velocity {
         this.magnitude = Math.sqrt(x * x + y * y);
         //Ha az első félsíkban van, az acos  helyes eredményt ad, viszont ha a második félsíkban van, akkor
         //cos(x) = cos(2PI-x) miatt nem a megfelelő eredményt kapjuk
-        if (x > 0) {
+        /*if (x > 0) {
             this.angle = Math.acos(y / this.magnitude);
         } else {
             this.angle = 2 * Math.PI - Math.acos(y / this.magnitude);
-        }
+        }*/
+        this.angle = Math.atan2(y,x);   //nem is tudtam, hogy ilyen is van, ez sokkal nagyobb királyság
     }
 
     /**
@@ -151,8 +152,9 @@ public class Velocity {
      */
     @Override
     public String toString() {
-        return "magnitude=" + (double) Math.round(100 * magnitude) / 100 +
-                ", angle=" + (double) Math.round(100 * 180 / Math.PI * angle) / 100 + //fokban
-                ' ';
+        return "Velocity{" + "\n" +
+                "magnitude: " + (double) Math.round(100 * magnitude) / 100 + "\n" +
+                "angle: " + (double) Math.round(100 * 180 / Math.PI * angle) / 100 + "\n" +
+                "}"; //fokban
     }
 }
