@@ -7,7 +7,7 @@
 4. Analízis modell kidolgozása 2. **30/29**
 5. Szkeleton tervezése **20/20**
 6. Szkeleton beadása **20/**
-7. Prototípus koncepciója **20/**
+7. Prototípus koncepciója **20/15**
 8. Részletes tervek **45/**
 10. Prototípus beadása **35/**
 11. Grafikus felület specifikálása **30/**
