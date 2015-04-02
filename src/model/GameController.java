@@ -39,107 +39,37 @@ public class GameController {
 
         try {
             br = new BufferedReader(new FileReader(file));
+
+            //TODO pálya betöltése, objektumok elhelyezése
+            List<Position> in = new ArrayList<Position>();
+            List<Position> out = new ArrayList<Position>();
+
+            //TODO játékosok beolvasása
+            players = new ArrayList<Robot>();
+
+            track = new Track(in, out);
+
+            /*Robot r = new Robot(new Position(1, 1), track, name);
+
+            PhoebeLogger.message("players", "add", "r");
+            players.add(r);
+
+            PhoebeLogger.message("track", "addObject", "r");
+            track.addObject(r);
+
+            PhoebeLogger.message("playerOrder", "add", "i");
+            playerOrder.add(i);*/
+
         } catch (FileNotFoundException e) {
             throw new IllegalArgumentException(e.getMessage());
         }
 
-    }
-
-    /**
-     * Betölt egy pályát
-     */
-    private void loadTrack(/*TODO ide jöhet valami filename, vagy vmi ami alapján megtalálja*/) {
-        //Dummy pálya
-
-        List<Position> in = new ArrayList<Position>();
-        List<Position> out = new ArrayList<Position>();
-        in.add(new Position(2, 2));
-        in.add(new Position(6, 3));
-        in.add(new Position(6, 7));
-        in.add(new Position(-2, 7));
-
-        out.add(new Position(0, 0));
-        out.add(new Position(7, 1));
-        out.add(new Position(7, 9));
-        out.add(new Position(-5, 9));
-
-        track = new Track(in, out);
-
-        //Azért így csináltam meg, mert ha egy külső fájlból loadoljuk be a track-et akkor úgyse lesz benne a pálya referenciája, csak a pickupok pozíciója.
-
-        List<Position> pickupPos = new ArrayList<Position>();
-        pickupPos.add(new Position(1, 1));
-
-        while (pickupPos.size() > 0) {
-            track.addObject(new Pickup(pickupPos.remove(0), track));
-        }
-
-    }
-
-
-    /**
-     * Játék elindítása
-     */
-    public void initGame() {
-
         turnsLeft = DEFAULT_TURN_NUMBER;
-
-        if (numberOfPlayers <= 0 && numberOfPlayers > MAX_PLAYER_NUMBER) {
-            throw new IllegalArgumentException("Nem megengedett jatekos szam");
-        }
-
-        players = new ArrayList<Robot>();
+        numberOfPlayers = players.size();
 
         //Játékosok sorrendjét meghatározó lista
-        playerOrder = new ArrayList<Integer>();
-
-        Position p = new Position(10,10);
-
-        TrackObjectBase robot = new Robot(p,track,"R2");
-        TrackObjectBase pu = new Pickup(p,track);
-        TrackObjectBase oil = new Oil(p,track);
-
-
-        //Csak hogy lássátok, működik a dolog
-        System.out.println("RADIUS OF OBSTACLES=" + oil.getRadius());
-
-        System.out.println("RADIUS OF ROBOTS =" + robot.getRadius());
-
-        System.out.println("RADIUS OF PICKUPS =" + pu.getRadius());
-        //
-
-        loadTrack();
-
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        try {
-            //Robotok inicalizálása
-            for (int i = 0; i < numberOfPlayers; i++) {
-                System.out.print("" + (i + 1) + ". Jatekos neve: ");
-                String name = br.readLine();
-                Robot r = new Robot(new Position(1, 1), track, name);
-
-                PhoebeLogger.message("players", "add", "r");
-                players.add(r);
-
-                PhoebeLogger.message("track", "addObject", "r");
-                track.addObject(r);
-
-                PhoebeLogger.message("playerOrder", "add", "i");
-                playerOrder.add(i);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("Jatek kezdese...");
-        System.out.println("Parancs formatum: <szog> [-o] [-p]");
-        System.out.println(" - <szog>: egy eges szam 0 és 359 kozott. -1 ha nem akar valtoztatni");
-
-        PhoebeLogger.message("GameController", "getPlayerInputs");
-        getPlayerInputs();
-
-        PhoebeLogger.returnMessage();
+        //TODO protóben egyenlőre nem
+        //playerOrder = new ArrayList<Integer>();
     }
 
     /**
