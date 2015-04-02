@@ -29,39 +29,9 @@ public class GameController {
     /**
      * Konstruktor
      */
-    public GameController() {
-        //TODO
-
-    }
-
-
-    public void loadGameFromFile(String file) {
-        //TODO
-        BufferedReader br;
-
+    public GameController(String file) {
         try {
-            br = new BufferedReader(new FileReader(file));
-
-            //TODO pálya betöltése, objektumok elhelyezése
-            List<Position> in = new ArrayList<Position>();
-            List<Position> out = new ArrayList<Position>();
-
-            //TODO játékosok beolvasása
-            players = new ArrayList<Robot>();
-
-            track = new Track(in, out);
-
-            /*Robot r = new Robot(new Position(1, 1), track, name);
-
-            PhoebeLogger.message("players", "add", "r");
-            players.add(r);
-
-            PhoebeLogger.message("track", "addObject", "r");
-            track.addObject(r);
-
-            PhoebeLogger.message("playerOrder", "add", "i");
-            playerOrder.add(i);*/
-
+            loadGameFromFile(file);
         } catch (FileNotFoundException e) {
             throw new IllegalArgumentException(e.getMessage());
         }
@@ -70,8 +40,31 @@ public class GameController {
         numberOfPlayers = players.size();
 
         //Játékosok sorrendjét meghatározó lista
-        //TODO protóben egyenlőre nem
+        //TODO protóban egyenlőre nem
         //playerOrder = new ArrayList<Integer>();
+    }
+
+
+    public void loadGameFromFile(String file) throws FileNotFoundException {
+        BufferedReader br = new BufferedReader(new FileReader(file));
+
+        List<Position> in = new ArrayList<Position>();
+        List<Position> out = new ArrayList<Position>();
+
+        players = new ArrayList<Robot>();
+
+        track = new Track(in, out);
+
+        //Feldobljuk és eltároljuk a robotokat
+        for (int i = 0; i < players.size(); i++) {
+            Robot r = players.get(i);
+            PhoebeLogger.message("players", "add", "r");
+            players.add(r);
+            PhoebeLogger.message("track", "addObject", "r");
+            track.addObject(r);
+            PhoebeLogger.message("playerOrder", "add", "i");
+            playerOrder.add(i);
+        }
     }
 
     /**
