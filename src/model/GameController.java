@@ -16,8 +16,10 @@ import java.util.List;
  * Created by bence on 2015.02.24..
  */
 public class GameController {
+
     public static final int DEFAULT_TURN_NUMBER = 40;
     private static final int MAX_PLAYER_NUMBER = 6;
+
     public int turnsLeft;
     private boolean deterministic = true;
     private Track track; //kezelt pálya
@@ -27,6 +29,8 @@ public class GameController {
     private List<Integer> playerOrder;
 
     //TODO kellenek extra változók (ki van soron, megy-e a kör stb)
+    private boolean roundStarted = false;
+    private boolean gameStarted = false;
 
     /**
      * Konstruktor
@@ -43,6 +47,8 @@ public class GameController {
         //Játékosok sorrendjét meghatározó lista
         //TODO protóban egyenlőre nem
         //playerOrder = new ArrayList<Integer>();
+
+        gameStarted = true;
     }
 
 
@@ -159,6 +165,7 @@ public class GameController {
 
     public void endGame() {
         //TODO
+        gameStarted = false;
 
         PhoebeLogger.returnMessage();
     }

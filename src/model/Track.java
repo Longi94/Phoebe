@@ -117,7 +117,8 @@ public class Track {
      * @return true, ha a pályán van és false ha a pályán kívlüre esik.
      */
     public boolean isInTrack(Position pos) {
-        boolean b = insidePolygon(outerArc, pos) && !insidePolygon(innerArc, pos);
+        boolean b = outerArc == null || innerArc == null || outerArc.size() < 3 || innerArc.size() < 3 ||
+                insidePolygon(outerArc, pos) && !insidePolygon(innerArc, pos);
         PhoebeLogger.returnMessage(Boolean.toString(b));
         return b;
     }
