@@ -4,9 +4,7 @@ import model.basic.Position;
 import model.basic.Velocity;
 import skeleton.PhoebeLogger;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -31,6 +29,19 @@ public class GameController {
      */
     public GameController() {
         //TODO
+
+    }
+
+
+    public void loadGameFromFile(String file) {
+        //TODO
+        BufferedReader br;
+
+        try {
+            br = new BufferedReader(new FileReader(file));
+        } catch (FileNotFoundException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
 
     }
 
@@ -239,4 +250,5 @@ public class GameController {
     public void setNumberOfPlayers(int numberOfPlayers) {
         this.numberOfPlayers = numberOfPlayers;
     }
+
 }

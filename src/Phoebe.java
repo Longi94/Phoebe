@@ -1,3 +1,5 @@
+import model.GameController;
+
 import java.io.*;
 
 /**
@@ -31,6 +33,9 @@ public class Phoebe {
                     bw = new BufferedWriter(new FileWriter(args[1]));
             }
 
+            //controller inicalizálása
+            GameController controller = new GameController();
+
             //TODO parancsok értelmezése
             boolean running = true;
             String input;
@@ -39,7 +44,7 @@ public class Phoebe {
                 command = input.split(" ");
 
                 if (command[0].equals("loadtrack")) {
-                    //TODO
+                    controller.loadGameFromFile(command[1]);
                 } else if (command[0].equals("newround")) {
                     //TODO
                 } else if (command[0].equals("jump")) {
