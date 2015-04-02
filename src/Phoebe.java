@@ -46,15 +46,15 @@ public class Phoebe {
                 if (command[0].equals("loadtrack")) {
                     controller.loadGameFromFile(command[1]);
                 } else if (command[0].equals("newround")) {
-                    //TODO
+                    controller.newTurn();
                 } else if (command[0].equals("jump")) {
-                    //TODO
+                    controller.jumpCurrentPlayer(Integer.parseInt(command[1]), false, false);
                 } else if (command[0].equals("janitor")) {
-                    //TODO
+                    controller.putJanitor(Integer.parseInt(command[1]), Integer.parseInt(command[2]));
                 } else if (command[0].equals("forfeit")) {
-                    //TODO
+                    controller.killCurrentPlayer();
                 } else if (command[0].equals("report")) {
-                    //TODO
+                    bw.write(controller.report());
                 } else if (command[0].equals("quit")) {
                     running = false;
                 }

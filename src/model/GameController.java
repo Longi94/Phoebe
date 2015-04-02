@@ -244,11 +244,19 @@ public class GameController {
         PhoebeLogger.returnMessage();
     }
 
-    /**
-     * @param numberOfPlayers a kívánt játékosok száma
-     */
-    public void setNumberOfPlayers(int numberOfPlayers) {
-        this.numberOfPlayers = numberOfPlayers;
+    public void putJanitor(int i, int parseInt) {
+
     }
 
+    public void killCurrentPlayer() {
+
+    }
+
+    public String report() {
+        return null;
+    }
+
+    public void jumpCurrentPlayer(int angle, boolean oil, boolean putty) {
+
+    }
 }
