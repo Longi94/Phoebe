@@ -35,7 +35,7 @@ public class Phoebe {
             boolean running = true;
             String input;
             String[] command;
-            while (running && (input = br.readLine()) != null && input.length() != 0) {
+            while (running && (input = br.readLine()) != null) {
                 command = input.split(" ");
 
                 if (command[0].equals("loadtrack")) {
