@@ -4,7 +4,9 @@ import model.basic.Position;
 import model.basic.Velocity;
 import skeleton.PhoebeLogger;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -105,69 +107,6 @@ public class GameController {
         PhoebeLogger.returnMessage();
     }
 
-    /**
-     * Sorban bekéri a játékosoktól a parancsokat
-     * TODO: egyáltalán nem teljes
-     */
-    public void getPlayerInputs() {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int angle;
-
-        for (int i : playerOrder) {
-            Robot currentPlayer = players.get(i);
-            if (currentPlayer.isEnabled()) {
-                System.out.print(currentPlayer.getName() + "'s turn: ");
-                angle = -2;
-                String[] command = {};
-                //Játékos parancsának bekérése
-                do {
-                    try {
-                        command = br.readLine().split(" ");
-                        angle = Integer.parseInt(command[0]);
-                    } catch (IOException e) {
-                        System.out.println("Valami nagyon nem jo ha ez kiirodik");
-                    } catch (NumberFormatException e) {
-                        System.out.println("Rossz formatum");
-                    }
-                } while ((angle < 0 || angle >= 360) && angle != -1);
-
-                //TODO eléggé meghal -1-re...
-
-                //TODO bekért command lekezelése (valszeg tárolni kell, ha végig akarunk iterálni
-
-                //Akadály lerakása ha a játékos akarta
-                if (command.length > 1 && command[1] != null) {
-                    if (command[1].equals("-o")) {
-                        PhoebeLogger.message("currentPlayer", "putOil");
-                        currentPlayer.putOil();
-                    } else if (command[1].equals("-p")) {
-                        PhoebeLogger.message("currentPlayer", "putPutty");
-                        currentPlayer.putPutty();
-                    }
-                }
-            } else {
-                angle = -1;
-            }
-            //szerintem csapathatja itt az ugrást, most azon már nem múlik...
-
-            Velocity v = new Velocity();
-            v.setAngle((double) angle / 180 * Math.PI); //ne feledjük hogy radián kell
-            v.setMagnitude(angle == -1 ? 0 : 1);
-
-            PhoebeLogger.message("currentPlayer", "jump", "v");
-            currentPlayer.jump(v);
-
-            System.out.println(track.toString());
-
-        }
-
-        PhoebeLogger.message("GameController", "newTurn");
-        newTurn();
-
-        PhoebeLogger.returnMessage();
-    }
-
-
     public void endGame() {
         //TODO
 
@@ -187,6 +126,21 @@ public class GameController {
     }
 
     public void jumpCurrentPlayer(int angle, boolean oil, boolean putty) {
+        if (oil) {
+            PhoebeLogger.message("currentPlayer", "putOil");
+            currentPlayer.putOil();
+        } else if (putty) {
+            PhoebeLogger.message("currentPlayer", "putPutty");
+            currentPlayer.putPutty();
+        }
 
+
+        Velocity v = new Velocity();
+        v.setAngle((double) angle / 180 * Math.PI); //ne feledjük hogy radián kell
+        v.setMagnitude(angle == -1 ? 0 : 1);
+
+
+        PhoebeLogger.message("currentPlayer", "jump", "v");
+        currentPlayer.jump(v);
     }
 }
