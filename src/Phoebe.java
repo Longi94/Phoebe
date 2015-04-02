@@ -4,13 +4,14 @@ import java.io.*;
  * Created by ThanhLong on 2015.03.04..
  */
 public class Phoebe {
+
     /**
      * A játék belépő (epszilon ha..ha..) main függvénye
      * @param args program argumentumok
      */
     public static void main(String[] args) {
         //Be és kimenetek inicalizálása
-        BufferedReader br = null;
+        BufferedReader br;
         BufferedWriter bw = null;
         try {
             switch (args.length) {
@@ -28,6 +29,30 @@ public class Phoebe {
                     //2 vagy több paraméter, fájl a ki és bemenet
                     br = new BufferedReader(new FileReader(args[0]));
                     bw = new BufferedWriter(new FileWriter(args[1]));
+            }
+
+            //TODO parancsok értelmezése
+            boolean running = true;
+            String input;
+            String[] command;
+            while (running && (input = br.readLine()) != null && input.length() != 0) {
+                command = input.split(" ");
+
+                if (command[0].equals("loadtrack")) {
+                    //TODO
+                } else if (command[0].equals("newround")) {
+                    //TODO
+                } else if (command[0].equals("jump")) {
+                    //TODO
+                } else if (command[0].equals("janitor")) {
+                    //TODO
+                } else if (command[0].equals("forfeit")) {
+                    //TODO
+                } else if (command[0].equals("report")) {
+                    //TODO
+                } else if (command[0].equals("quit")) {
+                    running = false;
+                }
             }
         } catch (FileNotFoundException e) {
             //TODO nem talált fájl kezelése
