@@ -14,7 +14,7 @@ public class Phoebe {
     public static void main(String[] args) {
         //Be és kimenetek inicalizálása
         BufferedReader br;
-        BufferedWriter bw = null;
+        BufferedWriter bw;
         try {
             switch (args.length) {
                 case 0:
@@ -34,7 +34,7 @@ public class Phoebe {
             }
 
             //controller inicalizálása
-            GameController controller = new GameController();
+            GameController controller = null;
 
             //TODO parancsok értelmezése
             boolean running = true;
@@ -44,16 +44,16 @@ public class Phoebe {
                 command = input.split(" ");
                 if (command.length > 0) {
                     if (command[0].equals("loadtrack")) {
-                        controller.loadGameFromFile(command[1]);
-                    } else if (command[0].equals("newround")) {
+                        controller = new GameController(command[1]);
+                    } else if (controller != null && command[0].equals("newround")) {
                         controller.newTurn();
-                    } else if (command[0].equals("jump")) {
+                    } else if (controller != null && command[0].equals("jump")) {
                         controller.jumpCurrentPlayer(Integer.parseInt(command[1]), false, false);
-                    } else if (command[0].equals("janitor")) {
+                    } else if (controller != null && command[0].equals("janitor")) {
                         controller.putJanitor(Integer.parseInt(command[1]), Integer.parseInt(command[2]));
-                    } else if (command[0].equals("forfeit")) {
+                    } else if (controller != null && command[0].equals("forfeit")) {
                         controller.killCurrentPlayer();
-                    } else if (command[0].equals("report")) {
+                    } else if (controller != null && command[0].equals("report")) {
                         bw.write(controller.report());
                     } else if (command[0].equals("quit")) {
                         running = false;

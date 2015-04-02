@@ -37,6 +37,17 @@ public class Pickup extends TrackObjectBase {
     }
 
     /**
+     * Konstruktor egy paraméterrel
+     * <p/>
+     * Megkap egy poziciót
+     *
+     * @param pos   az objektum pozíciója
+     */
+    public Pickup(Position pos) {
+        super(pos);
+    }
+
+    /**
      * Akkor hívódik meg, ha egy robot felszedi (ütközik vele)
      *
      * @param r a robot, ami rá ugrott

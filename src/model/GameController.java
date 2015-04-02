@@ -7,6 +7,7 @@ import skeleton.PhoebeLogger;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,6 +18,8 @@ import java.util.List;
 public class GameController {
     public static final int DEFAULT_TURN_NUMBER = 40;
     private static final int MAX_PLAYER_NUMBER = 6;
+
+    private boolean deterministic = true;
 
     public int turnsLeft;
 
@@ -34,10 +37,9 @@ public class GameController {
             loadGameFromFile(file);
         } catch (FileNotFoundException e) {
             throw new IllegalArgumentException(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        turnsLeft = DEFAULT_TURN_NUMBER;
-        numberOfPlayers = players.size();
 
         //Játékosok sorrendjét meghatározó lista
         //TODO protóban egyenlőre nem
@@ -45,24 +47,82 @@ public class GameController {
     }
 
 
-    public void loadGameFromFile(String file) throws FileNotFoundException {
+    private void loadGameFromFile(String file) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(file));
-
+        
         List<Position> in = new ArrayList<Position>();
         List<Position> out = new ArrayList<Position>();
-
         players = new ArrayList<Robot>();
+
+        //Azért hogy a hozzáadási sorrend megegyezzen a fájlban lévő sorrenddel
+        List<TrackObjectBase> tempList = new ArrayList<TrackObjectBase>();
+
+        String input;
+        String command[];
+        
+        while ((input = br.readLine()) != null) {
+            command = input.split(" ");
+            if (command.length > 0) {
+                if (command[0].equals("rounds")) {
+                    //Hátra lévő körök
+                    turnsLeft = Integer.parseInt(command[1]);
+                } else if (command[0].equals("inner")) {
+                    //Belső ív pont
+                    in.add(new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2])));
+                } else if (command[0].equals("outer")) {
+                    //Külső ív pont
+                    out.add(new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2])));
+                } else if (command[0].equals("player")) {
+                    //Új játékos
+                    Robot player = new Robot(
+                            new Position(Double.parseDouble(command[2]), Double.parseDouble(command[3])),
+                            track, command[1]);
+                    /*player.addOil(Integer.parseInt(command[6])); TODO olajok hozááadása, kezdő sebesség hozzáadása
+                    player.addPutty(Integer.parseInt(command[6]));*/
+
+                    players.add(player);
+                    tempList.add(player);
+                } else if (command[0].equals("pickup")) {
+                    //Pickupok
+                    //TODO típus megadása
+                    tempList.add(new Pickup(
+                            new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2]))));
+                } else if (command[0].equals("oil")) {
+                    //Olajok
+                    //TODO élet megadása
+                    tempList.add(new Oil(
+                            new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2]))));
+                } else if (command[0].equals("putty")) {
+                    //Ragacsok
+                    //TODO élet megadása
+                    tempList.add(new Putty(
+                            new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2]))));
+                } else if (command[0].equals("janitor")) {
+                    //Takarítók
+                    tempList.add(new CleaningRobot(new Position(Double.parseDouble(command[1]),
+                            Double.parseDouble(command[2]))));
+                } else if (command[0].equals("random")) {
+                    //Random kii/be kapcsolása (utsó random command fog számítani)
+                    if (command[1].equals("on")) {
+                        deterministic = false;
+                    } else if (command[1].equals("off")) {
+                        deterministic = true;
+                    }
+                }
+            }
+        }
 
         track = new Track(in, out);
 
+        //Objektumok hozzácsapása a trackhez
+        for (TrackObjectBase obj : tempList) {
+            track.addObject(obj);
+        }
+
+        numberOfPlayers = players.size();
+
         //Feldobljuk és eltároljuk a robotokat
-        for (int i = 0; i < players.size(); i++) {
-            Robot r = players.get(i);
-            PhoebeLogger.message("players", "add", "r");
-            players.add(r);
-            PhoebeLogger.message("track", "addObject", "r");
-            track.addObject(r);
-            PhoebeLogger.message("playerOrder", "add", "i");
+        for (int i = 0; i < numberOfPlayers; i++) {
             playerOrder.add(i);
         }
     }
@@ -93,8 +153,6 @@ public class GameController {
         } else {
             //Játékosok sorrendjéne összekeverése, persze ez nem túl optimális játék élmény szempontjából
             Collections.shuffle(playerOrder);
-            PhoebeLogger.message("GameController", "getPlayerInputs");
-            getPlayerInputs();
         }
 
         PhoebeLogger.returnMessage();
@@ -121,10 +179,10 @@ public class GameController {
     public void jumpCurrentPlayer(int angle, boolean oil, boolean putty) {
         if (oil) {
             PhoebeLogger.message("currentPlayer", "putOil");
-            currentPlayer.putOil();
+            //currentPlayer.putOil();
         } else if (putty) {
             PhoebeLogger.message("currentPlayer", "putPutty");
-            currentPlayer.putPutty();
+            //currentPlayer.putPutty();
         }
 
 
@@ -134,6 +192,6 @@ public class GameController {
 
 
         PhoebeLogger.message("currentPlayer", "jump", "v");
-        currentPlayer.jump(v);
+        //currentPlayer.jump(v);
     }
 }
