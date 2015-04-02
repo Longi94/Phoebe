@@ -9,6 +9,7 @@ public class Phoebe {
 
     /**
      * A játék belépő (epszilon ha..ha..) main függvénye
+     *
      * @param args program argumentumok
      */
     public static void main(String[] args) {
@@ -36,7 +37,7 @@ public class Phoebe {
             //controller inicalizálása
             GameController controller = null;
 
-            //TODO parancsok értelmezése
+            //TODO parancsok értelmezése, parancs visszautasítás
             boolean running = true;
             String input;
             String[] command;

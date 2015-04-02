@@ -18,16 +18,15 @@ import java.util.List;
 public class GameController {
     public static final int DEFAULT_TURN_NUMBER = 40;
     private static final int MAX_PLAYER_NUMBER = 6;
-
-    private boolean deterministic = true;
-
     public int turnsLeft;
-
+    private boolean deterministic = true;
     private Track track; //kezelt pálya
     private List<Robot> players; //játékosok
     private int numberOfPlayers;
 
     private List<Integer> playerOrder;
+
+    //TODO kellenek extra változók (ki van soron, megy-e a kör stb)
 
     /**
      * Konstruktor
@@ -49,7 +48,7 @@ public class GameController {
 
     private void loadGameFromFile(String file) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(file));
-        
+
         List<Position> in = new ArrayList<Position>();
         List<Position> out = new ArrayList<Position>();
         players = new ArrayList<Robot>();
@@ -59,7 +58,7 @@ public class GameController {
 
         String input;
         String command[];
-        
+
         while ((input = br.readLine()) != null) {
             command = input.split(" ");
             if (command.length > 0) {
@@ -121,7 +120,6 @@ public class GameController {
 
         numberOfPlayers = players.size();
 
-        //Feldobljuk és eltároljuk a robotokat
         for (int i = 0; i < numberOfPlayers; i++) {
             playerOrder.add(i);
         }
@@ -129,6 +127,7 @@ public class GameController {
 
     /**
      * Kör befejezése, új kör indítása, ha van még hátra kör
+     * TODO optimalizálás új parserre
      */
     public void newTurn() {
 
@@ -165,18 +164,20 @@ public class GameController {
     }
 
     public void putJanitor(int i, int parseInt) {
-
+        //TODO
     }
 
     public void killCurrentPlayer() {
-
+        //TODO
     }
 
     public String report() {
+        //TODO
         return null;
     }
 
     public void jumpCurrentPlayer(int angle, boolean oil, boolean putty) {
+        //TODO
         if (oil) {
             PhoebeLogger.message("currentPlayer", "putOil");
             //currentPlayer.putOil();
