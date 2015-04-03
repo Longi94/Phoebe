@@ -82,8 +82,14 @@ public class GameController {
                     Robot player = new Robot(
                             new Position(Double.parseDouble(command[2]), Double.parseDouble(command[3])),
                             track, command[1]);
-                    /*player.addOil(Integer.parseInt(command[6])); TODO olajok hozááadása, kezdő sebesség hozzáadása
-                    player.addPutty(Integer.parseInt(command[6]));*/
+
+                    //Kezdő sebesség
+                    player.setVel(new Velocity(Math.toRadians(Double.parseDouble(command[5])),
+                            Double.parseDouble(command[4])));
+
+                    //Olaj és ragacs hozzáadása
+                    player.setOilAmount(Integer.parseInt(command[6]));
+                    player.setPuttyAmount(Integer.parseInt(command[7]));
 
                     players.add(player);
                     tempList.add(player);
@@ -107,7 +113,7 @@ public class GameController {
                     tempList.add(new CleaningRobot(new Position(Double.parseDouble(command[1]),
                             Double.parseDouble(command[2]))));
                 } else if (command[0].equals("random")) {
-                    //Random kii/be kapcsolása (utsó random command fog számítani)
+                    //Random ki/be kapcsolása (utsó random command fog számítani)
                     if (command[1].equals("on")) {
                         deterministic = false;
                     } else if (command[1].equals("off")) {
