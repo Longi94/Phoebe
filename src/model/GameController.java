@@ -184,6 +184,9 @@ public class GameController {
         PhoebeLogger.returnMessage();
     }
 
+    /**
+     * Játék befejezése
+     */
     public void endGame() {
         //TODO
         gameStarted = false;
@@ -191,14 +194,26 @@ public class GameController {
         PhoebeLogger.returnMessage();
     }
 
-    public void putJanitor(int i, int parseInt) {
-        //TODO
+    /**
+     * Új takarító robot elhelyezése a pályán
+     * @param x x koordináta
+     * @param y y koordináta
+     */
+    public void putJanitor(double x, double y) {
+        track.addObject(new CleaningRobot(new Position(x, y)));
     }
 
+    /**
+     * Soron lévő jűtékos kiejtése
+     */
     public void killCurrentPlayer() {
         //TODO
     }
 
+    /**
+     * Report készítése a pályán található objektumokról
+     * @return
+     */
     public String report() {
         if (track == null){
             return "track is null";
@@ -217,6 +232,12 @@ public class GameController {
         return report;
     }
 
+    /**
+     * Soron lévő játékos léptetése
+     * @param angle a szög amerre a sebességév változtatni kívánja egységgel
+     * @param oil akar-e olajt lerakni
+     * @param putty akar-e ragacsot lerakni
+     */
     public void jumpCurrentPlayer(int angle, boolean oil, boolean putty) {
         //TODO
         if (oil) {
@@ -229,7 +250,7 @@ public class GameController {
 
 
         Velocity v = new Velocity();
-        v.setAngle((double) angle / 180 * Math.PI); //ne feledjük hogy radián kell
+        v.setAngle(Math.toRadians(angle)); //ne feledjük hogy radián kell
         v.setMagnitude(angle == -1 ? 0 : 1);
 
 

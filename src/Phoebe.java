@@ -62,7 +62,7 @@ public class Phoebe {
                         }
                     } else if (controller != null && command[0].equals("janitor")) {
                         if (controller.isGameStarted()) {
-                            controller.putJanitor(Integer.parseInt(command[1]), Integer.parseInt(command[2]));
+                            controller.putJanitor(Double.parseDouble(command[1]), Double.parseDouble(command[2]));
                         }
                     } else if (controller != null && command[0].equals("forfeit")) {
                         if (controller.isRoundStarted()) {
