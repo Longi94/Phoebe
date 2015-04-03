@@ -20,7 +20,7 @@ public class GameController {
     public static final int DEFAULT_TURN_NUMBER = 40;
     private static final int MAX_PLAYER_NUMBER = 6;
 
-    public int turnsLeft;
+    public int turnsLeft = -1;
     private boolean deterministic = true;
     private Track track; //kezelt pálya
     private List<Robot> players; //játékosok
@@ -87,21 +87,24 @@ public class GameController {
                     //Külső ív pont
                     out.add(new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2])));
                 } else if (command[0].equals("player")) {
-                    //Új játékos
-                    Robot player = new Robot(
-                            new Position(Double.parseDouble(command[2]), Double.parseDouble(command[3])),
-                            track, command[1]);
+                    //A maxnál több játékost nem adunk hozzá
+                    if (players.size() < MAX_PLAYER_NUMBER) {
+                        //Új játékos
+                        Robot player = new Robot(
+                                new Position(Double.parseDouble(command[2]), Double.parseDouble(command[3])),
+                                track, command[1]);
 
-                    //Kezdő sebesség
-                    player.setVel(new Velocity(Math.toRadians(Double.parseDouble(command[5])),
-                            Double.parseDouble(command[4])));
+                        //Kezdő sebesség
+                        player.setVel(new Velocity(Math.toRadians(Double.parseDouble(command[5])),
+                                Double.parseDouble(command[4])));
 
-                    //Olaj és ragacs hozzáadása
-                    player.setOilAmount(Integer.parseInt(command[6]));
-                    player.setPuttyAmount(Integer.parseInt(command[7]));
+                        //Olaj és ragacs hozzáadása
+                        player.setOilAmount(Integer.parseInt(command[6]));
+                        player.setPuttyAmount(Integer.parseInt(command[7]));
 
-                    players.add(player);
-                    tempList.add(player);
+                        players.add(player);
+                        tempList.add(player);
+                    }
                 } else if (command[0].equals("pickup")) {
                     //Pickupok
                     Pickup pickup = new Pickup(new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2])));
@@ -152,6 +155,11 @@ public class GameController {
         for (int i = 0; i < numberOfPlayers; i++) {
             playerOrder.add(i);
             playerOrderSorted.add(i);
+        }
+
+        //Ha nem adtak meg hártalévő kört
+        if (turnsLeft == -1){
+            turnsLeft = DEFAULT_TURN_NUMBER;
         }
     }
 
