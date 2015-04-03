@@ -176,6 +176,22 @@ public class Robot extends TrackObjectBase {
         cr.setAngle(cr.getAngle() + Math.PI / 2);
     }
 
+    public int getOilAmount() {
+        return oilAmount;
+    }
+
+    public void setOilAmount(int oilAmount) {
+        this.oilAmount = oilAmount;
+    }
+
+    public int getPuttyAmount() {
+        return puttyAmount;
+    }
+
+    public void setPuttyAmount(int puttyAmount) {
+        this.puttyAmount = puttyAmount;
+    }
+
     /**
      * Olaj lerakása
      */

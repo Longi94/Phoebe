@@ -40,9 +40,7 @@ public abstract class Obstacle extends TrackObjectBase {
      * @param pos az objektum pozíciója
      */
     public Obstacle(Position pos) {
-        super(pos);
-        hitsLeft = GET_MAXIMUM_HITS();
-        roundsLeft = GET_MAXIMUM_ROUNDS();
+        this(pos, null);
     }
 
     /**
@@ -152,7 +150,7 @@ public abstract class Obstacle extends TrackObjectBase {
     /**
      * Hátralevő körök az eltűnés előtt setter függvény
      *
-     * @param roundsLeft
+     * @param roundsLeft Hátralévő körök
      */
     public void setRoundsLeft(int roundsLeft) {
         this.roundsLeft = roundsLeft;
