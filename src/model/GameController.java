@@ -31,6 +31,7 @@ public class GameController {
     //TODO kellenek extra változók (ki van soron, megy-e a kör stb)
     private boolean roundStarted = false;
     private boolean gameStarted = false; //Van-e betöltve pálya, elértük-e már a játék végét
+    private int currentPlayer = 0;
 
     /**
      * Konstruktor
@@ -43,10 +44,6 @@ public class GameController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        //Játékosok sorrendjét meghatározó lista
-        //TODO protóban egyenlőre nem
-        //playerOrder = new ArrayList<Integer>();
 
         gameStarted = true;
     }
@@ -65,6 +62,9 @@ public class GameController {
         List<Position> in = new ArrayList<Position>();
         List<Position> out = new ArrayList<Position>();
         players = new ArrayList<Robot>();
+
+        //Játékosok sorrendjét meghatározó lista
+        playerOrder = new ArrayList<Integer>();
 
         //Azért hogy a hozzáadási sorrend megegyezzen a fájlban lévő sorrenddel
         List<TrackObjectBase> tempList = new ArrayList<TrackObjectBase>();
@@ -158,6 +158,8 @@ public class GameController {
      */
     public void newTurn() {
 
+        roundStarted = true;
+
         //Robotot kiszedjük, ha kiugrott
         for (Robot robot : players) {
             if (!track.isInTrack(robot.getPos())) {
@@ -196,6 +198,7 @@ public class GameController {
 
     /**
      * Új takarító robot elhelyezése a pályán
+     *
      * @param x x koordináta
      * @param y y koordináta
      */
@@ -208,14 +211,16 @@ public class GameController {
      */
     public void killCurrentPlayer() {
         //TODO
+        numberOfPlayers--;
     }
 
     /**
      * Report készítése a pályán található objektumokról
-     * @return
+     *
+     * @return a report
      */
     public String report() {
-        if (track == null){
+        if (track == null) {
             return "track is null";
         }
 
@@ -227,34 +232,51 @@ public class GameController {
 
         //TODO kell egy prettyPrint függvény, ezt szopás lesz megírni
         //http://stackoverflow.com/questions/14515994/convert-json-string-to-pretty-print-json-output-using-jackson
-        //ez lehet hogy működik, ha csak zárójeleket néz
+        //ez lehet hogy működik, ha csak zárójeleket és vesszőket néz
 
         return report;
     }
 
     /**
      * Soron lévő játékos léptetése
+     *
      * @param angle a szög amerre a sebességév változtatni kívánja egységgel
-     * @param oil akar-e olajt lerakni
+     * @param oil   akar-e olajt lerakni
      * @param putty akar-e ragacsot lerakni
      */
     public void jumpCurrentPlayer(int angle, boolean oil, boolean putty) {
-        //TODO
-        if (oil) {
-            PhoebeLogger.message("currentPlayer", "putOil");
-            //currentPlayer.putOil();
-        } else if (putty) {
-            PhoebeLogger.message("currentPlayer", "putPutty");
-            //currentPlayer.putPutty();
+
+        Robot currentRobot;
+
+        if (deterministic) {
+            //Normál sorrend
+            currentRobot = players.get(currentPlayer);
+        } else {
+            //Random sorrend
+            currentRobot = players.get(playerOrder.get(currentPlayer));
         }
 
+        //Akadályok letétele ha szükséges
+        if (oil) {
+            PhoebeLogger.message("currentPlayer", "putOil");
+            currentRobot.putOil();
+        } else if (putty) {
+            PhoebeLogger.message("currentPlayer", "putPutty");
+            currentRobot.putPutty();
+        }
 
+        //A módosító sebesség vektor
         Velocity v = new Velocity();
         v.setAngle(Math.toRadians(angle)); //ne feledjük hogy radián kell
         v.setMagnitude(angle == -1 ? 0 : 1);
 
-
+        //Robot léptetése
         PhoebeLogger.message("currentPlayer", "jump", "v");
-        //currentPlayer.jump(v);
+        currentRobot.jump(v);
+
+        //Kövi játékos, kör vége ha nincs több
+        if (++currentPlayer == numberOfPlayers) {
+            roundStarted = false;
+        }
     }
 }
