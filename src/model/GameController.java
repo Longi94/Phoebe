@@ -30,7 +30,7 @@ public class GameController {
 
     //TODO kellenek extra változók (ki van soron, megy-e a kör stb)
     private boolean roundStarted = false;
-    private boolean gameStarted = false;
+    private boolean gameStarted = false; //Van-e betöltve pálya, elértük-e már a játék végét
 
     /**
      * Konstruktor
@@ -51,6 +51,13 @@ public class GameController {
         gameStarted = true;
     }
 
+    public boolean isRoundStarted() {
+        return roundStarted;
+    }
+
+    public boolean isGameStarted() {
+        return gameStarted;
+    }
 
     private void loadGameFromFile(String file) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(file));
@@ -193,8 +200,21 @@ public class GameController {
     }
 
     public String report() {
-        //TODO
-        return null;
+        if (track == null){
+            return "track is null";
+        }
+
+        String report = "";
+
+        for (TrackObjectBase item : track.getItems()) {
+            report += item.toString();
+        }
+
+        //TODO kell egy prettyPrint függvény, ezt szopás lesz megírni
+        //http://stackoverflow.com/questions/14515994/convert-json-string-to-pretty-print-json-output-using-jackson
+        //ez lehet hogy működik, ha csak zárójeleket néz
+
+        return report;
     }
 
     public void jumpCurrentPlayer(int angle, boolean oil, boolean putty) {

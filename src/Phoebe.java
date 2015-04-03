@@ -47,19 +47,27 @@ public class Phoebe {
                     if (command[0].equals("loadtrack")) {
                         controller = new GameController(command[1]);
                     } else if (controller != null && command[0].equals("newround")) {
-                        controller.newTurn();
+                        if (controller.isGameStarted()) {
+                            controller.newTurn();
+                        }
                     } else if (controller != null && command[0].equals("jump")) {
-                        if (command[2].equals("o")) {
-                            controller.jumpCurrentPlayer(Integer.parseInt(command[1]), true, false);
-                        } else if (command[2].equals("p")) {
-                            controller.jumpCurrentPlayer(Integer.parseInt(command[1]), false, true);
-                        } else {
-                            controller.jumpCurrentPlayer(Integer.parseInt(command[1]), false, false);
+                        if (controller.isRoundStarted()) {
+                            if (command[2].equals("o")) {
+                                controller.jumpCurrentPlayer(Integer.parseInt(command[1]), true, false);
+                            } else if (command[2].equals("p")) {
+                                controller.jumpCurrentPlayer(Integer.parseInt(command[1]), false, true);
+                            } else {
+                                controller.jumpCurrentPlayer(Integer.parseInt(command[1]), false, false);
+                            }
                         }
                     } else if (controller != null && command[0].equals("janitor")) {
-                        controller.putJanitor(Integer.parseInt(command[1]), Integer.parseInt(command[2]));
+                        if (controller.isGameStarted()) {
+                            controller.putJanitor(Integer.parseInt(command[1]), Integer.parseInt(command[2]));
+                        }
                     } else if (controller != null && command[0].equals("forfeit")) {
-                        controller.killCurrentPlayer();
+                        if (controller.isRoundStarted()) {
+                            controller.killCurrentPlayer();
+                        }
                     } else if (controller != null && command[0].equals("report")) {
                         bw.write(controller.report());
                     } else if (command[0].equals("quit")) {
