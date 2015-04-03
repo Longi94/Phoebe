@@ -100,14 +100,16 @@ public class GameController {
                             new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2]))));
                 } else if (command[0].equals("oil")) {
                     //Olajok
-                    //TODO élet megadása
-                    tempList.add(new Oil(
-                            new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2]))));
+                    Oil oil = new Oil(new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2])));
+                    oil.setHitsLeft(Integer.parseInt(command[3]));
+                    oil.setRoundsLeft(Integer.parseInt(command[4]));
+                    tempList.add(oil);
                 } else if (command[0].equals("putty")) {
                     //Ragacsok
-                    //TODO élet megadása
-                    tempList.add(new Putty(
-                            new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2]))));
+                    Putty putty = new Putty(new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2])));
+                    putty.setHitsLeft(Integer.parseInt(command[3]));
+                    putty.setRoundsLeft(Integer.parseInt(command[4]));
+                    tempList.add(putty);
                 } else if (command[0].equals("janitor")) {
                     //Takarítók
                     tempList.add(new CleaningRobot(new Position(Double.parseDouble(command[1]),
