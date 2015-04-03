@@ -27,6 +27,7 @@ public class GameController {
     private int numberOfPlayers;
 
     private List<Integer> playerOrder;
+    private List<Integer> playerOrderSorted;
 
     //TODO kellenek extra változók (ki van soron, megy-e a kör stb)
     private boolean roundStarted = false;
@@ -65,6 +66,7 @@ public class GameController {
 
         //Játékosok sorrendjét meghatározó lista
         playerOrder = new ArrayList<Integer>();
+        playerOrderSorted = new ArrayList<Integer>();
 
         //Azért hogy a hozzáadási sorrend megegyezzen a fájlban lévő sorrenddel
         List<TrackObjectBase> tempList = new ArrayList<TrackObjectBase>();
@@ -149,6 +151,7 @@ public class GameController {
 
         for (int i = 0; i < numberOfPlayers; i++) {
             playerOrder.add(i);
+            playerOrderSorted.add(i);
         }
     }
 
@@ -165,6 +168,7 @@ public class GameController {
             if (!track.isInTrack(robot.getPos())) {
                 PhoebeLogger.message("playerOrder", "remove", "new Integer(players.indexOf(robot))");
                 playerOrder.remove(new Integer(players.indexOf(robot)));
+                playerOrderSorted.remove(new Integer(players.indexOf(robot)));
             }
         }
 
@@ -210,8 +214,9 @@ public class GameController {
      * Soron lévő jűtékos kiejtése
      */
     public void killCurrentPlayer() {
-        //TODO
         numberOfPlayers--;
+        playerOrder.remove(currentPlayer);
+        playerOrderSorted.remove(currentPlayer);
     }
 
     /**
@@ -250,7 +255,7 @@ public class GameController {
 
         if (deterministic) {
             //Normál sorrend
-            currentRobot = players.get(currentPlayer);
+            currentRobot = players.get(playerOrderSorted.get(currentPlayer));
         } else {
             //Random sorrend
             currentRobot = players.get(playerOrder.get(currentPlayer));
