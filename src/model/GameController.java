@@ -95,9 +95,15 @@ public class GameController {
                     tempList.add(player);
                 } else if (command[0].equals("pickup")) {
                     //Pickupok
-                    //TODO típus megadása
-                    tempList.add(new Pickup(
-                            new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2]))));
+                    Pickup pickup = new Pickup(new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2])));
+                    if (command.length > 3) {
+                        if (command[3].equals("o")) {
+                            pickup.setType(0);
+                        } else if (command[3].equals("p")) {
+                            pickup.setType(1);
+                        }
+                    }
+                    tempList.add(pickup);
                 } else if (command[0].equals("oil")) {
                     //Olajok
                     Oil oil = new Oil(new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2])));
