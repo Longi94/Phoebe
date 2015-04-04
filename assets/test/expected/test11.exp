@@ -5,20 +5,20 @@ Robot{
     },
     distanceCompleted:2.0,
     Velocity{
-        magnitude:1.0,
-        angle:0.0
+        magnitude:2.0,
+        angle:90.0
     },
     oilAmount:1,
     puttyAmount:0,
-    id:10,
+    id:0,
     enabled:true
 }
 Putty{
     Position{
         x:0.0,
-        y:2.0
+        y:0.0
     },
-    hitsLeft:3,
+    hitsLeft:4,
     roundsLeft:-1,
     underCleaning:false
 }
