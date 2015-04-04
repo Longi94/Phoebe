@@ -104,8 +104,10 @@ public class Position {
      */
     @Override
     public String toString() {
-        return "posX=" + (double) Math.round(100 * posX) / 100 +
-                ", posY=" + (double) Math.round(100 * posY) / 100 + " ";
+        return "Position {\n" +
+                    "x:" + (double) Math.round(100 * posX) / 100 + "\n" +
+                    "y:" + (double) Math.round(100 * posY) / 100 + "\n" +
+                "}";
     }
 }
 

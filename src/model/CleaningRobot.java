@@ -79,4 +79,15 @@ public class CleaningRobot extends TrackObjectBase {
         }
     }
 
+    @Override
+    public String toString() {
+        return "CleaningRobot{" + "\n" +
+                super.toString() + "\n" +
+                "angle: " + angle + "\n" +
+                "cleanTurnsLeft: " + cleanTurnsLeft + "\n" +
+                "}";
+    }
+
+
+
 }

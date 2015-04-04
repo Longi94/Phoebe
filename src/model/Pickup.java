@@ -99,6 +99,9 @@ public class Pickup extends TrackObjectBase {
      */
     @Override
     public String toString() {
-        return "Pickup{" + super.toString() + "}";
+        return "Pickup{\n" +
+                    super.toString() + "\n" +
+                    "type: " + type + "\n" +
+                "}";
     }
 }
