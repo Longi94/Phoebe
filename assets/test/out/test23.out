@@ -3,7 +3,8 @@ CleaningRobot{
         x:-0.5,
         y:0.0
     },
-    angle:0.4636476090008061actuallyCleaning: null,
+    angle:26.57,
+    actuallyCleaning: null,
     cleanTurnsLeft: 0
 }
 CleaningRobot{
@@ -11,7 +12,8 @@ CleaningRobot{
         x:0.5,
         y:0.0
     },
-    angle:-0.4636476090008061actuallyCleaning: null,
+    angle:-26.57,
+    actuallyCleaning: null,
     cleanTurnsLeft: 0
 }
 Oil{

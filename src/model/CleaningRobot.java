@@ -86,7 +86,7 @@ public class CleaningRobot extends TrackObjectBase {
     public String toString() {
         String s = "CleaningRobot{" +
                 super.toString() + "," +
-                "angle:" + angle;
+                "angle:" + (double) Math.round(100 * 180 / Math.PI * angle) / 100 + ",";
         if (actuallyCleaning != null){
             s += "actuallyCleaning: " + actuallyCleaning.toString() + "," ;
         } else {

@@ -27,6 +27,7 @@ CleaningRobot{
         x:0.0,
         y:0.0
     },
-    angle:0.0actuallyCleaning: null,
+    angle:0.0,
+    actuallyCleaning: null,
     cleanTurnsLeft: 0
 }
