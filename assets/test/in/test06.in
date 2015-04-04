@@ -1,4 +1,5 @@
 loadtrack assets/test/track/track6.txt
+newround
 jump 90
 report
 quit
