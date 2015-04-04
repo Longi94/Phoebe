@@ -70,6 +70,7 @@ public class Phoebe {
                         }
                     } else if (controller != null && command[0].equals("report")) {
                         bw.write(controller.report());
+                        bw.flush();
                     } else if (command[0].equals("quit")) {
                         running = false;
                     }
