@@ -159,12 +159,14 @@ public class Robot extends TrackObjectBase {
     @Override
     public void collide(Robot r) {
         if (vel.getMagnitude() >= r.vel.getMagnitude()) {
-            vel.add(r.getVel());
-            halveVelocity();
+            //vel.add(r.getVel());
+            //halveVelocity();
+            setVel(new Velocity((vel.getMagnitude() + r.vel.getMagnitude())/2,(vel.getAngle() + r.vel.getAngle())/2));
             track.removeObject(r);
         } else {
-            r.getVel().add(this.vel);
-            r.halveVelocity();
+            //r.getVel().add(this.vel);
+            //r.halveVelocity();
+            r.setVel(new Velocity((vel.getMagnitude() + r.vel.getMagnitude())/2,(vel.getAngle() + r.vel.getAngle())/2));
             track.removeObject(this);   //egyenloseg eseten marad, akire ralepnek (pl jatek elejen jol johet)
         }
         // igazából a többi objectel ütközést megállíthatnánk, de fölösleges, mert elvileg úgyis minden egyidőben zajlik le (és az, hogy kivettük a többől, nem okoz durva problémát)
