@@ -5,11 +5,12 @@ Robot{
     },
     distanceCompleted:3.0,
     Velocity{
-        magnitude:1.58,
-        angle:108.43
+        magnitude:1.0,
+        angle:90.0
     },
     oilAmount:1,
     puttyAmount:1,
-    id:13,
+    id:0,
     enabled:true
 }
+
