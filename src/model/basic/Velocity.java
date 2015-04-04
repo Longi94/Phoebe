@@ -155,6 +155,6 @@ public class Velocity {
         return "Velocity{" + "\n" +
                     "magnitude: " + (double) Math.round(100 * magnitude) / 100 + "\n" +
                     "angle: " + (double) Math.round(100 * 180 / Math.PI * angle) / 100 + "\n" +
-                "}"; //fokban
+                "}\n"; //fokban
     }
 }

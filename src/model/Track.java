@@ -208,7 +208,7 @@ public class Track {
     public String toString() {
         String toRet = "";
         for (TrackObjectBase item : items) {
-            toRet += item.toString() + "\n";
+            toRet += item.toString();
         }
         return toRet;
     }
