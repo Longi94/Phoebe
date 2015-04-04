@@ -172,7 +172,6 @@ public class GameController {
 
     /**
      * Kör befejezése, új kör indítása, ha van még hátra kör
-     * TODO optimalizálás új parserre
      */
     public void newTurn() {
 
