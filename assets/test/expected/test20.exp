@@ -7,13 +7,3 @@ CleaningRobot{
     actuallyCleaning: null,
     cleanTurnsLeft: 0
 }
-
-CleaningRobot{
-    Position{
-        x:-0.29,
-        y:1.71
-    },
-    angle:0.0,
-    actuallyCleaning: null,
-    cleanTurnsLeft: 0
-}
