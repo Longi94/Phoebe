@@ -1,2 +1,2 @@
-janitor 0 1
+janitor -1 1
 putty 0 2 4 -1

@@ -6,17 +6,17 @@ Robot{
     distanceCompleted:2.0,
     Velocity{
         magnitude:2.0,
-        angle:90.0
+        angle:0.0
     },
-    oilAmount:0,
+    oilAmount:1,
     puttyAmount:1,
-    id:0,
-    enabled:true
+    id:15,
+    enabled:false
 }
 Oil{
     Position{
         x:0.0,
-        y:0.0
+        y:2.0
     },
     hitsLeft:-1,
     roundsLeft:20,

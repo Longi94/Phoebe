@@ -311,7 +311,8 @@ public class Robot extends TrackObjectBase {
             PhoebeLogger.create("Oil", "oil");
             PhoebeLogger.returnMessage();
             PhoebeLogger.message("track", "addObject", "oil");
-            track.addObject(new Oil(pos, track));
+            Oil o= new Oil(new Position(pos.getX(),pos.getY()));
+            track.addObject(o);
         } else {
             throw new IllegalStateException("Elfogyott az olaj");
         }
@@ -328,7 +329,7 @@ public class Robot extends TrackObjectBase {
             PhoebeLogger.create("Putty", "putty");
             PhoebeLogger.returnMessage();
             PhoebeLogger.message("track", "addObject", "putty");
-            track.addObject(new Putty(pos, track));
+            track.addObject(new Putty(new Position(pos.getX(), pos.getY())));
         } else {
             throw new IllegalStateException("Elfogyott az ragacs");
         }

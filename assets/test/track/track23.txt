@@ -1,3 +1,4 @@
-janitor -0.5 0
 janitor 0.5 0
-oil 0 1 4 -1
+janitor -0.5 0
+oil 1.5 0 4 -1
+oil 2.5 0 4 -1
