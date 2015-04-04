@@ -188,10 +188,13 @@ public class GameController {
         }
 
         //newRound meghívása minden pályán lévő objektumnak
-        for (TrackObjectBase item : track.getItems()) {
-            PhoebeLogger.message("item", "newRound");
+        int i = 0;
+        List<TrackObjectBase> items = track.getItems();
+        while (i < items.size()) {
+            TrackObjectBase item = items.get(i);
             item.newRound();
-        }
+            if (i < items.size() && item == items.get(i)) i++;
+        }//Szerintem szebb lenne, ha newRounddal visszatérnénk egy boollal és azalapján meghívnánk egy Iterator.removeot
 
         turnsLeft -= 1;
         if (turnsLeft == 0) {
