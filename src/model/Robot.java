@@ -4,6 +4,8 @@ import model.basic.Position;
 import model.basic.Velocity;
 import skeleton.PhoebeLogger;
 
+import java.util.ArrayList;
+
 /**
  * Robotot megvalósító osztály
  *
@@ -115,10 +117,10 @@ public class Robot extends TrackObjectBase {
         }
 
 
-        //Megtett táv növelése
-        distanceCompleted += pos.getDistance(oldPos);
-        //TODO Nem így kell számolni. Attól függ, mennyit haladt előre a belső íven...
-        //TODO Mert így az nyer, aki sokat kacsázik, nem az, aki egyenesen megy
+        distanceCompleted = calculateDistance(oldPos);
+
+
+
 
         PhoebeLogger.message("track", "robotJumped", "this");
         track.robotJumped(this);
@@ -127,6 +129,57 @@ public class Robot extends TrackObjectBase {
         //enabled = false;
 
         PhoebeLogger.returnMessage();
+    }
+
+    private double calculateDistance(Position oldPos) {
+        //TODO Nem így kell számolni. Attól függ, mennyit haladt előre a belső íven...
+        //TODO Mert így az nyer, aki sokat kacsázik, nem az, aki egyenesen megy
+        if (track.innerArc == null) {
+            //ha nem definiáltuk a pályát, egyszerűen a megtett táv növelése
+            distanceCompleted += pos.getDistance(oldPos);
+        } else {
+            ArrayList<Position> points = new ArrayList<Position>(4);
+            Position innerArcBeginning = new Position();
+            Position innerArcEnd = new Position();
+
+            //kitaláljuk melyik útrészen van (négyszögben)
+            for (int i = 0; i < track.innerArc.size(); i++){
+                points.clear();
+                if (i != (track.innerArc.size() - 1)){
+                    points.add(track.innerArc.get(i));
+                    points.add(track.innerArc.get(i + 1));
+                    points.add(track.outerArc.get(i + 1));
+                    points.add(track.outerArc.get(i));
+                } else {
+                    points.add(track.innerArc.get(i));
+                    points.add(track.innerArc.get(1));
+                    points.add(track.outerArc.get(1));
+                    points.add(track.outerArc.get(i));
+                }
+                if (Track.insidePolygon(points, pos))
+                    innerArcBeginning = new Position(points.get(0).getX(), points.get(0).getY());
+                    innerArcEnd = new Position(points.get(1).getX(), points.get(1).getY());
+                    break;
+            }
+            if (innerArcBeginning != null && innerArcEnd != null) {
+                double apx = pos.getX() - innerArcBeginning.getX();
+                double apy = pos.getY() - innerArcBeginning.getY();
+                double abx = bx - ax;
+                double aby = by - ay;
+
+                double ab2 = abx * abx + aby * aby;
+                double ap_ab = apx * abx + apy * aby;
+                double t = ap_ab / ab2;
+                if (t < 0) {
+                    t = 0;
+                } else if (t > 1) {
+                    t = 1;
+                }
+                dest.setLocation(ax + abx * t, ay + aby * t);
+                return dest;
+
+            }
+        }
     }
 
     /**
@@ -161,13 +214,13 @@ public class Robot extends TrackObjectBase {
         if (vel.getMagnitude() >= r.vel.getMagnitude()) {
             Velocity tmp = this.getVel();
             tmp.add(r.getVel());
-            tmp.setMagnitude(tmp.getMagnitude()/2);
+            tmp.setMagnitude(tmp.getMagnitude() / 2);
             this.setVel(tmp);
             track.removeObject(r);
         } else {
             Velocity tmp = r.getVel();
             tmp.add(this.vel);
-            tmp.setMagnitude(tmp.getMagnitude()/2);
+            tmp.setMagnitude(tmp.getMagnitude() / 2);
             r.setVel(tmp);
             track.removeObject(this);   //egyenloseg eseten marad, akire ralepnek (pl jatek elejen jol johet)
         }
