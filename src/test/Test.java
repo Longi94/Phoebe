@@ -14,6 +14,11 @@ public class Test {
      * Main függvény
      *
      * @param args 3db-nak kell lennie, ezek a mappák/fájlok elérési útjai
+     *             Összes teszthez a következő argumentumokkal kell meghívni a Test.java main függvényét:
+     *
+     *             "assets/test/in"
+     *             "assets/test/expected"
+     *             "assets/test/out"
      */
     public static void main(String[] args) {
         if(args.length == 3) {
