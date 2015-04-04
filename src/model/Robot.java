@@ -278,15 +278,15 @@ public class Robot extends TrackObjectBase {
      */
     @Override
     public String toString() {
-        return "Robot{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", " + super.toString() +
-                ", distanceCompleted=" + (double) Math.round(100 * distanceCompleted) / 100 +
-                ", vel=" + vel +
-                ", oilAmount=" + oilAmount +
-                ", puttyAmount=" + puttyAmount +
-                ", enabled=" + enabled +
+        return "Robot{" +  "\n" +
+                super.toString() +
+                    "distanceCompleted: " + (double) Math.round(100 * distanceCompleted) / 100 + "\n" +
+                    vel.toString() +
+                    "oilAmount: " + oilAmount + "\n" +
+                    "puttyAmount: " + puttyAmount +  "\n" +
+                    "id: " + id + "\n" +
+                    //"name: " + name  +  "\n" + //basszus, ez kimaradt
+                    "enabled: " + enabled + "\n" +
                 '}';
     }
 }
