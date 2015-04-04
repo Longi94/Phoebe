@@ -55,10 +55,21 @@ public class CleaningRobot extends TrackObjectBase {
         if (closest == null) {
             return 0;       //TODO ezt azért rohadtul jobban is specifikálhatták volna. Javaslom, hogy ilyenkor zűnjön meg a francba...
         }
-        double angle = Math.atan((closest.getY() - pos.getY()) / (closest.getX() - pos.getX()));
-        if ((closest.getX() - pos.getX()) < 0) {
-            angle += Math.PI;
+        double angle;
+        double tmpX = closest.getX() - pos.getX();
+        double tmpY = (closest.getY() - pos.getY());
+        if (tmpX == 0) {
+            if (tmpY>0)
+                angle = Math.PI/2;
+            else
+                angle = -1* Math.PI/2;
+        } else {
+            angle = Math.atan(tmpY / tmpX);
+            if (tmpX < 0) {
+                angle += Math.PI;
+            }
         }
+
          //TODO kiszámítja milyen irányba esik a legközelebbi akadály (belevéve, hogy nem mehet ki a pályáról)
         //jelenleg átvág mindenen hogy a leggyorsabban odajusson, ami egyszerre megmagyarázható (szervizutakon megy) és übergáz...
         return angle;

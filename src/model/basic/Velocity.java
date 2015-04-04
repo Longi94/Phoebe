@@ -124,10 +124,16 @@ public class Velocity {
     public void setDescartes(double x, double y) {
         this.magnitude = Math.sqrt(x * x + y * y);
         //Ha az első félsíkban van, az atan  helyes eredményt ad, viszont ha a második félsíkban van, akkor
-
-        if (x > 0) {
+        if (x==0) {
+            if (y > 0) {
+                this.angle = Math.PI/2;
+            } else {
+                this.angle = -1* Math.PI/2;
+            }
+        } else if (x > 0) {
             this.angle = Math.atan(y /x);
         } else {
+            System.out.println(x + " d" + y);
             this.angle =  Math.PI + Math.atan(y / x);
         }
         //this.angle = Math.atan2(y,x);   //nem is tudtam, hogy ilyen is van, ez sokkal nagyobb királyság
