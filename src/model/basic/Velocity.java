@@ -103,7 +103,7 @@ public class Velocity {
      * @return a sebességvektor x koordinátája
      */
     public double getVelocityX() {
-        return magnitude * Math.sin(angle);
+        return magnitude * Math.cos(angle);
     }
 
     /**
@@ -112,7 +112,7 @@ public class Velocity {
      * @return a sebességvektor y koordinátája
      */
     public double getVelocityY() {
-        return magnitude * Math.cos(angle);
+        return magnitude * Math.sin(angle);
     }
 
     /**
