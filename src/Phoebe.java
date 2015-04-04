@@ -52,10 +52,12 @@ public class Phoebe {
                         }
                     } else if (controller != null && command[0].equals("jump")) {
                         if (controller.isRoundStarted()) {
-                            if (command[2].equals("o")) {
-                                controller.jumpCurrentPlayer(Integer.parseInt(command[1]), true, false);
-                            } else if (command[2].equals("p")) {
-                                controller.jumpCurrentPlayer(Integer.parseInt(command[1]), false, true);
+                            if (command.length > 2) {
+                                if (command[2].equals("o")) {
+                                    controller.jumpCurrentPlayer(Integer.parseInt(command[1]), true, false);
+                                } else if (command[2].equals("p")) {
+                                    controller.jumpCurrentPlayer(Integer.parseInt(command[1]), false, true);
+                                }
                             } else {
                                 controller.jumpCurrentPlayer(Integer.parseInt(command[1]), false, false);
                             }

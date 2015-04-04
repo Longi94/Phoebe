@@ -70,12 +70,13 @@ public class CleaningRobot extends TrackObjectBase {
             if (--cleanTurnsLeft == 0) {
                 track.removeObject(actuallyCleaning);
                 actuallyCleaning = null;
-                targetClosestObstacle();
+                angle = targetClosestObstacle();
             }
         } else {
             step();                             //azért lép előbb, mint hogy irányt vált, mert csak így oldható meg hogy ütközéskor arréb menjen
             //TODO mivanha elhagyja a pályát
-            targetClosestObstacle();
+            //TODO szerintem ne történjen semmi, hadd menjen a pályán kívül is
+            angle = targetClosestObstacle();
         }
     }
 

@@ -177,6 +177,7 @@ public class GameController {
     public void newTurn() {
 
         roundStarted = true;
+        currentPlayer = 0;
 
         //Robotot kiszedjük, ha kiugrott
         for (Robot robot : players) {

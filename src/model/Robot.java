@@ -109,6 +109,7 @@ public class Robot extends TrackObjectBase {
         pos.move(vel);
 
         if (!enabled) {
+
             PhoebeLogger.message("this", "setEnabled", "true");
             setEnabled(true);
         }
