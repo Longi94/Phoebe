@@ -152,9 +152,9 @@ public class Velocity {
      */
     @Override
     public String toString() {
-        return "Velocity{" + "\n" +
-                    "magnitude: " + (double) Math.round(100 * magnitude) / 100 + "\n" +
-                    "angle: " + (double) Math.round(100 * 180 / Math.PI * angle) / 100 + "\n" +
-                "}\n"; //fokban
+        return "Velocity{" +
+                    "magnitude:" + (double) Math.round(100 * magnitude) / 100  + "," +
+                    "angle:" + (double) Math.round(100 * 180 / Math.PI * angle) / 100 +
+                "}"; //fokban
     }
 }

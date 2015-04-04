@@ -161,12 +161,12 @@ public class Robot extends TrackObjectBase {
         if (vel.getMagnitude() >= r.vel.getMagnitude()) {
             //vel.add(r.getVel());
             //halveVelocity();
-            setVel(new Velocity((vel.getMagnitude() + r.vel.getMagnitude())/2,(vel.getAngle() + r.vel.getAngle())/2));
+            setVel(new Velocity((vel.getMagnitude() + r.vel.getMagnitude()) / 2, (vel.getAngle() + r.vel.getAngle()) / 2));
             track.removeObject(r);
         } else {
             //r.getVel().add(this.vel);
             //r.halveVelocity();
-            r.setVel(new Velocity((vel.getMagnitude() + r.vel.getMagnitude())/2,(vel.getAngle() + r.vel.getAngle())/2));
+            r.setVel(new Velocity((vel.getMagnitude() + r.vel.getMagnitude()) / 2, (vel.getAngle() + r.vel.getAngle()) / 2));
             track.removeObject(this);   //egyenloseg eseten marad, akire ralepnek (pl jatek elejen jol johet)
         }
         // igazából a többi objectel ütközést megállíthatnánk, de fölösleges, mert elvileg úgyis minden egyidőben zajlik le (és az, hogy kivettük a többől, nem okoz durva problémát)
@@ -281,15 +281,15 @@ public class Robot extends TrackObjectBase {
      */
     @Override
     public String toString() {
-        return "Robot{" +  "\n" +
-                super.toString() +
-                    "distanceCompleted: " + (double) Math.round(100 * distanceCompleted) / 100 + "\n" +
-                    vel.toString() +
-                    "oilAmount: " + oilAmount + "\n" +
-                    "puttyAmount: " + puttyAmount +  "\n" +
-                    "id: " + id + "\n" +
+        return "Robot{" +
+                super.toString() + "," +
+                    "distanceCompleted:" + (double) Math.round(100 * distanceCompleted) / 100 + "," +
+                    vel.toString() + "," +
+                    "oilAmount:" + oilAmount + "," +
+                    "puttyAmount:" + puttyAmount + "," +
+                    "id:" + id + "," +
                     //"name: " + name  +  "\n" + //basszus, ez kimaradt
-                    "enabled: " + enabled + "\n" +
-                "}\n";
+                    "enabled:" + enabled +
+                "}";
     }
 }

@@ -247,17 +247,12 @@ public class GameController {
             return "track is null";
         }
 
-        String report = "";
-
-        for (TrackObjectBase item : track.getItems()) {
-            report += item.toString();
-        }
 
         //TODO kell egy prettyPrint függvény, ezt szopás lesz megírni
         //http://stackoverflow.com/questions/14515994/convert-json-string-to-pretty-print-json-output-using-jackson
         //ez lehet hogy működik, ha csak zárójeleket és vesszőket néz
 
-        return report;
+        return prettyPrintReport(track.toString());
     }
 
     /**

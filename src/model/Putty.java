@@ -63,8 +63,8 @@ public class Putty extends Obstacle {
      */
     @Override
     public String toString() {
-        return "Putty{\n" +
+        return "Putty{" +
                 super.toString() +
-                "}\n";
+                "}";
     }
 }

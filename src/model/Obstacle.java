@@ -181,8 +181,8 @@ public abstract class Obstacle extends TrackObjectBase {
     @Override
     public String toString() {
         return super.toString() +
-                "hitsLeft: " + hitsLeft + "\n" +
-                "roundsLeft: " + roundsLeft + "\n" +
-                "underCleaning: " + underCleaning + "\n";
+                "hitsLeft:" + hitsLeft + "," +
+                "roundsLeft:" + roundsLeft + "," +
+                "underCleaning:" + underCleaning;
     }
 }

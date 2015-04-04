@@ -63,8 +63,8 @@ public class Oil extends Obstacle {
      */
     @Override
     public String toString() {
-        return "Oil{\n" +
+        return "Oil{" +
                     super.toString() +
-                "}\n";
+                "}";
     }
 }
