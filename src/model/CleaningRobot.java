@@ -16,7 +16,7 @@ public class CleaningRobot extends TrackObjectBase {
     public CleaningRobot(Position pos) {
         super(pos);
         actuallyCleaning = null;                        //nem takarít semmit
-        angle = 0;
+        cleanTurnsLeft = -1;
     }
 
     public double getAngle() {
@@ -72,6 +72,10 @@ public class CleaningRobot extends TrackObjectBase {
 
     @Override
     public void newRound() {
+        if (cleanTurnsLeft == -1) {
+            cleanTurnsLeft = 0;
+            angle = targetClosestObstacle();
+        }
         if (actuallyCleaning != null) {
             if (--cleanTurnsLeft == 0) {
                 track.removeObject(actuallyCleaning);
