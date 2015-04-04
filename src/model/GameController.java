@@ -232,6 +232,19 @@ public class GameController {
      * Soron lévő jűtékos kiejtése
      */
     public void killCurrentPlayer() {
+
+        Robot currentRobot;
+
+        if (deterministic) {
+            //Normál sorrend
+            currentRobot = players.get(playerOrderSorted.get(currentPlayer));
+        } else {
+            //Random sorrend
+            currentRobot = players.get(playerOrder.get(currentPlayer));
+        }
+
+        currentRobot.forfeit();
+
         numberOfPlayers--;
         playerOrder.remove(currentPlayer);
         playerOrderSorted.remove(currentPlayer);
