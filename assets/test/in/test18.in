@@ -1,4 +1,5 @@
 loadtrack assets/test/track/track18.txt
+newround
 jump 90 o
 janitor 0 0
 report

@@ -29,6 +29,11 @@ public class Phoebe {
                     bw = new BufferedWriter(new OutputStreamWriter(System.out));
                     break;
                 default:
+                    //Fájl létrehozása ha nem létezik
+                    File output = new File(args[1]);
+                    if(!output.exists()) {
+                        output.createNewFile();
+                    }
                     //2 vagy több paraméter, fájl a ki és bemenet
                     br = new BufferedReader(new FileReader(args[0]));
                     bw = new BufferedWriter(new FileWriter(args[1]));
