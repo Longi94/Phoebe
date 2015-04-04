@@ -35,6 +35,8 @@ public class GameController {
 
     /**
      * Konstruktor
+     *
+     * @param file a fájl amiből betöltjük az összes objektumot
      */
     public GameController(String file) {
         try {
@@ -48,19 +50,39 @@ public class GameController {
         gameStarted = true;
     }
 
+    /**
+     * Getter a roundStarted-nek
+     *
+     * @return el kezdődött-e a kör
+     */
     public boolean isRoundStarted() {
         return roundStarted;
     }
 
+    /**
+     * Getter a gameStarted-nek
+     *
+     * @return elkezdődött-e a játék
+     */
     public boolean isGameStarted() {
         return gameStarted;
     }
 
+    /**
+     * Fájlból betölti az össze objektumot
+     *
+     * @param file a fájl elérési útvonala
+     * @throws IOException
+     */
     private void loadGameFromFile(String file) throws IOException {
+        //Fájlból olvasás
         BufferedReader br = new BufferedReader(new FileReader(file));
 
+        //Ply körvonala
         List<Position> in = new ArrayList<Position>();
         List<Position> out = new ArrayList<Position>();
+
+        //Robotokat tartalmazó lista
         players = new ArrayList<Robot>();
 
         //Játékosok sorrendjét meghatározó lista
@@ -159,6 +181,7 @@ public class GameController {
 
         numberOfPlayers = players.size();
 
+        //Felépítjük a játékos sorrendet
         for (int i = 0; i < numberOfPlayers; i++) {
             playerOrder.add(i);
             playerOrderSorted.add(i);
@@ -174,6 +197,7 @@ public class GameController {
      * Kör befejezése, új kör indítása, ha van még hátra kör
      */
     public void newTurn() {
+        if (!gameStarted) return;
 
         roundStarted = true;
         currentPlayer = 0;
@@ -212,6 +236,7 @@ public class GameController {
      * Játék befejezése
      */
     public void endGame() {
+        if (!gameStarted) return;
         //TODO
         gameStarted = false;
 
@@ -225,6 +250,8 @@ public class GameController {
      * @param y y koordináta
      */
     public void putJanitor(double x, double y) {
+        if (!gameStarted) return;
+
         track.addObject(new CleaningRobot(new Position(x, y)));
     }
 
@@ -232,6 +259,7 @@ public class GameController {
      * Soron lévő jűtékos kiejtése
      */
     public void killCurrentPlayer() {
+        if (!roundStarted) return;
 
         Robot currentRobot;
 
@@ -243,9 +271,13 @@ public class GameController {
             currentRobot = players.get(playerOrder.get(currentPlayer));
         }
 
+        //Robot feladja a játékot
         currentRobot.forfeit();
 
+        //Csökken a játékosok száma
         numberOfPlayers--;
+
+        //Eltávolítása a játékos sorrendből
         playerOrder.remove(currentPlayer);
         playerOrderSorted.remove(currentPlayer);
     }
@@ -260,11 +292,6 @@ public class GameController {
             return "track is null";
         }
 
-
-        //TODO kell egy prettyPrint függvény, ezt szopás lesz megírni
-        //http://stackoverflow.com/questions/14515994/convert-json-string-to-pretty-print-json-output-using-jackson
-        //ez lehet hogy működik, ha csak zárójeleket és vesszőket néz
-
         return prettyPrintReport(track.toString());
     }
 
@@ -276,6 +303,8 @@ public class GameController {
      * @param putty akar-e ragacsot lerakni
      */
     public void jumpCurrentPlayer(int angle, boolean oil, boolean putty) {
+
+        if (!roundStarted) return;
 
         Robot currentRobot;
 
@@ -311,13 +340,23 @@ public class GameController {
         }
     }
 
+    /**
+     * Szépen megformázza a reportot JSON-hoz hasonlóan
+     *
+     * @param report a megformázandó string
+     * @return formázott report
+     */
     public static String prettyPrintReport(String report) {
+        //Követjük a szinteket
         int indent = 0;
+
+        //Ebbe építjük fel a stringet
         String prettyReport = "";
 
         for (int i = 0; i < report.length(); i++) {
             char c = report.charAt(i);
             switch (c) {
+                //Új szint, egyel beljebbe kell írni, enter ésa  megfelelő számú space
                 case '{':
                     indent++;
                     prettyReport += c + "\n";
@@ -325,6 +364,7 @@ public class GameController {
                         prettyReport += "    ";
                     }
                     break;
+                //Egy szintel feljebb lépés, új sort kezdünk
                 case '}':
                     indent--;
                     prettyReport += "\n";
@@ -332,6 +372,7 @@ public class GameController {
                         prettyReport += "    ";
                     }
                     prettyReport += c;
+                    //Vesszőt nem rakjuk új sorba
                     if (i < report.length() - 1 && report.charAt(i + 1) != ',') {
                         prettyReport += "\n";
                         for (int j = 0; j < indent; j++) {
@@ -339,12 +380,14 @@ public class GameController {
                         }
                     }
                     break;
+                //Következő attribútum, új sore és megfelelő számú space hozzá adása
                 case ',':
                     prettyReport += c + "\n";
                     for (int j = 0; j < indent; j++) {
                         prettyReport += "    ";
                     }
                     break;
+                //Normál karakter
                 default:
                     prettyReport += c;
             }
