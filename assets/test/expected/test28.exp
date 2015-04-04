@@ -1,0 +1,9 @@
+Putty{
+    Position{
+        x:0.0,
+        y:0.0
+    },
+    hitsLeft:4,
+    roundsLeft:3,
+    underCleaning:false
+}

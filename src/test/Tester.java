@@ -1,5 +1,7 @@
 package test;
 
+import proto.Phoebe;
+
 import java.io.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -88,6 +90,7 @@ public class Tester {
             }
         });
 
+        System.out.println(filesExpected.length + " || " + filesIn.length);
         if(filesExpected.length != filesIn.length) {
             throw new Exception("A bemeneti fajlok szama nem egyezik meg a vart eredmenyeket tartalmazo fajlok szamaval!");
         }
@@ -104,7 +107,7 @@ public class Tester {
      * Egy teszt lefuttatása
      *
      * @param in Parancsokat tartalmazó fájl
-     * @throws FileNotFoundException nem talál valamilyen fájlt
+     * @throws java.io.FileNotFoundException nem talál valamilyen fájlt
      */
     private void runTest(File in, File expected, File out) throws FileNotFoundException {
 
@@ -113,7 +116,7 @@ public class Tester {
             if(out.exists())
                 out.delete();
             out.createNewFile();
-            //TODO parancsértelmező(in,out)
+            Phoebe.main(new String[]{in.toString(), out.toString()});
             if(compareFiles(expected,out)) {
                 testSuccess +=1;
                 tests.put(getFileName(in),true);

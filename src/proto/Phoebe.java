@@ -1,3 +1,5 @@
+package proto;
+
 import model.GameController;
 
 import java.io.*;

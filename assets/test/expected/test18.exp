@@ -1,0 +1,33 @@
+Robot{
+    Position{
+        x:0.0,
+        y:2.0
+    },
+    distanceCompleted:2.0,
+    Velocity{
+        magnitude:2.0,
+        angle:0.0
+    },
+    oilAmount:0,
+    puttyAmount:1,
+    id:18,
+    enabled:false
+}
+Oil{
+    Position{
+        x:0.0,
+        y:2.0
+    },
+    hitsLeft:-1,
+    roundsLeft:20,
+    underCleaning:false
+}
+CleaningRobot{
+    Position{
+        x:0.0,
+        y:0.0
+    },
+    angle:0.0,
+    actuallyCleaning: null,
+    cleanTurnsLeft: 0
+}
