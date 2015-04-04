@@ -93,9 +93,11 @@ public class CleaningRobot extends TrackObjectBase {
                 angle = targetClosestObstacle();
             }
         } else {
+            double oldAng = angle;
             step();                             //azért lép előbb, mint hogy irányt vált, mert csak így oldható meg hogy ütközéskor arréb menjen
             //TODO mivanha elhagyja a pályát
             //TODO szerintem ne történjen semmi, hadd menjen a pályán kívül is
+            if (oldAng == angle)
             angle = targetClosestObstacle();
         }
     }
