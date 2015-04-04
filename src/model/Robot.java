@@ -287,6 +287,6 @@ public class Robot extends TrackObjectBase {
                     "id: " + id + "\n" +
                     //"name: " + name  +  "\n" + //basszus, ez kimaradt
                     "enabled: " + enabled + "\n" +
-                '}';
+                "}\n";
     }
 }
