@@ -56,7 +56,6 @@ public class CleaningRobot extends TrackObjectBase {
             return 0;       //TODO ezt azért rohadtul jobban is specifikálhatták volna. Javaslom, hogy ilyenkor zűnjön meg a francba...
         }
         double angle = Math.atan((closest.getY() - pos.getY()) / (closest.getX() - pos.getX()));
-        System.out.println(closest.getX() + " " + closest.getY());
         if ((closest.getX() - pos.getX()) < 0) {
             angle += Math.PI;
         }
