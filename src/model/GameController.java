@@ -29,7 +29,6 @@ public class GameController {
     private List<Integer> playerOrder;
     private List<Integer> playerOrderSorted;
 
-    //TODO kellenek extra változók (ki van soron, megy-e a kör stb)
     private boolean roundStarted = false;
     private boolean gameStarted = false; //Van-e betöltve pálya, elértük-e már a játék végét
     private int currentPlayer = 0;
@@ -41,7 +40,7 @@ public class GameController {
         try {
             loadGameFromFile(file);
         } catch (FileNotFoundException e) {
-            throw new IllegalArgumentException(e.getMessage());
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -95,12 +94,16 @@ public class GameController {
                                 track, command[1]);
 
                         //Kezdő sebesség
-                        player.setVel(new Velocity(Math.toRadians(Double.parseDouble(command[5])),
-                                Double.parseDouble(command[4])));
+                        if (command.length > 4) {
+                            player.setVel(new Velocity(Math.toRadians(Double.parseDouble(command[5])),
+                                    Double.parseDouble(command[4])));
+                        }
 
                         //Olaj és ragacs hozzáadása
-                        player.setOilAmount(Integer.parseInt(command[6]));
-                        player.setPuttyAmount(Integer.parseInt(command[7]));
+                        if (command.length > 6) {
+                            player.setOilAmount(Integer.parseInt(command[6]));
+                            player.setPuttyAmount(Integer.parseInt(command[7]));
+                        }
 
                         players.add(player);
                         tempList.add(player);
@@ -119,14 +122,18 @@ public class GameController {
                 } else if (command[0].equals("oil")) {
                     //Olajok
                     Oil oil = new Oil(new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2])));
-                    oil.setHitsLeft(Integer.parseInt(command[3]));
-                    oil.setRoundsLeft(Integer.parseInt(command[4]));
+                    if (command.length > 3) {
+                        oil.setHitsLeft(Integer.parseInt(command[3]));
+                        oil.setRoundsLeft(Integer.parseInt(command[4]));
+                    }
                     tempList.add(oil);
                 } else if (command[0].equals("putty")) {
                     //Ragacsok
                     Putty putty = new Putty(new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2])));
-                    putty.setHitsLeft(Integer.parseInt(command[3]));
-                    putty.setRoundsLeft(Integer.parseInt(command[4]));
+                    if (command.length > 3) {
+                        putty.setHitsLeft(Integer.parseInt(command[3]));
+                        putty.setRoundsLeft(Integer.parseInt(command[4]));
+                    }
                     tempList.add(putty);
                 } else if (command[0].equals("janitor")) {
                     //Takarítók
@@ -158,7 +165,7 @@ public class GameController {
         }
 
         //Ha nem adtak meg hártalévő kört
-        if (turnsLeft == -1){
+        if (turnsLeft == -1) {
             turnsLeft = DEFAULT_TURN_NUMBER;
         }
     }
