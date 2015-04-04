@@ -1,0 +1,17 @@
+CleaningRobot{
+    Position{
+        x:0.0,
+        y:1.0
+    },
+    angle:0.0actuallyCleaning: null,
+    cleanTurnsLeft: 0
+}
+Oil{
+    Position{
+        x:0.0,
+        y:2.0
+    },
+    hitsLeft:4,
+    roundsLeft:-1,
+    underCleaning:false
+}

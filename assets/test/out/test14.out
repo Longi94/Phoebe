@@ -1,0 +1,30 @@
+Robot{
+    Position{
+        x:0.0,
+        y:3.0
+    },
+    distanceCompleted:3.0,
+    Velocity{
+        magnitude:3.0,
+        angle:0.0
+    },
+    oilAmount:1,
+    puttyAmount:1,
+    id:13,
+    enabled:true
+}
+Robot{
+    Position{
+        x:0.0,
+        y:2.0
+    },
+    distanceCompleted:0.0,
+    Velocity{
+        magnitude:1.0,
+        angle:270.0
+    },
+    oilAmount:1,
+    puttyAmount:1,
+    id:14,
+    enabled:true
+}

@@ -336,6 +336,6 @@ public class GameController {
                     prettyReport += c;
             }
         }
-        return prettyReport;
+        return prettyReport + "\n";
     }
 }
