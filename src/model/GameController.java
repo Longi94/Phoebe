@@ -302,4 +302,38 @@ public class GameController {
             roundStarted = false;
         }
     }
+
+    public static String prettyPrintReport(String report) {
+        int indent = 0;
+        String prettyReport = "";
+
+        for (char c : report.toCharArray()) {
+            switch (c) {
+                case '{':
+                    indent++;
+                    prettyReport += c + "\n";
+                    for (int i = 0; i < indent; i++) {
+                        prettyReport += "    ";
+                    }
+                    break;
+                case '}':
+                    indent--;
+                    prettyReport += "\n";
+                    for (int i = 0; i < indent; i++) {
+                        prettyReport += "    ";
+                    }
+                    prettyReport += c + "\n";
+                    break;
+                case ',':
+                    prettyReport += c + "\n";
+                    for (int i = 0; i < indent; i++) {
+                        prettyReport += "    ";
+                    }
+                    break;
+                default:
+                    prettyReport += c;
+            }
+        }
+        return prettyReport;
+    }
 }
