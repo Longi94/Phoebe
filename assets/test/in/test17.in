@@ -1,4 +1,4 @@
-loadtrack track17.txt
+loadtrack assets/test/track/track17.txt
 forfeit
 report
 quit

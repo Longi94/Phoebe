@@ -1,4 +1,4 @@
-loadtrack track6.txt
+loadtrack assets/test/track/track6.txt
 jump 90
 report
 quit

@@ -1,4 +1,4 @@
-loadtrack track20.txt
+loadtrack assets/test/track/track20.txt
 newround
 newround
 newround

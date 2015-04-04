@@ -1,4 +1,4 @@
-loadtrack track23.txt
+loadtrack assets/test/track/track23.txt
 newround
 report
 quit
