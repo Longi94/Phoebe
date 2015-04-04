@@ -62,7 +62,7 @@ public class CleaningRobot extends TrackObjectBase {
     }
 
     private void step() {
-        pos.move(new Velocity(1, angle));            // mozog egyet abba az irányba, amibe beállt
+        pos.move(new Velocity(angle, 1));            // mozog egyet abba az irányba, amibe beállt
         track.cleaningRobotJumped(this);
     }
 
