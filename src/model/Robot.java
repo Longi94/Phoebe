@@ -131,9 +131,17 @@ public class Robot extends TrackObjectBase {
         PhoebeLogger.returnMessage();
     }
 
+    /**
+     * Levetíti a realPosition paramétert a belső törtvonalra (arcBeginning, arcEnd), ha nem lehet rávetíteni akkor a valamelyik végponttal tér vissza
+     * @param arcBeginning belső ívszakasz kezdete
+     * @param arcEnd belső ívszakasz vége
+     * @param realPosition robot valós pozíciója
+     * @return levetített pozíció
+     */
     private Position projectPosition(Position arcBeginning, Position arcEnd, Position realPosition){
 
         // ez valami magic képlet, remélem jó
+        // http://pastebin.com/n9rUuGRh
         if (arcBeginning != null && arcEnd != null) {
             double apx = realPosition.getX() - arcBeginning.getX();
             double apy = realPosition.getY() - arcEnd.getY();
@@ -154,9 +162,12 @@ public class Robot extends TrackObjectBase {
         }
     }
 
+    /**
+     * Frissíti a megtett távolságot
+     * @param oldPos régi pozíció
+     * @return visszatér az új távolsággal
+     */
     private double calculateDistance(Position oldPos) {
-        //TODO Nem így kell számolni. Attól függ, mennyit haladt előre a belső íven...
-        //TODO Mert így az nyer, aki sokat kacsázik, nem az, aki egyenesen megy
         if (track.innerArc == null) {
             //ha nem definiáltuk a pályát, egyszerűen a megtett táv növelése
             distanceCompleted += pos.getDistance(oldPos);
@@ -169,7 +180,7 @@ public class Robot extends TrackObjectBase {
             Position oldPosInnerArcEnd = new Position();
 
 
-            //kitaláljuk melyik útrészen van (négyszögben)
+            //kitaláljuk melyik útrészen van (vagyis melyik négyszögben)
             for (int i = 0; i < track.innerArc.size(); i++){
                 points.clear();
                 if (i != (track.innerArc.size() - 1)){
@@ -179,8 +190,8 @@ public class Robot extends TrackObjectBase {
                     points.add(track.outerArc.get(i));
                 } else {
                     points.add(track.innerArc.get(i));
-                    points.add(track.innerArc.get(1));
-                    points.add(track.outerArc.get(1));
+                    points.add(track.innerArc.get(0));
+                    points.add(track.outerArc.get(0));
                     points.add(track.outerArc.get(i));
                 }
                 // megnézzük hogy a régi pozíciója hol volt, és elmentjük a belső ív két végpontját
@@ -194,20 +205,29 @@ public class Robot extends TrackObjectBase {
                     newPosInnerArcEnd = new Position(points.get(1).getX(), points.get(1).getY());
                     break;
             }
+            if (oldPosInnerArcBeginning.equals(oldPosInnerArcEnd) && oldPosInnerArcBeginning.equals(new Position(0, 0)))
+                throw new IllegalStateException("valoszinuleg nem allitodtak be az ertekek rendesen (regi position regioja)");
+
             // kiszámoljuk hogy hány régión/négyzeten mentünk át
             int numberOfTurnsPassed = track.innerArc.indexOf(newPosInnerArcBeginning) - track.innerArc.indexOf(oldPosInnerArcBeginning);
+            //ha pont mentünk egy egész kört akkor legyen pozitív a szám mindenképp
             if (numberOfTurnsPassed < 0) numberOfTurnsPassed += track.innerArc.size();
 
             Position projectedOldPosOnInnerArc = projectPosition(oldPosInnerArcBeginning, oldPosInnerArcEnd, oldPos);
             Position projectedNewPosOnInnerArc = projectPosition(newPosInnerArcBeginning, newPosInnerArcEnd, pos);
             if (numberOfTurnsPassed == 0) {
+                //egyszerű eset
                 distanceCompleted += projectedOldPosOnInnerArc.getDistance(projectedNewPosOnInnerArc);
             } else {
+                //nem egyszerű eset
                 distanceCompleted += projectedOldPosOnInnerArc.getDistance(oldPosInnerArcEnd);
                 distanceCompleted += projectedNewPosOnInnerArc.getDistance(newPosInnerArcBeginning);
 
-                for (int i = track.innerArc.indexOf(newPosInnerArcBeginning) + 1; i < track.innerArc.indexOf(oldPosInnerArcBeginning); i++) {
-                    distanceCompleted += track.innerArc.get(i).getDistance(track.innerArc.get(i + 1));
+                int index;
+                index = track.innerArc.indexOf(oldPosInnerArcBeginning) + 1;
+                for (int i = 0; i < numberOfTurnsPassed; i++, index++) {
+                    // itt mindig vesszük a size-al vett maradékát, ezzel küszöbüljük ki a befejezett körök/indexelés újrakezdéséből származó bonyodalmakat
+                    distanceCompleted += track.innerArc.get(index % track.innerArc.size()).getDistance(track.innerArc.get((index + 1) % track.innerArc.size()));
                 }
             }
             return distanceCompleted;
