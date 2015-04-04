@@ -302,26 +302,33 @@ public class GameController {
         int indent = 0;
         String prettyReport = "";
 
-        for (char c : report.toCharArray()) {
+        for (int i = 0; i < report.length(); i++) {
+            char c = report.charAt(i);
             switch (c) {
                 case '{':
                     indent++;
                     prettyReport += c + "\n";
-                    for (int i = 0; i < indent; i++) {
+                    for (int j = 0; j < indent; j++) {
                         prettyReport += "    ";
                     }
                     break;
                 case '}':
                     indent--;
                     prettyReport += "\n";
-                    for (int i = 0; i < indent; i++) {
+                    for (int j = 0; j < indent; j++) {
                         prettyReport += "    ";
                     }
-                    prettyReport += c + "\n";
+                    prettyReport += c;
+                    if (i < report.length() - 1 && report.charAt(i + 1) != ',') {
+                        prettyReport += "\n";
+                        for (int j = 0; j < indent; j++) {
+                            prettyReport += "    ";
+                        }
+                    }
                     break;
                 case ',':
                     prettyReport += c + "\n";
-                    for (int i = 0; i < indent; i++) {
+                    for (int j = 0; j < indent; j++) {
                         prettyReport += "    ";
                     }
                     break;
