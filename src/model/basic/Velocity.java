@@ -123,14 +123,14 @@ public class Velocity {
      */
     public void setDescartes(double x, double y) {
         this.magnitude = Math.sqrt(x * x + y * y);
-        //Ha az első félsíkban van, az acos  helyes eredményt ad, viszont ha a második félsíkban van, akkor
-        //cos(x) = cos(2PI-x) miatt nem a megfelelő eredményt kapjuk
-        /*if (x > 0) {
-            this.angle = Math.acos(y / this.magnitude);
+        //Ha az első félsíkban van, az atan  helyes eredményt ad, viszont ha a második félsíkban van, akkor
+
+        if (x > 0) {
+            this.angle = Math.atan(y /x);
         } else {
-            this.angle = 2 * Math.PI - Math.acos(y / this.magnitude);
-        }*/
-        this.angle = Math.atan2(y,x);   //nem is tudtam, hogy ilyen is van, ez sokkal nagyobb királyság
+            this.angle =  Math.PI + Math.atan(y / x);
+        }
+        //this.angle = Math.atan2(y,x);   //nem is tudtam, hogy ilyen is van, ez sokkal nagyobb királyság
     }
 
     /**

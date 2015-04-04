@@ -60,8 +60,7 @@ public class CleaningRobot extends TrackObjectBase {
         if ((closest.getX() - pos.getX()) < 0) {
             angle += Math.PI;
         }
-        System.out.println("legkozelebb: " + angle);
-        //TODO kiszámítja milyen irányba esik a legközelebbi akadály (belevéve, hogy nem mehet ki a pályáról)
+         //TODO kiszámítja milyen irányba esik a legközelebbi akadály (belevéve, hogy nem mehet ki a pályáról)
         //jelenleg átvág mindenen hogy a leggyorsabban odajusson, ami egyszerre megmagyarázható (szervizutakon megy) és übergáz...
         return angle;
     }
