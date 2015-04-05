@@ -168,7 +168,7 @@ public class Robot extends TrackObjectBase {
      * @return visszatér az új távolsággal
      */
     private double calculateDistance(Position oldPos) {
-        if (track.innerArc == null) {
+        if (track.outerArc == null || track.innerArc == null || track.outerArc.size() < 3 || track.innerArc.size() < 3) {
             //ha nem definiáltuk a pályát, egyszerűen a megtett táv növelése
             distanceCompleted += pos.getDistance(oldPos);
             return distanceCompleted;
