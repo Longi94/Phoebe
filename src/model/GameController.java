@@ -384,9 +384,9 @@ public class GameController {
                     if (i < report.length() - 1 && report.charAt(i + 1) != ',') {
                         if (report.charAt(i + 1) != '}') {
                             prettyReport += "\n";
-                        }
-                        for (int j = 0; j < indent; j++) {
-                            prettyReport += "    ";
+                            for (int j = 0; j < indent; j++) {
+                                prettyReport += "    ";
+                            }
                         }
                     }
                     break;
@@ -410,13 +410,13 @@ public class GameController {
      * @return
      */
     public String status() {
-        String status;
+        String status = "Status{";
         if (!gameStarted){
-            status = "Status{status:game not started,LastWinner{";
+            status += "status:game not started,LastWinner{";
             if (winner != null) {
                 status += winner.toString();
             }
-            status += "}}";
+            status += "}";
         } else {
             if (roundStarted) {
                 Robot currentRobot;
@@ -427,12 +427,14 @@ public class GameController {
                     //Random sorrend
                     currentRobot = players.get(playerOrder.get(currentPlayer));
                 }
-                status = "Status{status:game started,CurrentPlayer{" +
-                        currentRobot.toString() + "}}";
+                status += "status:game started,rounds:" + turnsLeft + ",";
+                status += "CurrentPlayer{" +
+                        currentRobot.toString() + "}";
             } else {
-                status = "Status{status:game started; round not started}";
+                status += "status:game started; round not started,rounds:" + turnsLeft;
             }
         }
+        status += "}";
         return prettyPrintReport(status);
     }
 }
