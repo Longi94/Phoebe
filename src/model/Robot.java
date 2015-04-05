@@ -116,11 +116,7 @@ public class Robot extends TrackObjectBase {
             setEnabled(true);
         }
 
-
         distanceCompleted = calculateDistance(oldPos);
-
-
-
 
         PhoebeLogger.message("track", "robotJumped", "this");
         track.robotJumped(this);
@@ -168,7 +164,7 @@ public class Robot extends TrackObjectBase {
      * @return visszatér az új távolsággal
      */
     private double calculateDistance(Position oldPos) {
-        if (track.innerArc == null) {
+        if (track.outerArc == null || track.innerArc == null || track.outerArc.size() < 3 || track.innerArc.size() < 3) {
             //ha nem definiáltuk a pályát, egyszerűen a megtett táv növelése
             distanceCompleted += pos.getDistance(oldPos);
             return distanceCompleted;
@@ -200,10 +196,10 @@ public class Robot extends TrackObjectBase {
                     oldPosInnerArcEnd = new Position(points.get(1).getX(), points.get(1).getY());
                 }
                 // megnézzük hogy az új pozíciója hol volt, és elmentjük a belső ív két végpontját
-                if (Track.insidePolygon(points, pos))
+                if (Track.insidePolygon(points, pos)) {
                     newPosInnerArcBeginning = new Position(points.get(0).getX(), points.get(0).getY());
                     newPosInnerArcEnd = new Position(points.get(1).getX(), points.get(1).getY());
-                    break;
+                }
             }
             if (oldPosInnerArcBeginning.equals(oldPosInnerArcEnd) && oldPosInnerArcBeginning.equals(new Position(0, 0)))
                 throw new IllegalStateException("valoszinuleg nem allitodtak be az ertekek rendesen (regi position regioja)");
@@ -253,12 +249,28 @@ public class Robot extends TrackObjectBase {
         PhoebeLogger.returnMessage();
     }
 
+    /**
+     *
+     * @return
+     */
     public Velocity getVel() {
         return vel;
     }
 
+    /**
+     *
+     * @param vel
+     */
     public void setVel(Velocity vel) {
         this.vel = vel;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public double getDistanceCompleted() {
+        return distanceCompleted;
     }
 
     @Override
