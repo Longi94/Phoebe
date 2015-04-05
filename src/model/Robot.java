@@ -170,7 +170,7 @@ public class Robot extends TrackObjectBase {
             distanceCompleted += pos.getDistance(oldPos);
         } else {
             //ellenőrizzük hogy a pályán van-e egyáltalán a robot
-            if (Track.insidePolygon(track.innerArc, pos) || !Track.insidePolygon(track.outerArc, pos))
+            if (Track.insidePolygon(track.innerArc, pos, false) || !Track.insidePolygon(track.outerArc, pos, false))
                 return;
 
             ArrayList<Position> points = new ArrayList<Position>(4);
@@ -194,12 +194,12 @@ public class Robot extends TrackObjectBase {
                     points.add(track.outerArc.get(i));
                 }
                 // megnézzük hogy a régi pozíciója hol volt, és elmentjük a belső ív két végpontját
-                if (Track.insidePolygon(points, oldPos,false)){
+                if (Track.insidePolygon(points, oldPos, false)){
                     oldPosInnerArcBeginning = new Position(points.get(0).getX(), points.get(0).getY());
                     oldPosInnerArcEnd = new Position(points.get(1).getX(), points.get(1).getY());
                 }
                 // megnézzük hogy az új pozíciója hol volt, és elmentjük a belső ív két végpontját
-                if (Track.insidePolygon(points, pos,false)) {
+                if (Track.insidePolygon(points, pos, false)) {
                     newPosInnerArcBeginning = new Position(points.get(0).getX(), points.get(0).getY());
                     newPosInnerArcEnd = new Position(points.get(1).getX(), points.get(1).getY());
                 }
