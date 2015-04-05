@@ -170,7 +170,7 @@ public class Robot extends TrackObjectBase {
             distanceCompleted += pos.getDistance(oldPos);
         } else {
             //ellenőrizzük hogy a pályán van-e egyáltalán a robot
-            if (Track.insidePolygon(track.innerArc, pos, false) || !Track.insidePolygon(track.outerArc, pos, false))
+            if (Track.insidePolygon(track.innerArc, pos, true) || !Track.insidePolygon(track.outerArc, pos, false))
                 return;
 
             ArrayList<Position> points = new ArrayList<Position>(4);

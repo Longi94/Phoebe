@@ -129,6 +129,103 @@ public class Track {
     }
 
     /**
+     * Megadja hogy az adott pont melyik szektorban található av pályán
+     * @param pos a pozíció
+     * @return a szektor száma (vagy -1 ha nincs a pályán a pozíció)
+     */
+    public int getSector(Position pos) {
+        for (int i = 0; i<innerArc.size();i++) {
+            int j = (i+1) % innerArc.size();
+            ArrayList<Position> sector = new ArrayList<Position>();
+            sector.add(innerArc.get(i));
+            sector.add(innerArc.get(j));
+            sector.add(outerArc.get(i));
+            sector.add(outerArc.get(j));
+            if (insidePolygon(sector,pos,false)) {
+                return i;
+            }
+        }
+        return -1; //ez biza gáz..
+    }
+
+    /**
+     * Meghatározza P1P2 és P3P4 egyenes metszéspontját
+     * @param p1
+     * @param p2
+     * @param p3
+     * @param p4
+     * @return null, ha a két egyenes párhuzamos, különben pedig a metszéspont
+     */
+    public static Position intersection(Position p1, Position p2, Position p3, Position p4){
+
+        //ha az egyik fuggoleges akkor
+        if (p1.getY() - p2.getY() == 0) {
+            //ha mind a kettő függőleges
+            if (p3.getY() - p4.getY() == 0) {
+                return null;
+            }
+            //különben egyszerűen számítható a metszéspont
+            double intX = p3.getX() + (p4.getX() - p3.getX()) * (p1.getY() - p3.getY()) / (p4.getY() - p3.getY());
+            return new Position(intX,p1.getY());
+        }
+        //ha a másik függőleges
+        if (p3.getY() - p4.getY() == 0) {
+            //itt már nem kell azzal törődni, hogy mi van ha mind a kettő függőleges
+            double intX = p1.getX() + (p2.getX() - p1.getX()) * (p3.getY() - p1.getY()) / (p2.getY() - p1.getY());
+            return new Position(intX,p3.getY());
+        }
+        //különben épeszű meredeksége van mind a két egyenesnek
+        double m1 = (p2.getY() - p1.getY()) / (p2.getX() - p1.getX());  // y = y_0 + m1 * x
+        double m2 = (p4.getY() - p3.getY())/ (p4.getX() - p3.getX());   // y = y_0' + m2 * x
+
+        if (m1 == m2) return null;      //ha páruzamosak, még mindig szív6unk
+
+        double intX = (p1.getY() - m1 * p1.getX() - p3.getY() + m2 * p3.getX()) / (m2 - m1);
+        double intY = (p1.getY() + m1 * (intX - p1.getX()));
+        return new Position(intX, intY);
+    }
+
+    /**
+     * Visszaadja a szektor hosszát
+     * @param id a szektor sorszáma
+     * @return a szektor belső ívének hossza
+     */
+    public double getSectorLength(int id) {
+        Position start = innerArc.get(id % innerArc.size());
+        Position end = innerArc.get((id+1) % innerArc.size());
+        return start.getDistance(end);
+    }
+
+    /**
+     * Visszaadja az adott pont szektorának elejétől vett távolságát
+     * @param pos a pozíció
+     * @param id a szektor sorszáma
+     * @return -1, ha nincs a szektoron belül a pont, különben az elejétől vett távolság
+     */
+    public double getSectorDistance(Position pos, int id) {
+        int i = id % innerArc.size();
+        int j = (id+1) % innerArc.size();
+        ArrayList<Position> sector = new ArrayList<Position>();
+        sector.add(innerArc.get(i));
+        sector.add(innerArc.get(j));
+        sector.add(outerArc.get(i));
+        sector.add(outerArc.get(j));
+        if (!insidePolygon(sector,pos,false)) {
+            return -1;
+        }
+        //meghatározzuk a két határvonal metszéspontját, ha létezik
+        Position is = intersection(sector.get(0),sector.get(2),sector.get(1),sector.get(3));
+        if (is == null) {
+            // ha a két határ párhuzamos volt, akkor a ponton átmenő párhuzamos metszete kell a belső ívvel
+            is = new Position(pos.getX() + (sector.get(0).getX() - sector.get(2).getX()), pos.getY() + (sector.get(0).getY() - sector.get(2).getY()));
+        }
+
+            Position vet = intersection(sector.get(0),sector.get(1),is,pos);
+            return vet.getDistance(sector.get(0));
+
+    }
+
+    /**
      * Megmondja hogy az adott pozíció a pályán van-e.
      * Egy pont a pályán van, ha külső íven belül, és a belső íven kívül, vagy a belső íven található
      *
