@@ -200,10 +200,10 @@ public class Robot extends TrackObjectBase {
                     oldPosInnerArcEnd = new Position(points.get(1).getX(), points.get(1).getY());
                 }
                 // megnézzük hogy az új pozíciója hol volt, és elmentjük a belső ív két végpontját
-                if (Track.insidePolygon(points, pos))
+                if (Track.insidePolygon(points, pos)) {
                     newPosInnerArcBeginning = new Position(points.get(0).getX(), points.get(0).getY());
                     newPosInnerArcEnd = new Position(points.get(1).getX(), points.get(1).getY());
-                    break;
+                }
             }
             if (oldPosInnerArcBeginning.equals(oldPosInnerArcEnd) && oldPosInnerArcBeginning.equals(new Position(0, 0)))
                 throw new IllegalStateException("valoszinuleg nem allitodtak be az ertekek rendesen (regi position regioja)");
