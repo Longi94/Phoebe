@@ -133,7 +133,6 @@ public class Velocity {
         } else if (x > 0) {
             this.angle = Math.atan(y /x);
         } else {
-            System.out.println(x + " d" + y);
             this.angle =  Math.PI + Math.atan(y / x);
         }
         //this.angle = Math.atan2(y,x);   //nem is tudtam, hogy ilyen is van, ez sokkal nagyobb királyság

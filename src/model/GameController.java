@@ -20,11 +20,12 @@ public class GameController {
     public static final int DEFAULT_TURN_NUMBER = 40;
     private static final int MAX_PLAYER_NUMBER = 6;
 
-    public int turnsLeft = -1;
+    private int turnsLeft = -1;
+    private int numberOfPlayers;
     private boolean deterministic = true;
     private Track track; //kezelt pálya
     private List<Robot> players; //játékosok
-    private int numberOfPlayers;
+    private Robot winner = null;
 
     private List<Integer> playerOrder;
     private List<Integer> playerOrderSorted;
@@ -172,6 +173,9 @@ public class GameController {
             }
         }
 
+        //Bezárjuk a fájlt
+        br.close();
+
         track = new Track(in, out);
 
         //Objektumok hozzácsapása a trackhez
@@ -239,6 +243,13 @@ public class GameController {
         if (!gameStarted) return;
         //TODO
         gameStarted = false;
+
+        //Nyertes meghatározása
+        for (Robot r : players) {
+            if (winner == null || winner.getDistanceCompleted() < r.getDistanceCompleted()) {
+                winner = r;
+            }
+        }
 
         PhoebeLogger.returnMessage();
     }
@@ -374,9 +385,11 @@ public class GameController {
                     prettyReport += c;
                     //Vesszőt nem rakjuk új sorba
                     if (i < report.length() - 1 && report.charAt(i + 1) != ',') {
-                        prettyReport += "\n";
-                        for (int j = 0; j < indent; j++) {
-                            prettyReport += "    ";
+                        if (report.charAt(i + 1) != '}') {
+                            prettyReport += "\n";
+                            for (int j = 0; j < indent; j++) {
+                                prettyReport += "    ";
+                            }
                         }
                     }
                     break;
@@ -393,5 +406,45 @@ public class GameController {
             }
         }
         return prettyReport + "\n";
+    }
+
+    /**
+     * Vissza ad egy stringet a controller állapotáról
+     *
+     * @return a contorller állapota
+     */
+    public String status() {
+        //A kiinduló string
+
+        String status = "Status{";
+        if (!gameStarted) {
+            //Nincs játék folyamatban
+            status += "status:game not started,LastWinner{";
+            if (winner != null) {
+                status += winner.toString();
+            }
+            status += "}";
+        } else {
+            if (roundStarted) {
+                //Kör folyamatban van, kiírjuk ki van soron
+                Robot currentRobot;
+                if (deterministic) {
+                    //Normál sorrend
+                    currentRobot = players.get(playerOrderSorted.get(currentPlayer));
+                } else {
+                    //Random sorrend
+                    currentRobot = players.get(playerOrder.get(currentPlayer));
+                }
+                status += "status:game started,rounds:" + turnsLeft + ",";
+                status += "CurrentPlayer{" + currentRobot.toString() + "}";
+            } else {
+                //Nincs kör indítva, nincs senkise soron
+                status += "status:game started; round not started,rounds:" + turnsLeft;
+            }
+        }
+        //Lezárjuk a stringet
+        status += "}";
+        //Viszadjuk a frmázott stringet
+        return prettyPrintReport(status);
     }
 }

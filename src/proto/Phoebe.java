@@ -16,8 +16,8 @@ public class Phoebe {
      */
     public static void main(String[] args) {
         //Be és kimenetek inicalizálása
-        BufferedReader br;
-        BufferedWriter bw;
+        BufferedReader br = null;
+        BufferedWriter bw = null;
         try {
             switch (args.length) {
                 case 0:
@@ -79,6 +79,13 @@ public class Phoebe {
                         bw.flush();
                     } else if (command[0].equals("quit")) {
                         running = false;
+                    } else if (command[0].equals("status")) {
+                        if (controller != null) {
+                            bw.write(controller.status());
+                        } else {
+                            bw.write(GameController.prettyPrintReport("Status{status:game not initiated}"));
+                        }
+                        bw.flush();
                     }
                 }
             }
@@ -88,6 +95,15 @@ public class Phoebe {
         } catch (IOException e) {
             //TODO do something...
             e.printStackTrace();
+        } finally {
+            try {
+                if (br != null && bw != null) {
+                    br.close();
+                    bw.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }
