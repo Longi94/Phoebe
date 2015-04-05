@@ -116,7 +116,7 @@ public class Robot extends TrackObjectBase {
             setEnabled(true);
         }
 
-        distanceCompleted = calculateDistance(oldPos);
+        calculateDistance(oldPos);
 
         PhoebeLogger.message("track", "robotJumped", "this");
         track.robotJumped(this);
@@ -135,6 +135,8 @@ public class Robot extends TrackObjectBase {
      * @return levetített pozíció
      */
     private Position projectPosition(Position arcBeginning, Position arcEnd, Position realPosition){
+
+        //TODO szar az egész
 
         // ez valami magic képlet, remélem jó
         // http://pastebin.com/n9rUuGRh
@@ -161,20 +163,21 @@ public class Robot extends TrackObjectBase {
     /**
      * Frissíti a megtett távolságot
      * @param oldPos régi pozíció
-     * @return visszatér az új távolsággal
      */
-    private double calculateDistance(Position oldPos) {
+    private void calculateDistance(Position oldPos) {
         if (track.outerArc == null || track.innerArc == null || track.outerArc.size() < 3 || track.innerArc.size() < 3) {
             //ha nem definiáltuk a pályát, egyszerűen a megtett táv növelése
             distanceCompleted += pos.getDistance(oldPos);
-            return distanceCompleted;
         } else {
+            //ellenőrizzük hogy a pályán van-e egyáltalán a robot
+            if (Track.insidePolygon(track.innerArc, pos) || !Track.insidePolygon(track.outerArc, pos))
+                return;
+
             ArrayList<Position> points = new ArrayList<Position>(4);
             Position newPosInnerArcBeginning = new Position();
             Position newPosInnerArcEnd = new Position();
             Position oldPosInnerArcBeginning = new Position();
             Position oldPosInnerArcEnd = new Position();
-
 
             //kitaláljuk melyik útrészen van (vagyis melyik négyszögben)
             for (int i = 0; i < track.innerArc.size(); i++){
@@ -201,6 +204,7 @@ public class Robot extends TrackObjectBase {
                     newPosInnerArcEnd = new Position(points.get(1).getX(), points.get(1).getY());
                 }
             }
+
             if (oldPosInnerArcBeginning.equals(oldPosInnerArcEnd) && oldPosInnerArcBeginning.equals(new Position(0, 0)))
                 throw new IllegalStateException("valoszinuleg nem allitodtak be az ertekek rendesen (regi position regioja)");
 
@@ -226,7 +230,6 @@ public class Robot extends TrackObjectBase {
                     distanceCompleted += track.innerArc.get(index % track.innerArc.size()).getDistance(track.innerArc.get((index + 1) % track.innerArc.size()));
                 }
             }
-            return distanceCompleted;
         }
     }
 
