@@ -4,8 +4,6 @@ import model.basic.Position;
 import model.basic.Velocity;
 import skeleton.PhoebeLogger;
 
-import java.util.ArrayList;
-
 /**
  * Robotot megvalósító osztály
  *
@@ -128,40 +126,8 @@ public class Robot extends TrackObjectBase {
     }
 
     /**
-     * Levetíti a realPosition paramétert a belső törtvonalra (arcBeginning, arcEnd), ha nem lehet rávetíteni akkor a valamelyik végponttal tér vissza
-     * @param arcBeginning belső ívszakasz kezdete
-     * @param arcEnd belső ívszakasz vége
-     * @param realPosition robot valós pozíciója
-     * @return levetített pozíció
-     */
-    private Position projectPosition(Position arcBeginning, Position arcEnd, Position realPosition){
-
-        //TODO szar az egész
-
-        // ez valami magic képlet, remélem jó
-        // http://pastebin.com/n9rUuGRh
-        if (arcBeginning != null && arcEnd != null) {
-            double apx = realPosition.getX() - arcBeginning.getX();
-            double apy = realPosition.getY() - arcEnd.getY();
-            double abx = arcEnd.getX() - arcBeginning.getX();
-            double aby = arcEnd.getY() - arcBeginning.getY();
-
-            double ab2 = abx * abx + aby * aby;
-            double ap_ab = apx * abx + apy * aby;
-            double t = ap_ab / ab2;
-            if (t < 0) {
-                t = 0;
-            } else if (t > 1) {
-                t = 1;
-            }
-            return new Position(arcBeginning.getX() + abx * t, arcEnd.getY() + aby * t);
-        } else {
-            throw new IllegalStateException("nem sikerult kitalalni hogy a palya melyik reszen vagyunk...");
-        }
-    }
-
-    /**
      * Frissíti a megtett távolságot
+     *
      * @param oldPos régi pozíció
      */
     private void calculateDistance(Position oldPos) {
@@ -173,92 +139,38 @@ public class Robot extends TrackObjectBase {
             if (Track.insidePolygon(track.innerArc, pos, true) || !Track.insidePolygon(track.outerArc, pos, false))
                 return;
 
-            int oldPosSector = track.getSector(oldPos);
-            int newPosSector = track.getSector(pos);
-            distanceCompleted -= track.getSectorDistance(oldPos,oldPosSector);
+            int oldPosSector = track.getSector(oldPos);                             //kitaláljuk melyik útrészen volt (vagyis melyik négyszögben)
+            int newPosSector = track.getSector(pos);                                //kitaláljuk melyik útrészen van (vagyis melyik négyszögben)
+            //levonjuk, amit az előző szektorban pluszba hozzáadtuk
+            distanceCompleted -= track.getSectorDistance(oldPos, oldPosSector);
+            //nem egyszerű esetben teljes szektorokat kell hozzáadni
             if (oldPosSector != newPosSector) {
                 int siz = track.innerArc.size();
+                // kiszámoljuk hogy hány régión/négyzeten mentünk át
                 int sectorsJumped = newPosSector - oldPosSector;
                 if (sectorsJumped < 0) {
+                    //pl ha az utolsóból az elsőbe ugrottunk, akkor is csak egyetlen egy szektort haladtunk
                     sectorsJumped += siz;
                 }
-                if (sectorsJumped > siz/2) {
-                    for (int i = oldPosSector; i!= newPosSector;) {
+                if (sectorsJumped > siz / 2) {
+                    for (int i = oldPosSector; i != newPosSector; ) {
+                        //azért az elejére kell, mert oldPosSector hosszát nem kell levonni, de a newPosSectorét igen
                         i--;
-                        if (i<0) i += siz;  //ha átcsordulnánk
-                        System.out.println(i);
-
+                        if (i < 0) i += siz;  //ha átcsordulnánk
+                        // a teljes szektor hosszát levonjuk
                         distanceCompleted -= track.getSectorLength(i);
-                        System.out.println(distanceCompleted);
                     }
                 } else {
-                    for (int i = oldPosSector; i!= newPosSector; i = (i+1) %siz) {
+                    for (int i = oldPosSector; i != newPosSector; i = (i + 1) % siz) {
+                        //a teljes szektor hosszát hozzáadjuk
                         distanceCompleted += track.getSectorLength(i);
                     }
                 }
             }
 
+            //a szektorban ahol éppen vagyunk mennyit haladtunk
             distanceCompleted += track.getSectorDistance(pos, newPosSector);
 
-            /*
-            ArrayList<Position> points = new ArrayList<Position>(4);
-            Position newPosInnerArcBeginning = new Position();
-            Position newPosInnerArcEnd = new Position();
-            Position oldPosInnerArcBeginning = new Position();
-            Position oldPosInnerArcEnd = new Position();
-
-            //kitaláljuk melyik útrészen van (vagyis melyik négyszögben)
-            for (int i = 0; i < track.innerArc.size(); i++){
-                points.clear();
-                if (i != (track.innerArc.size() - 1)){
-                    points.add(track.innerArc.get(i));
-                    points.add(track.innerArc.get(i + 1));
-                    points.add(track.outerArc.get(i + 1));
-                    points.add(track.outerArc.get(i));
-                } else {
-                    points.add(track.innerArc.get(i));
-                    points.add(track.innerArc.get(0));
-                    points.add(track.outerArc.get(0));
-                    points.add(track.outerArc.get(i));
-                }
-                // megnézzük hogy a régi pozíciója hol volt, és elmentjük a belső ív két végpontját
-                if (Track.insidePolygon(points, oldPos, false)){
-                    oldPosInnerArcBeginning = new Position(points.get(0).getX(), points.get(0).getY());
-                    oldPosInnerArcEnd = new Position(points.get(1).getX(), points.get(1).getY());
-                }
-                // megnézzük hogy az új pozíciója hol volt, és elmentjük a belső ív két végpontját
-                if (Track.insidePolygon(points, pos, false)) {
-                    newPosInnerArcBeginning = new Position(points.get(0).getX(), points.get(0).getY());
-                    newPosInnerArcEnd = new Position(points.get(1).getX(), points.get(1).getY());
-                }
-            }
-
-            if (oldPosInnerArcBeginning.equals(oldPosInnerArcEnd) && oldPosInnerArcBeginning.equals(new Position(0, 0)))
-                throw new IllegalStateException("valoszinuleg nem allitodtak be az ertekek rendesen (regi position regioja)");
-
-            // kiszámoljuk hogy hány régión/négyzeten mentünk át
-            int numberOfTurnsPassed = track.innerArc.indexOf(newPosInnerArcBeginning) - track.innerArc.indexOf(oldPosInnerArcBeginning);
-            //ha pont mentünk egy egész kört akkor legyen pozitív a szám mindenképp
-            if (numberOfTurnsPassed < 0) numberOfTurnsPassed += track.innerArc.size();
-
-            Position projectedOldPosOnInnerArc = projectPosition(oldPosInnerArcBeginning, oldPosInnerArcEnd, oldPos);
-            Position projectedNewPosOnInnerArc = projectPosition(newPosInnerArcBeginning, newPosInnerArcEnd, pos);
-            if (numberOfTurnsPassed == 0) {
-                //egyszerű eset
-                distanceCompleted += projectedOldPosOnInnerArc.getDistance(projectedNewPosOnInnerArc);
-            } else {
-                //nem egyszerű eset
-                distanceCompleted += projectedOldPosOnInnerArc.getDistance(oldPosInnerArcEnd);
-                distanceCompleted += projectedNewPosOnInnerArc.getDistance(newPosInnerArcBeginning);
-
-                int index;
-                index = track.innerArc.indexOf(oldPosInnerArcBeginning) + 1;
-                for (int i = 0; i < numberOfTurnsPassed; i++, index++) {
-                    // itt mindig vesszük a size-al vett maradékát, ezzel küszöbüljük ki a befejezett körök/indexelés újrakezdéséből származó bonyodalmakat
-                    distanceCompleted += track.innerArc.get(index % track.innerArc.size()).getDistance(track.innerArc.get((index + 1) % track.innerArc.size()));
-                }
-            }
-            */
         }
     }
 
@@ -282,7 +194,6 @@ public class Robot extends TrackObjectBase {
     }
 
     /**
-     *
      * @return
      */
     public Velocity getVel() {
@@ -290,7 +201,6 @@ public class Robot extends TrackObjectBase {
     }
 
     /**
-     *
      * @param vel
      */
     public void setVel(Velocity vel) {
@@ -298,7 +208,6 @@ public class Robot extends TrackObjectBase {
     }
 
     /**
-     *
      * @return
      */
     public double getDistanceCompleted() {
@@ -355,7 +264,7 @@ public class Robot extends TrackObjectBase {
             PhoebeLogger.create("Oil", "oil");
             PhoebeLogger.returnMessage();
             PhoebeLogger.message("track", "addObject", "oil");
-            Oil o= new Oil(new Position(pos.getX(),pos.getY()));
+            Oil o = new Oil(new Position(pos.getX(), pos.getY()));
             track.addObject(o);
         } else {
             throw new IllegalStateException("Elfogyott az olaj");
@@ -435,13 +344,13 @@ public class Robot extends TrackObjectBase {
     public String toString() {
         return "Robot{" +
                 super.toString() + "," +
-                    "distanceCompleted:" + (double) Math.round(100 * distanceCompleted) / 100 + "," +
-                    vel.toString() + "," +
-                    "oilAmount:" + oilAmount + "," +
-                    "puttyAmount:" + puttyAmount + "," +
-                    "id:" + id + "," +
-                    //"name: " + name  +  "\n" + //basszus, ez kimaradt
-                    "enabled:" + enabled +
+                "distanceCompleted:" + (double) Math.round(100 * distanceCompleted) / 100 + "," +
+                vel.toString() + "," +
+                "oilAmount:" + oilAmount + "," +
+                "puttyAmount:" + puttyAmount + "," +
+                "id:" + id + "," +
+                //"name: " + name  +  "\n" + //basszus, ez kimaradt
+                "enabled:" + enabled +
                 "}";
     }
 }
