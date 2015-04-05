@@ -172,6 +172,9 @@ public class GameController {
             }
         }
 
+        //Bezárjuk a fájlt
+        br.close();
+
         track = new Track(in, out);
 
         //Objektumok hozzácsapása a trackhez

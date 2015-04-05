@@ -16,8 +16,8 @@ public class Phoebe {
      */
     public static void main(String[] args) {
         //Be és kimenetek inicalizálása
-        BufferedReader br;
-        BufferedWriter bw;
+        BufferedReader br = null;
+        BufferedWriter bw = null;
         try {
             switch (args.length) {
                 case 0:
@@ -88,6 +88,15 @@ public class Phoebe {
         } catch (IOException e) {
             //TODO do something...
             e.printStackTrace();
+        } finally {
+            try {
+                if (br != null && bw != null) {
+                    br.close();
+                    bw.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }
