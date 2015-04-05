@@ -182,18 +182,22 @@ public class Robot extends TrackObjectBase {
                 if (sectorsJumped < 0) {
                     sectorsJumped += siz;
                 }
-                if (sectorsJumped > siz) {
-                    for (int i = oldPosSector-1; i!= newPosSector; i--) {
+                if (sectorsJumped > siz/2) {
+                    for (int i = oldPosSector; i!= newPosSector;) {
+                        i--;
                         if (i<0) i += siz;  //ha átcsordulnánk
+                        System.out.println(i);
+
                         distanceCompleted -= track.getSectorLength(i);
+                        System.out.println(distanceCompleted);
                     }
-                    distanceCompleted -= track.getSectorLength(newPosSector);
                 } else {
                     for (int i = oldPosSector; i!= newPosSector; i = (i+1) %siz) {
                         distanceCompleted += track.getSectorLength(i);
                     }
                 }
             }
+
             distanceCompleted += track.getSectorDistance(pos, newPosSector);
 
             /*

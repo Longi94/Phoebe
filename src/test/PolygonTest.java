@@ -38,9 +38,9 @@ public class PolygonTest {
     }
     @Test
     public void testIntersection() {
-        Position p1 = new Position(-1,-1);
-        Position p2 = new Position(1,2);
-        Position p3 = new Position(2,3);
+        Position p1 = new Position(3,2);
+        Position p2 = new Position(3,0);
+        Position p3 = new Position(5,2);
         Position p4 = new Position(4,0);
         Position inter = Track.intersection(p1,p2,p3,p4);
         System.out.println(inter.getX() + "  " + inter.getY());

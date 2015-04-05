@@ -87,7 +87,7 @@ public class Track {
      */
     public static boolean isInLine(Position pos, Position start, Position end) {
         if (start.getY() == end.getY()) {
-            return ((pos.getX() - start.getX()) * (pos.getX() - end.getX())) <= 0;  //0-nál még rajta van a vonalon
+            return start.getY() == pos.getY() && (((pos.getX() - start.getX()) * (pos.getX() - end.getX())) <= 0);  //0-nál még rajta van a vonalon
 
         }
         double m = (end.getX() - start.getX()) / (end.getY() - start.getY());
@@ -139,8 +139,8 @@ public class Track {
             ArrayList<Position> sector = new ArrayList<Position>();
             sector.add(innerArc.get(i));
             sector.add(innerArc.get(j));
-            sector.add(outerArc.get(i));
             sector.add(outerArc.get(j));
+            sector.add(outerArc.get(i));
             if (insidePolygon(sector,pos,false)) {
                 return i;
             }
@@ -175,13 +175,19 @@ public class Track {
             return new Position(intX,p3.getY());
         }
         //különben épeszű meredeksége van mind a két egyenesnek
-        double m1 = (p2.getY() - p1.getY()) / (p2.getX() - p1.getX());  // y = y_0 + m1 * x
-        double m2 = (p4.getY() - p3.getY())/ (p4.getX() - p3.getX());   // y = y_0' + m2 * x
+        double m1 = (p2.getX() - p1.getX()) / (p2.getY() - p1.getY());
+        double m2 = (p4.getX() - p3.getX())/ (p4.getY() - p3.getY());
 
         if (m1 == m2) return null;      //ha páruzamosak, még mindig szív6unk
 
-        double intX = (p1.getY() - m1 * p1.getX() - p3.getY() + m2 * p3.getX()) / (m2 - m1);
-        double intY = (p1.getY() + m1 * (intX - p1.getX()));
+        /*try {
+            throw new Exception(m1 + " es" + m2);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }*/
+
+        double intY = (p1.getX() - m1 * p1.getY() - p3.getX() + m2 * p3.getY()) / (m2 - m1);
+        double intX = (p1.getX() + m1 * (intY - p1.getY()));
         return new Position(intX, intY);
     }
 
@@ -208,20 +214,19 @@ public class Track {
         ArrayList<Position> sector = new ArrayList<Position>();
         sector.add(innerArc.get(i));
         sector.add(innerArc.get(j));
-        sector.add(outerArc.get(i));
         sector.add(outerArc.get(j));
+        sector.add(outerArc.get(i));
         if (!insidePolygon(sector,pos,false)) {
             return -1;
         }
         //meghatározzuk a két határvonal metszéspontját, ha létezik
-        Position is = intersection(sector.get(0),sector.get(2),sector.get(1),sector.get(3));
+        Position is = intersection(sector.get(0),sector.get(3),sector.get(1),sector.get(2));
         if (is == null) {
             // ha a két határ párhuzamos volt, akkor a ponton átmenő párhuzamos metszete kell a belső ívvel
-            is = new Position(pos.getX() + (sector.get(0).getX() - sector.get(2).getX()), pos.getY() + (sector.get(0).getY() - sector.get(2).getY()));
+            is = new Position(pos.getX() + (sector.get(0).getX() - sector.get(3).getX()), pos.getY() + (sector.get(0).getY() - sector.get(3).getY()));
         }
-
-            Position vet = intersection(sector.get(0),sector.get(1),is,pos);
-            return vet.getDistance(sector.get(0));
+        Position vet = intersection(sector.get(0),sector.get(1),is,pos);
+        return vet.getDistance(sector.get(0));
 
     }
 

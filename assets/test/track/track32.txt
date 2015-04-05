@@ -1,0 +1,11 @@
+inner 3 2
+inner 5 2
+inner 5 4
+inner 2 4
+inner 2 2
+outer 3 0
+outer 7 0
+outer 7 6
+outer 0 6
+outer 0 0
+player r2d2 3.1 1 0 0
