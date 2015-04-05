@@ -1,0 +1,6 @@
+loadtrack track31.txt
+newround
+jump 90
+newround
+status
+quit
