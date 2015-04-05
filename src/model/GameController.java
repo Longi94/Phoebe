@@ -406,12 +406,16 @@ public class GameController {
     }
 
     /**
+     * Vissza ad egy stringet a controller állapotáról
      *
-     * @return
+     * @return a contorller állapota
      */
     public String status() {
+        //A kiinduló string
+
         String status = "Status{";
-        if (!gameStarted){
+        if (!gameStarted) {
+            //Nincs játék folyamatban
             status += "status:game not started,LastWinner{";
             if (winner != null) {
                 status += winner.toString();
@@ -419,6 +423,7 @@ public class GameController {
             status += "}";
         } else {
             if (roundStarted) {
+                //Kör folyamatban van, kiírjuk ki van soron
                 Robot currentRobot;
                 if (deterministic) {
                     //Normál sorrend
@@ -428,13 +433,15 @@ public class GameController {
                     currentRobot = players.get(playerOrder.get(currentPlayer));
                 }
                 status += "status:game started,rounds:" + turnsLeft + ",";
-                status += "CurrentPlayer{" +
-                        currentRobot.toString() + "}";
+                status += "CurrentPlayer{" + currentRobot.toString() + "}";
             } else {
+                //Nincs kör indítva, nincs senkise soron
                 status += "status:game started; round not started,rounds:" + turnsLeft;
             }
         }
+        //Lezárjuk a stringet
         status += "}";
+        //Viszadjuk a frmázott stringet
         return prettyPrintReport(status);
     }
 }
