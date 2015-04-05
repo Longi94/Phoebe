@@ -136,6 +136,8 @@ public class Robot extends TrackObjectBase {
      */
     private Position projectPosition(Position arcBeginning, Position arcEnd, Position realPosition){
 
+        //TODO szar az egész
+
         // ez valami magic képlet, remélem jó
         // http://pastebin.com/n9rUuGRh
         if (arcBeginning != null && arcEnd != null) {
@@ -168,7 +170,7 @@ public class Robot extends TrackObjectBase {
             distanceCompleted += pos.getDistance(oldPos);
         } else {
             //ellenőrizzük hogy a pályán van-e egyáltalán a robot
-            if (Track.insidePolygon(track.innerArc, oldPos) || !Track.insidePolygon(track.outerArc, oldPos))
+            if (Track.insidePolygon(track.innerArc, pos) || !Track.insidePolygon(track.outerArc, pos))
                 return;
 
             ArrayList<Position> points = new ArrayList<Position>(4);
