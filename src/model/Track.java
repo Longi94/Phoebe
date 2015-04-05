@@ -51,8 +51,8 @@ public class Track {
      * Megmutatja, hogy egy adott pont a poligon belsejében van-e.
      * (Ray casting algorithm) -> http://stackoverflow.com/questions/11716268/point-in-polygon-algorithm
      *
-     * @param arc a poligon pontjainak listája
-     * @param pos a pont, aminek státuszát teszteljük
+     * @param arc  a poligon pontjainak listája
+     * @param pos  a pont, aminek státuszát teszteljük
      * @param open nyílt-e az intervallum. A nyílt intervallum nem tartalmazza a határvonalait
      * @return igaz, ha pont a poligon területén belül van, különben hamis
      */
@@ -66,26 +66,93 @@ public class Track {
                     (posX < (arc.get(j).getX()-arc.get(i).getX()) *
                             (posY-arc.get(i).getY()) / (arc.get(j).getY()-arc.get(i).getY()) + arc.get(i).getX()) )
             */
-            if (isInLine(pos,arc.get(i),arc.get(j))) return !open;
+            //ha a pont rajta csücsül a vonalon, akkor nyílt alakzat esetén tuti nincs benne, zárt esetén biztos benne van
+            if (isInLine(pos, arc.get(i), arc.get(j))) return !open;
             double iX = arc.get(i).getX();
             double iY = arc.get(i).getY();
             double jX = arc.get(j).getX();
             double jY = arc.get(j).getY();
             if (((iY > posY) != (jY > posY)) && (posX < (jX - iX) * (posY - iY) / (jY - iY) + iX))
-                c = !c;
+                c = !c; //ha eddig benn voltunk, most kikerülünk, ha kinn voltunk bekerülünk
         }
         return c;
 
     }
 
     /**
+     * Megmutatja, hogy egy adott pont rajta van-e egy szakaszon
+     *
+     * @param pos   a pont
+     * @param start a szakasz egyik vége
+     * @param end   a szakasz másik vége
+     * @return true ha rajta van, különben false
+     */
+    public static boolean isInLine(Position pos, Position start, Position end) {
+        // ha vízszintes, akkor akkor van rajta, ha y egyezik, és x a két határ közé esik
+        if (start.getY() == end.getY()) {
+            return start.getY() == pos.getY() && (((pos.getX() - start.getX()) * (pos.getX() - end.getX())) <= 0);  //0-nál még rajta van a vonalon
+
+        }
+        //különben van meredekség
+        double m = (end.getX() - start.getX()) / (end.getY() - start.getY());
+        //és kérdés hogy a pont kiegyenlíti-e az egyenletet
+        return (pos.getX() == start.getX() + m * (pos.getY() - start.getY())) && (((pos.getX() - start.getX()) * (pos.getX() - end.getX())) <= 0);
+        //TODO double egyenlőség vizsgálat nem éppen korrekt
+    }
+
+    /**
+     * Meghatározza P1P2 és P3P4 egyenesek metszéspontját
+     *
+     * @param p1
+     * @param p2
+     * @param p3
+     * @param p4
+     * @return null, ha a két egyenes párhuzamos, különben pedig a metszéspont
+     */
+    public static Position intersection(Position p1, Position p2, Position p3, Position p4) {
+
+        //ha az egyik fuggoleges akkor
+        if (p1.getY() - p2.getY() == 0) {
+            //ha mind a kettő függőleges
+            if (p3.getY() - p4.getY() == 0) {
+                return null;
+            }
+            //különben egyszerűen számítható a metszéspont
+            double intX = p3.getX() + (p4.getX() - p3.getX()) * (p1.getY() - p3.getY()) / (p4.getY() - p3.getY());
+            return new Position(intX, p1.getY());
+        }
+        //ha a másik függőleges
+        if (p3.getY() - p4.getY() == 0) {
+            //itt már nem kell azzal törődni, hogy mi van ha mind a kettő függőleges
+            double intX = p1.getX() + (p2.getX() - p1.getX()) * (p3.getY() - p1.getY()) / (p2.getY() - p1.getY());
+            return new Position(intX, p3.getY());
+        }
+        //különben épeszű meredeksége van mind a két egyenesnek
+        double m1 = (p2.getX() - p1.getX()) / (p2.getY() - p1.getY());
+        double m2 = (p4.getX() - p3.getX()) / (p4.getY() - p3.getY());
+
+        if (m1 == m2) return null;      //ha páruzamosak, még mindig szív6unk
+
+        /*try { // <-- How to make JUnit System.out.println() ;)
+            throw new Exception(m1 + " es" + m2);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }*/
+
+        //egyszerű (???) mertszéspontszámolás
+        double intY = (p1.getX() - m1 * p1.getY() - p3.getX() + m2 * p3.getY()) / (m2 - m1);
+        double intX = (p1.getX() + m1 * (intY - p1.getY()));
+        return new Position(intX, intY);
+    }
+
+    /**
      * Kiszámolja a két pont között ugrással megtett távolság mekkora távolságnak felel meg
      *
-     * @param pos az aktuális pozíció
+     * @param pos    az aktuális pozíció
      * @param oldPos régi pozíció
      * @return a megtett távolság változása
      */
-    public double calculateDistance(Position pos,Position oldPos) {
+    public double calculateDistance(Position pos, Position oldPos) {
         double distanceChange = 0;
         if (outerArc == null || innerArc == null || outerArc.size() < 3 || innerArc.size() < 3) {
             //ha nem definiáltuk a pályát, egyszerűen a megtett táv növelése
@@ -132,23 +199,6 @@ public class Track {
     }
 
     /**
-     * Megmutatja, hogy egy adott pont rajta van-e egy szakaszon
-     * @param pos a pont
-     * @param start a szakasz egyik vége
-     * @param end a szakasz másik vége
-     * @return true ha rajta van, különben false
-     */
-    public static boolean isInLine(Position pos, Position start, Position end) {
-        if (start.getY() == end.getY()) {
-            return start.getY() == pos.getY() && (((pos.getX() - start.getX()) * (pos.getX() - end.getX())) <= 0);  //0-nál még rajta van a vonalon
-
-        }
-        double m = (end.getX() - start.getX()) / (end.getY() - start.getY());
-        return (pos.getX() == start.getX() + m * (pos.getY() - start.getY())) && (((pos.getX() - start.getX()) * (pos.getX() - end.getX())) <= 0);
-
-    }
-
-    /**
      * Getter a pályán található elemekhez
      *
      * @return az elemek List-je
@@ -183,102 +233,68 @@ public class Track {
 
     /**
      * Megadja hogy az adott pont melyik szektorban található av pályán
+     *
      * @param pos a pozíció
      * @return a szektor száma (vagy -1 ha nincs a pályán a pozíció)
      */
     public int getSector(Position pos) {
-        for (int i = 0; i<innerArc.size();i++) {
-            int j = (i+1) % innerArc.size();
+        for (int i = 0; i < innerArc.size(); i++) {
+            int j = (i + 1) % innerArc.size();
+
+            //készítünk a szektornak egy csúcsokból álló tömböt. Fontos milyen sorrendben tesszük bele az elemeket.
             ArrayList<Position> sector = new ArrayList<Position>();
             sector.add(innerArc.get(i));
             sector.add(innerArc.get(j));
             sector.add(outerArc.get(j));
             sector.add(outerArc.get(i));
-            if (insidePolygon(sector,pos,false)) {
+            if (insidePolygon(sector, pos, false)) {
+                //ha belül van visszatérünk egyel
                 return i;
             }
         }
-        return -1; //ez biza gáz..
-    }
-
-    /**
-     * Meghatározza P1P2 és P3P4 egyenes metszéspontját
-     * @param p1
-     * @param p2
-     * @param p3
-     * @param p4
-     * @return null, ha a két egyenes párhuzamos, különben pedig a metszéspont
-     */
-    public static Position intersection(Position p1, Position p2, Position p3, Position p4){
-
-        //ha az egyik fuggoleges akkor
-        if (p1.getY() - p2.getY() == 0) {
-            //ha mind a kettő függőleges
-            if (p3.getY() - p4.getY() == 0) {
-                return null;
-            }
-            //különben egyszerűen számítható a metszéspont
-            double intX = p3.getX() + (p4.getX() - p3.getX()) * (p1.getY() - p3.getY()) / (p4.getY() - p3.getY());
-            return new Position(intX,p1.getY());
-        }
-        //ha a másik függőleges
-        if (p3.getY() - p4.getY() == 0) {
-            //itt már nem kell azzal törődni, hogy mi van ha mind a kettő függőleges
-            double intX = p1.getX() + (p2.getX() - p1.getX()) * (p3.getY() - p1.getY()) / (p2.getY() - p1.getY());
-            return new Position(intX,p3.getY());
-        }
-        //különben épeszű meredeksége van mind a két egyenesnek
-        double m1 = (p2.getX() - p1.getX()) / (p2.getY() - p1.getY());
-        double m2 = (p4.getX() - p3.getX())/ (p4.getY() - p3.getY());
-
-        if (m1 == m2) return null;      //ha páruzamosak, még mindig szív6unk
-
-        /*try {
-            throw new Exception(m1 + " es" + m2);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }*/
-
-        double intY = (p1.getX() - m1 * p1.getY() - p3.getX() + m2 * p3.getY()) / (m2 - m1);
-        double intX = (p1.getX() + m1 * (intY - p1.getY()));
-        return new Position(intX, intY);
+        return -1; //TODO jobb lenne hibát dobni
     }
 
     /**
      * Visszaadja a szektor hosszát
+     *
      * @param id a szektor sorszáma
      * @return a szektor belső ívének hossza
      */
     public double getSectorLength(int id) {
+        //konvenció szerint egy szektor hossza a belső ív hossza
         Position start = innerArc.get(id % innerArc.size());
-        Position end = innerArc.get((id+1) % innerArc.size());
+        Position end = innerArc.get((id + 1) % innerArc.size());
         return start.getDistance(end);
     }
 
     /**
      * Visszaadja az adott pont szektorának elejétől vett távolságát
+     *
      * @param pos a pozíció
-     * @param id a szektor sorszáma
+     * @param id  a szektor sorszáma
      * @return -1, ha nincs a szektoron belül a pont, különben az elejétől vett távolság
      */
     public double getSectorDistance(Position pos, int id) {
         int i = id % innerArc.size();
-        int j = (id+1) % innerArc.size();
+        int j = (id + 1) % innerArc.size();
         ArrayList<Position> sector = new ArrayList<Position>();
         sector.add(innerArc.get(i));
         sector.add(innerArc.get(j));
         sector.add(outerArc.get(j));
         sector.add(outerArc.get(i));
-        if (!insidePolygon(sector,pos,false)) {
-            return -1;
+        if (!insidePolygon(sector, pos, false)) {
+            return -1;  //TODO szintén hiba kéne hogy dobódjon
         }
         //meghatározzuk a két határvonal metszéspontját, ha létezik
-        Position is = intersection(sector.get(0),sector.get(3),sector.get(1),sector.get(2));
+        Position is = intersection(sector.get(0), sector.get(3), sector.get(1), sector.get(2));
         if (is == null) {
-            // ha a két határ párhuzamos volt, akkor a ponton átmenő párhuzamos metszete kell a belső ívvel
+            // ha a két határ párhuzamos volt, akkor a ponton átmenő párhuzamos metszete kell a belső ívvel (a fókusz a végtelen távoli pont)
             is = new Position(pos.getX() + (sector.get(0).getX() - sector.get(3).getX()), pos.getY() + (sector.get(0).getY() - sector.get(3).getY()));
         }
-        Position vet = intersection(sector.get(0),sector.get(1),is,pos);
+        //is-t fókuszontnak használva levetítjük a pontot az egyenesre
+        Position vet = intersection(sector.get(0), sector.get(1), is, pos);
+        //végül a vetületet megnézzük a szektor elejétől
         return vet.getDistance(sector.get(0));
 
     }
