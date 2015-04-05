@@ -173,6 +173,30 @@ public class Robot extends TrackObjectBase {
             if (Track.insidePolygon(track.innerArc, pos, true) || !Track.insidePolygon(track.outerArc, pos, false))
                 return;
 
+            int oldPosSector = track.getSector(oldPos);
+            int newPosSector = track.getSector(pos);
+            distanceCompleted -= track.getSectorDistance(oldPos,oldPosSector);
+            if (oldPosSector != newPosSector) {
+                int siz = track.innerArc.size();
+                int sectorsJumped = newPosSector - oldPosSector;
+                if (sectorsJumped < 0) {
+                    sectorsJumped += siz;
+                }
+                if (sectorsJumped > siz) {
+                    for (int i = oldPosSector-1; i!= newPosSector; i--) {
+                        if (i<0) i += siz;  //ha átcsordulnánk
+                        distanceCompleted -= track.getSectorLength(i);
+                    }
+                    distanceCompleted -= track.getSectorLength(newPosSector);
+                } else {
+                    for (int i = oldPosSector; i!= newPosSector; i = (i+1) %siz) {
+                        distanceCompleted += track.getSectorLength(i);
+                    }
+                }
+            }
+            distanceCompleted += track.getSectorDistance(pos, newPosSector);
+
+            /*
             ArrayList<Position> points = new ArrayList<Position>(4);
             Position newPosInnerArcBeginning = new Position();
             Position newPosInnerArcEnd = new Position();
@@ -230,6 +254,7 @@ public class Robot extends TrackObjectBase {
                     distanceCompleted += track.innerArc.get(index % track.innerArc.size()).getDistance(track.innerArc.get((index + 1) % track.innerArc.size()));
                 }
             }
+            */
         }
     }
 
