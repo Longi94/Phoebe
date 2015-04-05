@@ -394,4 +394,12 @@ public class GameController {
         }
         return prettyReport + "\n";
     }
+
+    /**
+     *
+     * @return
+     */
+    public String status() {
+        return null;
+    }
 }

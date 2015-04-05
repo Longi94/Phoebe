@@ -79,6 +79,9 @@ public class Phoebe {
                         bw.flush();
                     } else if (command[0].equals("quit")) {
                         running = false;
+                    } else if (command[0].equals("status")) {
+                        bw.write(controller.status());
+                        bw.flush();
                     }
                 }
             }
