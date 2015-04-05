@@ -20,11 +20,12 @@ public class GameController {
     public static final int DEFAULT_TURN_NUMBER = 40;
     private static final int MAX_PLAYER_NUMBER = 6;
 
-    public int turnsLeft = -1;
+    private int turnsLeft = -1;
+    private int numberOfPlayers;
     private boolean deterministic = true;
     private Track track; //kezelt pálya
     private List<Robot> players; //játékosok
-    private int numberOfPlayers;
+    private Robot winner = null;
 
     private List<Integer> playerOrder;
     private List<Integer> playerOrderSorted;
@@ -239,6 +240,13 @@ public class GameController {
         if (!gameStarted) return;
         //TODO
         gameStarted = false;
+
+        //Nyertes meghatározása
+        for (Robot r : players) {
+            if (winner == null || winner.getDistanceCompleted() < r.getDistanceCompleted()) {
+                winner = r;
+            }
+        }
 
         PhoebeLogger.returnMessage();
     }

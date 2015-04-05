@@ -253,12 +253,28 @@ public class Robot extends TrackObjectBase {
         PhoebeLogger.returnMessage();
     }
 
+    /**
+     *
+     * @return
+     */
     public Velocity getVel() {
         return vel;
     }
 
+    /**
+     *
+     * @param vel
+     */
     public void setVel(Velocity vel) {
         this.vel = vel;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public double getDistanceCompleted() {
+        return distanceCompleted;
     }
 
     @Override
