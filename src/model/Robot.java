@@ -114,7 +114,7 @@ public class Robot extends TrackObjectBase {
             setEnabled(true);
         }
 
-        calculateDistance(oldPos);
+        distanceCompleted += track.calculateDistance(pos,oldPos);
 
         PhoebeLogger.message("track", "robotJumped", "this");
         track.robotJumped(this);
@@ -125,54 +125,7 @@ public class Robot extends TrackObjectBase {
         PhoebeLogger.returnMessage();
     }
 
-    /**
-     * Frissíti a megtett távolságot
-     *
-     * @param oldPos régi pozíció
-     */
-    private void calculateDistance(Position oldPos) {
-        if (track.outerArc == null || track.innerArc == null || track.outerArc.size() < 3 || track.innerArc.size() < 3) {
-            //ha nem definiáltuk a pályát, egyszerűen a megtett táv növelése
-            distanceCompleted += pos.getDistance(oldPos);
-        } else {
-            //ellenőrizzük hogy a pályán van-e egyáltalán a robot
-            if (Track.insidePolygon(track.innerArc, pos, true) || !Track.insidePolygon(track.outerArc, pos, false))
-                return;
 
-            int oldPosSector = track.getSector(oldPos);                             //kitaláljuk melyik útrészen volt (vagyis melyik négyszögben)
-            int newPosSector = track.getSector(pos);                                //kitaláljuk melyik útrészen van (vagyis melyik négyszögben)
-            //levonjuk, amit az előző szektorban pluszba hozzáadtuk
-            distanceCompleted -= track.getSectorDistance(oldPos, oldPosSector);
-            //nem egyszerű esetben teljes szektorokat kell hozzáadni
-            if (oldPosSector != newPosSector) {
-                int siz = track.innerArc.size();
-                // kiszámoljuk hogy hány régión/négyzeten mentünk át
-                int sectorsJumped = newPosSector - oldPosSector;
-                if (sectorsJumped < 0) {
-                    //pl ha az utolsóból az elsőbe ugrottunk, akkor is csak egyetlen egy szektort haladtunk
-                    sectorsJumped += siz;
-                }
-                if (sectorsJumped > siz / 2) {
-                    for (int i = oldPosSector; i != newPosSector; ) {
-                        //azért az elejére kell, mert oldPosSector hosszát nem kell levonni, de a newPosSectorét igen
-                        i--;
-                        if (i < 0) i += siz;  //ha átcsordulnánk
-                        // a teljes szektor hosszát levonjuk
-                        distanceCompleted -= track.getSectorLength(i);
-                    }
-                } else {
-                    for (int i = oldPosSector; i != newPosSector; i = (i + 1) % siz) {
-                        //a teljes szektor hosszát hozzáadjuk
-                        distanceCompleted += track.getSectorLength(i);
-                    }
-                }
-            }
-
-            //a szektorban ahol éppen vagyunk mennyit haladtunk
-            distanceCompleted += track.getSectorDistance(pos, newPosSector);
-
-        }
-    }
 
     /**
      * Azt vizsgálja, hogy a robot az adott körben léphet-e

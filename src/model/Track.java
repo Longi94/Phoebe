@@ -79,6 +79,59 @@ public class Track {
     }
 
     /**
+     * Kiszámolja a két pont között ugrással megtett távolság mekkora távolságnak felel meg
+     *
+     * @param pos az aktuális pozíció
+     * @param oldPos régi pozíció
+     * @return a megtett távolság változása
+     */
+    public double calculateDistance(Position pos,Position oldPos) {
+        double distanceChange = 0;
+        if (outerArc == null || innerArc == null || outerArc.size() < 3 || innerArc.size() < 3) {
+            //ha nem definiáltuk a pályát, egyszerűen a megtett táv növelése
+            distanceChange += pos.getDistance(oldPos);
+        } else {
+            //ellenőrizzük hogy a pályán van-e egyáltalán a robot
+            if (Track.insidePolygon(innerArc, pos, true) || !Track.insidePolygon(outerArc, pos, false))
+                return 0;
+
+            int oldPosSector = getSector(oldPos);                             //kitaláljuk melyik útrészen volt (vagyis melyik négyszögben)
+            int newPosSector = getSector(pos);                                //kitaláljuk melyik útrészen van (vagyis melyik négyszögben)
+            //levonjuk, amit az előző szektorban pluszba hozzáadtuk
+            distanceChange -= getSectorDistance(oldPos, oldPosSector);
+            //nem egyszerű esetben teljes szektorokat kell hozzáadni
+            if (oldPosSector != newPosSector) {
+                int siz = innerArc.size();
+                // kiszámoljuk hogy hány régión/négyzeten mentünk át
+                int sectorsJumped = newPosSector - oldPosSector;
+                if (sectorsJumped < 0) {
+                    //pl ha az utolsóból az elsőbe ugrottunk, akkor is csak egyetlen egy szektort haladtunk
+                    sectorsJumped += siz;
+                }
+                if (sectorsJumped > siz / 2) {
+                    for (int i = oldPosSector; i != newPosSector; ) {
+                        //azért az elejére kell, mert oldPosSector hosszát nem kell levonni, de a newPosSectorét igen
+                        i--;
+                        if (i < 0) i += siz;  //ha átcsordulnánk
+                        // a teljes szektor hosszát levonjuk
+                        distanceChange -= getSectorLength(i);
+                    }
+                } else {
+                    for (int i = oldPosSector; i != newPosSector; i = (i + 1) % siz) {
+                        //a teljes szektor hosszát hozzáadjuk
+                        distanceChange += getSectorLength(i);
+                    }
+                }
+            }
+
+            //a szektorban ahol éppen vagyunk mennyit haladtunk
+            distanceChange += getSectorDistance(pos, newPosSector);
+
+        }
+        return distanceChange;
+    }
+
+    /**
      * Megmutatja, hogy egy adott pont rajta van-e egy szakaszon
      * @param pos a pont
      * @param start a szakasz egyik vége
