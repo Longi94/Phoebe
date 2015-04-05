@@ -80,7 +80,11 @@ public class Phoebe {
                     } else if (command[0].equals("quit")) {
                         running = false;
                     } else if (command[0].equals("status")) {
-                        bw.write(controller.status());
+                        if (controller != null) {
+                            bw.write(controller.status());
+                        } else {
+                            bw.write(GameController.prettyPrintReport("Status{status:game not initiated}"));
+                        }
                         bw.flush();
                     }
                 }

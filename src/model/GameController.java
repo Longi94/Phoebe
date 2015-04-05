@@ -382,7 +382,9 @@ public class GameController {
                     prettyReport += c;
                     //Vesszőt nem rakjuk új sorba
                     if (i < report.length() - 1 && report.charAt(i + 1) != ',') {
-                        prettyReport += "\n";
+                        if (report.charAt(i + 1) != '}') {
+                            prettyReport += "\n";
+                        }
                         for (int j = 0; j < indent; j++) {
                             prettyReport += "    ";
                         }
@@ -408,6 +410,29 @@ public class GameController {
      * @return
      */
     public String status() {
-        return null;
+        String status;
+        if (!gameStarted){
+            status = "Status{status:game not started,LastWinner{";
+            if (winner != null) {
+                status += winner.toString();
+            }
+            status += "}}";
+        } else {
+            if (roundStarted) {
+                Robot currentRobot;
+                if (deterministic) {
+                    //Normál sorrend
+                    currentRobot = players.get(playerOrderSorted.get(currentPlayer));
+                } else {
+                    //Random sorrend
+                    currentRobot = players.get(playerOrder.get(currentPlayer));
+                }
+                status = "Status{status:game started,CurrentPlayer{" +
+                        currentRobot.toString() + "}}";
+            } else {
+                status = "Status{status:game started; round not started}";
+            }
+        }
+        return prettyPrintReport(status);
     }
 }

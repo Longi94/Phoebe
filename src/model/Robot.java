@@ -116,11 +116,7 @@ public class Robot extends TrackObjectBase {
             setEnabled(true);
         }
 
-
         distanceCompleted = calculateDistance(oldPos);
-
-
-
 
         PhoebeLogger.message("track", "robotJumped", "this");
         track.robotJumped(this);
