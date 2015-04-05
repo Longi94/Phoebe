@@ -225,10 +225,11 @@ public class GameController {
         }//Szerintem szebb lenne, ha newRounddal visszatérnénk egy boollal és azalapján meghívnánk egy Iterator.removeot
 
         turnsLeft -= 1;
-        if (turnsLeft == 0) {
+        if (turnsLeft == 0 || playerOrder.size() == 0 || playerOrderSorted.size() == 0) {
             PhoebeLogger.message("GameController", "endGame");
-            endGame();
+;            endGame();
         } else {
+
             //Játékosok sorrendjéne összekeverése, persze ez nem túl optimális játék élmény szempontjából
             Collections.shuffle(playerOrder);
         }
