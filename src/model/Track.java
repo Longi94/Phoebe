@@ -53,9 +53,10 @@ public class Track {
      *
      * @param arc a poligon pontjainak listája
      * @param pos a pont, aminek státuszát teszteljük
+     * @param open nyílt-e az intervallum. A nyílt intervallum nem tartalmazza a határvonalait
      * @return igaz, ha pont a poligon területén belül van, különben hamis
      */
-    public static boolean insidePolygon(List<Position> arc, Position pos) {
+    public static boolean insidePolygon(List<Position> arc, Position pos, boolean open) {
         double posX = pos.getX();
         double posY = pos.getY();
         boolean c = false;
@@ -65,6 +66,7 @@ public class Track {
                     (posX < (arc.get(j).getX()-arc.get(i).getX()) *
                             (posY-arc.get(i).getY()) / (arc.get(j).getY()-arc.get(i).getY()) + arc.get(i).getX()) )
             */
+            if (isInLine(pos,arc.get(i),arc.get(j))) return !open;
             double iX = arc.get(i).getX();
             double iY = arc.get(i).getY();
             double jX = arc.get(j).getX();
@@ -73,6 +75,23 @@ public class Track {
                 c = !c;
         }
         return c;
+
+    }
+
+    /**
+     * Megmutatja, hogy egy adott pont rajta van-e egy szakaszon
+     * @param pos a pont
+     * @param start a szakasz egyik vége
+     * @param end a szakasz másik vége
+     * @return true ha rajta van, különben false
+     */
+    public static boolean isInLine(Position pos, Position start, Position end) {
+        if (start.getY() == end.getY()) {
+            return ((pos.getX() - start.getX()) * (pos.getX() - end.getX())) <= 0;  //0-nál még rajta van a vonalon
+
+        }
+        double m = (end.getX() - start.getX()) / (end.getY() - start.getY());
+        return (pos.getX() == start.getX() + m * (pos.getY() - start.getY())) && (((pos.getX() - start.getX()) * (pos.getX() - end.getX())) <= 0);
 
     }
 
@@ -118,7 +137,7 @@ public class Track {
      */
     public boolean isInTrack(Position pos) {
         boolean b = outerArc == null || innerArc == null || outerArc.size() < 3 || innerArc.size() < 3 ||
-                insidePolygon(outerArc, pos) && !insidePolygon(innerArc, pos);
+                insidePolygon(outerArc, pos, false) && !insidePolygon(innerArc, pos, true);
         PhoebeLogger.returnMessage(Boolean.toString(b));
         return b;
     }

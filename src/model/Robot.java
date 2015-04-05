@@ -191,12 +191,12 @@ public class Robot extends TrackObjectBase {
                     points.add(track.outerArc.get(i));
                 }
                 // megnézzük hogy a régi pozíciója hol volt, és elmentjük a belső ív két végpontját
-                if (Track.insidePolygon(points, oldPos)){
+                if (Track.insidePolygon(points, oldPos,false)){
                     oldPosInnerArcBeginning = new Position(points.get(0).getX(), points.get(0).getY());
                     oldPosInnerArcEnd = new Position(points.get(1).getX(), points.get(1).getY());
                 }
                 // megnézzük hogy az új pozíciója hol volt, és elmentjük a belső ív két végpontját
-                if (Track.insidePolygon(points, pos)) {
+                if (Track.insidePolygon(points, pos,false)) {
                     newPosInnerArcBeginning = new Position(points.get(0).getX(), points.get(0).getY());
                     newPosInnerArcEnd = new Position(points.get(1).getX(), points.get(1).getY());
                 }
