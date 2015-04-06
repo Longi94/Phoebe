@@ -1,0 +1,50 @@
+Robot{
+    Position{
+        x:0.0,
+        y:3.0
+    },
+    distanceCompleted:2.81,
+    Velocity{
+        magnitude:2.0,
+        angle:90.0
+    },
+    oilAmount:1,
+    puttyAmount:1,
+    id:0,
+    enabled:true
+}
+Robot{
+    Position{
+        x:1.0,
+        y:1.0
+    },
+    distanceCompleted:0.88,
+    Velocity{
+        magnitude:1.0,
+        angle:90.0
+    },
+    oilAmount:1,
+    puttyAmount:1,
+    id:1,
+    enabled:true
+}
+Status{
+    status:game not started,
+    LastWinner{
+        Robot{
+            Position{
+                x:0.0,
+                y:3.0
+            },
+            distanceCompleted:2.81,
+            Velocity{
+                magnitude:2.0,
+                angle:90.0
+            },
+            oilAmount:1,
+            puttyAmount:1,
+            id:0,
+            enabled:true
+        }
+    }
+}

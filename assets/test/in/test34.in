@@ -1,0 +1,16 @@
+loadtrack assets/test/track/track34.txt
+newround
+jump 90
+jump -1
+newround
+jump 90
+jump -1
+newround
+jump 90
+jump 90
+newround
+jump 90
+newround
+report
+status
+quit

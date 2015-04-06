@@ -1,0 +1,11 @@
+rounds 5
+inner -1 -1
+inner -1 4
+inner -2 4
+inner -2 -1
+outer 2 -2
+outer 2 5
+outer -3 5
+outer -3 -2
+player tars 0 0 0 0
+player case 1 0 0 0
