@@ -93,13 +93,10 @@ public class Position {
      * (Ray casting algorithm) -> http://stackoverflow.com/questions/11716268/point-in-polygon-algorithm
      *
      * @param arc  a poligon pontjainak listája
-     * @param pos  a pont, aminek státuszát teszteljük
      * @param open nyílt-e az intervallum. A nyílt intervallum nem tartalmazza a határvonalait
      * @return igaz, ha pont a poligon területén belül van, különben hamis
      */
-    public static boolean insidePolygon(List<Position> arc, Position pos, boolean open) {
-        double posX = pos.getX();
-        double posY = pos.getY();
+    public boolean insidePolygon(List<Position> arc, boolean open) {
         boolean c = false;
         for (int i = 0, j = arc.size() - 1; i < arc.size(); j = i++) {
             /* That's for release
@@ -108,7 +105,7 @@ public class Position {
                             (posY-arc.get(i).getY()) / (arc.get(j).getY()-arc.get(i).getY()) + arc.get(i).getX()) )
             */
             //ha a pont rajta csücsül a vonalon, akkor nyílt alakzat esetén tuti nincs benne, zárt esetén biztos benne van
-            if (isInLine(pos, arc.get(i), arc.get(j))) return !open;
+            if (this.isInLine(arc.get(i), arc.get(j))) return !open;
             double iX = arc.get(i).getX();
             double iY = arc.get(i).getY();
             double jX = arc.get(j).getX();
@@ -123,21 +120,20 @@ public class Position {
     /**
      * Megmutatja, hogy egy adott pont rajta van-e egy szakaszon
      *
-     * @param pos   a pont
      * @param start a szakasz egyik vége
      * @param end   a szakasz másik vége
      * @return true ha rajta van, különben false
      */
-    public static boolean isInLine(Position pos, Position start, Position end) {
+    public boolean isInLine(Position start, Position end) {
         // ha vízszintes, akkor akkor van rajta, ha y egyezik, és x a két határ közé esik
         if (start.getY() == end.getY()) {
-            return start.getY() == pos.getY() && (((pos.getX() - start.getX()) * (pos.getX() - end.getX())) <= 0);  //0-nál még rajta van a vonalon
+            return start.getY() == this.getY() && (((this.getX() - start.getX()) * (this.getX() - end.getX())) <= 0);  //0-nál még rajta van a vonalon
 
         }
         //különben van meredekség
         double m = (end.getX() - start.getX()) / (end.getY() - start.getY());
         //és kérdés hogy a pont kiegyenlíti-e az egyenletet
-        return (pos.getX() == start.getX() + m * (pos.getY() - start.getY())) && (((pos.getX() - start.getX()) * (pos.getX() - end.getX())) <= 0);
+        return (this.getX() == start.getX() + m * (this.getY() - start.getY())) && (((this.getX() - start.getX()) * (this.getX() - end.getX())) <= 0);
         //TODO double egyenlőség vizsgálat nem éppen korrekt
     }
 

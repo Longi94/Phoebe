@@ -61,7 +61,7 @@ public class Track {
             distanceChange += pos.getDistance(oldPos);
         } else {
             //ellenőrizzük hogy a pályán van-e egyáltalán a robot
-            if (Position.insidePolygon(innerArc, pos, true) || !Position.insidePolygon(outerArc, pos, false))
+            if (pos.insidePolygon(innerArc, true) || !pos.insidePolygon(outerArc, false))
                 return 0;
 
             int oldPosSector = getSector(oldPos);                             //kitaláljuk melyik útrészen volt (vagyis melyik négyszögben)
@@ -149,7 +149,7 @@ public class Track {
             sector.add(innerArc.get(j));
             sector.add(outerArc.get(j));
             sector.add(outerArc.get(i));
-            if (Position.insidePolygon(sector, pos, false)) {
+            if (pos.insidePolygon(sector, false)) {
                 //ha belül van visszatérünk egyel
                 return i;
             }
@@ -185,7 +185,7 @@ public class Track {
         sector.add(innerArc.get(j));
         sector.add(outerArc.get(j));
         sector.add(outerArc.get(i));
-        if (!Position.insidePolygon(sector, pos, false)) {
+        if (!pos.insidePolygon(sector, false)) {
             return -1;  //TODO szintén hiba kéne hogy dobódjon
         }
         //meghatározzuk a két határvonal metszéspontját, ha létezik
@@ -210,7 +210,7 @@ public class Track {
      */
     public boolean isInTrack(Position pos) {
         boolean b = outerArc == null || innerArc == null || outerArc.size() < 3 || innerArc.size() < 3 ||
-                Position.insidePolygon(outerArc, pos, false) && !Position.insidePolygon(innerArc, pos, true);
+                pos.insidePolygon(outerArc, false) && !pos.insidePolygon(innerArc, true);
         PhoebeLogger.returnMessage(Boolean.toString(b));
         return b;
     }

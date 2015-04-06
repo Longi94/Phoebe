@@ -25,17 +25,20 @@ public class PolygonTest {
 
     @Test
     public void testInsideOpenPolygon() throws Exception {
-        assertFalse(Position.insidePolygon(arc, new Position(1, 1), true));
+        Position pos =  new Position(1, 1);
+        assertFalse(pos.insidePolygon(arc, true));
     }
 
     @Test
     public void testInsideClosedPolygon() throws Exception {
-        assertTrue(Position.insidePolygon(arc, new Position(1, 1), false));
+        Position pos =  new Position(1, 1);
+        assertTrue(pos.insidePolygon(arc, false));
     }
 
     @Test
     public void testIsInLine() throws Exception {
-        assertFalse(Position.isInLine(new Position(1.5, 1.5), new Position(1, 1), new Position(0, 0)));
+        Position pos =  new Position(1.5, 1.5);
+        assertFalse(pos.isInLine(new Position(1, 1), new Position(0, 0)));
     }
     @Test
     public void testIntersection() {
