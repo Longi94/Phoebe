@@ -40,6 +40,9 @@ public class GameController {
      * @param file a fájl amiből betöltjük az összes objektumot
      */
     public GameController(String file) {
+
+        Robot.resetIds();
+
         try {
             loadGameFromFile(file);
         } catch (FileNotFoundException e) {

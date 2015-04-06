@@ -289,6 +289,13 @@ public class Robot extends TrackObjectBase {
     }
 
     /**
+     * ID számozás visszaállítása 0-ra
+     */
+    public static void resetIds() {
+        idCount = 0;
+    }
+
+    /**
      * Robot adatainak kiiratásához olvasható formátum
      *
      * @return olvasható robot
