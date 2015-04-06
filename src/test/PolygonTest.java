@@ -5,6 +5,7 @@ import model.basic.Position;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.crypto.spec.PSource;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -24,17 +25,17 @@ public class PolygonTest {
 
     @Test
     public void testInsideOpenPolygon() throws Exception {
-        assertFalse(Track.insidePolygon(arc, new Position(1, 1), true));
+        assertFalse(Position.insidePolygon(arc, new Position(1, 1), true));
     }
 
     @Test
     public void testInsideClosedPolygon() throws Exception {
-        assertTrue(Track.insidePolygon(arc, new Position(1, 1), false));
+        assertTrue(Position.insidePolygon(arc, new Position(1, 1), false));
     }
 
     @Test
     public void testIsInLine() throws Exception {
-        assertFalse(Track.isInLine(new Position(1.5, 1.5), new Position(1, 1), new Position(0, 0)));
+        assertFalse(Position.isInLine(new Position(1.5, 1.5), new Position(1, 1), new Position(0, 0)));
     }
     @Test
     public void testIntersection() {
@@ -42,7 +43,7 @@ public class PolygonTest {
         Position p2 = new Position(3,0);
         Position p3 = new Position(5,2);
         Position p4 = new Position(4,0);
-        Position inter = Track.intersection(p1,p2,p3,p4);
+        Position inter = Position.intersection(p1,p2,p3,p4);
         System.out.println(inter.getX() + "  " + inter.getY());
         assertEquals(1.833333333, inter.getX(), 0.01);
     }
