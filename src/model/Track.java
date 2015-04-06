@@ -20,17 +20,17 @@ public class Track {
     /**
      * A pályán található elemek listája
      */
-    public List<TrackObjectBase> items;
+    private List<TrackObjectBase> items;
 
     /**
      * A pálya belső ívéhez tartozó pontok listája
      */
-    public List<Position> innerArc;
+    private List<Position> innerArc;
 
     /**
      * A pálya külső ívéhez tartozó pontok listája
      */
-    public List<Position> outerArc;
+    private List<Position> outerArc;
 
 
     /**
