@@ -76,10 +76,11 @@ public class CleaningRobot extends TrackObjectBase {
     }
 
     private void step() {
-        if (pos.getDistance(actuallyCleaning.getPos()) < 1) {
+        Position closest = track.getClosestObstaclePos(pos);
+        if (closest != null && pos.getDistance(closest) < 1) {
             //Ha közelebb van mint egy egység akkor egyszerűen lépjen a közepébe
-            pos.setX(actuallyCleaning.getPos().getX());
-            pos.setY(actuallyCleaning.getPos().getY());
+            pos.setX(closest.getX());
+            pos.setY(closest.getY());
         } else {
             pos.move(new Velocity(angle, 1));            // mozog egyet abba az irányba, amibe beállt
         }
