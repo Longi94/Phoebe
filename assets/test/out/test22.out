@@ -1,23 +1,42 @@
 CleaningRobot{
     Position{
-        x:0.0,
-        y:1.0
+        x:1.5,
+        y:0.0
     },
-    angle:90.0,
+    angle:0.0,
+    actuallyCleaning: Oil{
+        Position{
+            x:1.5,
+            y:0.0
+        },
+        hitsLeft:4,
+        roundsLeft:-1,
+        underCleaning:true
+    },
+    cleanTurnsLeft: 2
+}
+CleaningRobot{
+    Position{
+        x:0.5,
+        y:0.0
+    },
+    angle:0.0,
     actuallyCleaning: null,
     cleanTurnsLeft: 0
 }
-Pickup{
+Oil{
     Position{
-        x:0.0,
-        y:1.0
+        x:1.5,
+        y:0.0
     },
-    type: -1
+    hitsLeft:4,
+    roundsLeft:-1,
+    underCleaning:true
 }
 Oil{
     Position{
-        x:0.0,
-        y:2.0
+        x:2.5,
+        y:0.0
     },
     hitsLeft:4,
     roundsLeft:-1,

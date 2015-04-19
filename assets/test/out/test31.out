@@ -1,15 +1,15 @@
 Status{
     status:game started,
-    rounds:39,
+    rounds:38,
     CurrentPlayer{
         Robot{
             Position{
                 x:0.0,
-                y:0.0
+                y:1.0
             },
-            distanceCompleted:0.0,
+            distanceCompleted:0.5,
             Velocity{
-                magnitude:0.0,
+                magnitude:1.0,
                 angle:90.0
             },
             oilAmount:1,

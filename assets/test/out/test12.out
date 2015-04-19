@@ -6,10 +6,10 @@ Robot{
     distanceCompleted:2.0,
     Velocity{
         magnitude:2.0,
-        angle:0.0
+        angle:90.0
     },
     oilAmount:2,
     puttyAmount:1,
-    id:11,
+    id:0,
     enabled:true
 }
