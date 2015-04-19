@@ -1,4 +1,4 @@
-loadtrack track32.txt
+loadtrack assets/test/track/track32.txt
 newround
 jump 0
 newround
