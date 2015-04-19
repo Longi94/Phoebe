@@ -53,8 +53,7 @@ public class CleaningRobot extends TrackObjectBase {
     public double targetClosestObstacle() {
         Position closest = track.getClosestObstaclePos(this.pos);
         if (closest == null) {
-            //track.removeObject(this); TODO de most sajnos a tesztesetek nem erre vannak kitalálva
-            return 0;
+            return 0;       //TODO ezt azért rohadtul jobban is specifikálhatták volna. Javaslom, hogy ilyenkor zűnjön meg a francba...
         }
         double angle;
         double tmpX = closest.getX() - pos.getX();
@@ -71,20 +70,13 @@ public class CleaningRobot extends TrackObjectBase {
             }
         }
 
-         //TODO kiszámítja milyen irányba esik a legközelebbi akadály (belevéve, hogy nem mehet ki a pályáról)
+        //TODO kiszámítja milyen irányba esik a legközelebbi akadály (belevéve, hogy nem mehet ki a pályáról)
         //jelenleg átvág mindenen hogy a leggyorsabban odajusson, ami egyszerre megmagyarázható (szervizutakon megy) és übergáz...
         return angle;
     }
 
     private void step() {
-        //Position closest = track.getClosestObstaclePos(pos);
-        //if (closest != null && pos.getDistance(closest) < 1) {
-        //    //Ha közelebb van mint egy egység akkor egyszerűen lépjen a közepébe
-        //    pos.setX(closest.getX());
-        //    pos.setY(closest.getY());
-        //} else {
-            pos.move(new Velocity(angle, 1));            // mozog egyet abba az irányba, amibe beállt
-        //}
+        pos.move(new Velocity(angle, 1));            // mozog egyet abba az irányba, amibe beállt
         track.cleaningRobotJumped(this);
     }
 
@@ -106,7 +98,7 @@ public class CleaningRobot extends TrackObjectBase {
             //TODO mivanha elhagyja a pályát
             //TODO szerintem ne történjen semmi, hadd menjen a pályán kívül is
             if (oldAng == angle)
-            angle = targetClosestObstacle();
+                angle = targetClosestObstacle();
         }
     }
 
