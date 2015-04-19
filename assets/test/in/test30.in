@@ -1,3 +1,4 @@
+loadtrack assets/test/track/track30.txt
 newround
 jump 270
 jump 0

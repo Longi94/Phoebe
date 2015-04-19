@@ -1,3 +1,4 @@
+loadtrack assets/test/track/track29.txt
 newround
 jump 0
 report
