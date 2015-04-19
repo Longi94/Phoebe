@@ -11,7 +11,7 @@ Robot{
     oilAmount:1,
     puttyAmount:1,
     id:0,
-    enabled:true
+    enabled:false
 }
 Putty{
     Position{
@@ -20,5 +20,14 @@ Putty{
     },
     hitsLeft:3,
     roundsLeft:-1,
-    underCleaning:true
+    underCleaning:false
+}
+Oil{
+    Position{
+        x:2.0,
+        y:0.0
+    },
+    hitsLeft:-1,
+    roundsLeft:20,
+    underCleaning:false
 }

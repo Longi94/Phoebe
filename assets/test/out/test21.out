@@ -1,3 +1,20 @@
+CleaningRobot{
+    Position{
+        x:-0.29,
+        y:1.71
+    },
+    angle:0.0,
+    actuallyCleaning: Putty{
+        Position{
+            x:0.0,
+            y:2.0
+        },
+        hitsLeft:4,
+        roundsLeft:-1,
+        underCleaning:true
+    },
+    cleanTurnsLeft: 2
+}
 Putty{
     Position{
         x:0.0,
