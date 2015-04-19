@@ -53,8 +53,7 @@ public class CleaningRobot extends TrackObjectBase {
     public double targetClosestObstacle() {
         Position closest = track.getClosestObstaclePos(this.pos);
         if (closest == null) {
-            track.removeObject(this);
-            return 0;
+            return 0;       //TODO ezt azért rohadtul jobban is specifikálhatták volna. Javaslom, hogy ilyenkor zűnjön meg a francba...
         }
         double angle;
         double tmpX = closest.getX() - pos.getX();
