@@ -76,8 +76,11 @@ public class CleaningRobot extends TrackObjectBase {
     }
 
     private void step() {
-        pos.move(new Velocity(angle, 1));            // mozog egyet abba az irányba, amibe beállt
-        track.cleaningRobotJumped(this);
+        Position closest = track.getClosestObstaclePos(this.pos);
+        if (closest != null) {
+            pos.move(new Velocity(angle, 1));            // mozog egyet abba az irányba, amibe beállt
+            track.cleaningRobotJumped(this);
+        }
     }
 
     @Override
