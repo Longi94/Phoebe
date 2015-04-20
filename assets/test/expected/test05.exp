@@ -10,6 +10,6 @@ Robot{
     },
     oilAmount:1,
     puttyAmount:1,
-    id:4,
+    id:0,
     enabled:true
 }
