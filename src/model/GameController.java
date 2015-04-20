@@ -228,7 +228,7 @@ public class GameController {
         }//Szerintem szebb lenne, ha newRounddal visszatérnénk egy boollal és azalapján meghívnánk egy Iterator.removeot
 
         turnsLeft -= 1;
-        if (turnsLeft == 0 || playerOrder.size() == 0 || playerOrderSorted.size() == 0) {
+        if (players.size() != 0 && (turnsLeft == 0 || playerOrder.size() == 0 || playerOrderSorted.size() == 0)) {
             PhoebeLogger.message("GameController", "endGame");
 ;            endGame();
         } else {
