@@ -6,7 +6,7 @@ Robot{
     distanceCompleted:2.0,
     Velocity{
         magnitude:2.0,
-        angle:0.0
+        angle:90.0
     },
     oilAmount:1,
     puttyAmount:1,
