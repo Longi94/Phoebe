@@ -166,7 +166,7 @@ public class Tester {
             while((line1 = br1.readLine()) != null) {
                 if((line2 = br2.readLine()) != null) {
                     // Ha nem egyezik meg a két kiolvasott string
-                    if(!line1.equals(line2)) {
+                    if(!((line1.replaceAll("\\s+","")).equals((line2.replaceAll("\\s+",""))))) {
                         return false;
                     }
                 }
