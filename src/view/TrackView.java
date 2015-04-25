@@ -3,6 +3,7 @@ package view;
 import model.Track;
 import model.TrackObjectBase;
 
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -23,13 +24,13 @@ public class TrackView {
      */
     List<TrackObjectBaseView> trackObjectBaseViews;
 
-    public void drawTrack() {
+    public void drawTrack(Graphics graph) {
         //pályahatárok kirajzolása
     }
 
-    public void updateItems() {
+    public void updateItems(Graphics graph) {
         for (TrackObjectBaseView tobw : trackObjectBaseViews) {
-            tobw.draw();
+            tobw.draw(graph);
         }
     }
 

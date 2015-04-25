@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.*;
+
 /**
  * Pálya objektumok kinézete
  *
@@ -8,7 +10,7 @@ package view;
  */
 public abstract class TrackObjectBaseView {
 
-    public void draw() {
+    public void draw(Graphics graph) {
 
     }
 

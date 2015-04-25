@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.*;
+
 /**
  * Pickup kinézete
  *
@@ -8,7 +10,7 @@ package view;
  */
 public class PickupView extends TrackObjectBaseView{
 
-    public void draw() {
+    public void draw(Graphics graph) {
 
     }
 

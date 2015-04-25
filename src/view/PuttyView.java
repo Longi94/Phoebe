@@ -2,6 +2,8 @@ package view;
 
 import model.Putty;
 
+import java.awt.*;
+
 /**
  * Ragacs kinézete
  *
@@ -12,7 +14,7 @@ public class PuttyView extends TrackObjectBaseView {
 
     Putty putty;
 
-    public void draw() {
+    public void draw(Graphics graph) {
 
     }
 
