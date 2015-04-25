@@ -1,5 +1,7 @@
 package view;
 
+import model.*;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,6 +13,9 @@ import java.awt.*;
  */
 public class MainWindow extends JFrame {
 
+    public static final int DEFAULT_TURN_NUMBER = 40;
+    private static final int MAX_PLAYER_NUMBER = 6;
+
     /**
      * Menü kinézet
      */
@@ -19,7 +24,7 @@ public class MainWindow extends JFrame {
     /**
      * Játék kinézet
      */
-    private GameView gameView;
+    private view.GameController controller;
 
     /**
      * Grafikus program belépési pont

@@ -18,9 +18,6 @@ import java.util.List;
  */
 public class GameController {
 
-    public static final int DEFAULT_TURN_NUMBER = 40;
-    private static final int MAX_PLAYER_NUMBER = 6;
-
     private int turnsLeft = -1;
     private int numberOfPlayers;
     private Track track; //kezelt pálya
@@ -40,7 +37,11 @@ public class GameController {
      *
      * @param file a fájl amiből betöltjük az összes objektumot
      */
-    public GameController(String file) {
+    public GameController(String file, ArrayList<String> names, int rounds) {
+
+        turnsLeft = rounds;
+
+        //TODO players és playerOrder feltöltése names alapján új robotokkal
 
         gw = new GameView();
 
@@ -59,11 +60,6 @@ public class GameController {
         //Felépítjük a játékos sorrendet
         for (int i = 0; i < numberOfPlayers; i++) {
             playerOrder.add(i);
-        }
-
-        //Ha nem adtak meg hártalévő kört
-        if (turnsLeft == -1) {
-            turnsLeft = DEFAULT_TURN_NUMBER;
         }
 
         gameStarted = true;
