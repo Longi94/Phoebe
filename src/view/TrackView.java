@@ -17,13 +17,13 @@ public class TrackView {
     /**
      * Pálya kinézete
      */
-    Track track;
+    private Track track;
 
-    Graphics graph;
+    private Graphics graph;
 
-    double xOffset, yOffset;
+    private double xOffset, yOffset;
 
-    double zoom;
+    private double zoom;
 
     /**
      * Pályán lévő elemek kinézetei
