@@ -1,7 +1,7 @@
 package view;
 
 /**
- * Created by geri on 2015. 04. 25..
+ * Olaj kinézete
  */
-public class OilView {
+public class OilView extends TrackObjectBaseView {
 }

@@ -9,7 +9,7 @@ import java.awt.*;
  * @author Gergely Reményi
  * @since 2015.04.25.
  */
-public class MenuPanel extends JPanel {
+public class MenuView extends JPanel {
 
     /**
      * Pályaválasztó menürész
@@ -26,7 +26,12 @@ public class MenuPanel extends JPanel {
      */
     JPanel startPanel;
 
-    public MenuPanel() {
+    /**
+     * Kiválasztott pálya neve (kiterjesztéssel együtt)
+     */
+    String selectedMap;
+
+    public MenuView() {
 
         // Pálya választó megjelenítése
         initSelectTrackPanel();

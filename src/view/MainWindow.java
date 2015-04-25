@@ -1,7 +1,5 @@
 package view;
 
-import model.GameController;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,24 +12,14 @@ import java.awt.*;
 public class MainWindow extends JFrame {
 
     /**
-     * A különböző paneleket tartalmazó elem layoutja
+     * Menü kinézet
      */
-    private CardLayout cardLayout;
+    private MenuView menuView;
 
     /**
-     * A különböző paneleket tartalmazó elem
+     * Játék kinézet
      */
-    private JPanel cardPanel;
-
-    /**
-     * Menü panel
-     */
-    private MenuPanel menuPanel;
-
-    /**
-     * Játék panel
-     */
-    private GamePanel gamePanel;
+    private GameView gameView;
 
     /**
      * Grafikus program belépési pont
@@ -52,20 +40,11 @@ public class MainWindow extends JFrame {
 
     public MainWindow() {
 
-        // Paneleket tartalmazó elem inicializálása
-        cardLayout = new CardLayout();
-        cardPanel = new JPanel(cardLayout);
-
         // Menu panel inizializálása
-        menuPanel = new MenuPanel();
+        menuView = new MenuView();
 
-        // Játék panel inicializálása
-        gamePanel = new GamePanel();
-
-        // Menü és játék panelek bepakolása az ablakba
-        cardPanel.add(menuPanel, "menu");
-        cardPanel.add(gamePanel, "game");
-        add(cardPanel);
+        // Menü nézet hozzáadása az ablakhoz
+        add(menuView);
 
     }
 
