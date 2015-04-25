@@ -30,6 +30,10 @@ public class TrackView {
      */
     List<TrackObjectBaseView> trackObjectBaseViews;
 
+    void centerActualPlayer(Robot robot) {
+        //zoom változatlan, offset úgy módosul, hogy a robot középre kerüljön
+    }
+
     public void drawTrack() {
         //pályahatárok kirajzolása
     }
