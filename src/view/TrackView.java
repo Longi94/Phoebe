@@ -23,6 +23,10 @@ public class TrackView {
      */
     List<TrackObjectBaseView> trackObjectBaseViews;
 
+    public void drawTrack() {
+        //pályahatárok kirajzolása
+    }
+
     public void updateItems() {
         for (TrackObjectBaseView tobw : trackObjectBaseViews) {
             tobw.draw();
