@@ -29,4 +29,8 @@ public class GameView extends JPanel {
         trackView.updateItems();
     }
 
+    public void notifyHud(String str) {
+        hudView.showNotification(str);
+    }
+
 }
