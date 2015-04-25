@@ -1,5 +1,7 @@
 package view;
 
+import model.Robot;
+
 import javax.swing.*;
 
 /**
@@ -19,5 +21,12 @@ public class GameView extends JPanel {
      * Ranglista nézete
      */
     HudView hudView;
+
+    public void newRound(Robot actualPlayer) {
+        hudView.refreshStandings();
+        trackView.centerActualPlayer(actualPlayer);
+        trackView.drawTrack();
+        trackView.updateItems();
+    }
 
 }
