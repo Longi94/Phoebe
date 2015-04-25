@@ -12,4 +12,8 @@ public class CleaningRobotView extends TrackObjectBaseView {
 
     CleaningRobot cleaningRobot;
 
+    public void draw() {
+
+    }
+
 }

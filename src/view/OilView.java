@@ -9,4 +9,8 @@ public class OilView extends TrackObjectBaseView {
 
     Oil oil;
 
+    public void draw() {
+
+    }
+
 }

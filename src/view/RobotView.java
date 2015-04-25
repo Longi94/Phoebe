@@ -9,4 +9,8 @@ public class RobotView extends TrackObjectBaseView {
 
     Robot robot;
 
+    public void draw() {
+
+    }
+
 }

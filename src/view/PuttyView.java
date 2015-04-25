@@ -12,4 +12,8 @@ public class PuttyView extends TrackObjectBaseView {
 
     Putty putty;
 
+    public void draw() {
+
+    }
+
 }

@@ -23,4 +23,10 @@ public class TrackView {
      */
     List<TrackObjectBaseView> trackObjectBaseViews;
 
+    public void updateItems() {
+        for (TrackObjectBaseView tobw : trackObjectBaseViews) {
+            tobw.draw();
+        }
+    }
+
 }
