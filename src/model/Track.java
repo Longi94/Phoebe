@@ -1,8 +1,13 @@
 package model;
 
 import model.basic.Position;
+import model.basic.Velocity;
 import skeleton.PhoebeLogger;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +50,82 @@ public class Track {
         items = new ArrayList<TrackObjectBase>();
         this.innerArc = innerArc;
         this.outerArc = outerArc;
+    }
+
+    public Track(String file) {
+
+        try {
+
+            //Fájlból olvasás
+            BufferedReader br = new BufferedReader(new FileReader(file));
+
+            //Ply körvonala
+            List<Position> in = new ArrayList<Position>();
+            List<Position> out = new ArrayList<Position>();
+
+            //Azért hogy a hozzáadási sorrend megegyezzen a fájlban lévő sorrenddel
+            List<TrackObjectBase> tempList = new ArrayList<TrackObjectBase>();
+
+            String input;
+            String command[];
+
+            while ((input = br.readLine()) != null) {
+                command = input.split(" ");
+                if (command.length > 0) {
+                    if (command[0].equals("inner")) {
+                        //Belső ív pont
+                        in.add(new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2])));
+                    } else if (command[0].equals("outer")) {
+                        //Külső ív pont
+                        out.add(new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2])));
+                    } else if (command[0].equals("pickup")) {
+                        //Pickupok
+                        Pickup pickup = new Pickup(new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2])));
+                        if (command.length > 3) {
+                            if (command[3].equals("o")) {
+                                pickup.setType(0);
+                            } else if (command[3].equals("p")) {
+                                pickup.setType(1);
+                            }
+                        }
+                        tempList.add(pickup);
+                    } else if (command[0].equals("oil")) {
+                        //Olajok
+                        Oil oil = new Oil(new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2])));
+                        if (command.length > 3) {
+                            oil.setHitsLeft(Integer.parseInt(command[3]));
+                            oil.setRoundsLeft(Integer.parseInt(command[4]));
+                        }
+                        tempList.add(oil);
+                    } else if (command[0].equals("putty")) {
+                        //Ragacsok
+                        Putty putty = new Putty(new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2])));
+                        if (command.length > 3) {
+                            putty.setHitsLeft(Integer.parseInt(command[3]));
+                            putty.setRoundsLeft(Integer.parseInt(command[4]));
+                        }
+                        tempList.add(putty);
+                    } else if (command[0].equals("janitor")) {
+                        //Takarítók
+                        tempList.add(new CleaningRobot(new Position(Double.parseDouble(command[1]),
+                                Double.parseDouble(command[2]))));
+                    }
+                }
+            }
+
+            //Bezárjuk a fájlt
+            br.close();
+
+            this.innerArc = in;
+            this.outerArc = out;
+            this.items = tempList;
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
