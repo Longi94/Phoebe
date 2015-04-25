@@ -11,7 +11,7 @@ public class RobotView extends TrackObjectBaseView {
 
     Robot robot;
 
-    public void draw(Graphics graph) {
+    public void draw(Graphics graph, double xOffset, double yOffset, double zoom) {
 
     }
 

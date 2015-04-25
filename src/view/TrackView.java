@@ -19,18 +19,24 @@ public class TrackView {
      */
     Track track;
 
+    Graphics graph;
+
+    double xOffset, yOffset;
+
+    double zoom;
+
     /**
      * Pályán lévő elemek kinézetei
      */
     List<TrackObjectBaseView> trackObjectBaseViews;
 
-    public void drawTrack(Graphics graph) {
+    public void drawTrack() {
         //pályahatárok kirajzolása
     }
 
-    public void updateItems(Graphics graph) {
+    public void updateItems() {
         for (TrackObjectBaseView tobw : trackObjectBaseViews) {
-            tobw.draw(graph);
+            tobw.draw(graph, xOffset, yOffset, zoom);
         }
     }
 

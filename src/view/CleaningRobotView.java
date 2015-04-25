@@ -2,6 +2,8 @@ package view;
 
 import model.CleaningRobot;
 
+import java.awt.*;
+
 /**
  * Takarító robot kinézet
  *
@@ -12,7 +14,7 @@ public class CleaningRobotView extends TrackObjectBaseView {
 
     CleaningRobot cleaningRobot;
 
-    public void draw() {
+    public void draw(Graphics graph, double xOffset, double yOffset, double zoom) {
 
     }
 

@@ -10,7 +10,7 @@ import java.awt.*;
  */
 public class PickupView extends TrackObjectBaseView{
 
-    public void draw(Graphics graph) {
+    public void draw(Graphics graph, double xOffset, double yOffset, double zoom) {
 
     }
 
