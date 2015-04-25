@@ -69,6 +69,10 @@ public class GameController {
         gameStarted = true;
     }
 
+    public Robot getActualPlayer() {
+        return players.get(playerOrder.get(currentPlayer));
+    }
+
     /**
      * Getter a roundStarted-nek
      *
@@ -155,13 +159,10 @@ public class GameController {
     /**
      * Soron lévő jűtékos kiejtése
      */
-    public void killCurrentPlayer() {
+    public void forfeitCurrentPlayer() {
         if (!roundStarted) return;
 
-        Robot currentRobot;
-
-            //Random sorrend
-            currentRobot = players.get(playerOrder.get(currentPlayer));
+        Robot currentRobot = getActualPlayer();
 
         //Robot feladja a játékot
         currentRobot.forfeit();
@@ -185,11 +186,7 @@ public class GameController {
 
         if (!roundStarted) return;
 
-        Robot currentRobot;
-
-
-            //Random sorrend
-            currentRobot = players.get(playerOrder.get(currentPlayer));
+        Robot currentRobot = getActualPlayer();
 
         //Akadályok letétele ha szükséges
         if (oil) {
