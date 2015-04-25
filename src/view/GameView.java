@@ -20,9 +20,4 @@ public class GameView extends JPanel {
      */
     HudView hudView;
 
-    /**
-     * Game controller
-     */
-    GameController gameController;
-
 }
