@@ -33,12 +33,16 @@ public class GameController {
     private boolean gameStarted = false; //Van-e betöltve pálya, elértük-e már a játék végét
     private int currentPlayer = 0;
 
+    private GameView gw;
+
     /**
      * Konstruktor
      *
      * @param file a fájl amiből betöltjük az összes objektumot
      */
     public GameController(String file) {
+
+        gw = new GameView();
 
         Robot.resetIds();
 
