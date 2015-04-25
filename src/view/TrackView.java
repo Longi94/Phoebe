@@ -1,5 +1,6 @@
 package view;
 
+import model.Track;
 import model.TrackObjectBase;
 
 import java.util.List;
@@ -11,6 +12,11 @@ import java.util.List;
  * @since 2015.04.25.
  */
 public class TrackView {
+
+    /**
+     * Pálya kinézete
+     */
+    Track track;
 
     /**
      * Pályán lévő elemek kinézetei

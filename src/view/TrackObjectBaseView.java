@@ -1,7 +1,10 @@
 package view;
 
 /**
- * Created by geri on 2015. 04. 25..
+ * Pálya objektumok kinézete
+ *
+ * @author Gergely Reményi
+ * @since 2015.04.25.
  */
-public class TrackObjectBaseView {
+public abstract class TrackObjectBaseView {
 }

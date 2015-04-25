@@ -1,7 +1,15 @@
 package view;
 
+import model.Putty;
+
 /**
- * Created by geri on 2015. 04. 25..
+ * Ragacs kinézete
+ *
+ * @author Gergely Reményi
+ * @since 2015.04.25.
  */
 public class PuttyView extends TrackObjectBaseView {
+
+    Putty putty;
+
 }

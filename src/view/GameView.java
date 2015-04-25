@@ -18,12 +18,7 @@ public class GameView extends JPanel {
     /**
      * Ranglista nézete
      */
-    LeaderBoard leaderBoard;
-
-    /**
-     * Aktív robot beállítások nézete
-     */
-    ActiveRobotView activeRobotView;
+    HudView hudView;
 
     /**
      * Game controller
