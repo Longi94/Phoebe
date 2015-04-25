@@ -1,5 +1,7 @@
 package view;
 
+import model.Robot;
+
 import java.util.ArrayList;
 
 /**
@@ -12,8 +14,14 @@ public class HudView {
 
     private ArrayList<String> posts;
 
+    private String current;
+
     public void refreshStandings() {
 
+    }
+
+    public void setCurrent(Robot actualPlayer) {
+        current = actualPlayer.getName();
     }
 
     public void showNotification(String notif) {

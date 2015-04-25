@@ -37,13 +37,11 @@ public class TrackView {
 
     public void drawTrack() {
         //pályahatárok kirajzolása
-        updateItems();
-    }
-
-    public void updateItems() {
         for (TrackObjectBaseView tobw : trackObjectBaseViews) {
             tobw.draw(graph, xOffset, yOffset, zoom);
         }
+
     }
+
 
 }

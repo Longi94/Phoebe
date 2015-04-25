@@ -24,6 +24,7 @@ public class GameView extends JPanel {
 
     public void newRound(Robot actualPlayer) {
         hudView.refreshStandings();
+        hudView.setCurrent(actualPlayer);
         trackView.centerActualPlayer(actualPlayer);
         trackView.drawTrack();
     }
