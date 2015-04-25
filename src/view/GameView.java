@@ -26,10 +26,10 @@ public class GameView extends JPanel {
         hudView.refreshStandings();
         trackView.centerActualPlayer(actualPlayer);
         trackView.drawTrack();
-        trackView.updateItems();
     }
 
     public void notifyHud(String str) {
+        hudView.refreshStandings();
         hudView.showNotification(str);
     }
 

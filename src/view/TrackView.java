@@ -37,6 +37,7 @@ public class TrackView {
 
     public void drawTrack() {
         //pályahatárok kirajzolása
+        updateItems();
     }
 
     public void updateItems() {
