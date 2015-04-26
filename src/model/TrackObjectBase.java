@@ -15,27 +15,23 @@ import view.TrackObjectBaseView;
  */
 public abstract class TrackObjectBase {
 
-    private TrackObjectBaseView tobv;
-
     /**
      * Pályaelem default sugara
      */
     protected static double RADIUS = 0.4;
-
     /**
      * Pályaelem pozíciója
      */
     protected Position pos;
-
     /**
      * Pálya referencia
      */
     protected Track track;
-
     /**
      * Pályaelem sugara
      */
     protected double radius;
+    private TrackObjectBaseView tobv;
 
     /**
      * Konstruktor egy paraméterrel
@@ -59,6 +55,10 @@ public abstract class TrackObjectBase {
     public TrackObjectBase(Position pos, Track track) {
         this.pos = pos;
         this.track = track;
+    }
+
+    public TrackObjectBaseView getTobv() {
+        return tobv;
     }
 
     /**

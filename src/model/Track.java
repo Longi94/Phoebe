@@ -203,6 +203,9 @@ public class Track {
      */
     public boolean removeObject(TrackObjectBase object) {
         Boolean b = items.remove(object);
+
+        object.getTobv().removeFromTrack();
+
         PhoebeLogger.returnMessage(Boolean.toString(b));
         return b;
     }
