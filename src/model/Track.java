@@ -381,4 +381,14 @@ public class Track {
         }
         return toRet;
     }
+
+    public void newRound() {
+        int i = 0;
+        while (i < items.size()) {
+            TrackObjectBase item = items.get(i);
+            item.newRound();
+            if (i < items.size() && item == items.get(i)) i++;
+        }//Szerintem szebb lenne, ha newRounddal visszatérnénk egy boollal és azalapján meghívnánk egy Iterator.removeot
+    }
+
 }

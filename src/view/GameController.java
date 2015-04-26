@@ -104,13 +104,7 @@ public class GameController {
         }
 
         //newRound meghívása minden pályán lévő objektumnak
-        int i = 0;
-        List<TrackObjectBase> items = track.getItems();
-        while (i < items.size()) {
-            TrackObjectBase item = items.get(i);
-            item.newRound();
-            if (i < items.size() && item == items.get(i)) i++;
-        }//Szerintem szebb lenne, ha newRounddal visszatérnénk egy boollal és azalapján meghívnánk egy Iterator.removeot
+        track.newRound();
 
         turnsLeft -= 1;
         if (players.size() != 0 && (turnsLeft == 0 || playerOrder.size() == 0)) {
