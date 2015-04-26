@@ -44,4 +44,12 @@ public class TrackView {
     }
 
 
+    public void addItem(TrackObjectBaseView tobv) {
+        trackObjectBaseViews.add(tobv);
+    }
+
+    public void removeItem(TrackObjectBaseView tobv) {
+        trackObjectBaseViews.remove(tobv);
+    }
+
 }

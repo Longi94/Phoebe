@@ -29,8 +29,16 @@ public class GameView extends JPanel {
         trackView.drawTrack();
     }
 
+    public void redraw() {
+        trackView.drawTrack();
+    }
+
     public void notifyHud(String str) {
         hudView.showNotification(str);
+    }
+
+    public void addItem(TrackObjectBaseView tobv) {
+        trackView.addItem(tobv);
     }
 
 }
