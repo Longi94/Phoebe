@@ -30,7 +30,6 @@ public class GameView extends JPanel {
     }
 
     public void notifyHud(String str) {
-        hudView.refreshStandings();
         hudView.showNotification(str);
     }
 
