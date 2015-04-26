@@ -170,26 +170,25 @@ public class GameController {
         playerOrder.remove(currentPlayer);
     }
 
+    public void clickOil(/*senkinemtudjamilyenparaméterekkelkellfeliratkozni*/) {
+        //lerak egy oilt oda ahol az aktuális játékos van
+    }
+
+    public void clickPutty(/*senkinemtudjamilyenparaméterekkelkellfeliratkozni*/) {
+        //lerak egy puttyot oda ahol az aktuális játékos van
+    }
 
     /**
      * Soron lévő játékos léptetése
      *
      * @param angle a szög amerre a sebességév változtatni kívánja egységgel
-     * @param oil   akar-e olajt lerakni
-     * @param putty akar-e ragacsot lerakni
      */
-    public void jumpCurrentPlayer(int angle, boolean oil, boolean putty) {
+    public void jumpCurrentPlayer(int angle) {
 
         if (!roundStarted) return;
 
         Robot currentRobot = getActualPlayer();
 
-        //Akadályok letétele ha szükséges
-        if (oil) {
-           currentRobot.putOil();
-        } else if (putty) {
-            currentRobot.putPutty();
-        }
 
         //A módosító sebesség vektor
         Velocity v = new Velocity();
