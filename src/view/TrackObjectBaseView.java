@@ -10,6 +10,12 @@ import java.awt.*;
  */
 public abstract class TrackObjectBaseView {
 
+    private TrackView tv;
+
+    public void removeFromTrack() {
+        tv.removeItem(this);
+    }
+
     public void draw(Graphics graph, double xOffset, double yOffset, double zoom) {
 
     }

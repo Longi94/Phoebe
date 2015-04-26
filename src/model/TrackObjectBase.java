@@ -2,6 +2,7 @@ package model;
 
 import model.basic.Position;
 import skeleton.PhoebeLogger;
+import view.TrackObjectBaseView;
 
 /**
  * Pályaelemek absztrakt ősosztálya
@@ -13,6 +14,8 @@ import skeleton.PhoebeLogger;
  * @since 2015.02.23.
  */
 public abstract class TrackObjectBase {
+
+    private TrackObjectBaseView tobv;
 
     /**
      * Pályaelem default sugara
