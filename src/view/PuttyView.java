@@ -12,7 +12,7 @@ import java.awt.*;
  */
 public class PuttyView extends TrackObjectBaseView {
 
-    Putty putty;
+    private Putty putty;
 
     public void draw(Graphics graph, double xOffset, double yOffset, double zoom) {
 

@@ -15,12 +15,12 @@ public class GameView extends JPanel {
     /**
      * Pálya kinézete
      */
-    TrackView trackView;
+    private TrackView trackView;
 
     /**
      * Ranglista nézete
      */
-    HudView hudView;
+    private HudView hudView;
 
     public void newRound(Robot actualPlayer) {
         hudView.refreshStandings();

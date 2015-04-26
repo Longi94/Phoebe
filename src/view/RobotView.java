@@ -9,7 +9,7 @@ import java.awt.*;
  */
 public class RobotView extends TrackObjectBaseView {
 
-    Robot robot;
+    private Robot robot;
 
     public void draw(Graphics graph, double xOffset, double yOffset, double zoom) {
 

@@ -9,7 +9,7 @@ import java.awt.*;
  */
 public class OilView extends TrackObjectBaseView {
 
-    Oil oil;
+    private Oil oil;
 
     public void draw(Graphics graph, double xOffset, double yOffset, double zoom) {
 

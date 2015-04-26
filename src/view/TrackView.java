@@ -2,7 +2,6 @@ package view;
 
 import model.Robot;
 import model.Track;
-import model.TrackObjectBase;
 
 import java.awt.*;
 import java.util.List;
@@ -29,7 +28,7 @@ public class TrackView {
     /**
      * Pályán lévő elemek kinézetei
      */
-    List<TrackObjectBaseView> trackObjectBaseViews;
+    private List<TrackObjectBaseView> trackObjectBaseViews;
 
     void centerActualPlayer(Robot robot) {
         //zoom változatlan, offset úgy módosul, hogy a robot középre kerüljön

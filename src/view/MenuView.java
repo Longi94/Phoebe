@@ -14,17 +14,17 @@ public class MenuView extends JPanel {
     /**
      * Pályaválasztó menürész
      */
-    JPanel selectTrackPanel;
+    private JPanel selectTrackPanel;
 
     /**
      * Játékos felsoroló menü rész
      */
-    JPanel playersPanel;
+    private JPanel playersPanel;
 
     /**
      * Játék indítása menürész
      */
-    JPanel startPanel;
+    private JPanel startPanel;
 
     /**
      * Kiválasztott pálya neve (kiterjesztéssel együtt)

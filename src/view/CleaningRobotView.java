@@ -12,7 +12,7 @@ import java.awt.*;
  */
 public class CleaningRobotView extends TrackObjectBaseView {
 
-    CleaningRobot cleaningRobot;
+    private CleaningRobot cleaningRobot;
 
     public void draw(Graphics graph, double xOffset, double yOffset, double zoom) {
 
