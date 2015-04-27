@@ -18,7 +18,7 @@ public class GameView extends JPanel {
     private TrackView trackView;
 
     /**
-     * Ranglista nézete
+     * Státusz bár nézete
      */
     private HudView hudView;
 
