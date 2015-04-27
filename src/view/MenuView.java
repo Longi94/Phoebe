@@ -57,6 +57,7 @@ public class MenuView extends JPanel {
             trackListArray[0] = "No track file";
         }
 
+
         JComboBox<String> trackList= new JComboBox<String>(trackListArray);
 
         selectTrackPanel.add(trackList);

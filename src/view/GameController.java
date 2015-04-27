@@ -1,11 +1,14 @@
 package view;
 
-import model.*;
+import model.CleaningRobot;
+import model.Robot;
+import model.Track;
 import model.basic.Position;
 import model.basic.Velocity;
 import skeleton.PhoebeLogger;
 
-import java.io.*;
+import java.io.File;
+import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -215,7 +218,7 @@ public class GameController {
             String[] trackList = new String[trackFiles.length];
 
             for (int i = 0; i < trackList.length; i++) {
-                trackList[i] = trackFiles[i].toString();
+                    trackList[i] = trackFiles[i].getName().substring(0, trackFiles[i].getName().length()-4);
             }
 
             return trackList;
