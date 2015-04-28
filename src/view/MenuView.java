@@ -36,6 +36,9 @@ public class MenuView extends JPanel {
      */
     private JPanel roundsPanel;
 
+    /**
+     * Háttérkép
+     */
     private BufferedImage background;
 
     /**
@@ -69,18 +72,13 @@ public class MenuView extends JPanel {
         add(startPanel);
     }
 
-    private void initRoundsPanel() {
-        roundsPanel = new JPanel();
-        roundsPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
-        roundsPanel.setOpaque(false);
-
-    }
 
     public void initSelectTrackPanel() {
 
         selectTrackPanel = new JPanel();
         selectTrackPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         selectTrackPanel.setOpaque(false);
+        selectTrackPanel.setLayout(new FlowLayout());
 
         String[] trackListArray = GameController.getAvailableTracks();
 
@@ -98,6 +96,21 @@ public class MenuView extends JPanel {
 
 
     }
+
+    private void initRoundsPanel() {
+        roundsPanel = new JPanel();
+        roundsPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        roundsPanel.setOpaque(false);
+
+        JLabel roundsLabel = new JLabel("Rounds:");
+        JSpinner roundsSpinner = new JSpinner();
+        SpinnerNumberModel model = new SpinnerNumberModel(20, 5, 40, 1);
+        roundsSpinner.setModel(model);
+
+        roundsPanel.add(roundsLabel);
+        roundsPanel.add(roundsSpinner);
+    }
+
 
     public void initPlayersPanel() {
 
