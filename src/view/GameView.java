@@ -23,15 +23,18 @@ public class GameView extends JPanel {
      */
     private HudView hudView;
 
+
     public GameView() {
         super();
 
-        this.setLayout(new BorderLayout());
+        setLayout(new BorderLayout());
 
         trackView = new TrackView();
         hudView = new HudView();
-        this.add(trackView, BorderLayout.WEST);
-        this.add(hudView, BorderLayout.EAST);
+        add(trackView, BorderLayout.WEST);
+        add(hudView, BorderLayout.EAST);
+        invalidate();
+        setVisible(true);
     }
 
     public void newRound(Robot actualPlayer) {

@@ -3,6 +3,8 @@ package view;
 import model.Robot;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -20,7 +22,12 @@ public class HudView extends JPanel {
 
     private String current;
 
+    // TODO kipróbálni az egészet hogy hogy néz ki, jó-e egyáltalán
     public HudView() {
+        setLayout(new GridLayout(0, 1));
+        setPreferredSize(new Dimension(1024-768, 768));
+        setBorder(new LineBorder(Color.BLACK, 3));
+
         initButtonPanel();
         add(buttonPanel);
 
@@ -48,19 +55,19 @@ public class HudView extends JPanel {
     }
 
     private void initButtonPanel(){
-
+        buttonPanel = new JPanel(new FlowLayout());
     }
 
     private void initStatusPanel(){
-
+        statusPanel = new JPanel();
     }
 
     private void initCurrentPlayerPanel(){
-
+        currentPlayerPanel = new JPanel();
     }
 
     private void initPostsPanel(){
-
+        postsPanel = new JPanel();
     }
 
 }

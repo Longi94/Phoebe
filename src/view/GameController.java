@@ -33,6 +33,10 @@ public class GameController {
     private boolean gameStarted = false; //Van-e betöltve pálya, elértük-e már a játék végét
     private int currentPlayer = 0;
 
+    /**
+     * Referencia az ablakra (frissítés miatt)
+     */
+    private MainWindow mw;
     private GameView gw;
 
     /**
@@ -44,10 +48,13 @@ public class GameController {
 
         turnsLeft = rounds;
 
-        //TODO players és playerOrder feltöltése names alapján új robotokkal
-
-
+        //TODO valahogy hozzá kéne adni a MainWindowhoz a GameViewt, mert amúgy nem fogunk látni semmit...
+/*
         gw = new GameView();
+        mw = (MainWindow) SwingUtilities.getWindowAncestor(gw);
+
+        mw.add(gw);
+*/
 
         Robot.resetIds();
 
@@ -59,6 +66,7 @@ public class GameController {
         //Játékosok sorrendjét meghatározó lista
         playerOrder = new ArrayList<Integer>();
 
+        // Robotok felállítása a startvonalra és hozzáadásuk a listához
         for (int i = 1; i <= names.size(); i++) {
             Position position = new Position();
             position.setX((i * track.getInnerArc().get(0).getX() + (names.size() - i + 1) * track.getOuterArc().get(0).getX()) / (names.size() + 1));
