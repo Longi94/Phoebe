@@ -3,6 +3,7 @@ package view;
 import model.Robot;
 import model.Track;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * @author Gergely Reményi
  * @since 2015.04.25.
  */
-public class TrackView {
+public class TrackView extends JPanel {
 
     /**
      * Pálya kinézete

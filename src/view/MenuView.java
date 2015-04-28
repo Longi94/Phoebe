@@ -3,10 +3,17 @@ package view;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Vector;
 
 /**
  * Menü panel
@@ -46,12 +53,21 @@ public class MenuView extends JPanel {
      */
     String selectedMap;
 
+    /**
+     * A körök számát itt lehet beállítani
+     **/
+    int numberOfRounds;
+
+    ArrayList<String> players = new ArrayList<String>();
+    ArrayList<String> trackListArray;
+    JComboBox<String> trackList;
+
     public MenuView() {
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
         // háttérkép beolvasása
         try {
-            background = ImageIO.read(new File("assets/img/menu_background_new.jpg"));
+            background = ImageIO.read(new File("assets/img/menu_background_alternative.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -80,15 +96,14 @@ public class MenuView extends JPanel {
         selectTrackPanel.setOpaque(false);
         selectTrackPanel.setLayout(new FlowLayout());
 
-        String[] trackListArray = GameController.getAvailableTracks();
+        trackListArray = new ArrayList<String>(Arrays.asList(GameController.getAvailableTrackNames()));
 
-        if(trackListArray == null) {
-            trackListArray = new String[1];
-            trackListArray[0] = "No track file";
+        if(trackListArray.size() == 0) {
+            trackListArray.add("No track file");
         }
 
 
-        JComboBox<String> trackList= new JComboBox<String>(trackListArray);
+        trackList= new JComboBox<String>(new Vector<String>(trackListArray));
 
         JLabel trackLabel = new JLabel("Select track:");
         selectTrackPanel.add(trackLabel);
@@ -103,9 +118,16 @@ public class MenuView extends JPanel {
         roundsPanel.setOpaque(false);
 
         JLabel roundsLabel = new JLabel("Rounds:");
-        JSpinner roundsSpinner = new JSpinner();
+        final JSpinner roundsSpinner = new JSpinner();
         SpinnerNumberModel model = new SpinnerNumberModel(20, 5, 40, 1);
         roundsSpinner.setModel(model);
+
+        roundsSpinner.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                numberOfRounds = (Integer) roundsSpinner.getValue();
+            }
+        });
 
         roundsPanel.add(roundsLabel);
         roundsPanel.add(roundsSpinner);
@@ -119,6 +141,14 @@ public class MenuView extends JPanel {
         playersPanel.setOpaque(false);
 
 
+        //---------------------------------
+        //TEMPORARY SOLUTION
+
+        players.add("Marvin");
+        players.add("Eve");
+        players.add("Wallee");
+
+        //---------------------------------
     }
 
     public void initStartPanel() {
@@ -128,6 +158,16 @@ public class MenuView extends JPanel {
         startPanel.setOpaque(false);
 
         JButton startButton = new JButton("Start");
+
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<String> maps = new ArrayList<String>(Arrays.asList(GameController.getAvailableTracks()));
+                int index = trackListArray.indexOf(trackList.getSelectedItem());
+                selectedMap = maps.get(index);
+                new GameController(selectedMap, players, numberOfRounds);
+            }
+        });
         startPanel.add(startButton);
 
     }

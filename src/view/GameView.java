@@ -3,6 +3,7 @@ package view;
 import model.Robot;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Játék kinézet
@@ -21,6 +22,17 @@ public class GameView extends JPanel {
      * Státusz bár nézete
      */
     private HudView hudView;
+
+    public GameView() {
+        super();
+
+        this.setLayout(new BorderLayout());
+
+        trackView = new TrackView();
+        hudView = new HudView();
+        this.add(trackView, BorderLayout.WEST);
+        this.add(hudView, BorderLayout.EAST);
+    }
 
     public void newRound(Robot actualPlayer) {
         hudView.refreshStandings();

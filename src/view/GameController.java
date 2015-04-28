@@ -46,6 +46,7 @@ public class GameController {
 
         //TODO players és playerOrder feltöltése names alapján új robotokkal
 
+
         gw = new GameView();
 
         Robot.resetIds();
@@ -57,6 +58,13 @@ public class GameController {
 
         //Játékosok sorrendjét meghatározó lista
         playerOrder = new ArrayList<Integer>();
+
+        for (int i = 1; i <= names.size(); i++) {
+            Position position = new Position();
+            position.setX((i * track.getInnerArc().get(0).getX() + (names.size() - i + 1) * track.getOuterArc().get(0).getX()) / (names.size() + 1));
+            position.setY((i * track.getInnerArc().get(0).getY() + (names.size() - i + 1) * track.getOuterArc().get(0).getY()) / (names.size() + 1));
+            players.add(new Robot(position, track, names.get(i-1)));
+        }
 
         numberOfPlayers = players.size();
 
@@ -202,6 +210,30 @@ public class GameController {
     }
 
 
+    public static String[] getAvailableTrackNames() {
+
+        File trackDirectory = new File("assets/maps");
+
+        // .map pályafájlok
+        File[] trackFiles = trackDirectory.listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.toLowerCase().endsWith(".map");
+            }
+        });
+
+        if (trackFiles.length > 0) {
+            String[] trackList = new String[trackFiles.length];
+
+            for (int i = 0; i < trackList.length; i++) {
+                trackList[i] = trackFiles[i].getName().substring(0, trackFiles[i].getName().length() - 4);
+            }
+
+            return trackList;
+        } else return null;
+    }
+
+
     public static String[] getAvailableTracks() {
 
         File trackDirectory = new File("assets/maps");
@@ -214,18 +246,15 @@ public class GameController {
             }
         });
 
-        if(trackFiles.length > 0) {
+        if (trackFiles.length > 0) {
             String[] trackList = new String[trackFiles.length];
 
             for (int i = 0; i < trackList.length; i++) {
-                    trackList[i] = trackFiles[i].getName().substring(0, trackFiles[i].getName().length()-4);
+                trackList[i] = trackFiles[i].toString();
             }
 
             return trackList;
-        }
-
-        else return null;
+        } else return null;
     }
-
 
 }

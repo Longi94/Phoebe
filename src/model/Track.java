@@ -1,7 +1,6 @@
 package model;
 
 import model.basic.Position;
-import model.basic.Velocity;
 import skeleton.PhoebeLogger;
 
 import java.io.BufferedReader;
@@ -26,6 +25,7 @@ public class Track {
      * A pályán található elemek listája
      */
     private List<TrackObjectBase> items;
+
 
     /**
      * A pálya belső ívéhez tartozó pontok listája
@@ -389,6 +389,14 @@ public class Track {
             item.newRound();
             if (i < items.size() && item == items.get(i)) i++;
         }//Szerintem szebb lenne, ha newRounddal visszatérnénk egy boollal és azalapján meghívnánk egy Iterator.removeot
+    }
+
+    public List<Position> getInnerArc() {
+        return innerArc;
+    }
+
+    public List<Position> getOuterArc() {
+        return outerArc;
     }
 
 }

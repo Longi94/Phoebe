@@ -2,6 +2,7 @@ package view;
 
 import model.Robot;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +11,7 @@ import java.util.ArrayList;
  * @author Gergely Reményi
  * @since 2015.04.25.
  */
-public class HudView {
+public class HudView extends JPanel {
 
     private ArrayList<String> posts;
 
