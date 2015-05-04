@@ -2,7 +2,7 @@ package view;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
@@ -92,7 +92,7 @@ public class MenuView extends JPanel {
     public void initSelectTrackPanel() {
 
         selectTrackPanel = new JPanel();
-        selectTrackPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        selectTrackPanel.setBorder(new LineBorder(Color.RED, 2));
         selectTrackPanel.setOpaque(false);
         selectTrackPanel.setLayout(new FlowLayout());
 
@@ -114,7 +114,7 @@ public class MenuView extends JPanel {
 
     private void initRoundsPanel() {
         roundsPanel = new JPanel();
-        roundsPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        roundsPanel.setBorder(new LineBorder(Color.RED, 2));
         roundsPanel.setOpaque(false);
 
         JLabel roundsLabel = new JLabel("Rounds:");
@@ -137,7 +137,7 @@ public class MenuView extends JPanel {
     public void initPlayersPanel() {
 
         playersPanel = new JPanel();
-        playersPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        playersPanel.setBorder(new LineBorder(Color.RED, 2));
         playersPanel.setOpaque(false);
 
 
@@ -154,7 +154,7 @@ public class MenuView extends JPanel {
     public void initStartPanel() {
 
         startPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        startPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        startPanel.setBorder(new LineBorder(Color.RED, 2));
         startPanel.setOpaque(false);
 
         JButton startButton = new JButton("Start");
