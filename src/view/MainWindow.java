@@ -1,7 +1,5 @@
 package view;
 
-import model.*;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -33,24 +31,28 @@ public class MainWindow extends JFrame {
      */
     public static void main(String[] args) {
 
-        // Új ablak létrehozása
-        MainWindow window = new MainWindow();
+        /* Create and display the form */
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
 
-        // Ablak megjelenítési beállításai
-        window.displaySetUp();
+                // Új ablak létrehozása
+                MainWindow window = new MainWindow();
 
-        // Megjelenítés
-        window.setVisible(true);
+                // Ablak megjelenítési beállításai
+                window.displaySetUp();
+
+                // Megjelenítés
+                window.setVisible(true);
+            }
+        });
+
     }
 
     public MainWindow() {
 
-        // Menu panel inizializálása
-        menuView = new MenuView();
-
         // Menü nézet hozzáadása az ablakhoz
-        add(menuView);
-
+        add(new MenuView());
+        pack();
     }
 
     public void displaySetUp() {
@@ -58,11 +60,8 @@ public class MainWindow extends JFrame {
         // Ablak címe
         setTitle("Phoebe by Passz");
 
-        // Méret beállítások
-        setSize(1024,768);
-
         // Kilépés x megnyomása esetén
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         // Átméretezés letiltása
         setResizable(false);
