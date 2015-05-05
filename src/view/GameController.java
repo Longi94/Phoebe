@@ -64,10 +64,10 @@ public class GameController {
             Position position = new Position();
             position.setX((i * track.getInnerArc().get(0).getX() + (names.size() - i + 1) * track.getOuterArc().get(0).getX()) / (names.size() + 1));
             position.setY((i * track.getInnerArc().get(0).getY() + (names.size() - i + 1) * track.getOuterArc().get(0).getY()) / (names.size() + 1));
-            Robot r = new Robot (position, track,names.get(i-1));
+            Robot r = new Robot (position, track,names.get(i-1),MenuView.PLAYER_COLORS[i-1]);
 
             //Hozzáadjuk a játékosokhoz a robotot és új RobotView-t a pályához
-            gameView.addItem(new RobotView(r, MenuView.PLAYER_COLORS[i - 1]));
+            gameView.addItem(new RobotView(r));
             players.add(r);
         }
 
