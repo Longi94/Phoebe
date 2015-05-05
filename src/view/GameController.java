@@ -8,6 +8,7 @@ import model.basic.Velocity;
 import skeleton.PhoebeLogger;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
@@ -58,6 +59,13 @@ public class GameController {
         mw = MainWindow.getInstance();
 
         mw.getContentPane().removeAll();
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+        mw.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        mw.setSize(screenSize);
+        mw.setVisible(true);    // FIRST visible = true
+        mw.setResizable(false); // THEN  resizable = false
 
         gw.setVisible(true);
         mw.add(gw);
