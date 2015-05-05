@@ -32,7 +32,7 @@ public class GameView extends JPanel {
 
         trackView = new TrackView(t);
         hudView = new HudView();
-        add(trackView, BorderLayout.WEST);
+        add(trackView, BorderLayout.CENTER);
         add(hudView, BorderLayout.EAST);
         invalidate();
         setVisible(true);

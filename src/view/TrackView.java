@@ -36,9 +36,9 @@ public class TrackView extends JPanel {
     private List<TrackObjectBaseView> trackObjectBaseViews;
 
     public TrackView (Track t) {
-        xOffset = 0;
-        yOffset = -25;
-        zoom = 4;
+        xOffset = -2.5;
+        yOffset = -2.5;
+        zoom = 40;
         track = t;
         trackObjectBaseViews = new ArrayList<TrackObjectBaseView>();
     }
