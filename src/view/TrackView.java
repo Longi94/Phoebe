@@ -2,9 +2,11 @@ package view;
 
 import model.Robot;
 import model.Track;
+import model.basic.Position;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,7 +37,17 @@ public class TrackView extends JPanel {
         //zoom változatlan, offset úgy módosul, hogy a robot középre kerüljön
     }
 
+    private void drawArc(ArrayList<Position> arc) {
+        for (int i =  0; i<arc.size();i++) {
+            Position ap = arc.get(i);
+            Position np = arc.get((i + 1) % arc.size());
+            graph.drawLine(0,0,0,0);
+        }
+    }
+
     public void drawTrack() {
+
+        graph.drawLine(1,2,3,4);
         //pályahatárok kirajzolása
         for (TrackObjectBaseView tobw : trackObjectBaseViews) {
             tobw.draw(graph, xOffset, yOffset, zoom);
