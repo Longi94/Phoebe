@@ -30,9 +30,6 @@ public class GameView extends JPanel {
 
         setLayout(new BorderLayout());
 
-        //just for test
-        add(new JLabel("Szia"),BorderLayout.NORTH);
-
         trackView = new TrackView(t);
         hudView = new HudView();
         add(trackView, BorderLayout.WEST);

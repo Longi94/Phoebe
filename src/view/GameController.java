@@ -63,10 +63,6 @@ public class GameController {
         mw.add(gw);
 
         mw.revalidate();
-        mw.getContentPane().revalidate();
-        mw.repaint();
-
-        mw.getContentPane().repaint();
 
         Robot.resetIds();
 
