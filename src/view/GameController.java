@@ -51,15 +51,24 @@ public class GameController {
 
         //TODO valahogy hozzá kéne adni a MainWindowhoz a GameViewt, mert amúgy nem fogunk látni semmit...
 
-        gw = new GameView();
-        mw = MainWindow.getInstance();
-
-        mw.add(gw);
-
-
-        Robot.resetIds();
 
         track = new Track(file);
+
+        gw = new GameView(track);
+        mw = MainWindow.getInstance();
+
+        mw.getContentPane().removeAll();
+
+        gw.setVisible(true);
+        mw.add(gw);
+
+        mw.revalidate();
+        mw.getContentPane().revalidate();
+        mw.repaint();
+
+        mw.getContentPane().repaint();
+
+        Robot.resetIds();
 
         //Robotokat tartalmazó lista
         players = new ArrayList<Robot>();

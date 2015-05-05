@@ -35,6 +35,15 @@ public class TrackView extends JPanel {
      */
     private List<TrackObjectBaseView> trackObjectBaseViews;
 
+    public TrackView (Track t) {
+        xOffset = yOffset =  0;
+        zoom = 1;
+        track = t;
+        trackObjectBaseViews = new ArrayList<TrackObjectBaseView>();
+    }
+
+
+
     void centerActualPlayer(Robot robot) {
         //zoom változatlan, offset úgy módosul, hogy a robot középre kerüljön
     }

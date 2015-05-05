@@ -1,6 +1,7 @@
 package view;
 
 import model.Robot;
+import model.Track;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,12 +25,15 @@ public class GameView extends JPanel {
     private HudView hudView;
 
 
-    public GameView() {
+    public GameView(Track t) {
         super();
 
         setLayout(new BorderLayout());
 
-        trackView = new TrackView();
+        //just for test
+        add(new JLabel("Szia"),BorderLayout.NORTH);
+
+        trackView = new TrackView(t);
         hudView = new HudView();
         add(trackView, BorderLayout.WEST);
         add(hudView, BorderLayout.EAST);

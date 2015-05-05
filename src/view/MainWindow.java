@@ -52,7 +52,7 @@ public class MainWindow extends JFrame {
             public void run() {
 
                 // Új ablak létrehozása
-                MainWindow window = new MainWindow();
+                MainWindow window = MainWindow.getInstance();
 
                 // Ablak megjelenítési beállításai
                 window.displaySetUp();
