@@ -15,7 +15,7 @@ import java.awt.*;
  * @author Thanh Long Tran
  * @since 2015.02.23.
  */
-public class Robot extends TrackObjectBase {
+public class Robot extends TrackObjectBase implements Comparable<Robot> {
 
     /**
      * Robot inicializálásakor kezdő olaj mennyiség
@@ -334,5 +334,21 @@ public class Robot extends TrackObjectBase {
                 //"name: " + name  +  "\n" + //basszus, ez kimaradt
                 "enabled:" + enabled +
                 "}";
+    }
+
+    /**
+     * Komparál
+     * @param robot amihez hasonlítunk
+     * @return 0 ha egyenlő, 1 ha az első robot nagyobb, különben a második
+     */
+    @Override
+    public int compareTo(Robot robot) {
+        if (distanceCompleted == robot.distanceCompleted) {
+            return 0;
+        } else if (distanceCompleted > robot.distanceCompleted) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 }
