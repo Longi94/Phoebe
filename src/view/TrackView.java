@@ -36,8 +36,9 @@ public class TrackView extends JPanel {
     private List<TrackObjectBaseView> trackObjectBaseViews;
 
     public TrackView (Track t) {
-        xOffset = yOffset =  0;
-        zoom = 1;
+        xOffset = 0;
+        yOffset = -25;
+        zoom = 4;
         track = t;
         trackObjectBaseViews = new ArrayList<TrackObjectBaseView>();
     }
@@ -55,6 +56,12 @@ public class TrackView extends JPanel {
         p.addPoint(inE.convertX(xOffset,zoom),inE.convertY(yOffset,zoom));
         p.addPoint(outE.convertX(xOffset,zoom),outE.convertY(yOffset,zoom));
         p.addPoint(outS.convertX(xOffset,zoom),outS.convertY(yOffset,zoom));
+
+        System.out.println(inS.convertX(xOffset, zoom) + " " + inS.convertY(yOffset, zoom));
+        System.out.println(inE.convertX(xOffset, zoom) + " " + inE.convertY(yOffset, zoom));
+        System.out.println(outE.convertX(xOffset, zoom) + " " + outE.convertY(yOffset, zoom));
+        System.out.println(outS.convertX(xOffset, zoom) + " " + outS.convertY(yOffset, zoom));
+        System.out.println("???");
 
         graph.fillPolygon(p);
 

@@ -194,12 +194,12 @@ public class Position {
     }
 
     public int convertX(double offset, double zoom) {
-        return (int) ((posX - offset) * zoom);
+        return (int) ((posX - offset) * zoom );
     }
 
 
     public int convertY(double offset, double zoom) {
-        return (int) ((posY - offset) * zoom);
+        return (int) ((posY -offset) * zoom);
     }
 
     /**
