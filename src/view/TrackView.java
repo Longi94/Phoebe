@@ -57,12 +57,6 @@ public class TrackView extends JPanel {
         p.addPoint(outE.convertX(xOffset,zoom),outE.convertY(yOffset,zoom));
         p.addPoint(outS.convertX(xOffset,zoom),outS.convertY(yOffset,zoom));
 
-        System.out.println("Poligon: ");
-        System.out.println("X: " + inS.convertX(xOffset, zoom) + ", Y: " + inS.convertY(yOffset, zoom));
-        System.out.println("X: " + inE.convertX(xOffset, zoom) + ", Y: " + inE.convertY(yOffset, zoom));
-        System.out.println("X: " + outE.convertX(xOffset, zoom) + ", Y: " + outE.convertY(yOffset, zoom));
-        System.out.println("X: " + outS.convertX(xOffset, zoom) + ", Y: " + outS.convertY(yOffset, zoom));
-
         graph.fillPolygon(p);
 
     }
