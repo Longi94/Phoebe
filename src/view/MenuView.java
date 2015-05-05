@@ -24,6 +24,15 @@ public class MenuView extends JPanel {
     public static final Color PLAYER_5_COLOR = new java.awt.Color(204, 153, 255);
     public static final Color PLAYER_6_COLOR = new java.awt.Color(204, 204, 204);
 
+    public static final Color[] PLAYER_COLORS = {
+            PLAYER_1_COLOR,
+            PLAYER_2_COLOR,
+            PLAYER_3_COLOR,
+            PLAYER_4_COLOR,
+            PLAYER_5_COLOR,
+            PLAYER_6_COLOR
+    };
+
     /**
      * Háttérkép
      */
