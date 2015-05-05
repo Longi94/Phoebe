@@ -17,6 +17,13 @@ import java.util.Vector;
  */
 public class MenuView extends JPanel {
 
+    public static final Color PLAYER_1_COLOR = new java.awt.Color(255, 153, 153);
+    public static final Color PLAYER_2_COLOR = new java.awt.Color(153, 255, 153);
+    public static final Color PLAYER_3_COLOR = new java.awt.Color(153, 255, 204);
+    public static final Color PLAYER_4_COLOR = new java.awt.Color(255, 255, 153);
+    public static final Color PLAYER_5_COLOR = new java.awt.Color(204, 153, 255);
+    public static final Color PLAYER_6_COLOR = new java.awt.Color(204, 204, 204);
+
     /**
      * Háttérkép
      */
@@ -120,27 +127,27 @@ public class MenuView extends JPanel {
         player5Label.setText("Player 5");
         player6Label.setText("Player 6");
 
-        player1Field.setBackground(new java.awt.Color(255, 153, 153));
+        player1Field.setBackground(PLAYER_1_COLOR);
         player1Field.setHorizontalAlignment(JTextField.CENTER);
         player1Field.setToolTipText("");
 
-        player2Field.setBackground(new java.awt.Color(153, 255, 153));
+        player2Field.setBackground(PLAYER_2_COLOR);
         player2Field.setHorizontalAlignment(JTextField.CENTER);
         player2Field.setToolTipText("");
 
-        player3Field.setBackground(new java.awt.Color(153, 255, 204));
+        player3Field.setBackground(PLAYER_3_COLOR);
         player3Field.setHorizontalAlignment(JTextField.CENTER);
         player3Field.setToolTipText("");
 
-        player4Field.setBackground(new java.awt.Color(255, 255, 153));
+        player4Field.setBackground(PLAYER_4_COLOR);
         player4Field.setHorizontalAlignment(JTextField.CENTER);
         player4Field.setToolTipText("");
 
-        player5Field.setBackground(new java.awt.Color(204, 153, 255));
+        player5Field.setBackground(PLAYER_5_COLOR);
         player5Field.setHorizontalAlignment(JTextField.CENTER);
         player5Field.setToolTipText("");
 
-        player6Field.setBackground(new java.awt.Color(204, 204, 204));
+        player6Field.setBackground(PLAYER_6_COLOR);
         player6Field.setHorizontalAlignment(JTextField.CENTER);
         player6Field.setToolTipText("");
 
