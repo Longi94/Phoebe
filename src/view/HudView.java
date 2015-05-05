@@ -8,6 +8,7 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -54,7 +55,8 @@ public class HudView extends JPanel {
      * Állás frissítése
      */
     public void refreshStandings() {
-        //TODO előbb sortolni a playerst
+
+        Collections.sort(players);
 
         for (int i = 0; i < players.size(); i++) {
             playerNameLabels.get(i).setText(players.get(i).getName());
