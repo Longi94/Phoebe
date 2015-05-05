@@ -17,13 +17,14 @@ import java.util.List;
  * @since 2015.04.25.
  */
 public class HudView extends JPanel {
-    private List<String> posts;
     private List<Robot> players;
 
     private String current;
     private JToggleButton oilButton;
     private JToggleButton puttyButton;
     private JLabel currentPlayerLabel;
+
+    private HistoryPanel historyPanel;
 
     // TODO kipróbálni az egészet hogy hogy néz ki, jó-e egyáltalán
     public HudView(List<Robot> players) {
@@ -89,13 +90,27 @@ public class HudView extends JPanel {
         currentLabel.setBorder(new LineBorder(Color.PINK, 2));
         add(currentLabel, new GridBagConstraints(0, players.size() + 3, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 
-        currentPlayerLabel = new JLabel("Current Player Here");
+        currentPlayerLabel = new JLabel("None");
         currentPlayerLabel.setBorder(new LineBorder(Color.PINK, 2));
         add(currentPlayerLabel, new GridBagConstraints(0, players.size() + 4, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 
         JLabel historyLabel = new JLabel("History");
         historyLabel.setBorder(new LineBorder(Color.PINK, 2));
-        add(historyLabel, new GridBagConstraints(0, players.size() + 5, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
+        add(historyLabel, new GridBagConstraints(0, players.size() + 5, 2, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
+
+        JButton testButton = new JButton("Test Notifications");
+        add(testButton, new GridBagConstraints(2, players.size() + 5, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
+
+        testButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        historyPanel = new HistoryPanel();
+        historyPanel.setBorder(new LineBorder(Color.GREEN, 2));
+        add(historyPanel, new GridBagConstraints(0, players.size() + 6, 3, 1, 1, 35 - 5 - players.size(), GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 
         invalidate();
     }
@@ -105,5 +120,19 @@ public class HudView extends JPanel {
         super.paintComponent(g);
         setPreferredSize(new Dimension((getParent().getWidth() - getParent().getHeight()) / 2, getParent().getHeight()));
         invalidate();
+    }
+
+    private class HistoryPanel extends JPanel {
+
+        private int testI = 0;
+        private List<String> posts;
+
+        public void showNotification(String notif) {
+
+        }
+
+        public void testNotification() {
+
+        }
     }
 }
