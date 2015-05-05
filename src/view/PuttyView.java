@@ -14,6 +14,11 @@ public class PuttyView extends TrackObjectBaseView {
 
     private Putty putty;
 
+    public PuttyView(Putty putty) {
+        this.putty = putty;
+        putty.setTobv(this);
+    }
+
     public void draw(Graphics graph, double xOffset, double yOffset, double zoom) {
 
     }

@@ -14,6 +14,11 @@ public class PickupView extends TrackObjectBaseView{
 
     private Pickup pickup;
 
+    public PickupView(Pickup pickup) {
+        this.pickup = pickup;
+        pickup.setTobv(this);
+    }
+
     public void draw(Graphics graph, double xOffset, double yOffset, double zoom) {
 
     }

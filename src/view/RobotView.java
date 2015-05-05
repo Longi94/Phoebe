@@ -13,6 +13,7 @@ public class RobotView extends TrackObjectBaseView {
 
     public RobotView(Robot r) {
         robot = r;
+        r.setTobv(this);
     }
 
     public void draw(Graphics graph, double xOffset, double yOffset, double zoom) {
