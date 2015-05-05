@@ -49,6 +49,10 @@ public class GameController {
      */
     public GameController(String file, ArrayList<String> names, int rounds) {
 
+        track = new Track(file);
+
+        gameView = new GameView(track);
+
         turnsLeft = rounds;
 
         Robot.resetIds();
@@ -83,9 +87,6 @@ public class GameController {
         //TODO valahogy hozzá kéne adni a MainWindowhoz a GameViewt, mert amúgy nem fogunk látni semmit...
 
 
-        track = new Track(file);
-
-        gameView = new GameView(track);
         hudView = new HudView(players);
         gameView.setHudView(hudView);
 
