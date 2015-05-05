@@ -23,6 +23,7 @@ public class HudView extends JPanel {
     private String current;
     private JToggleButton oilButton;
     private JToggleButton puttyButton;
+    private JLabel currentPlayerLabel;
 
     // TODO kipróbálni az egészet hogy hogy néz ki, jó-e egyáltalán
     public HudView(List<Robot> players) {
@@ -46,6 +47,8 @@ public class HudView extends JPanel {
 
     public void setCurrent(Robot actualPlayer) {
         current = actualPlayer.getName();
+        currentPlayerLabel.setText(current);
+        invalidate();
     }
 
     public void showNotification(String notif) {
@@ -69,7 +72,30 @@ public class HudView extends JPanel {
         });
 
         JLabel statusLabel = new JLabel("Player status");
-        add(statusLabel, new GridBagConstraints(0, 1, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+        statusLabel.setBorder(new LineBorder(Color.PINK, 2));
+        add(statusLabel, new GridBagConstraints(0, 1, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
+
+        for (int i = 0; i < players.size(); i++) {
+            Robot robot = players.get(i);
+            JLabel playerLabel = new JLabel(robot.getName());
+            JLabel playerStatusLabel = new JLabel("12.3");
+            playerLabel.setBorder(new LineBorder(Color.PINK, 2));
+            playerStatusLabel.setBorder(new LineBorder(Color.PINK, 2));
+            add(playerLabel, new GridBagConstraints(0, i + 2, 1, 1, 1, 1, GridBagConstraints.WEST, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
+            add(playerStatusLabel, new GridBagConstraints(2, i + 2, 1, 1, 1, 1, GridBagConstraints.EAST, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
+        }
+
+        JLabel currentLabel = new JLabel("Current Player");
+        currentLabel.setBorder(new LineBorder(Color.PINK, 2));
+        add(currentLabel, new GridBagConstraints(0, players.size() + 3, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
+
+        currentPlayerLabel = new JLabel("Current Player Here");
+        currentPlayerLabel.setBorder(new LineBorder(Color.PINK, 2));
+        add(currentPlayerLabel, new GridBagConstraints(0, players.size() + 4, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
+
+        JLabel historyLabel = new JLabel("History");
+        historyLabel.setBorder(new LineBorder(Color.PINK, 2));
+        add(historyLabel, new GridBagConstraints(0, players.size() + 5, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 
         invalidate();
     }
