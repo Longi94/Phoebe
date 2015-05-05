@@ -31,6 +31,7 @@ public class HudView extends JPanel {
 
         this.players = players;
 
+        //Dummy robotok
         players.add(new Robot(new Position(0, 0), null, "ASD1"));
         players.add(new Robot(new Position(0, 0), null, "ASD2"));
         players.add(new Robot(new Position(0, 0), null, "ASD3"));
@@ -53,10 +54,16 @@ public class HudView extends JPanel {
     }
 
     public void showNotification(String notif) {
-
+        if (historyPanel != null) {
+            historyPanel.showNotification(notif);
+        }
     }
 
+    /**
+     *
+     */
     private void initComponents() {
+        //Irnyító gombok hozzáadása
         oilButton = new JToggleButton("Oil");
         puttyButton = new JToggleButton("Putty");
         JButton forfeitButton = new JButton("Forfeit");
@@ -68,14 +75,16 @@ public class HudView extends JPanel {
         forfeitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO
+                //TODO játék feladásának jováhagyása
             }
         });
 
+        //Allapot felirat
         JLabel statusLabel = new JLabel("Player status");
         statusLabel.setBorder(new LineBorder(Color.PINK, 2));
         add(statusLabel, new GridBagConstraints(0, 1, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 
+        //Játékos status feliratok
         for (int i = 0; i < players.size(); i++) {
             Robot robot = players.get(i);
             JLabel playerLabel = new JLabel(robot.getName());
@@ -86,28 +95,33 @@ public class HudView extends JPanel {
             add(playerStatusLabel, new GridBagConstraints(2, i + 2, 1, 1, 1, 1, GridBagConstraints.EAST, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
         }
 
+        //Soron lévő játékos felirat
         JLabel currentLabel = new JLabel("Current Player");
         currentLabel.setBorder(new LineBorder(Color.PINK, 2));
         add(currentLabel, new GridBagConstraints(0, players.size() + 3, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 
+        //Soron lévő játékos neve
         currentPlayerLabel = new JLabel("None");
         currentPlayerLabel.setBorder(new LineBorder(Color.PINK, 2));
         add(currentPlayerLabel, new GridBagConstraints(0, players.size() + 4, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 
+        //History felirat
         JLabel historyLabel = new JLabel("History");
         historyLabel.setBorder(new LineBorder(Color.PINK, 2));
         add(historyLabel, new GridBagConstraints(0, players.size() + 5, 2, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 
+        //Gomb a history teszteléséhez
         JButton testButton = new JButton("Test Notifications");
         add(testButton, new GridBagConstraints(2, players.size() + 5, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 
         testButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                historyPanel.testNotification();
             }
         });
 
+        //A history panel
         historyPanel = new HistoryPanel();
         historyPanel.setBorder(new LineBorder(Color.GREEN, 2));
         add(historyPanel, new GridBagConstraints(0, players.size() + 6, 3, 1, 1, 35 - 5 - players.size(), GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
@@ -124,15 +138,35 @@ public class HudView extends JPanel {
 
     private class HistoryPanel extends JPanel {
 
+        private final DefaultListModel listModel;
         private int testI = 0;
-        private List<String> posts;
+        private JList<Object> list;
+        private JScrollPane scrollPane;
+
+        public HistoryPanel() {
+
+            setLayout(new GridLayout());
+
+            //Lista inicializálása
+            listModel = new DefaultListModel();
+            list = new JList<Object>(listModel);
+
+            //Lehessen görgetni
+            scrollPane = new JScrollPane(list);
+
+            //Ez azért kell mert ez a szar átméreteződik amikor új elemet adok hozzá, így nem változik a mérete
+            setPreferredSize(getSize());
+
+            add(scrollPane, BorderLayout.CENTER);
+            invalidate();
+        }
 
         public void showNotification(String notif) {
-
+            listModel.add(0, notif);
         }
 
         public void testNotification() {
-
+            listModel.add(0, "Test Notification " + testI++);
         }
     }
 }
