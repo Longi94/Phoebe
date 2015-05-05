@@ -4,6 +4,8 @@ import model.basic.Position;
 import model.basic.Velocity;
 import skeleton.PhoebeLogger;
 
+import java.awt.*;
+
 /**
  * Robotot megvalósító osztály
  *
@@ -61,6 +63,19 @@ public class Robot extends TrackObjectBase {
     private String name;
 
     /**
+     * Visszaadja a robot színét
+     * @return
+     */
+    public Color getColor() {
+        return color;
+    }
+
+    /**
+     * Robothoz tartozó szín
+     */
+    private Color color;
+
+    /**
      * Erre két okból lesz szükség. Egyrészt azért, hogy miután lépett, akkor utána ne tudjon vele még egyet lépni a játékos.
      * Másrészt, hogyha olajfolton áll éppen akkor ne tudjon módosítani a sebességén
      * Alapból minden kör elején true, hogyha olajfolton áll éppen akkor false.
@@ -74,8 +89,9 @@ public class Robot extends TrackObjectBase {
      * @param pos   az objektum pozíciója
      * @param track a pálya, amin az objektum található
      * @param name  a robot neve
+     * @param color a robot megjelenési színe
      */
-    public Robot(Position pos, Track track, String name) {
+    public Robot(Position pos, Track track, String name, Color color) {
         super(pos, track);
 
         oilAmount = START_OIL_AMOUNT;
@@ -85,9 +101,15 @@ public class Robot extends TrackObjectBase {
         this.name = name;
         idCount += 1;
 
+        this.color = color;
+
         this.enabled = true;
 
         vel = new Velocity();
+    }
+
+    public Robot(Position pos, Track track, String name) {
+        this(pos,track,name,Color.BLACK);
     }
 
     /**
