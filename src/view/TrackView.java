@@ -17,6 +17,8 @@ import java.util.List;
  */
 public class TrackView extends JPanel {
 
+    public static final Color TRACK_FILL_COLOR = new Color(100,100,100);
+
     /**
      * Pálya kinézete
      */
@@ -49,8 +51,17 @@ public class TrackView extends JPanel {
 
     }
 
+    @Override
+    protected void paintComponent(Graphics graph) {
+        super.paintComponent(graph);
+        this.graph = graph;
+        drawTrack();
+    }
+
     public void drawTrack() {
         //pályahatárok kirajzolása
+        graph.setColor(TRACK_FILL_COLOR);
+
         List<Position> inArc = track.getInnerArc();
         List<Position> outArc = track.getOuterArc();
         for (int i =  0; i<inArc.size();i++) {
