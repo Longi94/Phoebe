@@ -7,6 +7,7 @@ import model.basic.Position;
 import model.basic.Velocity;
 import skeleton.PhoebeLogger;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
@@ -49,12 +50,12 @@ public class GameController {
         turnsLeft = rounds;
 
         //TODO valahogy hozzá kéne adni a MainWindowhoz a GameViewt, mert amúgy nem fogunk látni semmit...
-/*
+
         gw = new GameView();
         mw = (MainWindow) SwingUtilities.getWindowAncestor(gw);
 
         mw.add(gw);
-*/
+
 
         Robot.resetIds();
 
@@ -71,7 +72,11 @@ public class GameController {
             Position position = new Position();
             position.setX((i * track.getInnerArc().get(0).getX() + (names.size() - i + 1) * track.getOuterArc().get(0).getX()) / (names.size() + 1));
             position.setY((i * track.getInnerArc().get(0).getY() + (names.size() - i + 1) * track.getOuterArc().get(0).getY()) / (names.size() + 1));
-            players.add(new Robot(position, track, names.get(i-1)));
+            Robot r = new Robot (position, track,names.get(i-1));
+
+            //Hozzáadjuk a játékosokhoz a robotot és új RobotView-t a pályához
+            gw.addItem(new RobotView(r,MenuView.PLAYER_COLORS[i-1]));
+            players.add(r);
         }
 
         numberOfPlayers = players.size();
