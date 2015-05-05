@@ -1,5 +1,8 @@
 package view;
 
+import model.Track;
+import model.TrackObjectBase;
+
 import java.awt.*;
 
 /**
@@ -11,6 +14,10 @@ import java.awt.*;
 public abstract class TrackObjectBaseView {
 
     private TrackView tv;
+
+    public TrackObjectBaseView(TrackObjectBase tob) {
+        tob.setTobv(this);
+    }
 
     public void removeFromTrack() {
         tv.removeItem(this);
