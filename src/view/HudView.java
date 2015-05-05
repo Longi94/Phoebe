@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Jobb oldali ranglista kinézet
@@ -18,6 +19,8 @@ import java.util.List;
  */
 public class HudView extends JPanel {
     private List<Robot> players;
+    private List<JLabel> playerNameLabels;
+    private List<JLabel> playerDistanceLabels;
 
     private String current;
     private JToggleButton oilButton;
@@ -26,10 +29,14 @@ public class HudView extends JPanel {
 
     private HistoryPanel historyPanel;
 
-    // TODO kipróbálni az egészet hogy hogy néz ki, jó-e egyáltalán
+    /**
+     * Constructor
+     *
+     * @param players a játékosokat tartalmazó lista (le másolódik)
+     */
     public HudView(List<Robot> players) {
 
-        this.players = players;
+        this.players = new ArrayList<Robot>(players);
 
         //Dummy robotok
         players.add(new Robot(new Position(0, 0), null, "ASD1"));
@@ -43,16 +50,36 @@ public class HudView extends JPanel {
         initComponents();
     }
 
+    /**
+     * Állás frissítése
+     */
     public void refreshStandings() {
+        //TODO előbb sortolni a playerst
 
+        for (int i = 0; i < players.size(); i++) {
+            playerNameLabels.get(i).setText(players.get(i).getName());
+            playerDistanceLabels.get(i).setText("" + players.get(i).getDistanceCompleted());
+        }
+
+        invalidate();
     }
 
+    /**
+     * Soron lévő játékos beállítása és kiírása
+     *
+     * @param actualPlayer a soron lévő játékos
+     */
     public void setCurrent(Robot actualPlayer) {
         current = actualPlayer.getName();
         currentPlayerLabel.setText(current);
         invalidate();
     }
 
+    /**
+     * Notification kiírása a history részbe
+     *
+     * @param notif a kiírando notification
+     */
     public void showNotification(String notif) {
         if (historyPanel != null) {
             historyPanel.showNotification(notif);
@@ -60,7 +87,7 @@ public class HudView extends JPanel {
     }
 
     /**
-     *
+     * A panel felépítése
      */
     private void initComponents() {
         //Irnyító gombok hozzáadása
@@ -93,6 +120,9 @@ public class HudView extends JPanel {
             playerStatusLabel.setBorder(new LineBorder(Color.PINK, 2));
             add(playerLabel, new GridBagConstraints(0, i + 2, 1, 1, 1, 1, GridBagConstraints.WEST, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
             add(playerStatusLabel, new GridBagConstraints(2, i + 2, 1, 1, 1, 1, GridBagConstraints.EAST, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
+
+            playerNameLabels.add(playerLabel);
+            playerDistanceLabels.add(playerStatusLabel);
         }
 
         //Soron lévő játékos felirat
@@ -136,6 +166,9 @@ public class HudView extends JPanel {
         invalidate();
     }
 
+    /**
+     * A history panel
+     */
     private class HistoryPanel extends JPanel {
 
         private final DefaultListModel listModel;
@@ -143,6 +176,9 @@ public class HudView extends JPanel {
         private JList<Object> list;
         private JScrollPane scrollPane;
 
+        /**
+         * Constructor
+         */
         public HistoryPanel() {
 
             setLayout(new GridLayout());
@@ -161,10 +197,18 @@ public class HudView extends JPanel {
             invalidate();
         }
 
+        /**
+         * Notification hozzáadása a listához
+         *
+         * @param notif a kiírandó notification
+         */
         public void showNotification(String notif) {
             listModel.add(0, notif);
         }
 
+        /**
+         * Teszt notification kiírása
+         */
         public void testNotification() {
             listModel.add(0, "Test Notification " + testI++);
         }
