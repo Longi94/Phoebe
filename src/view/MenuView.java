@@ -18,6 +18,15 @@ import java.util.Vector;
 public class MenuView extends JPanel {
 
     public static final Color[] PLAYER_COLORS = {
+            new Color(255, 0, 0),
+            new Color(0, 255, 18),
+            new Color(0, 178, 255),
+            new Color(255, 255, 0),
+            new Color(157, 0, 255),
+            new Color(0, 0, 0)
+    };
+
+    public static final Color[] PLAYER_COLORS_BRIGHT = {
             new Color(255, 153, 153),
             new Color(153, 255, 153),
             new Color(153, 255, 204),
@@ -129,27 +138,27 @@ public class MenuView extends JPanel {
         player5Label.setText("Player 5");
         player6Label.setText("Player 6");
 
-        player1Field.setBackground(PLAYER_COLORS[0]);
+        player1Field.setBackground(PLAYER_COLORS_BRIGHT[0]);
         player1Field.setHorizontalAlignment(JTextField.CENTER);
         player1Field.setToolTipText("");
 
-        player2Field.setBackground(PLAYER_COLORS[1]);
+        player2Field.setBackground(PLAYER_COLORS_BRIGHT[1]);
         player2Field.setHorizontalAlignment(JTextField.CENTER);
         player2Field.setToolTipText("");
 
-        player3Field.setBackground(PLAYER_COLORS[2]);
+        player3Field.setBackground(PLAYER_COLORS_BRIGHT[2]);
         player3Field.setHorizontalAlignment(JTextField.CENTER);
         player3Field.setToolTipText("");
 
-        player4Field.setBackground(PLAYER_COLORS[3]);
+        player4Field.setBackground(PLAYER_COLORS_BRIGHT[3]);
         player4Field.setHorizontalAlignment(JTextField.CENTER);
         player4Field.setToolTipText("");
 
-        player5Field.setBackground(PLAYER_COLORS[4]);
+        player5Field.setBackground(PLAYER_COLORS_BRIGHT[4]);
         player5Field.setHorizontalAlignment(JTextField.CENTER);
         player5Field.setToolTipText("");
 
-        player6Field.setBackground(PLAYER_COLORS[5]);
+        player6Field.setBackground(PLAYER_COLORS_BRIGHT[5]);
         player6Field.setHorizontalAlignment(JTextField.CENTER);
         player6Field.setToolTipText("");
 

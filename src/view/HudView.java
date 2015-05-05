@@ -126,7 +126,7 @@ public class HudView extends JPanel {
             JLabel playerStatusLabel = new JLabel("12.3");
             playerLabel.setBorder(new LineBorder(robot.getColor(), 2));
             playerStatusLabel.setBorder(new LineBorder(robot.getColor(), 2));
-            add(playerLabel, new GridBagConstraints(0, i + 2, 1, 1, 1, 1, GridBagConstraints.WEST, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
+            add(playerLabel, new GridBagConstraints(0, i + 2, 2, 1, 1, 1, GridBagConstraints.WEST, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
             add(playerStatusLabel, new GridBagConstraints(2, i + 2, 1, 1, 1, 1, GridBagConstraints.EAST, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 
             playerNameLabels.add(playerLabel);
