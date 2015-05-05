@@ -65,14 +65,16 @@ public class GameController {
 
         // Robotok felállítása a startvonalra és hozzáadásuk a listához
         for (int i = 1; i <= names.size(); i++) {
-            Position position = new Position();
-            position.setX((i * track.getInnerArc().get(0).getX() + (names.size() - i + 1) * track.getOuterArc().get(0).getX()) / (names.size() + 1));
-            position.setY((i * track.getInnerArc().get(0).getY() + (names.size() - i + 1) * track.getOuterArc().get(0).getY()) / (names.size() + 1));
-            Robot r = new Robot (position, track,names.get(i-1),MenuView.PLAYER_COLORS[i-1]);
+            if (names.get(i - 1) != null) {
+                Position position = new Position();
+                position.setX((i * track.getInnerArc().get(0).getX() + (names.size() - i + 1) * track.getOuterArc().get(0).getX()) / (names.size() + 1));
+                position.setY((i * track.getInnerArc().get(0).getY() + (names.size() - i + 1) * track.getOuterArc().get(0).getY()) / (names.size() + 1));
+                Robot r = new Robot(position, track, names.get(i - 1), MenuView.PLAYER_COLORS[i - 1]);
 
-            //Hozzáadjuk a játékosokhoz a robotot és új RobotView-t a pályához
-            gameView.addItem(new RobotView(r));
-            players.add(r);
+                //Hozzáadjuk a játékosokhoz a robotot és új RobotView-t a pályához
+                gameView.addItem(new RobotView(r));
+                players.add(r);
+            }
         }
 
         numberOfPlayers = players.size();

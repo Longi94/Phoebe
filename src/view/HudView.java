@@ -1,16 +1,15 @@
 package view;
 
 import model.Robot;
-import model.basic.Position;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.ArrayList;
 
 /**
  * Jobb oldali ranglista kinézet
@@ -38,11 +37,8 @@ public class HudView extends JPanel {
     public HudView(List<Robot> players) {
 
         this.players = new ArrayList<Robot>(players);
-
-        //Dummy robotok
-        players.add(new Robot(new Position(0, 0), null, "ASD1"));
-        players.add(new Robot(new Position(0, 0), null, "ASD2"));
-        players.add(new Robot(new Position(0, 0), null, "ASD3"));
+        playerNameLabels = new ArrayList<JLabel>();
+        playerDistanceLabels = new ArrayList<JLabel>();
 
         setLayout(new GridBagLayout());
 
@@ -120,7 +116,7 @@ public class HudView extends JPanel {
 
         //Allapot felirat
         JLabel statusLabel = new JLabel("Player status");
-        statusLabel.setBorder(new LineBorder(Color.PINK, 2));
+        statusLabel.setBorder(new LineBorder(Color.BLACK, 2));
         add(statusLabel, new GridBagConstraints(0, 1, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 
         //Játékos status feliratok
@@ -139,7 +135,7 @@ public class HudView extends JPanel {
 
         //Soron lévő játékos felirat
         JLabel currentLabel = new JLabel("Current Player");
-        currentLabel.setBorder(new LineBorder(Color.PINK, 2));
+        currentLabel.setBorder(new LineBorder(Color.BLACK, 2));
         add(currentLabel, new GridBagConstraints(0, players.size() + 3, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 
         //Soron lévő játékos neve
@@ -148,7 +144,7 @@ public class HudView extends JPanel {
 
         //History felirat
         JLabel historyLabel = new JLabel("History");
-        historyLabel.setBorder(new LineBorder(Color.PINK, 2));
+        historyLabel.setBorder(new LineBorder(Color.BLACK, 2));
         add(historyLabel, new GridBagConstraints(0, players.size() + 5, 2, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 
         //Gomb a history teszteléséhez

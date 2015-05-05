@@ -18,12 +18,12 @@ import java.util.Vector;
 public class MenuView extends JPanel {
 
     public static final Color[] PLAYER_COLORS = {
-            new java.awt.Color(255, 153, 153),
-            new java.awt.Color(153, 255, 153),
-            new java.awt.Color(153, 255, 204),
-            new java.awt.Color(255, 255, 153),
-            new java.awt.Color(204, 153, 255),
-            new java.awt.Color(204, 204, 204)
+            new Color(255, 153, 153),
+            new Color(153, 255, 153),
+            new Color(153, 255, 204),
+            new Color(255, 255, 153),
+            new Color(204, 153, 255),
+            new Color(204, 204, 204)
     };
 
     /**
@@ -255,23 +255,35 @@ public class MenuView extends JPanel {
         int index = trackListArray.indexOf(trackList.getSelectedItem());
         selectedMap = maps.get(index);
 
-        if (!player1Field.getText().equals("")) {
-            //TODO játékos hozzáadása, SZÍNT IS
+        if (player1Field.getText() != null && !player1Field.getText().equals("")) {
+            players.add(player1Field.getText());
+        } else {
+            players.add(null);
         }
-        if (!player2Field.getText().equals("")) {
-            //TODO játékos hozzáadása, SZÍNT IS
+        if (player2Field.getText() != null && !player2Field.getText().equals("")) {
+            players.add(player2Field.getText());
+        } else {
+            players.add(null);
         }
-        if (!player3Field.getText().equals("")) {
-            //TODO játékos hozzáadása, SZÍNT IS
+        if (player3Field.getText() != null && !player3Field.getText().equals("")) {
+            players.add(player3Field.getText());
+        } else {
+            players.add(null);
         }
-        if (!player4Field.getText().equals("")) {
-            //TODO játékos hozzáadása, SZÍNT IS
+        if (player4Field.getText() != null && !player4Field.getText().equals("")) {
+            players.add(player4Field.getText());
+        } else {
+            players.add(null);
         }
-        if (!player5Field.getText().equals("")) {
-            //TODO játékos hozzáadása, SZÍNT IS
+        if (player5Field.getText() != null && !player5Field.getText().equals("")) {
+            players.add(player5Field.getText());
+        } else {
+            players.add(null);
         }
-        if (!player6Field.getText().equals("")) {
-            //TODO játékos hozzáadása, SZÍNT IS
+        if (player6Field.getText() != null && !player6Field.getText().equals("")) {
+            players.add(player6Field.getText());
+        } else {
+            players.add(null);
         }
         new GameController(selectedMap, players, numberOfRounds);
     }
