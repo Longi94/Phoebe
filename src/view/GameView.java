@@ -31,9 +31,7 @@ public class GameView extends JPanel {
         setLayout(new BorderLayout());
 
         trackView = new TrackView(t);
-        hudView = new HudView();
         add(trackView, BorderLayout.CENTER);
-        add(hudView, BorderLayout.EAST);
         invalidate();
         setVisible(true);
     }
@@ -57,4 +55,9 @@ public class GameView extends JPanel {
         trackView.addItem(tobv);
     }
 
+    public void setHudView(HudView hudView) {
+        this.hudView = hudView;
+        add(hudView, BorderLayout.EAST);
+        invalidate();
+    }
 }

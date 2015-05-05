@@ -38,8 +38,9 @@ public class GameController {
     /**
      * Referencia az ablakra (frissítés miatt)
      */
-    private MainWindow mw;
-    private GameView gw;
+    private MainWindow mainWindow;
+    private GameView gameView;
+    private HudView hudView;
 
     /**
      * Konstruktor
@@ -55,22 +56,25 @@ public class GameController {
 
         track = new Track(file);
 
-        gw = new GameView(track);
-        mw = MainWindow.getInstance();
+        gameView = new GameView(track);
+        hudView = new HudView(players);
+        gameView.setHudView(hudView);
 
-        mw.getContentPane().removeAll();
+        mainWindow = MainWindow.getInstance();
+
+        mainWindow.getContentPane().removeAll();
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-        mw.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        mw.setSize(new Dimension(1280, 720));
-        mw.setVisible(true);    // FIRST visible = true
-        mw.setResizable(false); // THEN  resizable = false
+        mainWindow.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        mainWindow.setSize(new Dimension(1280, 720));
+        mainWindow.setVisible(true);    // FIRST visible = true
+        mainWindow.setResizable(false); // THEN  resizable = false
 
-        gw.setVisible(true);
-        mw.add(gw);
+        gameView.setVisible(true);
+        mainWindow.add(gameView);
 
-        mw.revalidate();
+        mainWindow.revalidate();
 
         Robot.resetIds();
 
@@ -88,7 +92,7 @@ public class GameController {
             Robot r = new Robot (position, track,names.get(i-1));
 
             //Hozzáadjuk a játékosokhoz a robotot és új RobotView-t a pályához
-            gw.addItem(new RobotView(r,MenuView.PLAYER_COLORS[i-1]));
+            gameView.addItem(new RobotView(r, MenuView.PLAYER_COLORS[i - 1]));
             players.add(r);
         }
 
