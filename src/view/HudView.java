@@ -1,11 +1,10 @@
 package view;
 
 import model.Robot;
+import model.basic.Position;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,6 +28,10 @@ public class HudView extends JPanel {
     public HudView(List<Robot> players) {
 
         this.players = players;
+
+        players.add(new Robot(new Position(0, 0), null, "ASD1"));
+        players.add(new Robot(new Position(0, 0), null, "ASD2"));
+        players.add(new Robot(new Position(0, 0), null, "ASD3"));
 
         setLayout(new GridBagLayout());
 
@@ -58,28 +61,15 @@ public class HudView extends JPanel {
         add(puttyButton, new GridBagConstraints(1, 0, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
         add(forfeitButton, new GridBagConstraints(2, 0, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
 
-        oilButton.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                if (puttyButton.isSelected())
-                    puttyButton.setSelected(false);
-            }
-        });
-
-        puttyButton.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                if (oilButton.isSelected())
-                    oilButton.setSelected(false);
-            }
-        });
-
         forfeitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO
             }
         });
+
+        JLabel statusLabel = new JLabel("Player status");
+        add(statusLabel, new GridBagConstraints(0, 1, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
 
         invalidate();
     }
