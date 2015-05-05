@@ -69,6 +69,7 @@ public class HudView extends JPanel {
         for (int i = 0; i < players.size(); i++) {
             playerNameLabels.get(i).setText(players.get(i).getName());
             playerDistanceLabels.get(i).setText("" + players.get(i).getDistanceCompleted());
+            currentPlayerLabel.setBorder(new LineBorder(players.get(i).getColor(), 2));
         }
 
         invalidate();
@@ -82,6 +83,7 @@ public class HudView extends JPanel {
     public void setCurrent(Robot actualPlayer) {
         current = actualPlayer.getName();
         currentPlayerLabel.setText(current);
+        currentPlayerLabel.setBorder(new LineBorder(actualPlayer.getColor(), 2));
         invalidate();
     }
 
@@ -126,8 +128,8 @@ public class HudView extends JPanel {
             Robot robot = players.get(i);
             JLabel playerLabel = new JLabel(robot.getName());
             JLabel playerStatusLabel = new JLabel("12.3");
-            playerLabel.setBorder(new LineBorder(Color.PINK, 2));
-            playerStatusLabel.setBorder(new LineBorder(Color.PINK, 2));
+            playerLabel.setBorder(new LineBorder(robot.getColor(), 2));
+            playerStatusLabel.setBorder(new LineBorder(robot.getColor(), 2));
             add(playerLabel, new GridBagConstraints(0, i + 2, 1, 1, 1, 1, GridBagConstraints.WEST, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
             add(playerStatusLabel, new GridBagConstraints(2, i + 2, 1, 1, 1, 1, GridBagConstraints.EAST, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 
@@ -142,7 +144,6 @@ public class HudView extends JPanel {
 
         //Soron lévő játékos neve
         currentPlayerLabel = new JLabel("None");
-        currentPlayerLabel.setBorder(new LineBorder(Color.PINK, 2));
         add(currentPlayerLabel, new GridBagConstraints(0, players.size() + 4, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 
         //History felirat
