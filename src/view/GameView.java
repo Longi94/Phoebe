@@ -41,11 +41,11 @@ public class GameView extends JPanel {
         hudView.refreshStandings();
         hudView.setCurrent(actualPlayer);
         trackView.centerActualPlayer(actualPlayer);
-        trackView.drawTrack();
+        trackView.invalidate();
     }
 
     public void redraw() {
-        trackView.drawTrack();
+        trackView.invalidate();
     }
 
     public void notifyHud(String str) {
