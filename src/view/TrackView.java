@@ -41,7 +41,8 @@ public class TrackView extends JPanel {
         for (int i =  0; i<arc.size();i++) {
             Position ap = arc.get(i);
             Position np = arc.get((i + 1) % arc.size());
-            graph.drawLine(0,0,0,0);
+            graph.drawLine(ap.convertX(xOffset,zoom),ap.convertY(yOffset,zoom),
+                    np.convertX(xOffset,zoom), np.convertY(yOffset,zoom));
         }
     }
 
