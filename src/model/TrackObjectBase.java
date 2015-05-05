@@ -31,6 +31,11 @@ public abstract class TrackObjectBase {
      * Pályaelem sugara
      */
     protected double radius;
+
+    public void setTobv(TrackObjectBaseView tobv) {
+        this.tobv = tobv;
+    }
+
     private TrackObjectBaseView tobv;
 
     /**

@@ -14,6 +14,11 @@ public class CleaningRobotView extends TrackObjectBaseView {
 
     private CleaningRobot cleaningRobot;
 
+    public CleaningRobotView(CleaningRobot cleaningRobot) {
+        this.cleaningRobot = cleaningRobot;
+        cleaningRobot.setTobv(this);
+    }
+
     public void draw(Graphics graph, double xOffset, double yOffset, double zoom) {
 
     }
