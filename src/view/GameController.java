@@ -51,31 +51,6 @@ public class GameController {
 
         turnsLeft = rounds;
 
-        //TODO valahogy hozzá kéne adni a MainWindowhoz a GameViewt, mert amúgy nem fogunk látni semmit...
-
-
-        track = new Track(file);
-
-        gameView = new GameView(track);
-        hudView = new HudView(players);
-        gameView.setHudView(hudView);
-
-        mainWindow = MainWindow.getInstance();
-
-        mainWindow.getContentPane().removeAll();
-
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
-        mainWindow.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        mainWindow.setSize(new Dimension(1280, 720));
-        mainWindow.setVisible(true);    // FIRST visible = true
-        mainWindow.setResizable(false); // THEN  resizable = false
-
-        gameView.setVisible(true);
-        mainWindow.add(gameView);
-
-        mainWindow.revalidate();
-
         Robot.resetIds();
 
         //Robotokat tartalmazó lista
@@ -104,6 +79,29 @@ public class GameController {
         }
 
         gameStarted = true;
+
+        //TODO valahogy hozzá kéne adni a MainWindowhoz a GameViewt, mert amúgy nem fogunk látni semmit...
+
+
+        track = new Track(file);
+
+        gameView = new GameView(track);
+        hudView = new HudView(players);
+        gameView.setHudView(hudView);
+
+        mainWindow = MainWindow.getInstance();
+
+        mainWindow.getContentPane().removeAll();
+
+        mainWindow.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        mainWindow.setSize(new Dimension(1280, 720));
+        mainWindow.setVisible(true);    // FIRST visible = true
+        mainWindow.setResizable(false); // THEN  resizable = false
+
+        gameView.setVisible(true);
+        mainWindow.add(gameView);
+
+        mainWindow.revalidate();
     }
 
     public Robot getActualPlayer() {

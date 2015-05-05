@@ -9,7 +9,6 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
 import java.util.List;
 
 /**
@@ -19,7 +18,8 @@ import java.util.List;
  * @since 2015.04.25.
  */
 public class HudView extends JPanel {
-    private ArrayList<String> posts;
+    private List<String> posts;
+    private List<Robot> players;
 
     private String current;
     private JToggleButton oilButton;
@@ -27,6 +27,9 @@ public class HudView extends JPanel {
 
     // TODO kipróbálni az egészet hogy hogy néz ki, jó-e egyáltalán
     public HudView(List<Robot> players) {
+
+        this.players = players;
+
         setLayout(new GridBagLayout());
 
         setBorder(new LineBorder(Color.BLACK, 3));
