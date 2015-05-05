@@ -51,6 +51,14 @@ public class HudView extends JPanel {
         initComponents();
     }
 
+    public boolean isOilButtonDown() {
+        return oilButton.isSelected();
+    }
+
+    public boolean isPuttyButtonDown() {
+        return puttyButton.isSelected();
+    }
+
     /**
      * Állás frissítése
      */
