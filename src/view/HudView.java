@@ -5,6 +5,8 @@ import model.Robot;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
@@ -15,31 +17,18 @@ import java.util.ArrayList;
  */
 public class HudView extends JPanel {
     private ArrayList<String> posts;
-    private JPanel buttonPanel;
-    private JPanel statusPanel;
-    private JPanel currentPlayerPanel;
-    private JPanel postsPanel;
 
     private String current;
+    private JToggleButton oilButton;
+    private JToggleButton puttyButton;
 
     // TODO kipróbálni az egészet hogy hogy néz ki, jó-e egyáltalán
     public HudView() {
-        setLayout(new GridLayout(0, 1));
+        setLayout(new GridBagLayout());
 
         setBorder(new LineBorder(Color.BLACK, 3));
 
-        initButtonPanel();
-        add(buttonPanel);
-
-        initStatusPanel();
-        add(statusPanel);
-
-        initCurrentPlayerPanel();
-        add(currentPlayerPanel);
-
-        initPostsPanel();
-        add(postsPanel);
-
+        initComponents();
     }
 
     public void refreshStandings() {
@@ -54,24 +43,26 @@ public class HudView extends JPanel {
 
     }
 
-    private void initButtonPanel(){
-        buttonPanel = new JPanel(new FlowLayout());
-        buttonPanel.setBorder(new LineBorder(Color.PINK, 3));
-    }
+    private void initComponents() {
+        oilButton = new JToggleButton("Oil");
+        puttyButton = new JToggleButton("Putty");
+        JButton forfeitButton = new JButton("Forfeit");
 
-    private void initStatusPanel(){
-        statusPanel = new JPanel();
-        statusPanel.setBorder(new LineBorder(Color.PINK, 3));
-    }
+        add(oilButton, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
+        add(puttyButton, new GridBagConstraints(1, 0, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
+        add(forfeitButton, new GridBagConstraints(2, 0, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
 
-    private void initCurrentPlayerPanel(){
-        currentPlayerPanel = new JPanel();
-        currentPlayerPanel.setBorder(new LineBorder(Color.PINK, 3));
-    }
 
-    private void initPostsPanel(){
-        postsPanel = new JPanel();
-        postsPanel.setBorder(new LineBorder(Color.PINK, 3));
+
+
+        forfeitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //TODO
+            }
+        });
+
+        invalidate();
     }
 
     @Override
