@@ -193,6 +193,15 @@ public class Position {
         PhoebeLogger.returnMessage();
     }
 
+    public int convertX(double offset, double zoom) {
+        return (int) ((posX - offset) * zoom);
+    }
+
+
+    public int convertY(double offset, double zoom) {
+        return (int) ((posY - offset) * zoom);
+    }
+
     /**
      * Pozició olvasható formában való megjelenítéséhez
      *
