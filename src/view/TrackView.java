@@ -37,19 +37,31 @@ public class TrackView extends JPanel {
         //zoom változatlan, offset úgy módosul, hogy a robot középre kerüljön
     }
 
-    private void drawArc(ArrayList<Position> arc) {
-        for (int i =  0; i<arc.size();i++) {
-            Position ap = arc.get(i);
-            Position np = arc.get((i + 1) % arc.size());
-            graph.drawLine(ap.convertX(xOffset,zoom),ap.convertY(yOffset,zoom),
-                    np.convertX(xOffset,zoom), np.convertY(yOffset,zoom));
-        }
+    private void drawField(Position inS, Position inE, Position outS, Position outE) {
+        Polygon p = new Polygon();
+        p.addPoint(inS.convertX(xOffset,zoom),inS.convertY(yOffset,zoom));
+        p.addPoint(inE.convertX(xOffset,zoom),inE.convertY(yOffset,zoom));
+        p.addPoint(outE.convertX(xOffset,zoom),outE.convertY(yOffset,zoom));
+        p.addPoint(outS.convertX(xOffset,zoom),outS.convertY(yOffset,zoom));
+
+        graph.fillPolygon(p);
+
     }
 
     public void drawTrack() {
-
-        graph.drawLine(1,2,3,4);
         //pályahatárok kirajzolása
+        List<Position> inArc = track.getInnerArc();
+        List<Position> outArc = track.getOuterArc();
+        for (int i =  0; i<inArc.size();i++) {
+            Position inS = inArc.get(i);
+            Position inE = inArc.get((i + 1) % inArc.size());
+            Position outS = outArc.get(i);
+            Position outE = outArc.get((i + 1) % inArc.size());
+            drawField(inS,inE,outS,outE);
+        }
+
+
+        //pályaobjektumok kirajzolása
         for (TrackObjectBaseView tobw : trackObjectBaseViews) {
             tobw.draw(graph, xOffset, yOffset, zoom);
         }
