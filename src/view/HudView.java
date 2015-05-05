@@ -25,7 +25,7 @@ public class HudView extends JPanel {
     // TODO kipróbálni az egészet hogy hogy néz ki, jó-e egyáltalán
     public HudView() {
         setLayout(new GridLayout(0, 1));
-        setPreferredSize(new Dimension(1024-768, 768));
+
         setBorder(new LineBorder(Color.BLACK, 3));
 
         initButtonPanel();
@@ -56,18 +56,28 @@ public class HudView extends JPanel {
 
     private void initButtonPanel(){
         buttonPanel = new JPanel(new FlowLayout());
+        buttonPanel.setBorder(new LineBorder(Color.PINK, 3));
     }
 
     private void initStatusPanel(){
         statusPanel = new JPanel();
+        statusPanel.setBorder(new LineBorder(Color.PINK, 3));
     }
 
     private void initCurrentPlayerPanel(){
         currentPlayerPanel = new JPanel();
+        currentPlayerPanel.setBorder(new LineBorder(Color.PINK, 3));
     }
 
     private void initPostsPanel(){
         postsPanel = new JPanel();
+        postsPanel.setBorder(new LineBorder(Color.PINK, 3));
     }
 
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        setPreferredSize(new Dimension((getParent().getWidth() - getParent().getHeight()) / 2, getParent().getHeight()));
+        invalidate();
+    }
 }

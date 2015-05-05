@@ -63,7 +63,7 @@ public class GameController {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
         mw.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        mw.setSize(screenSize);
+        mw.setSize(new Dimension(1280, 720));
         mw.setVisible(true);    // FIRST visible = true
         mw.setResizable(false); // THEN  resizable = false
 
