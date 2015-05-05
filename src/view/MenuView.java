@@ -254,6 +254,25 @@ public class MenuView extends JPanel {
         ArrayList<String> maps = new ArrayList<String>(Arrays.asList(GameController.getAvailableTracks()));
         int index = trackListArray.indexOf(trackList.getSelectedItem());
         selectedMap = maps.get(index);
+
+        if (!player1Field.getText().equals("")) {
+            //TODO játékos hozzáadása, SZÍNT IS
+        }
+        if (!player2Field.getText().equals("")) {
+            //TODO játékos hozzáadása, SZÍNT IS
+        }
+        if (!player3Field.getText().equals("")) {
+            //TODO játékos hozzáadása, SZÍNT IS
+        }
+        if (!player4Field.getText().equals("")) {
+            //TODO játékos hozzáadása, SZÍNT IS
+        }
+        if (!player5Field.getText().equals("")) {
+            //TODO játékos hozzáadása, SZÍNT IS
+        }
+        if (!player6Field.getText().equals("")) {
+            //TODO játékos hozzáadása, SZÍNT IS
+        }
         new GameController(selectedMap, players, numberOfRounds);
     }
 }
