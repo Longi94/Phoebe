@@ -14,6 +14,22 @@ public class MainWindow extends JFrame {
     public static final int DEFAULT_TURN_NUMBER = 40;
     private static final int MAX_PLAYER_NUMBER = 6;
 
+    public static MainWindow instance = null;
+
+    protected MainWindow() {
+        super();
+        // Menü nézet hozzáadása az ablakhoz
+        add(new MenuView());
+        pack();
+    }
+
+    public static MainWindow getInstance() {
+        if (instance == null) {
+            instance = new MainWindow();
+        }
+        return instance;
+    }
+
     /**
      * Menü kinézet
      */
@@ -48,12 +64,6 @@ public class MainWindow extends JFrame {
 
     }
 
-    public MainWindow() {
-
-        // Menü nézet hozzáadása az ablakhoz
-        add(new MenuView());
-        pack();
-    }
 
     public void displaySetUp() {
 
