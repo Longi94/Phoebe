@@ -38,6 +38,7 @@ public class TrackView extends JPanel {
     }
 
     private void drawField(Position inS, Position inE, Position outS, Position outE) {
+        //FEEL FREE TO REFINE
         Polygon p = new Polygon();
         p.addPoint(inS.convertX(xOffset,zoom),inS.convertY(yOffset,zoom));
         p.addPoint(inE.convertX(xOffset,zoom),inE.convertY(yOffset,zoom));
