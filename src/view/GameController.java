@@ -52,7 +52,7 @@ public class GameController {
         //TODO valahogy hozzá kéne adni a MainWindowhoz a GameViewt, mert amúgy nem fogunk látni semmit...
 
         gw = new GameView();
-        mw = (MainWindow) SwingUtilities.getWindowAncestor(gw);
+        mw = MainWindow.getInstance();
 
         mw.add(gw);
 
