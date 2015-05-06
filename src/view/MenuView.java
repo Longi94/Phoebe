@@ -54,22 +54,13 @@ public class MenuView extends JPanel {
     ArrayList<String> trackListArray;
 
     private JTextField player1Field;
-    private JLabel player1Label;
     private JTextField player2Field;
-    private JLabel player2Label;
     private JTextField player3Field;
-    private JLabel player3Label;
     private JTextField player4Field;
-    private JLabel player4Label;
     private JTextField player5Field;
-    private JLabel player5Label;
     private JTextField player6Field;
-    private JLabel player6Label;
-    private JLabel roundsLabel;
     private JSpinner roundsSpinner;
-    private JButton startButton;
     private JComboBox trackList;
-    private JLabel tracksLabel;
 
     public MenuView() {
         initComponents();
@@ -86,21 +77,21 @@ public class MenuView extends JPanel {
     private void initComponents() {
 
         trackList = new JComboBox();
-        tracksLabel = new JLabel();
+        JLabel tracksLabel = new JLabel();
         roundsSpinner = new JSpinner();
-        roundsLabel = new JLabel();
-        startButton = new JButton();
+        JLabel roundsLabel = new JLabel();
+        JButton startButton = new JButton();
         player1Field = new JTextField();
-        player1Label = new JLabel();
-        player2Label = new JLabel();
+        JLabel player1Label = new JLabel();
+        JLabel player2Label = new JLabel();
         player2Field = new JTextField();
-        player3Label = new JLabel();
+        JLabel player3Label = new JLabel();
         player3Field = new JTextField();
-        player4Label = new JLabel();
+        JLabel player4Label = new JLabel();
         player4Field = new JTextField();
-        player5Label = new JLabel();
+        JLabel player5Label = new JLabel();
         player5Field = new JTextField();
-        player6Label = new JLabel();
+        JLabel player6Label = new JLabel();
         player6Field = new JTextField();
 
         trackListArray = new ArrayList<String>(Arrays.asList(GameController.getAvailableTrackNames()));
