@@ -64,7 +64,7 @@ public class HudView extends JPanel {
 
         for (int i = 0; i < players.size(); i++) {
             playerNameLabels.get(i).setText(players.get(i).getName());
-            playerDistanceLabels.get(i).setText("" + players.get(i).getDistanceCompleted());
+            playerDistanceLabels.get(i).setText("" + Math.round(players.get(i).getDistanceCompleted() * 100.0) / 100.0);
             currentPlayerLabel.setBorder(new LineBorder(players.get(i).getColor(), 2));
         }
 
@@ -145,18 +145,7 @@ public class HudView extends JPanel {
         //History felirat
         JLabel historyLabel = new JLabel("History");
         historyLabel.setBorder(new LineBorder(Color.BLACK, 2));
-        add(historyLabel, new GridBagConstraints(0, players.size() + 5, 2, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
-
-        //Gomb a history teszteléséhez
-        JButton testButton = new JButton("Test Notifications");
-        add(testButton, new GridBagConstraints(2, players.size() + 5, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
-
-        testButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                historyPanel.testNotification();
-            }
-        });
+        add(historyLabel, new GridBagConstraints(0, players.size() + 5, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 
         //A history panel
         historyPanel = new HistoryPanel();
@@ -211,13 +200,6 @@ public class HudView extends JPanel {
          */
         public void showNotification(String notif) {
             listModel.add(0, notif);
-        }
-
-        /**
-         * Teszt notification kiírása
-         */
-        public void testNotification() {
-            listModel.add(0, "Test Notification " + testI++);
         }
     }
 }
