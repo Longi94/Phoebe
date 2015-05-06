@@ -86,9 +86,6 @@ public class GameController {
 
         gameStarted = true;
 
-        //TODO valahogy hozzá kéne adni a MainWindowhoz a GameViewt, mert amúgy nem fogunk látni semmit...
-
-
         hudView = new HudView(players);
         gameView.setHudView(hudView);
 
@@ -105,6 +102,8 @@ public class GameController {
         mainWindow.add(gameView);
 
         mainWindow.revalidate();
+
+        newTurn();
     }
 
     public Robot getActualPlayer() {
@@ -152,7 +151,10 @@ public class GameController {
         if (players.size() != 0 && (turnsLeft == 0 || playerOrder.size() == 0)) {
             endGame();
         } else {
+            //TODO ehelyett kéne vmi jobb
             Collections.shuffle(playerOrder);
+
+            hudView.setCurrent(players.get(playerOrder.get(0)));
         }
 
         PhoebeLogger.returnMessage();
