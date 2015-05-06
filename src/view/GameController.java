@@ -141,8 +141,11 @@ public class GameController {
         //Robotot kiszedjük, ha kiugrott
         for (Robot robot : players) {
             if (!track.isInTrack(robot.getPos())) {
-                playerOrder.remove(new Integer(players.indexOf(robot)));
-                hudView.showNotification(robot.getName() + " died!");
+                Integer dead = players.indexOf(robot);
+                if (playerOrder.contains(dead)) {
+                    hudView.showNotification(robot.getName() + " died!");
+                    playerOrder.remove(dead);
+                }
             }
         }
 
@@ -170,12 +173,20 @@ public class GameController {
         //TODO
         gameStarted = false;
 
+        if (playerOrder.size() == 0) {
+            hudView.showNotification("Game ended! Everyone died!");
+        } else {
+            hudView.showNotification("Game ended!");
+        }
+
         //Nyertes meghatározása
         for (Robot r : players) {
             if (winner == null || winner.getDistanceCompleted() < r.getDistanceCompleted()) {
                 winner = r;
             }
         }
+
+        hudView.showNotification("Winner: " + winner.getName());
 
         PhoebeLogger.returnMessage();
     }
