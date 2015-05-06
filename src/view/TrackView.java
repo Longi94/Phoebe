@@ -33,6 +33,9 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
 
     private double zoom;
 
+    private Position mouseDragStart;
+    private Position mouseDragEnd;
+
     /**
      * Pályán lévő elemek kinézetei
      */
@@ -86,8 +89,6 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
             Position outS = outArc.get(i);
             Position outE = outArc.get((i + 1) % inArc.size());
             drawField(inS,inE,outS,outE);
-
-
         }
 
         //pályaobjektumok kirajzolása
@@ -95,6 +96,9 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
             tobw.draw(graph, xOffset, yOffset, zoom);
         }
 
+        graph.setColor(Color.BLACK);
+        if (mouseDragStart != null && mouseDragEnd!= null)
+            graph.drawLine((int)mouseDragStart.getX(), (int)mouseDragStart.getY(), (int)mouseDragEnd.getX(), (int)mouseDragEnd.getY());
     }
 
 
@@ -108,36 +112,49 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        //Unused
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        if (mouseDragStart == null)
+            mouseDragStart = new Position(e.getX(), e.getY());
+        else {
+            mouseDragStart.setX(e.getX());
+            mouseDragStart.setY(e.getY());
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        mouseDragStart = null;
+        mouseDragEnd = null;
+        repaint();
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
+        //Unused
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-
+        //Unused
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-
+        if (mouseDragEnd == null)
+            mouseDragEnd = new Position(e.getX(), e.getY());
+        else {
+            mouseDragEnd.setX(e.getX());
+            mouseDragEnd.setY(e.getY());
+        }
+        repaint();
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-
+        //Unused
     }
 }
