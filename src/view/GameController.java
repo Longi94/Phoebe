@@ -51,7 +51,7 @@ public class GameController {
 
         track = new Track(file);
 
-        gameView = new GameView(track);
+        gameView = new GameView(track, this);
 
         turnsLeft = rounds;
 

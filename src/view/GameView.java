@@ -25,12 +25,12 @@ public class GameView extends JPanel {
     private HudView hudView;
 
 
-    public GameView(Track t) {
+    public GameView(Track t, GameController gameController) {
         super();
 
         setLayout(new BorderLayout());
 
-        trackView = new TrackView(t);
+        trackView = new TrackView(t, gameController);
         add(trackView, BorderLayout.CENTER);
         invalidate();
         setVisible(true);

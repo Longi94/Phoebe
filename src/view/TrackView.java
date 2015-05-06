@@ -36,20 +36,25 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
     private Position mouseDragStart;
     private Position mouseDragEnd;
 
+    private GameController gameController;
+
     /**
      * Pályán lévő elemek kinézetei
      */
     private List<TrackObjectBaseView> trackObjectBaseViews;
 
-    public TrackView (Track t) {
+    public TrackView(Track t, GameController gameController) {
         xOffset = -2.5;
         yOffset = -2.5;
         zoom = 40;
         track = t;
         trackObjectBaseViews = new ArrayList<TrackObjectBaseView>();
 
+        //TODO VALAHOGY AZT IS MEG KELL OLDANI, HA A JÁTÉKOS NEM AKAR VÁLTOZTATNI A VEKTORON
         addMouseListener(this);
         addMouseMotionListener(this);
+
+        this.gameController = gameController;
     }
 
 
@@ -127,6 +132,12 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
 
     @Override
     public void mouseReleased(MouseEvent e) {
+
+        int deltaY = (int)mouseDragEnd.getY() - (int)mouseDragStart.getY();
+        int deltaX = (int)mouseDragEnd.getX() - (int)mouseDragStart.getX();
+
+        gameController.jumpCurrentPlayer((int) Math.toDegrees(Math.atan2(deltaY, deltaX)));
+
         mouseDragStart = null;
         mouseDragEnd = null;
         repaint();
