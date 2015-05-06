@@ -103,6 +103,7 @@ public class GameController {
 
         mainWindow.revalidate();
 
+        hudView.showNotification("Game Started!");
         newTurn();
     }
 
@@ -155,7 +156,6 @@ public class GameController {
             Collections.shuffle(playerOrder);
 
             gameView.newRound(players.get(playerOrder.get(0)));
-            hudView.showNotification("Game Started!");
         }
 
         PhoebeLogger.returnMessage();
@@ -237,9 +237,14 @@ public class GameController {
         //Robot léptetése
         currentRobot.jump(v);
 
+        hudView.showNotification("" + currentRobot.getName() + " jumped to " + currentRobot.getPos().getX() + ", " + currentRobot.getPos().getY());
+
         //Kövi játékos, kör vége ha nincs több
         if (++currentPlayer == numberOfPlayers) {
             roundStarted = false;
+            newTurn();
+        } else {
+            gameView.newRound(players.get(playerOrder.get(currentPlayer)));
         }
     }
 
