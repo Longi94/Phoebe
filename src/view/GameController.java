@@ -142,6 +142,7 @@ public class GameController {
         for (Robot robot : players) {
             if (!track.isInTrack(robot.getPos())) {
                 playerOrder.remove(new Integer(players.indexOf(robot)));
+                hudView.showNotification(robot.getName() + " died!");
             }
         }
 
@@ -237,7 +238,9 @@ public class GameController {
         //Robot léptetése
         currentRobot.jump(v);
 
-        hudView.showNotification("" + currentRobot.getName() + " jumped to " + currentRobot.getPos().getX() + ", " + currentRobot.getPos().getY());
+        hudView.showNotification("" + currentRobot.getName() + " jumped to "
+                + Math.round(currentRobot.getPos().getX() * 100.0) / 100.0 + ", "
+                + Math.round(currentRobot.getPos().getY() * 100.0) / 100.0);
 
         //Kövi játékos, kör vége ha nincs több
         if (++currentPlayer == numberOfPlayers) {
