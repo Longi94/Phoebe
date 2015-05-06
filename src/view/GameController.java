@@ -243,7 +243,7 @@ public class GameController {
                 + Math.round(currentRobot.getPos().getY() * 100.0) / 100.0);
 
         //Kövi játékos, kör vége ha nincs több
-        if (++currentPlayer == numberOfPlayers) {
+        if (++currentPlayer == playerOrder.size()) {
             roundStarted = false;
             newTurn();
         } else {
