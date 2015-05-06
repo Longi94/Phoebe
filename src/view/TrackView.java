@@ -6,6 +6,9 @@ import model.basic.Position;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +18,7 @@ import java.util.List;
  * @author Gergely Reményi
  * @since 2015.04.25.
  */
-public class TrackView extends JPanel {
+public class TrackView extends JPanel implements MouseListener, MouseMotionListener {
 
     public static final Color TRACK_FILL_COLOR = new Color(100,100,100);
 
@@ -41,6 +44,9 @@ public class TrackView extends JPanel {
         zoom = 40;
         track = t;
         trackObjectBaseViews = new ArrayList<TrackObjectBaseView>();
+
+        addMouseListener(this);
+        addMouseMotionListener(this);
     }
 
 
@@ -100,4 +106,38 @@ public class TrackView extends JPanel {
         trackObjectBaseViews.remove(tobv);
     }
 
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
+    }
 }

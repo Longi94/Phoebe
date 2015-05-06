@@ -154,7 +154,8 @@ public class GameController {
             //TODO ehelyett kéne vmi jobb
             Collections.shuffle(playerOrder);
 
-            hudView.setCurrent(players.get(playerOrder.get(0)));
+            gameView.newRound(players.get(playerOrder.get(0)));
+            hudView.showNotification("Game Started!");
         }
 
         PhoebeLogger.returnMessage();
