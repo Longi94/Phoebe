@@ -78,7 +78,7 @@ public class HudView extends JPanel {
      */
     public void setCurrent(Robot actualPlayer) {
         current = actualPlayer.getName();
-        currentPlayerLabel.setText(current);
+        currentPlayerLabel.setText(current + " " + actualPlayer.getOilAmount() + "/" + actualPlayer.getPuttyAmount());
         currentPlayerLabel.setBorder(new LineBorder(actualPlayer.getColor(), 2));
         invalidate();
     }
