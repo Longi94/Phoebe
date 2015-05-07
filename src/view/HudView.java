@@ -21,6 +21,8 @@ import java.util.List;
  */
 public class HudView extends JPanel {
     private List<Robot> players;
+    private GameController gameController;
+
     private List<JLabel> playerNameLabels;
     private List<JLabel> playerDistanceLabels;
 
@@ -36,9 +38,11 @@ public class HudView extends JPanel {
      *
      * @param players a játékosokat tartalmazó lista (le másolódik)
      */
-    public HudView(List<Robot> players) {
+    public HudView(List<Robot> players, GameController gameController) {
 
         this.players = new ArrayList<Robot>(players);
+        this.gameController = gameController;
+
         playerNameLabels = new ArrayList<JLabel>();
         playerDistanceLabels = new ArrayList<JLabel>();
 
@@ -114,6 +118,8 @@ public class HudView extends JPanel {
             public void stateChanged(ChangeEvent e) {
                 if (current.getOilAmount() < 1) {
                     oilButton.setSelected(false);
+                } else {
+                    gameController.clickOil();
                 }
             }
         });
@@ -123,6 +129,8 @@ public class HudView extends JPanel {
             public void stateChanged(ChangeEvent e) {
                 if (current.getPuttyAmount() < 1) {
                     puttyButton.setSelected(false);
+                } else {
+                    gameController.clickPutty();
                 }
             }
         });
