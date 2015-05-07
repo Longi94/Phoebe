@@ -190,6 +190,11 @@ public class HudView extends JPanel {
         invalidate();
     }
 
+    public void resetButtons() {
+        oilButton.setSelected(false);
+        puttyButton.setSelected(false);
+    }
+
     /**
      * A history panel
      */

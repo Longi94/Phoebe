@@ -35,6 +35,9 @@ public class GameController {
     private boolean gameStarted = false; //Van-e betöltve pálya, elértük-e már a játék végét
     private int currentPlayer = 0;
 
+    private boolean willPutOil = false;
+    private boolean willPutPutty = false;
+
     /**
      * Referencia az ablakra (frissítés miatt)
      */
@@ -86,7 +89,7 @@ public class GameController {
 
         gameStarted = true;
 
-        hudView = new HudView(players);
+        hudView = new HudView(players, this);
         gameView.setHudView(hudView);
 
         mainWindow = MainWindow.getInstance();
@@ -221,12 +224,12 @@ public class GameController {
         playerOrder.remove(currentPlayer);
     }
 
-    public void clickOil(/*senkinemtudjamilyenparaméterekkelkellfeliratkozni*/) {
-        //lerak egy oilt oda ahol az aktuális játékos van
+    public void clickOil() {
+        willPutOil = !willPutOil;
     }
 
-    public void clickPutty(/*senkinemtudjamilyenparaméterekkelkellfeliratkozni*/) {
-        //lerak egy puttyot oda ahol az aktuális játékos van
+    public void clickPutty() {
+        willPutPutty = !willPutPutty;
     }
 
     /**
@@ -240,6 +243,20 @@ public class GameController {
 
         Robot currentRobot = getActualPlayer();
 
+        if (willPutOil) {
+            currentRobot.putOil();
+            willPutOil = false;
+
+            hudView.showNotification(currentRobot.getName() + " put down some oil at " + + Math.round(currentRobot.getPos().getX() * 100.0) / 100.0 + ", "
+                    + Math.round(currentRobot.getPos().getY() * 100.0) / 100.0);
+        }
+        if (willPutPutty) {
+            currentRobot.putPutty();
+            willPutPutty = false;
+
+            hudView.showNotification(currentRobot.getName() + " put down some putty at " + + Math.round(currentRobot.getPos().getX() * 100.0) / 100.0 + ", "
+                    + Math.round(currentRobot.getPos().getY() * 100.0) / 100.0);
+        }
 
         //A módosító sebesség vektor
         Velocity v = new Velocity();
@@ -252,6 +269,7 @@ public class GameController {
         hudView.showNotification("" + currentRobot.getName() + " jumped to "
                 + Math.round(currentRobot.getPos().getX() * 100.0) / 100.0 + ", "
                 + Math.round(currentRobot.getPos().getY() * 100.0) / 100.0);
+        hudView.resetButtons();
 
         //Kövi játékos, kör vége ha nincs több
         if (++currentPlayer == playerOrder.size()) {
