@@ -244,14 +244,14 @@ public class GameController {
         Robot currentRobot = getActualPlayer();
 
         if (willPutOil) {
-            currentRobot.putOil();
+            gameView.addItem(new OilView(currentRobot.putOil()));
             willPutOil = false;
 
             hudView.showNotification(currentRobot.getName() + " put down some oil at " + + Math.round(currentRobot.getPos().getX() * 100.0) / 100.0 + ", "
                     + Math.round(currentRobot.getPos().getY() * 100.0) / 100.0);
         }
         if (willPutPutty) {
-            currentRobot.putPutty();
+            gameView.addItem(new PuttyView(currentRobot.putPutty()));
             willPutPutty = false;
 
             hudView.showNotification(currentRobot.getName() + " put down some putty at " + + Math.round(currentRobot.getPos().getX() * 100.0) / 100.0 + ", "

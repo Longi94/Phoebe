@@ -233,7 +233,7 @@ public class Robot extends TrackObjectBase implements Comparable<Robot> {
     /**
      * Olaj lerakása
      */
-    public void putOil() {
+    public Oil putOil() {
         if (oilAmount > 0) {
             oilAmount -= 1;
             PhoebeLogger.create("Oil", "oil");
@@ -241,28 +241,29 @@ public class Robot extends TrackObjectBase implements Comparable<Robot> {
             PhoebeLogger.message("track", "addObject", "oil");
             Oil o = new Oil(new Position(pos.getX(), pos.getY()));
             track.addObject(o);
+            PhoebeLogger.returnMessage("o");
+            return o;
         } else {
             throw new IllegalStateException("Elfogyott az olaj");
         }
-
-        PhoebeLogger.returnMessage();
     }
 
     /**
      * Ragacs lerakása
      */
-    public void putPutty() {
+    public Putty putPutty() {
         if (puttyAmount > 0) {
             puttyAmount -= 1;
             PhoebeLogger.create("Putty", "putty");
             PhoebeLogger.returnMessage();
             PhoebeLogger.message("track", "addObject", "putty");
-            track.addObject(new Putty(new Position(pos.getX(), pos.getY())));
+            Putty p = new Putty(new Position(pos.getX(), pos.getY()));
+            track.addObject(p);
+            PhoebeLogger.returnMessage("p");
+            return p;
         } else {
             throw new IllegalStateException("Elfogyott az ragacs");
         }
-
-        PhoebeLogger.returnMessage();
     }
 
     /**

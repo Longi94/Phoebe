@@ -156,6 +156,14 @@ public abstract class Obstacle extends TrackObjectBase {
         this.roundsLeft = roundsLeft;
     }
 
+    public int getHitsLeft() {
+        return hitsLeft;
+    }
+
+    public int getRoundsLeft() {
+        return roundsLeft;
+    }
+
     /**
      * Új kör esetén lefutó függvény
      */
