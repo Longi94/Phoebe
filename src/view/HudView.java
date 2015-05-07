@@ -4,6 +4,8 @@ import model.Robot;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +24,7 @@ public class HudView extends JPanel {
     private List<JLabel> playerNameLabels;
     private List<JLabel> playerDistanceLabels;
 
-    private String current;
+    private Robot current;
     private JToggleButton oilButton;
     private JToggleButton puttyButton;
     private JLabel currentPlayerLabel;
@@ -77,8 +79,8 @@ public class HudView extends JPanel {
      * @param actualPlayer a soron lévő játékos
      */
     public void setCurrent(Robot actualPlayer) {
-        current = actualPlayer.getName();
-        currentPlayerLabel.setText(current + " " + actualPlayer.getOilAmount() + "/" + actualPlayer.getPuttyAmount());
+        current = actualPlayer;
+        currentPlayerLabel.setText(current.getName() + " " + actualPlayer.getOilAmount() + "/" + actualPlayer.getPuttyAmount());
         currentPlayerLabel.setBorder(new LineBorder(actualPlayer.getColor(), 2));
         invalidate();
     }
@@ -106,6 +108,24 @@ public class HudView extends JPanel {
         add(oilButton, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
         add(puttyButton, new GridBagConstraints(1, 0, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
         add(forfeitButton, new GridBagConstraints(2, 0, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
+
+        oilButton.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if (current.getOilAmount() < 1) {
+                    oilButton.setSelected(false);
+                }
+            }
+        });
+
+        puttyButton.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if (current.getPuttyAmount() < 1) {
+                    puttyButton.setSelected(false);
+                }
+            }
+        });
 
         forfeitButton.addActionListener(new ActionListener() {
             @Override
@@ -168,7 +188,6 @@ public class HudView extends JPanel {
     private class HistoryPanel extends JPanel {
 
         private final DefaultListModel listModel;
-        private int testI = 0;
         private JList<Object> list;
         private JScrollPane scrollPane;
 
