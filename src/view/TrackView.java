@@ -79,7 +79,7 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
     private void drawStartLine(Position in, Position out) {
         graph.setColor(START_LINE_COLOR);
 
-        graph.drawLine(in.convertX(xOffset,zoom),in.convertY(yOffset,zoom),out.convertX(xOffset,zoom),out.convertY(xOffset,zoom));
+        graph.drawLine(in.convertX(xOffset,zoom),in.convertY(yOffset,zoom),out.convertX(xOffset,zoom),out.convertY(yOffset,zoom));
         graph.setColor(TRACK_FILL_COLOR);
     }
 
