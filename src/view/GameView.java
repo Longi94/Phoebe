@@ -60,4 +60,8 @@ public class GameView extends JPanel {
         add(hudView, BorderLayout.EAST);
         invalidate();
     }
+
+    public TrackView getTrackView() {
+        return trackView;
+    }
 }

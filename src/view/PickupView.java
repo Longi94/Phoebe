@@ -14,8 +14,8 @@ public class PickupView extends TrackObjectBaseView{
 
     private Pickup pickup;
 
-    public PickupView(Pickup pickup) {
-        super(pickup);
+    public PickupView(Pickup pickup, TrackView tv) {
+        super(pickup, tv);
         this.pickup = pickup;
     }
 

@@ -14,8 +14,8 @@ public class PuttyView extends TrackObjectBaseView {
 
     private Putty putty;
 
-    public PuttyView(Putty putty) {
-        super(putty);
+    public PuttyView(Putty putty, TrackView tv) {
+        super(putty,tv);
         this.putty = putty;
     }
 

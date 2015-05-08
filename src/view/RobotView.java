@@ -11,8 +11,8 @@ public class RobotView extends TrackObjectBaseView {
 
     private Robot robot;
 
-    public RobotView(Robot r) {
-        super(r);
+    public RobotView(Robot r, TrackView tv) {
+        super(r, tv);
         robot = r;
     }
 

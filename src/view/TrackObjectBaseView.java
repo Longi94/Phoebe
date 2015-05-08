@@ -15,7 +15,8 @@ public abstract class TrackObjectBaseView {
 
     private TrackView tv;
 
-    public TrackObjectBaseView(TrackObjectBase tob) {
+    public TrackObjectBaseView(TrackObjectBase tob, TrackView tv) {
+        this.tv = tv;
         tob.setTobv(this);
     }
 

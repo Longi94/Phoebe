@@ -14,8 +14,8 @@ public class CleaningRobotView extends TrackObjectBaseView {
 
     private CleaningRobot cleaningRobot;
 
-    public CleaningRobotView(CleaningRobot cleaningRobot) {
-        super(cleaningRobot);
+    public CleaningRobotView(CleaningRobot cleaningRobot, TrackView tv) {
+        super(cleaningRobot,tv);
         this.cleaningRobot = cleaningRobot;
     }
 

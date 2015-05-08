@@ -11,8 +11,8 @@ public class OilView extends TrackObjectBaseView {
 
     private Oil oil;
 
-    public OilView(Oil oil) {
-        super(oil);
+    public OilView(Oil oil, TrackView tv) {
+        super(oil, tv);
         this.oil = oil;
     }
 
