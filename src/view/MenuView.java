@@ -256,37 +256,49 @@ public class MenuView extends JPanel {
         ArrayList<String> maps = new ArrayList<String>(Arrays.asList(GameController.getAvailableTracks()));
         int index = trackListArray.indexOf(trackList.getSelectedItem());
         selectedMap = maps.get(index);
+        int numOfPlayers = 0;
 
         if (player1Field.getText() != null && !player1Field.getText().equals("")) {
             players.add(player1Field.getText());
+            numOfPlayers++;
         } else {
             players.add(null);
         }
         if (player2Field.getText() != null && !player2Field.getText().equals("")) {
             players.add(player2Field.getText());
+            numOfPlayers++;
         } else {
             players.add(null);
         }
         if (player3Field.getText() != null && !player3Field.getText().equals("")) {
+            numOfPlayers++;
             players.add(player3Field.getText());
         } else {
             players.add(null);
         }
         if (player4Field.getText() != null && !player4Field.getText().equals("")) {
+            numOfPlayers++;
             players.add(player4Field.getText());
         } else {
             players.add(null);
         }
         if (player5Field.getText() != null && !player5Field.getText().equals("")) {
+            numOfPlayers++;
             players.add(player5Field.getText());
         } else {
             players.add(null);
         }
         if (player6Field.getText() != null && !player6Field.getText().equals("")) {
+            numOfPlayers++;
             players.add(player6Field.getText());
         } else {
             players.add(null);
         }
-        new GameController(selectedMap, players, numberOfRounds);
+        if (numOfPlayers >= MainWindow.MIN_PLAYER_NUMBER &&  numOfPlayers <= MainWindow.MAX_PLAYER_NUMBER) {
+            new GameController(selectedMap, players, numberOfRounds);
+        } else {
+            players = new ArrayList<String>();
+        }
+
     }
 }
