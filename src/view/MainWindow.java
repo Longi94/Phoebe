@@ -14,7 +14,8 @@ public class MainWindow extends JFrame {
     public static final int DEFAULT_TURN_NUMBER = 20;
     public static final int MINIMUM_TURN_NUMBER = 5;
     public static final int MAXIMUM_TURN_NUMBER = 40;
-    private static final int MAX_PLAYER_NUMBER = 6;
+    public static final int MIN_PLAYER_NUMBER = 2;
+    public static final int MAX_PLAYER_NUMBER = 6;
 
     public static MainWindow instance = null;
 
