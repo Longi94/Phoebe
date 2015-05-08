@@ -20,7 +20,8 @@ import java.util.List;
  */
 public class TrackView extends JPanel implements MouseListener, MouseMotionListener {
 
-    public static final Color TRACK_FILL_COLOR = new Color(100,100,100);
+    public static final Color TRACK_FILL_COLOR = new Color(150,150,150);
+    public static final Color START_LINE_COLOR = new Color(255,255,255);
 
     /**
      * Pálya kinézete
@@ -75,6 +76,13 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
 
     }
 
+    private void drawStartLine(Position in, Position out) {
+        graph.setColor(START_LINE_COLOR);
+
+        graph.drawLine(in.convertX(xOffset,zoom),in.convertY(yOffset,zoom),out.convertX(xOffset,zoom),out.convertY(xOffset,zoom));
+        graph.setColor(TRACK_FILL_COLOR);
+    }
+
     @Override
     protected void paintComponent(Graphics graph) {
         super.paintComponent(graph);
@@ -95,6 +103,8 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
             Position outE = outArc.get((i + 1) % inArc.size());
             drawField(inS,inE,outS,outE);
         }
+
+        drawStartLine(inArc.get(0), outArc.get(0));
 
         //pályaobjektumok kirajzolása
         for (TrackObjectBaseView tobw : trackObjectBaseViews) {
