@@ -71,6 +71,8 @@ public class HudView extends JPanel {
         for (int i = 0; i < players.size(); i++) {
             playerNameLabels.get(i).setText(players.get(i).getName());
             playerDistanceLabels.get(i).setText("" + Math.round(players.get(i).getDistanceCompleted() * 100.0) / 100.0);
+            playerNameLabels.get(i).setBorder(new LineBorder(players.get(i).getColor(), 2));
+            playerDistanceLabels.get(i).setBorder(new LineBorder(players.get(i).getColor(), 2));
             currentPlayerLabel.setBorder(new LineBorder(players.get(i).getColor(), 2));
         }
 
