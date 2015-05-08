@@ -66,12 +66,21 @@ public class GameController {
         //Játékosok sorrendjét meghatározó lista
         playerOrder = new ArrayList<Integer>();
 
+        int realPlayers = 0;
+        int placedPlayers = 0;
+
+        for (int i = 1; i<= names.size();i++) {
+            if (names.get(i-1) != null)
+            realPlayers++;
+        }
+
         // Robotok felállítása a startvonalra és hozzáadásuk a listához
         for (int i = 1; i <= names.size(); i++) {
             if (names.get(i - 1) != null) {
+                placedPlayers++;
                 Position position = new Position();
-                position.setX((i * track.getInnerArc().get(0).getX() + (names.size() - i + 1) * track.getOuterArc().get(0).getX()) / (names.size() + 1));
-                position.setY((i * track.getInnerArc().get(0).getY() + (names.size() - i + 1) * track.getOuterArc().get(0).getY()) / (names.size() + 1));
+                position.setX((placedPlayers * track.getInnerArc().get(0).getX() + (realPlayers - placedPlayers + 1) * track.getOuterArc().get(0).getX()) / (realPlayers + 1));
+                position.setY((placedPlayers * track.getInnerArc().get(0).getY() + (realPlayers - placedPlayers + 1) * track.getOuterArc().get(0).getY()) / (realPlayers + 1));
                 Robot r = new Robot(position, track, names.get(i - 1), MenuView.PLAYER_COLORS[i - 1]);
 
                 //Hozzáadjuk a játékosokhoz a robotot és új RobotView-t a pályához
