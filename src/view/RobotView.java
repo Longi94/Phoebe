@@ -18,8 +18,9 @@ public class RobotView extends TrackObjectBaseView {
 
     public void draw(Graphics graph, double xOffset, double yOffset, double zoom) {
         graph.setColor(robot.getColor());
-        graph.fillOval(robot.getPos().convertX(xOffset,zoom),robot.getPos().convertY(yOffset,zoom),
-                (int) (robot.getRadius() * zoom), (int)(robot.getRadius() * zoom));
+        int radius = (int) (robot.getRadius() * zoom);
+        graph.fillOval(robot.getPos().convertX(xOffset,zoom) - radius/2,robot.getPos().convertY(yOffset,zoom)- radius/2,
+                radius, radius);
     }
 
 }
