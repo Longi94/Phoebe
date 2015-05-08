@@ -21,8 +21,9 @@ public class PuttyView extends TrackObjectBaseView {
 
     public void draw(Graphics graph, double xOffset, double yOffset, double zoom) {
         graph.setColor(new Color(103, 140, 0));
-        graph.fillOval(putty.getPos().convertX(xOffset, zoom), putty.getPos().convertY(yOffset, zoom),
-                (int) (putty.getRadius() * zoom), (int) (putty.getRadius() * zoom));
+        int radius = (int) (putty.getRadius() * zoom);
+        graph.fillOval(putty.getPos().convertX(xOffset, zoom) - radius/2, putty.getPos().convertY(yOffset, zoom) - radius/2,
+                radius, radius);
         graph.setColor(Color.RED);
         graph.drawString("" + putty.getHitsLeft(), putty.getPos().convertX(xOffset,zoom),putty.getPos().convertY(yOffset,zoom));
     }
