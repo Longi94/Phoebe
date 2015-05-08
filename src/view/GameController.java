@@ -247,15 +247,17 @@ public class GameController {
             gameView.addItem(new OilView(currentRobot.putOil(),gameView.getTrackView()));
             willPutOil = false;
 
-            hudView.showNotification(currentRobot.getName() + " put down some oil at " + + Math.round(currentRobot.getPos().getX() * 100.0) / 100.0 + ", "
+            hudView.showNotification(currentRobot.getName() + " placed an oil stain at " + + Math.round(currentRobot.getPos().getX() * 100.0) / 100.0 + ", "
                     + Math.round(currentRobot.getPos().getY() * 100.0) / 100.0);
+            hudView.showNotification("Has " + currentRobot.getOilAmount() + " more remaining.");
         }
         if (willPutPutty) {
             gameView.addItem(new PuttyView(currentRobot.putPutty(),gameView.getTrackView()));
             willPutPutty = false;
 
-            hudView.showNotification(currentRobot.getName() + " put down some putty at " + + Math.round(currentRobot.getPos().getX() * 100.0) / 100.0 + ", "
+            hudView.showNotification(currentRobot.getName() + " placed a putty stain at " + + Math.round(currentRobot.getPos().getX() * 100.0) / 100.0 + ", "
                     + Math.round(currentRobot.getPos().getY() * 100.0) / 100.0);
+            hudView.showNotification("Has " + currentRobot.getPuttyAmount() + " more remaining.");
         }
 
         //A módosító sebesség vektor
