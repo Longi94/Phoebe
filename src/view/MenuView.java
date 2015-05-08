@@ -104,7 +104,9 @@ public class MenuView extends JPanel {
         tracksLabel.setLabelFor(trackList);
         tracksLabel.setText("Tracks");
 
-        roundsSpinner.setModel(new SpinnerNumberModel(20, 20, 40, 1));
+        numberOfRounds = MainWindow.DEFAULT_TURN_NUMBER;
+
+        roundsSpinner.setModel(new SpinnerNumberModel(MainWindow.DEFAULT_TURN_NUMBER, MainWindow.MINIMUM_TURN_NUMBER, MainWindow.MAXIMUM_TURN_NUMBER, 1));
         roundsSpinner.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {

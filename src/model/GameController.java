@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class GameController {
 
-    public static final int DEFAULT_TURN_NUMBER = 40;
+    public static final int DEFAULT_TURN_NUMBER = 20;
     private static final int MAX_PLAYER_NUMBER = 6;
 
     private int turnsLeft = -1;
