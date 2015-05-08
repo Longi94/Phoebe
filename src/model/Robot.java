@@ -346,7 +346,7 @@ public class Robot extends TrackObjectBase implements Comparable<Robot> {
     public int compareTo(Robot robot) {
         if (distanceCompleted == robot.distanceCompleted) {
             return 0;
-        } else if (distanceCompleted > robot.distanceCompleted) {
+        } else if (distanceCompleted < robot.distanceCompleted) {
             return 1;
         } else {
             return -1;
