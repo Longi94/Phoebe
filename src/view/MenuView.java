@@ -295,7 +295,7 @@ public class MenuView extends JPanel {
             players.add(null);
         }
         if (numOfPlayers >= MainWindow.MIN_PLAYER_NUMBER &&  numOfPlayers <= MainWindow.MAX_PLAYER_NUMBER) {
-            new GameController(selectedMap, players, numberOfRounds);
+            MainWindow.getInstance().setController(new GameController(selectedMap, players, numberOfRounds));
         } else {
             players = new ArrayList<String>();
         }

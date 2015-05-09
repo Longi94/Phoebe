@@ -119,6 +119,10 @@ public class GameController {
         newTurn();
     }
 
+    public HudView getHudView() {
+        return hudView;
+    }
+
     public Robot getActualPlayer() {
         return players.get(playerOrder.get(currentPlayer));
     }

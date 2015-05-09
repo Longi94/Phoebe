@@ -80,7 +80,7 @@ public class Track {
                         out.add(new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2])));
                     } else if (command[0].equals("pickup")) {
                         //Pickupok
-                        Pickup pickup = new Pickup(new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2])));
+                        Pickup pickup = new Pickup(new Position(Double.parseDouble(command[1]), Double.parseDouble(command[2])), this);
                         tempList.add(pickup);
                     } else if (command[0].equals("oil")) {
                         //Olajok

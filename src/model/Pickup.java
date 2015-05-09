@@ -2,6 +2,7 @@ package model;
 
 import model.basic.Position;
 import skeleton.PhoebeLogger;
+import view.MainWindow;
 import view.PickupView;
 import view.TrackObjectBaseView;
 import view.TrackView;
@@ -67,9 +68,11 @@ public class Pickup extends TrackObjectBase {
             case -1:
                 if (random.nextInt(2) == 1) {
                     PhoebeLogger.message("r", "addOil");
+                    MainWindow.getInstance().getController().getHudView().showNotification("The actual robot got oil from the pickup");
                     r.addOil();
                 } else {
                     PhoebeLogger.message("r", "addPutty");
+                    MainWindow.getInstance().getController().getHudView().showNotification("The actual robot got putty from the pickup");
                     r.addPutty();
                 }
                 break;
@@ -87,7 +90,6 @@ public class Pickup extends TrackObjectBase {
         //kitörli magát a pályáról
         PhoebeLogger.message("track", "removeObject", "this");
         track.removeObject(this);
-
         PhoebeLogger.returnMessage();
     }
 
