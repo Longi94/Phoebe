@@ -159,8 +159,8 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
         if (mouseDragStart != null && mouseDragEnd!= null) {
             int deltaY = (int) mouseDragEnd.getY() - (int) mouseDragStart.getY();
             int deltaX = (int) mouseDragEnd.getX() - (int) mouseDragStart.getX();
-
-            gameController.jumpCurrentPlayer((int) Math.toDegrees(Math.atan2(deltaY, deltaX)));
+            if (gameController.isGameStarted())
+                gameController.jumpCurrentPlayer((int) Math.toDegrees(Math.atan2(deltaY, deltaX)));
         }
 
         mouseDragStart = null;
