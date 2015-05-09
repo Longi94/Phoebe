@@ -2,6 +2,9 @@ package model;
 
 import model.basic.Position;
 import skeleton.PhoebeLogger;
+import view.PickupView;
+import view.TrackObjectBaseView;
+import view.TrackView;
 
 import java.util.Random;
 
@@ -45,6 +48,11 @@ public class Pickup extends TrackObjectBase {
      */
     public Pickup(Position pos) {
         super(pos);
+    }
+
+    @Override
+    public TrackObjectBaseView createView(TrackView t) {
+        return new PickupView(this,t);
     }
 
     /**
