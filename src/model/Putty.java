@@ -2,6 +2,9 @@ package model;
 
 import model.basic.Position;
 import skeleton.PhoebeLogger;
+import view.PuttyView;
+import view.TrackObjectBaseView;
+import view.TrackView;
 
 /**
  * Ragacsot megvalósító osztály
@@ -54,6 +57,11 @@ public class Putty extends Obstacle {
     @Override
     protected int GET_MAXIMUM_HITS() {
         return 4;                       //négy robot ráugrása után a ragacs eltűnik a pályáról
+    }
+
+    @Override
+    public TrackObjectBaseView createView(TrackView t) {
+        return new PuttyView(this,t);
     }
 
     /**

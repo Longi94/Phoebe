@@ -2,6 +2,9 @@ package model;
 
 import model.basic.Position;
 import skeleton.PhoebeLogger;
+import view.OilView;
+import view.TrackObjectBaseView;
+import view.TrackView;
 
 /**
  * Olajt megvalósító osztályt
@@ -35,6 +38,11 @@ public class Oil extends Obstacle {
      */
     public Oil(Position pos, Track track) {
         super(pos, track);
+    }
+
+    @Override
+    public TrackObjectBaseView createView(TrackView t) {
+        return new OilView(this,t);
     }
 
     /**

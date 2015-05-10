@@ -43,6 +43,14 @@ public class MainWindow extends JFrame {
      */
     private view.GameController controller;
 
+    public GameController getController() {
+        return controller;
+    }
+
+    public void setController(GameController controller) {
+        this.controller = controller;
+    }
+
     /**
      * Grafikus program belépési pont
      *

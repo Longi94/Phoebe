@@ -3,6 +3,9 @@ package model;
 import model.basic.Position;
 import model.basic.Velocity;
 import skeleton.PhoebeLogger;
+import view.RobotView;
+import view.TrackObjectBaseView;
+import view.TrackView;
 
 import java.awt.*;
 
@@ -246,6 +249,11 @@ public class Robot extends TrackObjectBase implements Comparable<Robot> {
         } else {
             throw new IllegalStateException("Elfogyott az olaj");
         }
+    }
+
+    @Override
+    public TrackObjectBaseView createView(TrackView t) {
+        return new RobotView(this,t);
     }
 
     /**

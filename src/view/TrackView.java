@@ -2,6 +2,7 @@ package view;
 
 import model.Robot;
 import model.Track;
+import model.TrackObjectBase;
 import model.basic.Position;
 
 import javax.swing.*;
@@ -51,6 +52,10 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
         track = t;
         trackObjectBaseViews = new ArrayList<TrackObjectBaseView>();
 
+        for (TrackObjectBase tob : t.getItems()) {
+            trackObjectBaseViews.add(tob.createView(this));
+        }
+
         //TODO VALAHOGY AZT IS MEG KELL OLDANI, HA A JÁTÉKOS NEM AKAR VÁLTOZTATNI A VEKTORON
         addMouseListener(this);
         addMouseMotionListener(this);
@@ -62,6 +67,8 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
 
     void centerActualPlayer(Robot robot) {
         //zoom változatlan, offset úgy módosul, hogy a robot középre kerüljön
+        xOffset = robot.getPos().getX() - MainWindow.getInstance().getBounds().width / 2 /zoom;
+        yOffset = robot.getPos().getY()- MainWindow.getInstance().getBounds().height / 2/zoom;
     }
 
     private void drawField(Position inS, Position inE, Position outS, Position outE) {
@@ -79,7 +86,7 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
     private void drawStartLine(Position in, Position out) {
         graph.setColor(START_LINE_COLOR);
 
-        graph.drawLine(in.convertX(xOffset,zoom),in.convertY(yOffset,zoom),out.convertX(xOffset,zoom),out.convertY(xOffset,zoom));
+        graph.drawLine(in.convertX(xOffset, zoom), in.convertY(yOffset, zoom), out.convertX(xOffset, zoom), out.convertY(yOffset, zoom));
         graph.setColor(TRACK_FILL_COLOR);
     }
 
@@ -152,8 +159,8 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
         if (mouseDragStart != null && mouseDragEnd!= null) {
             int deltaY = (int) mouseDragEnd.getY() - (int) mouseDragStart.getY();
             int deltaX = (int) mouseDragEnd.getX() - (int) mouseDragStart.getX();
-
-            gameController.jumpCurrentPlayer((int) Math.toDegrees(Math.atan2(deltaY, deltaX)));
+            if (gameController.isGameStarted())
+                gameController.jumpCurrentPlayer((int) Math.toDegrees(Math.atan2(deltaY, deltaX)));
         }
 
         mouseDragStart = null;

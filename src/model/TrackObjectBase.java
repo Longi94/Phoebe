@@ -3,6 +3,7 @@ package model;
 import model.basic.Position;
 import skeleton.PhoebeLogger;
 import view.TrackObjectBaseView;
+import view.TrackView;
 
 /**
  * Pályaelemek absztrakt ősosztálya
@@ -61,6 +62,8 @@ public abstract class TrackObjectBase {
         this.pos = pos;
         this.track = track;
     }
+
+    public abstract TrackObjectBaseView createView(TrackView t);
 
     public TrackObjectBaseView getTobv() {
         return tobv;

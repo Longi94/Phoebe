@@ -2,6 +2,9 @@ package model;
 
 import model.basic.Position;
 import model.basic.Velocity;
+import view.CleaningRobotView;
+import view.TrackObjectBaseView;
+import view.TrackView;
 
 /**
  * Created by bence on 2015.03.27..
@@ -48,6 +51,11 @@ public class CleaningRobot extends TrackObjectBase {
     @Override
     public void collide(CleaningRobot cr) {
         cr.setAngle(cr.getAngle() + Math.PI / 2);
+    }
+
+    @Override
+    public TrackObjectBaseView createView(TrackView t) {
+        return new CleaningRobotView(this,t);
     }
 
     public double targetClosestObstacle() {
