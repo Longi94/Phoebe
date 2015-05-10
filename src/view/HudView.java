@@ -72,6 +72,11 @@ public class HudView extends JPanel {
     private List<JLabel> playerDistanceLabels;
 
     /**
+     * Hátralevő körök száma label
+     */
+    private JLabel roundsLabel;
+
+    /**
      * Notificationokat megjelenítő rész
      */
     private HistoryPanel historyPanel;
@@ -217,6 +222,16 @@ public class HudView extends JPanel {
             playerDistanceLabels.add(playerStatusLabel);
         }
 
+        // Rounds left felirat
+        roundsLabel = new JLabel("rounds left");
+        roundsLabel.setOpaque(true);
+        roundsLabel.setBackground(new Color(40, 40, 46));
+        roundsLabel.setForeground(new Color(10, 181, 246));
+        roundsLabel.setBorder(new EmptyBorder(10,10,10,10));
+        roundsLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        add(roundsLabel, new GridBagConstraints(0, players.size() + 5, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
+
+
         //History felirat
         JLabel historyLabel = new JLabel("History");
         historyLabel.setOpaque(true);
@@ -224,11 +239,11 @@ public class HudView extends JPanel {
         historyLabel.setForeground(new Color(10, 181, 246));
         historyLabel.setBorder(new EmptyBorder(10,10,10,10));
         historyLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        add(historyLabel, new GridBagConstraints(0, players.size() + 5, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+        add(historyLabel, new GridBagConstraints(0, players.size() + 6, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         // A history panel
         historyPanel = new HistoryPanel();
-        add(historyPanel, new GridBagConstraints(0, players.size() + 6, 3, 1, 1, 35 - 5 - players.size(), GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
+        add(historyPanel, new GridBagConstraints(0, players.size() + 7, 3, 1, 1, 35 - 6 - players.size(), GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 
         invalidate();
     }
@@ -271,6 +286,12 @@ public class HudView extends JPanel {
 
         // Újrarajzolás
         invalidate();
+    }
+
+    public void refreshRoundLeft(int rounds){
+
+        roundsLabel.setText(rounds + " round(s) left");
+
     }
 
     /**

@@ -193,7 +193,10 @@ public class GameController {
         //newRound meghívása minden pályán lévő objektumnak
         track.newRound();
 
-        turnsLeft -= 1;
+        // TODO ez itt wtf?
+        //turnsLeft -= 1;
+        hudView.refreshRoundLeft(turnsLeft);
+
         if (players.size() != 0 && (turnsLeft == 0 || playerOrder.size() == 0)) {
             endGame();
         } else {
