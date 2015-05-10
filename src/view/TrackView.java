@@ -139,33 +139,41 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        //Unused
+
+        if (gameController.isGameStarted() && SwingUtilities.isRightMouseButton(e)) {
+            gameController.jumpCurrentPlayer(-1);
+            repaint();
+        }
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (mouseDragStart == null)
-            mouseDragStart = new Position(e.getX(), e.getY());
-        else {
-            mouseDragStart.setX(e.getX());
-            mouseDragStart.setY(e.getY());
+        if (SwingUtilities.isLeftMouseButton(e)) {
+            if (mouseDragStart == null)
+                mouseDragStart = new Position(e.getX(), e.getY());
+            else {
+                mouseDragStart.setX(e.getX());
+                mouseDragStart.setY(e.getY());
+            }
         }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        if (SwingUtilities.isLeftMouseButton(e)) {
 
-        if (mouseDragStart != null && mouseDragEnd!= null) {
-            int deltaY = (int) mouseDragEnd.getY() - (int) mouseDragStart.getY();
-            int deltaX = (int) mouseDragEnd.getX() - (int) mouseDragStart.getX();
-            double distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-            if (gameController.isGameStarted() && distance >  zoom * gameController.getActualPlayer().getRadius())
-                gameController.jumpCurrentPlayer((int) Math.toDegrees(Math.atan2(deltaY, deltaX)));
+            if (mouseDragStart != null && mouseDragEnd != null) {
+                int deltaY = (int) mouseDragEnd.getY() - (int) mouseDragStart.getY();
+                int deltaX = (int) mouseDragEnd.getX() - (int) mouseDragStart.getX();
+                double distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                if (gameController.isGameStarted() && distance > zoom * gameController.getActualPlayer().getRadius())
+                    gameController.jumpCurrentPlayer((int) Math.toDegrees(Math.atan2(deltaY, deltaX)));
+            }
+
+            mouseDragStart = null;
+            mouseDragEnd = null;
+            repaint();
         }
-
-        mouseDragStart = null;
-        mouseDragEnd = null;
-        repaint();
     }
 
     @Override
@@ -180,13 +188,16 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        if (mouseDragEnd == null)
-            mouseDragEnd = new Position(e.getX(), e.getY());
-        else {
-            mouseDragEnd.setX(e.getX());
-            mouseDragEnd.setY(e.getY());
+
+        if (SwingUtilities.isLeftMouseButton(e)) {
+            if (mouseDragEnd == null)
+                mouseDragEnd = new Position(e.getX(), e.getY());
+            else {
+                mouseDragEnd.setX(e.getX());
+                mouseDragEnd.setY(e.getY());
+            }
+            repaint();
         }
-        repaint();
     }
 
     @Override
