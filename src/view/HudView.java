@@ -109,13 +109,13 @@ public class HudView extends JPanel {
         // Játékosok rendezése
         Collections.sort(players);
 
-        // Számoljunk..
+        // Végig az aktív robotokon
         for (int i = 0; i < players.size(); i++) {
             playerNameLabels.get(i).setText(players.get(i).getName());
+            playerNameLabels.get(i).setBackground(players.get(i).getColor());
+
             playerDistanceLabels.get(i).setText("" + Math.round(players.get(i).getDistanceCompleted() * 100.0) / 100.0);
-            playerNameLabels.get(i).setBorder(new LineBorder(players.get(i).getColor(), 2));
-            playerDistanceLabels.get(i).setBorder(new LineBorder(players.get(i).getColor(), 2));
-            currentPlayerLabel.setBorder(new LineBorder(players.get(i).getColor(), 2));
+            playerDistanceLabels.get(i).setBackground(players.get(i).getColor());
         }
 
         // Újrarajzolás
@@ -130,8 +130,6 @@ public class HudView extends JPanel {
     public void setCurrent(Robot actualPlayer) {
         current = actualPlayer;
         currentPlayerLabel.setText(current.getName() + " " + actualPlayer.getOilAmount() + "/" + actualPlayer.getPuttyAmount());
-        currentPlayerLabel.setOpaque(true);
-        currentPlayerLabel.setBorder(new EmptyBorder(5,5,5,5));
         currentPlayerLabel.setBackground(actualPlayer.getColor());
         invalidate();
     }
@@ -163,6 +161,8 @@ public class HudView extends JPanel {
 
         //Soron lévő játékos neve
         currentPlayerLabel = new JLabel("Unknown");
+        currentPlayerLabel.setOpaque(true);
+        currentPlayerLabel.setBorder(new EmptyBorder(5, 5, 5, 5));
         add(currentPlayerLabel, new GridBagConstraints(0, 1, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 
         //Irnyító gombok hozzáadása
@@ -203,8 +203,10 @@ public class HudView extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 int dialogButton = JOptionPane.YES_NO_OPTION;
                 int dialogResult = JOptionPane.showConfirmDialog(MainWindow.getInstance(),"Are you sure you want to forfeit the game?","Forfeit",dialogButton);
-                if(dialogResult == 0)
+                if(dialogResult == 0) {
                     gameController.forfeitCurrentPlayer();
+                    showNotification(gameController.getActualPlayer().getName() + " forfeited the game");
+                }
             }
         });
 
@@ -225,12 +227,13 @@ public class HudView extends JPanel {
             JLabel playerLabel = new JLabel(robot.getName());
             playerLabel.setOpaque(true);
             playerLabel.setBackground(robot.getColor());
-            playerLabel.setBorder(new EmptyBorder(5,5,5,5));
+            playerLabel.setBorder(new EmptyBorder(5, 5, 5, 5));
 
             // Megtett táv
             JLabel playerStatusLabel = new JLabel("0.0");
             playerStatusLabel.setOpaque(true);
             playerStatusLabel.setBackground(robot.getColor());
+            playerStatusLabel.setBorder(new EmptyBorder(5,5,5,5));
             playerStatusLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
             // Hozzáad
