@@ -153,7 +153,7 @@ public class HudView extends JPanel {
                     gameController.forfeitCurrentPlayer();
                     showNotification(gameController.getActualPlayer().getName() + " forfeited the game");
 
-                    // Redraw HUD
+                    // HUD újrarajzolása
                     revalidate();
                 }
             }
