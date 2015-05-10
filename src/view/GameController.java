@@ -314,29 +314,4 @@ public class GameController {
             return trackList;
         } else return null;
     }
-
-
-    public static String[] getAvailableTracks() {
-
-        File trackDirectory = new File("assets/maps");
-
-        // .map pályafájlok
-        File[] trackFiles = trackDirectory.listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                return name.toLowerCase().endsWith(".map");
-            }
-        });
-
-        if (trackFiles.length > 0) {
-            String[] trackList = new String[trackFiles.length];
-
-            for (int i = 0; i < trackList.length; i++) {
-                trackList[i] = trackFiles[i].toString();
-            }
-
-            return trackList;
-        } else return null;
-    }
-
 }

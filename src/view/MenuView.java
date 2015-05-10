@@ -1,9 +1,17 @@
 package view;
 
+import model.*;
+import model.Robot;
+import sun.applet.Main;
+
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,18 +23,9 @@ import java.util.Vector;
  * @author Gergely Reményi
  * @since 2015.04.25.
  */
-public class MenuView extends JPanel {
+public class MenuView extends JPanel implements ActionListener {
 
     public static final Color[] PLAYER_COLORS = {
-            new Color(255, 0, 0),
-            new Color(0, 255, 18),
-            new Color(0, 178, 255),
-            new Color(255, 255, 0),
-            new Color(157, 0, 255),
-            new Color(0, 0, 0)
-    };
-
-    public static final Color[] PLAYER_COLORS_BRIGHT = {
             new Color(255, 153, 153),
             new Color(153, 255, 153),
             new Color(153, 255, 204),
@@ -36,269 +35,173 @@ public class MenuView extends JPanel {
     };
 
     /**
-     * Háttérkép
+     * Pálya lista legördülő menü
      */
-    private BufferedImage background;
-
-    /**
-     * Kiválasztott pálya neve (kiterjesztéssel együtt)
-     */
-    String selectedMap;
-
-    /**
-     * A körök számát itt lehet beállítani
-     **/
-    int numberOfRounds;
-
-    ArrayList<String> players = new ArrayList<String>();
-    ArrayList<String> trackListArray;
-
-    private JTextField player1Field;
-    private JTextField player2Field;
-    private JTextField player3Field;
-    private JTextField player4Field;
-    private JTextField player5Field;
-    private JTextField player6Field;
-    private JSpinner roundsSpinner;
     private JComboBox trackList;
 
+    /**
+     * Körök száma spinner
+     */
+    private JSpinner roundsSpinner;
+
+    /**
+     * Játékosok neveinek beviteli mezői
+     */
+    private JTextField[] playerFields;
+
+    /**
+     * Menu view konstruktor
+     */
     public MenuView() {
         initComponents();
-
-        // háttérkép beolvasása
-        /*try {
-            background = ImageIO.read(new File("assets/img/menu_background_alternative.jpg"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-
     }
 
+    /**
+     * A menü kinézet komponensek inicializálása
+     */
     private void initComponents() {
 
+        /**
+         * PÁLYABEÁLLÍTÁS INICIALIZÁLÁSA
+         */
+
+        // Label elem a pályabeállításokhoz
+        JLabel trackLabel = new JLabel("Track");
+
+        // Lista elem az elérhető pályákhoz
         trackList = new JComboBox();
-        JLabel tracksLabel = new JLabel();
+
+        // Elérhető pályák beállítása a listához
+        trackList= new JComboBox<String>(GameController.getAvailableTrackNames());
+
+        // A label beállítása a listához
+        trackLabel.setLabelFor(trackList);
+
+
+
+        /**
+         * KÖRÖK BEÁLLÍTÁSÁNAK INICIALIZÁLÁSA
+         */
+
+        // Label a körök beállításához
+        JLabel roundsLabel = new JLabel("Rounds");
+
+        // Spinner a körök számának beállításához
         roundsSpinner = new JSpinner();
-        JLabel roundsLabel = new JLabel();
-        JButton startButton = new JButton();
-        player1Field = new JTextField();
-        JLabel player1Label = new JLabel();
-        JLabel player2Label = new JLabel();
-        player2Field = new JTextField();
-        JLabel player3Label = new JLabel();
-        player3Field = new JTextField();
-        JLabel player4Label = new JLabel();
-        player4Field = new JTextField();
-        JLabel player5Label = new JLabel();
-        player5Field = new JTextField();
-        JLabel player6Label = new JLabel();
-        player6Field = new JTextField();
 
-        trackListArray = new ArrayList<String>(Arrays.asList(GameController.getAvailableTrackNames()));
-
-        if(trackListArray.size() == 0) {
-            trackListArray.add("No track file");
-        }
-        trackList= new JComboBox<String>(new Vector<String>(trackListArray));
-
-        tracksLabel.setLabelFor(trackList);
-        tracksLabel.setText("Tracks");
-
-        numberOfRounds = MainWindow.DEFAULT_TURN_NUMBER;
-
+        // Roundspinner inicializálása a minimum és  maximum és az aktuális körszámokkal
         roundsSpinner.setModel(new SpinnerNumberModel(MainWindow.DEFAULT_TURN_NUMBER, MainWindow.MINIMUM_TURN_NUMBER, MainWindow.MAXIMUM_TURN_NUMBER, 1));
-        roundsSpinner.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                numberOfRounds = (Integer) roundsSpinner.getValue();
-            }
-        });
 
+        // Label beállítása a körbeállítás spinnerhez
         roundsLabel.setLabelFor(roundsSpinner);
-        roundsLabel.setText("Rounds");
 
-        startButton.setText("Start");
-        startButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startButtonActionPerformed(evt);
-            }
-        });
 
-        player1Label.setText("Player 1");
-        player2Label.setText("Player 2");
-        player3Label.setText("Player 3");
-        player4Label.setText("Player 4");
-        player5Label.setText("Player 5");
-        player6Label.setText("Player 6");
+        /**
+         * JÁTÉKOSOK BEÁLLÍTÁSÁNAK INICIALIZÁLÁSA
+         */
 
-        player1Field.setBackground(PLAYER_COLORS_BRIGHT[0]);
-        player1Field.setHorizontalAlignment(JTextField.CENTER);
-        player1Field.setToolTipText("");
+        // Bemeneti mezők inicializálása
+        playerFields = new JTextField[MainWindow.MAX_PLAYER_NUMBER];
 
-        player2Field.setBackground(PLAYER_COLORS_BRIGHT[1]);
-        player2Field.setHorizontalAlignment(JTextField.CENTER);
-        player2Field.setToolTipText("");
+        // Mezőkhoz tartozó labelek
+        JLabel playerLabels[] = new JLabel[MainWindow.MAX_PLAYER_NUMBER];
 
-        player3Field.setBackground(PLAYER_COLORS_BRIGHT[2]);
-        player3Field.setHorizontalAlignment(JTextField.CENTER);
-        player3Field.setToolTipText("");
+        // Mezők feltöltése
+        for(int i=0; i < playerFields.length; i++) {
+            playerLabels[i] = new JLabel("Player " + i);
+            playerFields[i] = new JTextField("",15);
+            playerFields[i].setBackground(PLAYER_COLORS[i]);
+            playerFields[i].setHorizontalAlignment(JTextField.CENTER);
+            playerFields[i].setToolTipText("");
+        }
 
-        player4Field.setBackground(PLAYER_COLORS_BRIGHT[3]);
-        player4Field.setHorizontalAlignment(JTextField.CENTER);
-        player4Field.setToolTipText("");
 
-        player5Field.setBackground(PLAYER_COLORS_BRIGHT[4]);
-        player5Field.setHorizontalAlignment(JTextField.CENTER);
-        player5Field.setToolTipText("");
+        /**
+         * START GOMB INICIALIZÁLÁSA
+         */
 
-        player6Field.setBackground(PLAYER_COLORS_BRIGHT[5]);
-        player6Field.setHorizontalAlignment(JTextField.CENTER);
-        player6Field.setToolTipText("");
+        // Start gomb inicializálása
+        JButton startButton = new JButton("Start");
 
-        GroupLayout menuViewLayout = new GroupLayout(this);
-        setLayout(menuViewLayout);
-        menuViewLayout.setHorizontalGroup(
-                menuViewLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(menuViewLayout.createSequentialGroup()
-                                .addGroup(menuViewLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addGroup(menuViewLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                                .addGroup(menuViewLayout.createSequentialGroup()
-                                                        .addComponent(roundsLabel)
-                                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(roundsSpinner, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(menuViewLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                        .addGroup(menuViewLayout.createSequentialGroup()
-                                                                .addGap(30, 30, 30)
-                                                                .addComponent(tracksLabel)
-                                                                .addGap(3, 3, 3)
-                                                                .addComponent(trackList, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                        .addGroup(menuViewLayout.createSequentialGroup()
-                                                                .addGap(24, 24, 24)
-                                                                .addGroup(menuViewLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                        .addGroup(menuViewLayout.createSequentialGroup()
-                                                                                .addComponent(player1Label)
-                                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                                                .addComponent(player1Field, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE))
-                                                                        .addGroup(menuViewLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                                                                .addGroup(menuViewLayout.createSequentialGroup()
-                                                                                        .addGroup(menuViewLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                                                                                .addComponent(player3Label)
-                                                                                                .addComponent(player2Label))
-                                                                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                                                        .addGroup(menuViewLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                                                .addComponent(player2Field, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE)
-                                                                                                .addComponent(player3Field)))
-                                                                                .addGroup(GroupLayout.Alignment.LEADING, menuViewLayout.createSequentialGroup()
-                                                                                        .addGroup(menuViewLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                                                .addComponent(player4Label)
-                                                                                                .addComponent(player5Label)
-                                                                                                .addComponent(player6Label))
-                                                                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                                                        .addGroup(menuViewLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                                                .addComponent(player6Field)
-                                                                                                .addComponent(player5Field)
-                                                                                                .addComponent(player4Field, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE))))))))
-                                        .addGroup(menuViewLayout.createSequentialGroup()
-                                                .addGap(120, 120, 120)
-                                                .addComponent(startButton)))
-                                .addContainerGap(27, Short.MAX_VALUE))
-        );
-        menuViewLayout.setVerticalGroup(
-                menuViewLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(menuViewLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(menuViewLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(trackList, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(tracksLabel))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(menuViewLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(roundsSpinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(roundsLabel))
-                                .addGap(18, 18, 18)
-                                .addGroup(menuViewLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(player1Field, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(player1Label))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(menuViewLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(player2Field, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(player2Label))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(menuViewLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(player3Field, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(player3Label))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(menuViewLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(player4Field, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(player4Label))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(menuViewLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(player5Field, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(player5Label))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(menuViewLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(player6Field, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(player6Label))
-                                .addGap(18, 18, 18)
-                                .addComponent(startButton)
-                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        // Start gomb megnomása esetén a saját action listener függvény fut le
+        startButton.addActionListener(this);
+
+
+
+        /**
+         * NÉZET ÉS ELEMEK HOZZÁADÁSA A MENÜ NÉZETHEZ
+         */
+
+        // Kinézet
+        setLayout(new BorderLayout());
+        setBorder(new EmptyBorder(10,10,10,10));
+
+        // Menü panel
+        JPanel menuPanel = new JPanel();
+        menuPanel.setLayout(new GridLayout(0,2));
+
+        // Menü panel hozzáadása
+        add(menuPanel,BorderLayout.NORTH);
+
+        // Pályakiválasztás hozzáadása
+        menuPanel.add(trackLabel);
+        menuPanel.add(trackList);
+
+        // Körök beállításának hozzáadása
+        menuPanel.add(roundsLabel);
+        menuPanel.add(roundsSpinner);
+
+        // Játékosok hozzáadása
+        for(int i = 0; i < MainWindow.MAX_PLAYER_NUMBER; i++) {
+            menuPanel.add(playerLabels[i]);
+            menuPanel.add(playerFields[i]);
+        }
+
+        // Start gomb hozzáadása
+        add(startButton,BorderLayout.SOUTH);
+
     }
 
+    /**
+     * Start gomb megynomására van állítva ez az esemény lekezelő függvény
+     *
+     * @param e az esemény
+     */
     @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
+    public void actionPerformed(ActionEvent e) {
 
-        // Háttérkép rajzolása
-        g.drawImage(background, 0, 0, null);
-    }
+        // Kiválasztott pálya neve
+        String selectedMapFile = String.valueOf("assets/maps/" + trackList.getSelectedItem() + ".map");
 
-    private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-        ArrayList<String> maps = new ArrayList<String>(Arrays.asList(GameController.getAvailableTracks()));
-        int index = trackListArray.indexOf(trackList.getSelectedItem());
-        selectedMap = maps.get(index);
+        // Kiválasztott körök száma
+        int numberOfRounds = Integer.parseInt(String.valueOf(roundsSpinner.getValue()));
+
+        // Ebbe számoljuk, hogy hány játékosnév lett beírva
         int numOfPlayers = 0;
 
-        if (player1Field.getText() != null && !player1Field.getText().equals("")) {
-            players.add(player1Field.getText());
-            numOfPlayers++;
-        } else {
-            players.add(null);
-        }
-        if (player2Field.getText() != null && !player2Field.getText().equals("")) {
-            players.add(player2Field.getText());
-            numOfPlayers++;
-        } else {
-            players.add(null);
-        }
-        if (player3Field.getText() != null && !player3Field.getText().equals("")) {
-            numOfPlayers++;
-            players.add(player3Field.getText());
-        } else {
-            players.add(null);
-        }
-        if (player4Field.getText() != null && !player4Field.getText().equals("")) {
-            numOfPlayers++;
-            players.add(player4Field.getText());
-        } else {
-            players.add(null);
-        }
-        if (player5Field.getText() != null && !player5Field.getText().equals("")) {
-            numOfPlayers++;
-            players.add(player5Field.getText());
-        } else {
-            players.add(null);
-        }
-        if (player6Field.getText() != null && !player6Field.getText().equals("")) {
-            numOfPlayers++;
-            players.add(player6Field.getText());
-        } else {
-            players.add(null);
-        }
-        if (numOfPlayers >= MainWindow.MIN_PLAYER_NUMBER &&  numOfPlayers <= MainWindow.MAX_PLAYER_NUMBER) {
-            new GameController(selectedMap, players, numberOfRounds);
-        } else {
-            players = new ArrayList<String>();
+        // Beírt robotneveket tartalmazó lista
+        ArrayList<String> players = new ArrayList<String>();
+
+        // Megnézzük, hogy hány játékos neve lett beírva és beletesszük őket egy robot listbe
+        for(int i=0; i < MainWindow.MAX_PLAYER_NUMBER; i++) {
+            if(playerFields[i].getText() != null && !playerFields[i].getText().equals("")) {
+                players.add(playerFields[i].getText());
+                numOfPlayers++;
+            }
+            else {
+                players.add(null);
+            }
         }
 
+        // Ha nem lett megfelelő számú játékosnév beírva, akkor figyelmeztetés. Különben indul a játék
+        if (numOfPlayers >= MainWindow.MIN_PLAYER_NUMBER &&  numOfPlayers <= MainWindow.MAX_PLAYER_NUMBER) {
+            new GameController(selectedMapFile, players, numberOfRounds);
+        }
+        else {
+            JOptionPane.showMessageDialog(MainWindow.getInstance(),
+                    "You can start the game with minimum " + MainWindow.MIN_PLAYER_NUMBER + " players",
+                    "Player number error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
