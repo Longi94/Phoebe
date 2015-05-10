@@ -1,11 +1,9 @@
 package view;
 
 import model.Robot;
-import sun.applet.Main;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
@@ -93,58 +91,6 @@ public class HudView extends JPanel {
         initComponents();
     }
 
-    public boolean isOilButtonDown() {
-        return oilButton.isSelected();
-    }
-
-    public boolean isPuttyButtonDown() {
-        return puttyButton.isSelected();
-    }
-
-    /**
-     * Állás frissítése
-     */
-    public void refreshStandings() {
-
-        // Játékosok rendezése
-        Collections.sort(players);
-
-        // Végig az aktív robotokon
-        for (int i = 0; i < players.size(); i++) {
-            playerNameLabels.get(i).setText(players.get(i).getName());
-            playerNameLabels.get(i).setBackground(players.get(i).getColor());
-
-            playerDistanceLabels.get(i).setText("" + Math.round(players.get(i).getDistanceCompleted() * 100.0) / 100.0);
-            playerDistanceLabels.get(i).setBackground(players.get(i).getColor());
-        }
-
-        // Újrarajzolás
-        invalidate();
-    }
-
-    /**
-     * Soron lévő játékos beállítása és kiírása
-     *
-     * @param actualPlayer a soron lévő játékos
-     */
-    public void setCurrent(Robot actualPlayer) {
-        current = actualPlayer;
-        currentPlayerLabel.setText(current.getName() + " " + actualPlayer.getOilAmount() + "/" + actualPlayer.getPuttyAmount());
-        currentPlayerLabel.setBackground(actualPlayer.getColor());
-        invalidate();
-    }
-
-    /**
-     * Notification kiírása a history részbe
-     *
-     * @param notif a kiírando notification
-     */
-    public void showNotification(String notif) {
-        if (historyPanel != null) {
-            historyPanel.showNotification(notif);
-        }
-    }
-
     /**
      * Elemek inicializálása
      */
@@ -206,6 +152,9 @@ public class HudView extends JPanel {
                 if(dialogResult == 0) {
                     gameController.forfeitCurrentPlayer();
                     showNotification(gameController.getActualPlayer().getName() + " forfeited the game");
+
+                    // Redraw HUD
+                    revalidate();
                 }
             }
         });
@@ -233,7 +182,7 @@ public class HudView extends JPanel {
             JLabel playerStatusLabel = new JLabel("0.0");
             playerStatusLabel.setOpaque(true);
             playerStatusLabel.setBackground(robot.getColor());
-            playerStatusLabel.setBorder(new EmptyBorder(5,5,5,5));
+            playerStatusLabel.setBorder(new EmptyBorder(5, 5, 5, 5));
             playerStatusLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
             // Hozzáad
@@ -260,16 +209,48 @@ public class HudView extends JPanel {
         invalidate();
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        setPreferredSize(new Dimension((getParent().getWidth() - getParent().getHeight()) / 2, getParent().getHeight()));
+    /**
+     * Soron lévő játékos beállítása és kiírása
+     *
+     * @param actualPlayer a soron lévő játékos
+     */
+    public void setCurrent(Robot actualPlayer) {
+        current = actualPlayer;
+        currentPlayerLabel.setText(current.getName() + " " + actualPlayer.getOilAmount() + "/" + actualPlayer.getPuttyAmount());
+        currentPlayerLabel.setBackground(actualPlayer.getColor());
         invalidate();
     }
 
-    public void resetButtons() {
-        oilButton.setSelected(false);
-        puttyButton.setSelected(false);
+    /**
+     * Állás frissítése
+     */
+    public void refreshStandings() {
+
+        // Játékosok rendezése
+        Collections.sort(players);
+
+        // Végig az aktív robotokon
+        for (int i = 0; i < players.size(); i++) {
+            playerNameLabels.get(i).setText(players.get(i).getName());
+            playerNameLabels.get(i).setBackground(players.get(i).getColor());
+
+            playerDistanceLabels.get(i).setText("" + Math.round(players.get(i).getDistanceCompleted() * 100.0) / 100.0);
+            playerDistanceLabels.get(i).setBackground(players.get(i).getColor());
+        }
+
+        // Újrarajzolás
+        invalidate();
+    }
+
+    /**
+     * Notification kiírása a history részbe
+     *
+     * @param notif a kiírando notification
+     */
+    public void showNotification(String notif) {
+        if (historyPanel != null) {
+            historyPanel.showNotification(notif);
+        }
     }
 
     /**
@@ -310,5 +291,30 @@ public class HudView extends JPanel {
         public void showNotification(String notif) {
             listModel.add(0, notif);
         }
+    }
+
+    /**
+     * HUD kirajzolása
+     *
+     * @param g graphics
+     */
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        setPreferredSize(new Dimension((getParent().getWidth() - getParent().getHeight()) / 2, getParent().getHeight()));
+        invalidate();
+    }
+
+    public void resetButtons() {
+        oilButton.setSelected(false);
+        puttyButton.setSelected(false);
+    }
+
+    public boolean isOilButtonDown() {
+        return oilButton.isSelected();
+    }
+
+    public boolean isPuttyButtonDown() {
+        return puttyButton.isSelected();
     }
 }

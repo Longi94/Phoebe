@@ -23,26 +23,74 @@ import java.util.List;
  */
 public class GameController {
 
+    /**
+     * Hátralévő körök száma
+     */
     private int turnsLeft = -1;
-    private int numberOfPlayers;
-    private Track track; //kezelt pálya
-    private List<Robot> players; //játékosok
-    private Robot winner = null;
 
+    /**
+     * Pálya
+     */
+    private Track track;
+
+    /**
+     * Játékosok
+     */
+    private List<Robot> players;
+
+    /**
+     * Játékban lévő játékosok száma
+     */
+    private int numberOfPlayers;
+
+    /**
+     * Játékban lévő játékosok listája
+     */
     private List<Integer> playerOrder;
 
+    /**
+     * Győztes robot
+     */
+    private Robot winner = null;
+
+    /**
+     * Kör elkezdödött-e
+     */
     private boolean roundStarted = false;
-    private boolean gameStarted = false; //Van-e betöltve pálya, elértük-e már a játék végét
+
+    /**
+     * Megy-e a játék (be van-e töltve pálya és elértük-e már a játék végét)
+     */
+    private boolean gameStarted = false;
+
+    /**
+     * Akutális játékos sorszáma
+     */
     private int currentPlayer = 0;
 
+    /**
+     * Az aktuális játékos fog olajat rakni
+     */
     private boolean willPutOil = false;
+
+    /**
+     * Az aktuális játékos fog ragacsot rakni
+     */
     private boolean willPutPutty = false;
 
     /**
      * Referencia az ablakra (frissítés miatt)
      */
     private MainWindow mainWindow;
+
+    /**
+     * Referencia a játéknézetre
+     */
     private GameView gameView;
+
+    /**
+     * Referencia a HUD-ra
+     */
     private HudView hudView;
 
     /**
@@ -121,32 +169,6 @@ public class GameController {
         newTurn();
     }
 
-    public HudView getHudView() {
-        return hudView;
-    }
-
-    public Robot getActualPlayer() {
-        return players.get(playerOrder.get(currentPlayer));
-    }
-
-    /**
-     * Getter a roundStarted-nek
-     *
-     * @return el kezdődött-e a kör
-     */
-    public boolean isRoundStarted() {
-        return roundStarted;
-    }
-
-    /**
-     * Getter a gameStarted-nek
-     *
-     * @return elkezdődött-e a játék
-     */
-    public boolean isGameStarted() {
-        return gameStarted;
-    }
-
     /**
      * Kör befejezése, új kör indítása, ha van még hátra kör
      */
@@ -179,8 +201,6 @@ public class GameController {
 
             gameView.newRound(players.get(playerOrder.get(0)));
         }
-
-        PhoebeLogger.returnMessage();
     }
 
     /**
@@ -206,7 +226,14 @@ public class GameController {
 
         hudView.showNotification("Winner: " + winner.getName());
 
-        PhoebeLogger.returnMessage();
+        JOptionPane.showMessageDialog(MainWindow.getInstance(),
+                "Game has been ended and the winner is " + winner.getName() + ". Play a new one! ",
+                "Game ended",
+                JOptionPane.INFORMATION_MESSAGE);
+
+        MainWindow window = MainWindow.getInstance();
+        window = new MainWindow();
+
     }
 
     /**
@@ -222,7 +249,7 @@ public class GameController {
     }
 
     /**
-     * Soron lévő jűtékos kiejtése
+     * Soron lévő játékos kiejtése
      */
     public void forfeitCurrentPlayer() {
         if (!roundStarted) return;
@@ -237,12 +264,23 @@ public class GameController {
 
         //Eltávolítása a játékos sorrendből
         playerOrder.remove(currentPlayer);
+
+        // Ha elfogytak a játékosok vége a mókának
+        if(playerOrder.size() == 0) {
+            endGame();
+        }
     }
 
+    /**
+     * Olajra klikkelés esetén
+     */
     public void clickOil() {
         willPutOil = !willPutOil;
     }
 
+    /**
+     * Ragacsra klikkelés esetén
+     */
     public void clickPutty() {
         willPutPutty = !willPutPutty;
     }
@@ -300,6 +338,11 @@ public class GameController {
     }
 
 
+    /**
+     * Elérhető pályanevek lekérdezése
+     *
+     * @return elérhető pályanevek listája
+     */
     public static String[] getAvailableTrackNames() {
 
         File trackDirectory = new File("assets/maps");
@@ -321,5 +364,42 @@ public class GameController {
 
             return trackList;
         } else return null;
+    }
+
+
+    /**
+     * Aktuálisan lépő robot elkérése
+     *
+     * @return Akív robot
+     */
+    public Robot getActualPlayer() {
+        return players.get(playerOrder.get(currentPlayer));
+    }
+
+    /**
+     * HUD view elkérése
+     *
+     * @return HUD view referencia
+     */
+    public HudView getHudView() {
+        return hudView;
+    }
+
+    /**
+     * Getter a roundStarted-nek
+     *
+     * @return el kezdődött-e a kör
+     */
+    public boolean isRoundStarted() {
+        return roundStarted;
+    }
+
+    /**
+     * Getter a gameStarted-nek
+     *
+     * @return elkezdődött-e a játék
+     */
+    public boolean isGameStarted() {
+        return gameStarted;
     }
 }
