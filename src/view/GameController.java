@@ -6,6 +6,7 @@ import model.Track;
 import model.basic.Position;
 import model.basic.Velocity;
 import skeleton.PhoebeLogger;
+import sun.applet.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -231,8 +232,11 @@ public class GameController {
                 "Game ended",
                 JOptionPane.INFORMATION_MESSAGE);
 
-        MainWindow window = MainWindow.getInstance();
-        window = new MainWindow();
+        mainWindow.remove(gameView);
+        mainWindow.add(new MenuView());
+        mainWindow.pack();
+        mainWindow.setLocationRelativeTo(null);
+        mainWindow.revalidate();
 
     }
 
