@@ -285,6 +285,8 @@ public class GameController {
                 + Math.round(currentRobot.getPos().getX() * 100.0) / 100.0 + ", "
                 + Math.round(currentRobot.getPos().getY() * 100.0) / 100.0);
         hudView.resetButtons();
+        willPutOil = willPutPutty = false;
+
 
         //Kövi játékos, kör vége ha nincs több
         if (++currentPlayer == playerOrder.size()) {
