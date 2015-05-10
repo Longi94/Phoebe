@@ -180,10 +180,7 @@ public class HudView extends JPanel {
                 int dialogResult = JOptionPane.showConfirmDialog(MainWindow.getInstance(),"Are you sure you want to forfeit the game?","Forfeit",dialogButton);
                 if(dialogResult == 0) {
                     gameController.forfeitCurrentPlayer();
-                    showNotification(gameController.getActualPlayer().getName() + " forfeited the game");
-
-                    // HUD újrarajzolása
-                    revalidate();
+                    showNotification(currentPlayerLabel.getText() + " forfeited the game");
                 }
             }
         });

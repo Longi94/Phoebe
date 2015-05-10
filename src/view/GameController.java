@@ -267,11 +267,11 @@ public class GameController {
         //Robot feladja a játékot
         currentRobot.forfeit();
 
-        //Csökken a játékosok száma
-        numberOfPlayers--;
-
         //Eltávolítása a játékos sorrendből
         playerOrder.remove(currentPlayer);
+
+        //Csökken a játékosok száma
+        numberOfPlayers--;
 
         // Ha elfogytak a játékosok vége a mókának
         if(playerOrder.size() == 0) {
