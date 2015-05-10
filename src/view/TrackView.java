@@ -7,9 +7,7 @@ import model.basic.Position;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +17,7 @@ import java.util.List;
  * @author Gergely Reményi
  * @since 2015.04.25.
  */
-public class TrackView extends JPanel implements MouseListener, MouseMotionListener {
+public class TrackView extends JPanel implements MouseListener, MouseMotionListener, MouseWheelListener {
 
     public static final Color TRACK_FILL_COLOR = new Color(150,150,150);
     public static final Color START_LINE_COLOR = new Color(255,255,255);
@@ -59,6 +57,7 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
         //TODO VALAHOGY AZT IS MEG KELL OLDANI, HA A JÁTÉKOS NEM AKAR VÁLTOZTATNI A VEKTORON
         addMouseListener(this);
         addMouseMotionListener(this);
+        addMouseWheelListener(this);
 
         this.gameController = gameController;
     }
@@ -193,4 +192,14 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
     public void mouseMoved(MouseEvent e) {
         //Unused
     }
+
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent e) {
+
+
+        zoom *= Math.pow(1.15, -1*e.getWheelRotation());
+        repaint();
+        centerActualPlayer(gameController.getActualPlayer());
+    }
+
 }
