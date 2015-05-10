@@ -105,7 +105,8 @@ public class GameController {
 
         gameView = new GameView(track, this);
 
-        turnsLeft = rounds;
+        // Azért kell +1 mert egy újkör hívással kezdünk!
+        turnsLeft = rounds+1;
 
         Robot.resetIds();
 
