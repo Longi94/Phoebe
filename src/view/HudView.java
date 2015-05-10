@@ -52,6 +52,16 @@ public class HudView extends JPanel {
     private JLabel currentPlayerLabel;
 
     /**
+     * Aktuális játékos olajainak számának labelje
+     */
+    private JLabel currentPlayerOilLabel;
+
+    /**
+     * Aktuális játékos ragacsainak számának labelje
+     */
+    private JLabel currentPlayerPuttyLabel;
+
+    /**
      * Játékos név labelek
      */
     private List<JLabel> playerNameLabels;
@@ -109,15 +119,29 @@ public class HudView extends JPanel {
         currentPlayerLabel = new JLabel("Unknown");
         currentPlayerLabel.setOpaque(true);
         currentPlayerLabel.setBorder(new EmptyBorder(5, 5, 5, 5));
-        add(currentPlayerLabel, new GridBagConstraints(0, 1, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
+        add(currentPlayerLabel, new GridBagConstraints(0, 1, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
+
+        // Soron lévő játékos olajok száma
+        currentPlayerOilLabel = new JLabel("0");
+        currentPlayerOilLabel.setOpaque(true);
+        currentPlayerOilLabel.setBorder(new EmptyBorder(5, 5, 5, 5));
+        currentPlayerOilLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        add(currentPlayerOilLabel, new GridBagConstraints(1, 1, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
+
+        // Soron lévő játékos ragacsok száma
+        currentPlayerPuttyLabel = new JLabel("0");
+        currentPlayerPuttyLabel.setOpaque(true);
+        currentPlayerPuttyLabel.setBorder(new EmptyBorder(5, 5, 5, 5));
+        currentPlayerPuttyLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        add(currentPlayerPuttyLabel, new GridBagConstraints(2, 1, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 
         //Irnyító gombok hozzáadása
         oilButton = new JToggleButton("Oil");
         puttyButton = new JToggleButton("Putty");
         JButton forfeitButton = new JButton("Forfeit");
-        add(oilButton, new GridBagConstraints(0, 2, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 0, 5), 0, 0));
-        add(puttyButton, new GridBagConstraints(1, 2, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 0, 5), 0, 0));
-        add(forfeitButton, new GridBagConstraints(2, 2, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 0, 5), 0, 0));
+        add(forfeitButton, new GridBagConstraints(0, 2, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 0, 5), 0, 0));
+        add(oilButton, new GridBagConstraints(1, 2, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 0, 5), 0, 0));
+        add(puttyButton, new GridBagConstraints(2, 2, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 0, 5), 0, 0));
 
         // Olaj gomb lenyomását figyelő listener
         oilButton.addChangeListener(new ChangeListener() {
@@ -216,8 +240,15 @@ public class HudView extends JPanel {
      */
     public void setCurrent(Robot actualPlayer) {
         current = actualPlayer;
-        currentPlayerLabel.setText(current.getName() + " " + actualPlayer.getOilAmount() + "/" + actualPlayer.getPuttyAmount());
+        currentPlayerLabel.setText(current.getName());
         currentPlayerLabel.setBackground(actualPlayer.getColor());
+
+        currentPlayerOilLabel.setText(String.valueOf(current.getOilAmount()));
+        currentPlayerOilLabel.setBackground(actualPlayer.getColor());
+
+        currentPlayerPuttyLabel.setText(String.valueOf(current.getPuttyAmount()));
+        currentPlayerPuttyLabel.setBackground(actualPlayer.getColor());
+
         invalidate();
     }
 
