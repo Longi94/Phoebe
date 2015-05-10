@@ -142,6 +142,7 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
 
         if (gameController.isGameStarted() && SwingUtilities.isRightMouseButton(e)) {
             gameController.jumpCurrentPlayer(-1);
+            repaint();
         }
     }
 
