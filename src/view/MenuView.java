@@ -196,6 +196,8 @@ public class MenuView extends JPanel implements ActionListener {
         // Ha nem lett megfelelő számú játékosnév beírva, akkor figyelmeztetés. Különben indul a játék
         if (numOfPlayers >= MainWindow.MIN_PLAYER_NUMBER &&  numOfPlayers <= MainWindow.MAX_PLAYER_NUMBER) {
             new GameController(selectedMapFile, players, numberOfRounds);
+            // Ablak középre igazítása a képrenyőn
+            MainWindow.getInstance().setLocationRelativeTo(null);
         }
         else {
             JOptionPane.showMessageDialog(MainWindow.getInstance(),
