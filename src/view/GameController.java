@@ -103,6 +103,8 @@ public class GameController {
 
         mainWindow = MainWindow.getInstance();
 
+        mainWindow.setController(this);
+
         mainWindow.getContentPane().removeAll();
 
         mainWindow.setExtendedState(JFrame.MAXIMIZED_BOTH);
