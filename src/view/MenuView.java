@@ -1,21 +1,11 @@
 package view;
 
-import model.*;
-import model.Robot;
-import sun.applet.Main;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Vector;
 
 /**
  * Menü panel
@@ -114,6 +104,11 @@ public class MenuView extends JPanel implements ActionListener {
             playerFields[i].setHorizontalAlignment(JTextField.CENTER);
             playerFields[i].setToolTipText("");
         }
+
+        //Default nevek hozzáadása
+        playerFields[0].setText("WALL-E");
+        playerFields[1].setText("EVE");
+
 
 
         /**
