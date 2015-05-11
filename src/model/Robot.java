@@ -132,9 +132,6 @@ public class Robot extends TrackObjectBase implements Comparable<Robot> {
         Position oldPos = new Position(pos.getX(), pos.getY());
 
         previousPath.add(0, oldPos);
-        if (previousPath.size() == 6) {
-            previousPath.remove(previousPath.size() - 1);
-        }
 
         //Robot mozgatása új pozícióba
         PhoebeLogger.message("pos", "move", "vel");
