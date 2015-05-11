@@ -300,19 +300,6 @@ public class Track {
      */
     public void robotJumped(Robot r) {
 
-      /*  List<TrackObjectBase> tmp = new ArrayList<TrackObjectBase>();
-
-        for (TrackObjectBase item : items) {
-            //Magával ne ütközzön
-            if (item != r && r.hit(item)) {
-                tmp.add(item);
-            }
-        }
-
-        for (TrackObjectBase item : tmp) {
-            item.collide(r);
-        }
-       */
         int i = 0;
         while (i < items.size()) {
             TrackObjectBase item = items.get(i);
@@ -359,7 +346,7 @@ public class Track {
         while (i < items.size()) {
             TrackObjectBase item = items.get(i);
             double dist = item.obstacleDistance(p);
-            if (dist < min || (min == -1 && dist != -1)) {
+            if ((dist != -1 && dist < min) || (min == -1 && dist != -1)) {
                 min = dist;
                 minPos = item.getPos();
             }
