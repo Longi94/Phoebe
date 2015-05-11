@@ -20,7 +20,7 @@ public class OilView extends TrackObjectBaseView {
         graph.setColor(new Color(0, 0, 0));
 
 
-        int radius = (int) (oil.getRadius() * zoom);
+        int radius = (int) (oil.getRadius() * zoom * 2);
         graph.fillOval(oil.getPos().convertX(xOffset, zoom) - radius/2, oil.getPos().convertY(yOffset, zoom) - radius/2,
                 radius, radius);
 

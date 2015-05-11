@@ -19,7 +19,7 @@ public abstract class TrackObjectBase {
     /**
      * Pályaelem default sugara
      */
-    protected static double RADIUS = 0.4;
+    protected static double RADIUS = 0.2;
     /**
      * Pályaelem pozíciója
      */
