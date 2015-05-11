@@ -66,8 +66,8 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
 
     void centerActualPlayer(Robot robot) {
         //zoom változatlan, offset úgy módosul, hogy a robot középre kerüljön
-        xOffset = robot.getPos().getX() - MainWindow.getInstance().getBounds().width / 2 /zoom;
-        yOffset = robot.getPos().getY()- MainWindow.getInstance().getBounds().height / 2/zoom;
+        xOffset = robot.getPos().getX() - getWidth() / 2 /zoom;
+        yOffset = robot.getPos().getY() - getHeight() / 2/zoom;
     }
 
     private void drawField(Position inS, Position inE, Position outS, Position outE) {
