@@ -93,6 +93,9 @@ public class GameController {
      */
     private HudView hudView;
 
+    /**
+     * Randomizálásra használt objektumok
+     */
     private Random generator = new Random();
     private int nextCleaner;
 
@@ -468,14 +471,19 @@ public class GameController {
         return gameStarted;
     }
 
-    public List<Integer> getPlayerOrder() {
-        return playerOrder;
-    }
-
+    /**
+     * Életben van - az adott robot.
+     * @param r a robot amiről el kell dönteni, hogy életben van-e.
+     * @return életben van-e a robot
+     */
     public boolean isPlayerAlive(Robot r) {
         return playerOrder.contains(new Integer(players.indexOf(r)));
     }
 
+    /**
+     * Robot eltávolítása a játékból
+     * @param r a robot amit el kell távolítani
+     */
     public void removeRobot(Robot r) {
         int idx = players.indexOf(r);
         playerOrder.remove((Integer)idx);

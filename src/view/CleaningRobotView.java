@@ -12,13 +12,26 @@ import java.awt.*;
  */
 public class CleaningRobotView extends TrackObjectBaseView {
 
+    //Referencia az objhektumra amit ki kell rajzolni.
     private CleaningRobot cleaningRobot;
 
+    /**
+     * Construktor
+     * @param cleaningRobot az objektum amihez a view tartozik
+     * @param tv a pálya nézet amire ki kell rajzolni
+     */
     public CleaningRobotView(CleaningRobot cleaningRobot, TrackView tv) {
         super(cleaningRobot,tv);
         this.cleaningRobot = cleaningRobot;
     }
 
+    /**
+     * Takarító robot kirajzolása.
+     * @param graph amire rajzol
+     * @param xOffset x eltolás
+     * @param yOffset y eltolás
+     * @param zoom nagyítás
+     */
     public void draw(Graphics graph, double xOffset, double yOffset, double zoom) {
         graph.setColor(new Color(255, 255, 255));
         int radius = (int) (cleaningRobot.getRadius() * zoom * 2);

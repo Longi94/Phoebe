@@ -293,10 +293,12 @@ public class HudView extends JPanel {
         invalidate();
     }
 
+    /**
+     * A hátralévő körök felirat frissítése
+     * @param rounds hátralévő körök száma
+     */
     public void refreshRoundLeft(int rounds){
-
         roundsLabel.setText(rounds + " round(s) left");
-
     }
 
     /**
@@ -362,16 +364,11 @@ public class HudView extends JPanel {
         invalidate();
     }
 
+    /**
+     * Akadály gombok visszaállítása
+     */
     public void resetButtons() {
         oilButton.setSelected(false);
         puttyButton.setSelected(false);
-    }
-
-    public boolean isOilButtonDown() {
-        return oilButton.isSelected();
-    }
-
-    public boolean isPuttyButtonDown() {
-        return puttyButton.isSelected();
     }
 }

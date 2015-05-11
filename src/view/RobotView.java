@@ -10,13 +10,26 @@ import java.awt.*;
  */
 public class RobotView extends TrackObjectBaseView {
 
+    //Referencia az objhektumra amit ki kell rajzolni.
     private Robot robot;
 
+    /**
+     * Construktor
+     * @param r az objektum amihez a view tartozik
+     * @param tv a pálya nézet amire ki kell rajzolni
+     */
     public RobotView(Robot r, TrackView tv) {
         super(r, tv);
         robot = r;
     }
 
+    /**
+     * Robot kirajzolása.
+     * @param graph amire rajzol
+     * @param xOffset x eltolás
+     * @param yOffset y eltolás
+     * @param zoom nagyítás
+     */
     public void draw(Graphics graph, double xOffset, double yOffset, double zoom) {
         graph.setColor(robot.getColor());
         int radius = (int) (robot.getRadius() * zoom *2 );

@@ -99,6 +99,9 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
         drawTrack();
     }
 
+    /**
+     * Pálya kirajzolása.
+     */
     public void drawTrack() {
         //pályahatárok kirajzolása
         graph.setColor(TRACK_FILL_COLOR);
@@ -163,7 +166,6 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
         graph.fillOval(tempPos.convertX(xOffset, zoom) - radius / 2, tempPos.convertY(yOffset, zoom) - radius / 2,
                 radius, radius);
     }
-
 
     public void addItem(TrackObjectBaseView tobv) {
         trackObjectBaseViews.add(tobv);
