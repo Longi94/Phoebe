@@ -3,6 +3,7 @@ package model;
 import model.basic.Position;
 import model.basic.Velocity;
 import skeleton.PhoebeLogger;
+import view.MainWindow;
 import view.RobotView;
 import view.TrackObjectBaseView;
 import view.TrackView;
@@ -200,12 +201,16 @@ public class Robot extends TrackObjectBase implements Comparable<Robot> {
             tmp.setMagnitude(tmp.getMagnitude() / 2);
             this.setVel(tmp);
             track.removeObject(r);
+            getTrack().getItems().remove(r);
+            MainWindow.getInstance().getController().getGameView().removeItem(r.getTobv());
         } else {
             Velocity tmp = r.getVel();
             tmp.add(this.vel);
             tmp.setMagnitude(tmp.getMagnitude() / 2);
             r.setVel(tmp);
             track.removeObject(this);   //egyenloseg eseten marad, akire ralepnek (pl jatek elejen jol johet)
+            getTrack().getItems().remove(this);
+            MainWindow.getInstance().getController().getGameView().removeItem(this.getTobv());
         }
         // igazából a többi objectel ütközést megállíthatnánk, de fölösleges, mert elvileg úgyis minden egyidőben zajlik le (és az, hogy kivettük a többől, nem okoz durva problémát)
         // a gc addig nem öli meg, amíg van rá referencia

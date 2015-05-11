@@ -55,6 +55,8 @@ public class GameView extends JPanel {
         trackView.addItem(tobv);
     }
 
+    public void removeItem(TrackObjectBaseView tobv) { trackView.removeItem(tobv); }
+
     public void setHudView(HudView hudView) {
         this.hudView = hudView;
         add(hudView, BorderLayout.EAST);

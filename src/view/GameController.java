@@ -177,6 +177,10 @@ public class GameController {
         newTurn();
     }
 
+    public GameView getGameView() {
+        return gameView;
+    }
+
     /**
      * Kör befejezése, új kör indítása, ha van még hátra kör
      */
@@ -193,6 +197,7 @@ public class GameController {
                 if (playerOrder.contains(dead)) {
                     hudView.showNotification(robot.getName() + " died!");
                     playerOrder.remove(dead);
+
                 }
             }
         }
@@ -309,8 +314,6 @@ public class GameController {
 
         //Robot feladja a játékot
         currentRobot.forfeit();
-
-        hudView.showNotification(currentRobot.getName() + " gave up the game!");
 
         //Eltávolítása a játékos sorrendből
         playerOrder.remove(currentPlayer);
@@ -465,7 +468,7 @@ public class GameController {
         return gameStarted;
     }
 
-    public boolean isPlayerAlive(Robot r) {
-        return playerOrder.contains(new Integer(players.indexOf(r)));
+    public List<Integer> getPlayerOrder() {
+        return playerOrder;
     }
 }
