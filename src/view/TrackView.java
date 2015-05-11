@@ -262,11 +262,13 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
 
-
+        double oldzoom = zoom;
         zoom *= Math.pow(1.15, -1*e.getWheelRotation());
         repaint();
-        if (gameController.isGameStarted())
-            centerActualPlayer(gameController.getActualPlayer());
+        xOffset /= zoom / oldzoom;
+        yOffset /= zoom / oldzoom;
+        //if (gameController.isGameStarted())
+            //centerActualPlayer(gameController.getActualPlayer());
     }
 
 }
