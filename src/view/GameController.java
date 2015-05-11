@@ -134,7 +134,7 @@ public class GameController {
                 position.setX((placedPlayers * track.getInnerArc().get(0).getX() + (realPlayers - placedPlayers + 1) * track.getOuterArc().get(0).getX()) / (realPlayers + 1));
                 position.setY((placedPlayers * track.getInnerArc().get(0).getY() + (realPlayers - placedPlayers + 1) * track.getOuterArc().get(0).getY()) / (realPlayers + 1));
                 Robot r = new Robot(position, track, names.get(i - 1), MenuView.PLAYER_COLORS[i - 1]);
-
+                track.addObject(r);
                 //Hozzáadjuk a játékosokhoz a robotot és új RobotView-t a pályához
                 gameView.addItem(new RobotView(r, gameView.getTrackView()));
                 players.add(r);
