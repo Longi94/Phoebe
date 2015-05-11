@@ -4,6 +4,7 @@ import model.Robot;
 import model.Track;
 import model.TrackObjectBase;
 import model.basic.Position;
+import model.basic.Velocity;
 
 import javax.swing.*;
 import java.awt.*;
@@ -119,19 +120,45 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
             tobw.draw(graph, xOffset, yOffset, zoom);
         }
 
-        graph.setColor(Color.BLACK);
-        if (robotDragged &&mouseDragStart != null && mouseDragEnd!= null) {
+        Robot robot = gameController.getActualPlayer();
+        Position tempPos = new Position(robot.getPos().getX(), robot.getPos().getY());
+        Velocity tempVel = new Velocity(robot.getVel().getAngle(), robot.getVel().getMagnitude());
+
+        //A módosító sebesség vektor
+        Velocity modVelocity = new Velocity();
+
+        if (robotDragged && mouseDragStart != null && mouseDragEnd!= null) {
             int deltaY = (int)mouseDragEnd.getY() - (int)mouseDragStart.getY();
             int deltaX = (int)mouseDragEnd.getX() - (int)mouseDragStart.getX();
+            int degrees = (int) Math.toDegrees(Math.atan2(deltaY, deltaX));
+            if (degrees < 0) {
+                degrees += 360;
+            }
 
             double distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-            if (!(gameController.isGameStarted() && distance > zoom * gameController.getActualPlayer().getRadius()))
+            if (!(gameController.isGameStarted() && distance > zoom * gameController.getActualPlayer().getRadius())) {
                 graph.setColor(Color.RED);
+            } else {
+
+                modVelocity.setAngle(Math.toRadians(degrees)); //ne feledjük hogy radián kell
+                modVelocity.setMagnitude(degrees == -1 ? 0 : 1);
+
+                graph.setColor(Color.BLACK);
+            }
 
             graph.drawLine((int) mouseDragStart.getX(), (int) mouseDragStart.getY(), (int) mouseDragEnd.getX(), (int) mouseDragEnd.getY());
 
-            graph.drawString("" + (int) Math.toDegrees(Math.atan2(deltaY, deltaX)), (int) mouseDragStart.getX(), (int) mouseDragStart.getY());
+            graph.drawString("" + degrees, (int) mouseDragStart.getX(), (int) mouseDragStart.getY());
+        } else {
+            modVelocity.setMagnitude(0);
         }
+
+        tempVel.add(modVelocity);
+        tempPos.move(tempVel);
+        graph.setColor(robot.getColor().brighter());
+        int radius = (int) (robot.getRadius() * zoom);
+        graph.fillOval(tempPos.convertX(xOffset, zoom) - radius / 2, tempPos.convertY(yOffset, zoom) - radius / 2,
+                radius, radius);
     }
 
 
@@ -157,11 +184,7 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
         if (SwingUtilities.isLeftMouseButton(e)) {
             Position p = new Position(e.getX(), e.getY());
             Position playerPos = new Position (gameController.getActualPlayer().getPos().convertX(xOffset,zoom),gameController.getActualPlayer().getPos().convertY(yOffset, zoom));
-            if (p.getDistance(playerPos) <= gameController.getActualPlayer().getRadius() * zoom) {
-                robotDragged = true;
-            } else {
-                robotDragged = false;
-            }
+            robotDragged = p.getDistance(playerPos) <= gameController.getActualPlayer().getRadius() * zoom;
             if (mouseDragStart == null)
                 mouseDragStart = new Position(e.getX(), e.getY());
             else {
@@ -181,8 +204,13 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
                 double distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
                 if (robotDragged) {
                     robotDragged = false;
-                    if (gameController.isGameStarted() && distance > zoom * gameController.getActualPlayer().getRadius())
-                        gameController.jumpCurrentPlayer((int) Math.toDegrees(Math.atan2(deltaY, deltaX)));
+                    if (gameController.isGameStarted() && distance > zoom * gameController.getActualPlayer().getRadius()) {
+                        int degrees = (int) Math.toDegrees(Math.atan2(deltaY, deltaX));
+                        if (degrees < 0) {
+                            degrees += 360;
+                        }
+                        gameController.jumpCurrentPlayer(degrees);
+                    }
 
                 } else {
                     robotDragged = false;
@@ -190,7 +218,6 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
                     yOffset -= deltaY / zoom;
                 }
             }
-
 
             mouseDragStart = null;
             mouseDragEnd = null;
