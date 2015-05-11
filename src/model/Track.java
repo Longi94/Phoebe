@@ -359,7 +359,7 @@ public class Track {
         while (i < items.size()) {
             TrackObjectBase item = items.get(i);
             double dist = item.obstacleDistance(p);
-            if (dist < min || (min == -1 && dist != -1)) {
+            if ((dist != -1 && dist < min) || (min == -1 && dist != -1)) {
                 min = dist;
                 minPos = item.getPos();
             }
