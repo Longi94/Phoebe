@@ -16,9 +16,10 @@ public class PickupView extends TrackObjectBaseView {
     private Pickup pickup;
 
     /**
-     * Construktor
+     * Konstruktor
+     *
      * @param pickup az objektum amihez a view tartozik
-     * @param tv a pálya nézet amire ki kell rajzolni
+     * @param tv     a pálya nézet amire ki kell rajzolni
      */
     public PickupView(Pickup pickup, TrackView tv) {
         super(pickup, tv);
@@ -27,10 +28,11 @@ public class PickupView extends TrackObjectBaseView {
 
     /**
      * Pickup kirajzolása.
-     * @param graph amire rajzol
+     *
+     * @param graph   amire rajzol
      * @param xOffset x eltolás
      * @param yOffset y eltolás
-     * @param zoom nagyítás
+     * @param zoom    nagyítás
      */
     public void draw(Graphics graph, double xOffset, double yOffset, double zoom) {
         graph.setColor(Color.orange);

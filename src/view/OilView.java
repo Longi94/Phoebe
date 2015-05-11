@@ -13,9 +13,10 @@ public class OilView extends TrackObjectBaseView {
     private Oil oil;
 
     /**
-     * Construktor
+     * Konstruktor
+     *
      * @param oil az objektum amihez a view tartozik
-     * @param tv a pálya nézet amire ki kell rajzolni
+     * @param tv  a pálya nézet amire ki kell rajzolni
      */
     public OilView(Oil oil, TrackView tv) {
         super(oil, tv);
@@ -24,10 +25,11 @@ public class OilView extends TrackObjectBaseView {
 
     /**
      * Olaj kirajzolása.
-     * @param graph amire rajzol
+     *
+     * @param graph   amire rajzol
      * @param xOffset x eltolás
      * @param yOffset y eltolás
-     * @param zoom nagyítás
+     * @param zoom    nagyítás
      */
     public void draw(Graphics graph, double xOffset, double yOffset, double zoom) {
         graph.setColor(new Color(0, 0, 0));

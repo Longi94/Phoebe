@@ -16,9 +16,10 @@ public class PuttyView extends TrackObjectBaseView {
     private Putty putty;
 
     /**
-     * Construktor
+     * Konstruktor
+     *
      * @param putty az objektum amihez a view tartozik
-     * @param tv a pálya nézet amire ki kell rajzolni
+     * @param tv    a pálya nézet amire ki kell rajzolni
      */
     public PuttyView(Putty putty, TrackView tv) {
         super(putty, tv);
@@ -27,10 +28,11 @@ public class PuttyView extends TrackObjectBaseView {
 
     /**
      * Ragacs kirajzolása.
-     * @param graph amire rajzol
+     *
+     * @param graph   amire rajzol
      * @param xOffset x eltolás
      * @param yOffset y eltolás
-     * @param zoom nagyítás
+     * @param zoom    nagyítás
      */
     public void draw(Graphics graph, double xOffset, double yOffset, double zoom) {
         graph.setColor(new Color(103, 140, 0));
@@ -38,7 +40,7 @@ public class PuttyView extends TrackObjectBaseView {
         graph.fillOval(putty.getPos().convertX(xOffset, zoom) - radius / 2, putty.getPos().convertY(yOffset, zoom) - radius / 2,
                 radius, radius);
         graph.setColor(Color.ORANGE);
-        graph.drawString("" + putty.getHitsLeft(), putty.getPos().convertX(xOffset + 2*putty.getRadius(), zoom), putty.getPos().convertY(yOffset - putty.getRadius()/2, zoom));
+        graph.drawString("" + putty.getHitsLeft(), putty.getPos().convertX(xOffset + 2 * putty.getRadius(), zoom), putty.getPos().convertY(yOffset - putty.getRadius() / 2, zoom));
     }
 
 }

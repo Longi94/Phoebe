@@ -20,25 +20,46 @@ import java.util.List;
  */
 public class TrackView extends JPanel implements MouseListener, MouseMotionListener, MouseWheelListener {
 
-    public static final Color TRACK_FILL_COLOR = new Color(150,150,150);
-    public static final Color START_LINE_COLOR = new Color(255,255,255);
+    /**
+     * Pálya színei
+     */
+    public static final Color TRACK_FILL_COLOR = new Color(150, 150, 150);
+    public static final Color START_LINE_COLOR = new Color(255, 255, 255);
 
     /**
      * Pálya kinézete
      */
     private Track track;
 
+    /**
+     * AMire rajzolunk
+     */
     private Graphics graph;
 
+    /**
+     * Eltolás mértéke
+     */
     private double xOffset, yOffset;
 
+    /**
+     * Nagyítás mértéke.
+     */
     private double zoom;
 
+    /**
+     * Egér kezeléshez szüksééges objektumok.
+     */
     private Position mouseDragStart;
     private Position mouseDragEnd;
 
+    /**
+     * A controller
+     */
     private GameController gameController;
 
+    /**
+     * Robotból indul-e ki az egér húzás
+     */
     private boolean robotDragged = false;
 
     /**
@@ -46,6 +67,12 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
      */
     private List<TrackObjectBaseView> trackObjectBaseViews;
 
+    /**
+     * Konstruktor
+     *
+     * @param t              a pálya amit ki kell rajzolni
+     * @param gameController a game controller
+     */
     public TrackView(Track t, GameController gameController) {
         xOffset = -2.5;
         yOffset = -2.5;
@@ -57,7 +84,6 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
             trackObjectBaseViews.add(tob.createView(this));
         }
 
-        //TODO VALAHOGY AZT IS MEG KELL OLDANI, HA A JÁTÉKOS NEM AKAR VÁLTOZTATNI A VEKTORON
         addMouseListener(this);
         addMouseMotionListener(this);
         addMouseWheelListener(this);
@@ -65,26 +91,43 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
         this.gameController = gameController;
     }
 
-
-
+    /**
+     * Camera ráállítása az adott robotra
+     *
+     * @param robot az adott robot
+     */
     void centerActualPlayer(Robot robot) {
         //zoom változatlan, offset úgy módosul, hogy a robot középre kerüljön
-        xOffset = robot.getPos().getX() - getWidth() / 2 /zoom;
-        yOffset = robot.getPos().getY() - getHeight() / 2/zoom;
+        xOffset = robot.getPos().getX() - getWidth() / 2 / zoom;
+        yOffset = robot.getPos().getY() - getHeight() / 2 / zoom;
     }
 
+    /**
+     * Mező kirajzolása
+     *
+     * @param inS  belső vonal eleje
+     * @param inE  belső vonal vége
+     * @param outS külső vonal eleje
+     * @param outE külső vonal vége
+     */
     private void drawField(Position inS, Position inE, Position outS, Position outE) {
         //FEEL FREE TO REFINE
         Polygon p = new Polygon();
-        p.addPoint(inS.convertX(xOffset,zoom),inS.convertY(yOffset,zoom));
-        p.addPoint(inE.convertX(xOffset,zoom),inE.convertY(yOffset,zoom));
-        p.addPoint(outE.convertX(xOffset,zoom),outE.convertY(yOffset,zoom));
-        p.addPoint(outS.convertX(xOffset,zoom),outS.convertY(yOffset,zoom));
+        p.addPoint(inS.convertX(xOffset, zoom), inS.convertY(yOffset, zoom));
+        p.addPoint(inE.convertX(xOffset, zoom), inE.convertY(yOffset, zoom));
+        p.addPoint(outE.convertX(xOffset, zoom), outE.convertY(yOffset, zoom));
+        p.addPoint(outS.convertX(xOffset, zoom), outS.convertY(yOffset, zoom));
 
         graph.fillPolygon(p);
 
     }
 
+    /**
+     * Start vonal kirajzolása
+     *
+     * @param in  belső pont
+     * @param out külső pont
+     */
     private void drawStartLine(Position in, Position out) {
         graph.setColor(START_LINE_COLOR);
 
@@ -108,12 +151,12 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
 
         List<Position> inArc = track.getInnerArc();
         List<Position> outArc = track.getOuterArc();
-        for (int i =  0; i<inArc.size();i++) {
+        for (int i = 0; i < inArc.size(); i++) {
             Position inS = inArc.get(i);
             Position inE = inArc.get((i + 1) % inArc.size());
             Position outS = outArc.get(i);
             Position outE = outArc.get((i + 1) % inArc.size());
-            drawField(inS,inE,outS,outE);
+            drawField(inS, inE, outS, outE);
         }
 
         drawStartLine(inArc.get(0), outArc.get(0));
@@ -130,9 +173,9 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
         //A módosító sebesség vektor
         Velocity modVelocity = new Velocity();
 
-        if (robotDragged && mouseDragStart != null && mouseDragEnd!= null) {
-            int deltaY = (int)mouseDragEnd.getY() - (int)mouseDragStart.getY();
-            int deltaX = (int)mouseDragEnd.getX() - (int)mouseDragStart.getX();
+        if (robotDragged && mouseDragStart != null && mouseDragEnd != null) {
+            int deltaY = (int) mouseDragEnd.getY() - (int) mouseDragStart.getY();
+            int deltaX = (int) mouseDragEnd.getX() - (int) mouseDragStart.getX();
             int degrees = (int) Math.toDegrees(Math.atan2(deltaY, deltaX));
             if (degrees < 0) {
                 degrees += 360;
@@ -167,10 +210,20 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
                 radius, radius);
     }
 
+    /**
+     * Elem hozzáadása a pályához
+     *
+     * @param tobv az elem
+     */
     public void addItem(TrackObjectBaseView tobv) {
         trackObjectBaseViews.add(tobv);
     }
 
+    /**
+     * Elem törlése a pályáról
+     *
+     * @param tobv az elem
+     */
     public void removeItem(TrackObjectBaseView tobv) {
         trackObjectBaseViews.remove(tobv);
     }
@@ -188,7 +241,7 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
     public void mousePressed(MouseEvent e) {
         if (SwingUtilities.isLeftMouseButton(e)) {
             Position p = new Position(e.getX(), e.getY());
-            Position playerPos = new Position (gameController.getActualPlayer().getPos().convertX(xOffset,zoom),gameController.getActualPlayer().getPos().convertY(yOffset, zoom));
+            Position playerPos = new Position(gameController.getActualPlayer().getPos().convertX(xOffset, zoom), gameController.getActualPlayer().getPos().convertY(yOffset, zoom));
             robotDragged = p.getDistance(playerPos) <= gameController.getActualPlayer().getRadius() * zoom;
             if (mouseDragStart == null)
                 mouseDragStart = new Position(e.getX(), e.getY());
@@ -266,14 +319,13 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
-
         double oldzoom = zoom;
-        zoom *= Math.pow(1.15, -1*e.getWheelRotation());
+        zoom *= Math.pow(1.15, -1 * e.getWheelRotation());
         repaint();
         xOffset /= zoom / oldzoom;
         yOffset /= zoom / oldzoom;
         //if (gameController.isGameStarted())
-            //centerActualPlayer(gameController.getActualPlayer());
+        //centerActualPlayer(gameController.getActualPlayer());
     }
 
 }
