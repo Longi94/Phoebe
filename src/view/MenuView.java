@@ -106,8 +106,10 @@ public class MenuView extends JPanel implements ActionListener {
         }
 
         //Default nevek hozzáadása
-        playerFields[0].setText("WALL-E");
-        playerFields[1].setText("EVE");
+        playerFields[0].setText("Castor");
+        playerFields[1].setText("Pollux");
+        playerFields[2].setText("Aeneas");
+        playerFields[3].setText("Dido");
 
 
 
