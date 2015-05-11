@@ -38,6 +38,8 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
 
     private GameController gameController;
 
+    private boolean robotDragged = false;
+
     /**
      * Pályán lévő elemek kinézetei
      */
@@ -118,7 +120,7 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
         }
 
         graph.setColor(Color.BLACK);
-        if (mouseDragStart != null && mouseDragEnd!= null) {
+        if (robotDragged &&mouseDragStart != null && mouseDragEnd!= null) {
             int deltaY = (int)mouseDragEnd.getY() - (int)mouseDragStart.getY();
             int deltaX = (int)mouseDragEnd.getX() - (int)mouseDragStart.getX();
 
@@ -153,6 +155,13 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
     @Override
     public void mousePressed(MouseEvent e) {
         if (SwingUtilities.isLeftMouseButton(e)) {
+            Position p = new Position(e.getX(), e.getY());
+            Position playerPos = new Position (gameController.getActualPlayer().getPos().convertX(xOffset,zoom),gameController.getActualPlayer().getPos().convertY(yOffset, zoom));
+            if (p.getDistance(playerPos) <= gameController.getActualPlayer().getRadius() * zoom) {
+                robotDragged = true;
+            } else {
+                robotDragged = false;
+            }
             if (mouseDragStart == null)
                 mouseDragStart = new Position(e.getX(), e.getY());
             else {
@@ -170,9 +179,18 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
                 int deltaY = (int) mouseDragEnd.getY() - (int) mouseDragStart.getY();
                 int deltaX = (int) mouseDragEnd.getX() - (int) mouseDragStart.getX();
                 double distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-                if (gameController.isGameStarted() && distance > zoom * gameController.getActualPlayer().getRadius())
-                    gameController.jumpCurrentPlayer((int) Math.toDegrees(Math.atan2(deltaY, deltaX)));
+                if (robotDragged) {
+                    robotDragged = false;
+                    if (gameController.isGameStarted() && distance > zoom * gameController.getActualPlayer().getRadius())
+                        gameController.jumpCurrentPlayer((int) Math.toDegrees(Math.atan2(deltaY, deltaX)));
+
+                } else {
+                    robotDragged = false;
+                    xOffset -= deltaX / zoom;
+                    yOffset -= deltaY / zoom;
+                }
             }
+
 
             mouseDragStart = null;
             mouseDragEnd = null;
@@ -192,7 +210,6 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
 
     @Override
     public void mouseDragged(MouseEvent e) {
-
         if (SwingUtilities.isLeftMouseButton(e)) {
             if (mouseDragEnd == null)
                 mouseDragEnd = new Position(e.getX(), e.getY());
