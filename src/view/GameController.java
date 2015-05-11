@@ -13,6 +13,7 @@ import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Grafikus játék controller
@@ -92,6 +93,9 @@ public class GameController {
      */
     private HudView hudView;
 
+    private Random generator = new Random();
+    private int nextCleaner;
+
     /**
      * Konstruktor
      *
@@ -166,6 +170,10 @@ public class GameController {
         mainWindow.revalidate();
 
         hudView.showNotification("Game Started!");
+
+        //takarító robotok megjelenési gyakorisága 2-5 kör
+        nextCleaner = generator.nextInt(4) + 2;
+
         newTurn();
     }
 
@@ -203,6 +211,18 @@ public class GameController {
             Collections.shuffle(playerOrder);
 
             gameView.newRound(players.get(playerOrder.get(0)));
+        }
+
+        if (nextCleaner == 0) {
+
+            putJanitor(
+                    generator.nextInt(gameView.getTrackView().getWidth()),
+                    generator.nextInt(gameView.getTrackView().getWidth()));
+
+            //takarító robotok megjelenési gyakorisága 2-5 kör
+            nextCleaner = generator.nextInt(4) + 2;
+        } else {
+            nextCleaner--;
         }
     }
 
