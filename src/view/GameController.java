@@ -314,6 +314,7 @@ public class GameController {
 
         //Robot feladja a játékot
         currentRobot.forfeit();
+        hudView.showNotification(currentRobot.getName() + " forfeited the game");
 
         //Eltávolítása a játékos sorrendből
         playerOrder.remove(currentPlayer);
@@ -489,6 +490,7 @@ public class GameController {
             playerOrder.set(j,i);
             j++;
         }
+        hudView.showNotification(r.getName()  + " died due to a collision");
 
     }
 
