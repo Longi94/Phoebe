@@ -5,8 +5,6 @@ import model.Robot;
 import model.Track;
 import model.basic.Position;
 import model.basic.Velocity;
-import skeleton.PhoebeLogger;
-import sun.applet.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -277,6 +275,15 @@ public class GameController {
         if(playerOrder.size() == 0) {
             endGame();
         }
+        //Kövi játékos, kör vége ha nincs több
+        else if (++currentPlayer >= playerOrder.size()) {
+            roundStarted = false;
+            newTurn();
+        } else {
+            gameView.newRound(players.get(playerOrder.get(currentPlayer)));
+        }
+
+        gameView.redraw();
     }
 
     /**
@@ -337,7 +344,7 @@ public class GameController {
 
 
         //Kövi játékos, kör vége ha nincs több
-        if (++currentPlayer == playerOrder.size()) {
+        if (++currentPlayer >= playerOrder.size()) {
             roundStarted = false;
             newTurn();
         } else {

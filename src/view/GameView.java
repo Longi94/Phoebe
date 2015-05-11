@@ -44,7 +44,7 @@ public class GameView extends JPanel {
     }
 
     public void redraw() {
-        trackView.invalidate();
+        trackView.repaint();
     }
 
     public void notifyHud(String str) {
