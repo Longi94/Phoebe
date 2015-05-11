@@ -21,7 +21,7 @@ public class CleaningRobotView extends TrackObjectBaseView {
 
     public void draw(Graphics graph, double xOffset, double yOffset, double zoom) {
         graph.setColor(new Color(255, 255, 255));
-        int radius = (int) (cleaningRobot.getRadius() * zoom);
+        int radius = (int) (cleaningRobot.getRadius() * zoom * 2);
         graph.fillOval(cleaningRobot.getPos().convertX(xOffset, zoom) - radius / 2, cleaningRobot.getPos().convertY(yOffset, zoom) - radius / 2,
                 radius, radius);
 

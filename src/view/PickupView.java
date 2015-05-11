@@ -23,7 +23,7 @@ public class PickupView extends TrackObjectBaseView{
         graph.setColor(Color.orange);
 
 
-        int radius = (int) (pickup.getRadius() * zoom);
+        int radius = (int) (pickup.getRadius() * zoom * 2);
         graph.fillOval(pickup.getPos().convertX(xOffset, zoom) - radius/2, pickup.getPos().convertY(yOffset, zoom) - radius/2,
                 radius, radius);
 
