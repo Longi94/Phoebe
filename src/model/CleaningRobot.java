@@ -45,6 +45,7 @@ public class CleaningRobot extends TrackObjectBase {
         }
         GameView gw = MainWindow.getInstance().getController().getGameView();
         gw.addItem(new OilView(new Oil(getPos(), track), gw.getTrackView()));
+        gw.notifyHud("A clening robot was hit by a robot and died.");
         track.removeObject(this);
     }
 
