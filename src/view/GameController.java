@@ -215,9 +215,32 @@ public class GameController {
 
         if (nextCleaner == 0) {
 
+            Double trackWidthMax = null;
+            Double trackWidthMin = null;
+            Double trackHeightMax = null;
+            Double trackHeightMin = null;
+            for (Position pos : track.getOuterArc()) {
+                if (trackWidthMax == null || pos.getX() > trackWidthMax) {
+                    trackWidthMax = pos.getX();
+                }
+                if (trackWidthMin == null || pos.getX() < trackWidthMin) {
+                    trackWidthMin = pos.getX();
+                }
+                if (trackHeightMax == null || pos.getY() > trackHeightMax) {
+                    trackHeightMax = pos.getY();
+                }
+                if (trackHeightMin == null || pos.getY() < trackHeightMin) {
+                    trackHeightMin = pos.getY();
+                }
+            }
+
+            if (trackWidthMax == null) {
+                throw new IllegalStateException();
+            }
+
             putJanitor(
-                    generator.nextInt(gameView.getTrackView().getWidth()),
-                    generator.nextInt(gameView.getTrackView().getWidth()));
+                    generator.nextInt((int) (trackWidthMax-trackWidthMin)) + trackWidthMin,
+                    generator.nextInt((int) (trackHeightMax-trackHeightMin)) + trackHeightMin);
 
             //takarító robotok megjelenési gyakorisága 2-5 kör
             nextCleaner = generator.nextInt(4) + 2;
@@ -271,7 +294,9 @@ public class GameController {
     public void putJanitor(double x, double y) {
         if (!gameStarted) return;
 
-        track.addObject(new CleaningRobot(new Position(x, y)));
+        CleaningRobot cr = new CleaningRobot(new Position(x, y));
+        track.addObject(cr);
+        gameView.addItem(new CleaningRobotView(cr, gameView.getTrackView()));
     }
 
     /**
@@ -436,5 +461,9 @@ public class GameController {
      */
     public boolean isGameStarted() {
         return gameStarted;
+    }
+
+    public List<Integer> getPlayerOrder() {
+        return playerOrder;
     }
 }
