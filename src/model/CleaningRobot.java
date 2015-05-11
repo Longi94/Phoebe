@@ -58,6 +58,11 @@ public class CleaningRobot extends TrackObjectBase {
         return new CleaningRobotView(this,t);
     }
 
+    @Override
+    public double getRadius() {
+        return this.RADIUS;
+    }
+
     public double targetClosestObstacle() {
         Position closest = track.getClosestObstaclePos(this.pos);
         if (closest == null) {
