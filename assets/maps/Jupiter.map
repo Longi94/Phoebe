@@ -24,3 +24,7 @@ outer -12 24
 outer -18 18
 outer -18 7
 outer -11 0
+pickup 15 11
+pickup 3 13
+pickup -2 17
+pickup -16 10
