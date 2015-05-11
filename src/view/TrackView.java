@@ -214,8 +214,6 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
 
                 } else {
                     robotDragged = false;
-                    xOffset -= deltaX / zoom;
-                    yOffset -= deltaY / zoom;
                 }
             }
 
@@ -238,11 +236,19 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
     @Override
     public void mouseDragged(MouseEvent e) {
         if (SwingUtilities.isLeftMouseButton(e)) {
-            if (mouseDragEnd == null)
-                mouseDragEnd = new Position(e.getX(), e.getY());
-            else {
-                mouseDragEnd.setX(e.getX());
-                mouseDragEnd.setY(e.getY());
+
+            Position mouseDragTemp = mouseDragEnd;
+
+            mouseDragEnd = new Position(e.getX(), e.getY());
+
+            if (!robotDragged) {
+                if (mouseDragTemp != null) {
+                    int deltaY = (int) mouseDragEnd.getY() - (int) mouseDragTemp.getY();
+                    int deltaX = (int) mouseDragEnd.getX() - (int) mouseDragTemp.getX();
+
+                    xOffset -= deltaX / zoom;
+                    yOffset -= deltaY / zoom;
+                }
             }
             repaint();
         }
