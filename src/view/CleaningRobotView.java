@@ -31,10 +31,10 @@ public class CleaningRobotView extends TrackObjectBaseView {
         int x = cleaningRobot.getPos().convertX(xOffset-0.06, zoom) - radius / 2;
         int y = cleaningRobot.getPos().convertY(yOffset-0.06, zoom) - radius / 2;
         if(cleaningRobot.getActuallyCleaning() != null) {
-            graph.fillRect(x, y, size, size);
+            graph.fillRect(x, y, 2 * size, 2 * size);
         }
         else {
-            graph.drawRect(x, y, size, size);
+            graph.drawRect(x, y, 2 * size, 2 * size);
         }
     }
 
