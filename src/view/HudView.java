@@ -100,7 +100,7 @@ public class HudView extends JPanel {
         setLayout(new GridBagLayout());
 
         // HUD elkülönítése
-        setBackground(new Color(81,81,81));
+        setBackground(new Color(81, 81, 81));
 
         // Komponensek inicializálása
         initComponents();
@@ -116,7 +116,7 @@ public class HudView extends JPanel {
         currentLabel.setOpaque(true);
         currentLabel.setBackground(new Color(40, 40, 46));
         currentLabel.setForeground(new Color(10, 181, 246));
-        currentLabel.setBorder(new EmptyBorder(10,10,10,10));
+        currentLabel.setBorder(new EmptyBorder(10, 10, 10, 10));
         currentLabel.setHorizontalAlignment(SwingConstants.CENTER);
         add(currentLabel, new GridBagConstraints(0, 0, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
@@ -177,8 +177,8 @@ public class HudView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int dialogButton = JOptionPane.YES_NO_OPTION;
-                int dialogResult = JOptionPane.showConfirmDialog(MainWindow.getInstance(),"Are you sure you want to forfeit the game?","Forfeit",dialogButton);
-                if(dialogResult == 0) {
+                int dialogResult = JOptionPane.showConfirmDialog(MainWindow.getInstance(), "Are you sure you want to forfeit the game?", "Forfeit", dialogButton);
+                if (dialogResult == 0) {
                     gameController.forfeitCurrentPlayer();
                 }
             }
@@ -189,7 +189,7 @@ public class HudView extends JPanel {
         statusLabel.setOpaque(true);
         statusLabel.setBackground(new Color(40, 40, 46));
         statusLabel.setForeground(new Color(10, 181, 246));
-        statusLabel.setBorder(new EmptyBorder(10,10,10,10));
+        statusLabel.setBorder(new EmptyBorder(10, 10, 10, 10));
         statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
         add(statusLabel, new GridBagConstraints(0, 3, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
@@ -223,7 +223,7 @@ public class HudView extends JPanel {
         roundsLabel.setOpaque(true);
         roundsLabel.setBackground(new Color(40, 40, 46));
         roundsLabel.setForeground(new Color(10, 181, 246));
-        roundsLabel.setBorder(new EmptyBorder(10,10,10,10));
+        roundsLabel.setBorder(new EmptyBorder(10, 10, 10, 10));
         roundsLabel.setHorizontalAlignment(SwingConstants.CENTER);
         add(roundsLabel, new GridBagConstraints(0, players.size() + 5, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
@@ -233,7 +233,7 @@ public class HudView extends JPanel {
         historyLabel.setOpaque(true);
         historyLabel.setBackground(new Color(40, 40, 46));
         historyLabel.setForeground(new Color(10, 181, 246));
-        historyLabel.setBorder(new EmptyBorder(10,10,10,10));
+        historyLabel.setBorder(new EmptyBorder(10, 10, 10, 10));
         historyLabel.setHorizontalAlignment(SwingConstants.CENTER);
         add(historyLabel, new GridBagConstraints(0, players.size() + 6, 3, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
@@ -277,13 +277,12 @@ public class HudView extends JPanel {
             playerDistanceLabels.get(i).setText("" + Math.round(players.get(i).getDistanceCompleted() * 100.0) / 100.0);
 
 
-            if(gameController.isPlayerAlive(players.get(i))) {
+            if (gameController.isPlayerAlive(players.get(i))) {
                 playerNameLabels.get(i).setText(players.get(i).getName());
                 playerNameLabels.get(i).setBackground(players.get(i).getColor());
                 playerDistanceLabels.get(i).setBackground(players.get(i).getColor());
-            }
-            else {
-                playerNameLabels.get(i).setText("(DEAD) " +players.get(i).getName());
+            } else {
+                playerNameLabels.get(i).setText("(DEAD) " + players.get(i).getName());
                 playerNameLabels.get(i).setBackground(new Color(140, 0, 0));
                 playerDistanceLabels.get(i).setBackground(new Color(140, 0, 0));
             }
@@ -295,9 +294,10 @@ public class HudView extends JPanel {
 
     /**
      * A hátralévő körök felirat frissítése
+     *
      * @param rounds hátralévő körök száma
      */
-    public void refreshRoundLeft(int rounds){
+    public void refreshRoundLeft(int rounds) {
         roundsLabel.setText(rounds + " round(s) left");
     }
 

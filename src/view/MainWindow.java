@@ -11,14 +11,23 @@ import java.awt.*;
  */
 public class MainWindow extends JFrame {
 
+    /**
+     * Program szintű konstansok.
+     */
     public static final int DEFAULT_TURN_NUMBER = 20;
     public static final int MINIMUM_TURN_NUMBER = 5;
     public static final int MAXIMUM_TURN_NUMBER = 40;
     public static final int MIN_PLAYER_NUMBER = 2;
     public static final int MAX_PLAYER_NUMBER = 6;
 
+    /**
+     * Ablak példány.
+     */
     public static MainWindow instance = null;
 
+    /**
+     * Konstruktor.
+     */
     protected MainWindow() {
         super();
         // Menü nézet hozzáadása az ablakhoz
@@ -26,6 +35,11 @@ public class MainWindow extends JFrame {
         pack();
     }
 
+    /**
+     * Példány lekérése
+     *
+     * @return ablak példány
+     */
     public static MainWindow getInstance() {
         if (instance == null) {
             instance = new MainWindow();
@@ -43,10 +57,20 @@ public class MainWindow extends JFrame {
      */
     private view.GameController controller;
 
+    /**
+     * Controller lekérése.
+     *
+     * @return a controller
+     */
     public GameController getController() {
         return controller;
     }
 
+    /**
+     * Controller beállítása.
+     *
+     * @param controller a controller
+     */
     public void setController(GameController controller) {
         this.controller = controller;
     }
@@ -75,7 +99,9 @@ public class MainWindow extends JFrame {
 
     }
 
-
+    /**
+     * Az ablak beállítása.
+     */
     public void displaySetUp() {
 
         // Ablak címe

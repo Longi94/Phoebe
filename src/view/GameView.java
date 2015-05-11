@@ -26,7 +26,8 @@ public class GameView extends JPanel {
 
     /**
      * Konstruktor.
-     * @param t a pálya amin a játék folyik
+     *
+     * @param t              a pálya amin a játék folyik
      * @param gameController a game controller
      */
     public GameView(Track t, GameController gameController) {
@@ -42,6 +43,7 @@ public class GameView extends JPanel {
 
     /**
      * Új kör esetén meghívandó függvény
+     *
      * @param actualPlayer a soron lévő robot
      */
     public void newRound(Robot actualPlayer) {
@@ -60,6 +62,7 @@ public class GameView extends JPanel {
 
     /**
      * Notification kiírása a hudra
+     *
      * @param str a kiírandó notification
      */
     public void notifyHud(String str) {
@@ -68,6 +71,7 @@ public class GameView extends JPanel {
 
     /**
      * Pálya elem hozzáadása a pálye nézethez.
+     *
      * @param tobv a pálya elem a mit hozzákell adni.
      */
     public void addItem(TrackObjectBaseView tobv) {
@@ -76,12 +80,16 @@ public class GameView extends JPanel {
 
     /**
      * Pálya elem eltávolítása a pályáról.
+     *
      * @param tobv a pályaelem amit el kell távolítani.
      */
-    public void removeItem(TrackObjectBaseView tobv) { trackView.removeItem(tobv); }
+    public void removeItem(TrackObjectBaseView tobv) {
+        trackView.removeItem(tobv);
+    }
 
     /**
      * HUD beállítása
+     *
      * @param hudView a HUD
      */
     public void setHudView(HudView hudView) {
@@ -92,6 +100,7 @@ public class GameView extends JPanel {
 
     /**
      * Getter
+     *
      * @return a pálya nézet
      */
     public TrackView getTrackView() {

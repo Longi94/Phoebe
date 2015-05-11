@@ -17,20 +17,22 @@ public class CleaningRobotView extends TrackObjectBaseView {
 
     /**
      * Construktor
+     *
      * @param cleaningRobot az objektum amihez a view tartozik
-     * @param tv a pálya nézet amire ki kell rajzolni
+     * @param tv            a pálya nézet amire ki kell rajzolni
      */
     public CleaningRobotView(CleaningRobot cleaningRobot, TrackView tv) {
-        super(cleaningRobot,tv);
+        super(cleaningRobot, tv);
         this.cleaningRobot = cleaningRobot;
     }
 
     /**
      * Takarító robot kirajzolása.
-     * @param graph amire rajzol
+     *
+     * @param graph   amire rajzol
      * @param xOffset x eltolás
      * @param yOffset y eltolás
-     * @param zoom nagyítás
+     * @param zoom    nagyítás
      */
     public void draw(Graphics graph, double xOffset, double yOffset, double zoom) {
         graph.setColor(new Color(255, 255, 255));
@@ -38,15 +40,14 @@ public class CleaningRobotView extends TrackObjectBaseView {
         graph.fillOval(cleaningRobot.getPos().convertX(xOffset, zoom) - radius / 2, cleaningRobot.getPos().convertY(yOffset, zoom) - radius / 2,
                 radius, radius);
 
-        graph.setColor(new Color(255,255,0));
+        graph.setColor(new Color(255, 255, 0));
         int size = (int) (cleaningRobot.getRadius() * 0.707 * zoom);
 
-        int x = cleaningRobot.getPos().convertX(xOffset-0.06, zoom) - radius / 2;
-        int y = cleaningRobot.getPos().convertY(yOffset-0.06, zoom) - radius / 2;
-        if(cleaningRobot.getActuallyCleaning() != null) {
+        int x = cleaningRobot.getPos().convertX(xOffset - 0.06, zoom) - radius / 2;
+        int y = cleaningRobot.getPos().convertY(yOffset - 0.06, zoom) - radius / 2;
+        if (cleaningRobot.getActuallyCleaning() != null) {
             graph.fillRect(x, y, 2 * size, 2 * size);
-        }
-        else {
+        } else {
             graph.drawRect(x, y, 2 * size, 2 * size);
         }
     }
