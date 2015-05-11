@@ -20,7 +20,20 @@ public class CleaningRobotView extends TrackObjectBaseView {
     }
 
     public void draw(Graphics graph, double xOffset, double yOffset, double zoom) {
+        graph.setColor(new Color(0, 0, 0));
+        int radius = (int) (cleaningRobot.getRadius() * zoom);
+        graph.fillOval(cleaningRobot.getPos().convertX(xOffset, zoom) - radius / 2, cleaningRobot.getPos().convertY(yOffset, zoom) - radius / 2,
+                radius, radius);
 
+        graph.setColor(new Color(255,255,255));
+        int size = (int) (cleaningRobot.getRadius() * 0.8 * zoom);
+
+        if(cleaningRobot.getActuallyCleaning() != null) {
+            graph.fillRect(cleaningRobot.getPos().convertX(xOffset, zoom) - radius / 2, cleaningRobot.getPos().convertY(yOffset, zoom) - radius / 2, size, size);
+        }
+        else {
+            graph.drawRect(cleaningRobot.getPos().convertX(xOffset, zoom) - radius / 2, cleaningRobot.getPos().convertY(yOffset, zoom) - radius / 2, size, size);
+        }
     }
 
 }
