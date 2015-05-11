@@ -310,6 +310,8 @@ public class GameController {
         //Robot feladja a játékot
         currentRobot.forfeit();
 
+        hudView.showNotification(currentRobot.getName() + " gave up the game!");
+
         //Eltávolítása a játékos sorrendből
         playerOrder.remove(currentPlayer);
 
@@ -461,10 +463,6 @@ public class GameController {
      */
     public boolean isGameStarted() {
         return gameStarted;
-    }
-
-    public List<Integer> getPlayerOrder() {
-        return playerOrder;
     }
 
     public boolean isPlayerAlive(Robot r) {

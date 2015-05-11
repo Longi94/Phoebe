@@ -284,8 +284,8 @@ public class HudView extends JPanel {
             }
             else {
                 playerNameLabels.get(i).setText("(DEAD) " +players.get(i).getName());
-                playerNameLabels.get(i).setBackground(Color.red);
-                playerDistanceLabels.get(i).setBackground(Color.red);
+                playerNameLabels.get(i).setBackground(new Color(140, 0, 0));
+                playerDistanceLabels.get(i).setBackground(new Color(140, 0, 0));
             }
         }
 
