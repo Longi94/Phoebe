@@ -180,7 +180,6 @@ public class HudView extends JPanel {
                 int dialogResult = JOptionPane.showConfirmDialog(MainWindow.getInstance(),"Are you sure you want to forfeit the game?","Forfeit",dialogButton);
                 if(dialogResult == 0) {
                     gameController.forfeitCurrentPlayer();
-                    showNotification(currentPlayerLabel.getText() + " forfeited the game");
                 }
             }
         });
@@ -274,11 +273,20 @@ public class HudView extends JPanel {
 
         // Végig az aktív robotokon
         for (int i = 0; i < players.size(); i++) {
-            playerNameLabels.get(i).setText(players.get(i).getName());
-            playerNameLabels.get(i).setBackground(players.get(i).getColor());
 
             playerDistanceLabels.get(i).setText("" + Math.round(players.get(i).getDistanceCompleted() * 100.0) / 100.0);
-            playerDistanceLabels.get(i).setBackground(players.get(i).getColor());
+
+
+            if(gameController.isPlayerAlive(players.get(i))) {
+                playerNameLabels.get(i).setText(players.get(i).getName());
+                playerNameLabels.get(i).setBackground(players.get(i).getColor());
+                playerDistanceLabels.get(i).setBackground(players.get(i).getColor());
+            }
+            else {
+                playerNameLabels.get(i).setText("(DEAD) " +players.get(i).getName());
+                playerNameLabels.get(i).setBackground(Color.red);
+                playerDistanceLabels.get(i).setBackground(Color.red);
+            }
         }
 
         // Újrarajzolás
