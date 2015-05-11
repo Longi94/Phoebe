@@ -17,7 +17,7 @@ public abstract class Obstacle extends TrackObjectBase {
     /**
      * Akadály sugara
      */
-    protected static double RADIUS = 0.17;
+    protected static double RADIUS = 0.3;
     /**
      * Hátralevő ütközése száma az eltűnésig
      */
