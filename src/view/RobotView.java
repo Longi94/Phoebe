@@ -1,6 +1,7 @@
 package view;
 
 import model.Robot;
+import model.basic.Position;
 
 import java.awt.*;
 
@@ -21,6 +22,13 @@ public class RobotView extends TrackObjectBaseView {
         int radius = (int) (robot.getRadius() * zoom);
         graph.fillOval(robot.getPos().convertX(xOffset,zoom) - radius/2,robot.getPos().convertY(yOffset,zoom)- radius/2,
                 radius, radius);
+
+        Position start = robot.getPos();
+
+        for (Position pos : robot.getPreviousPath()) {
+            graph.drawLine(start.convertX(xOffset, zoom), start.convertY(yOffset, zoom), pos.convertX(xOffset,zoom), pos.convertY(yOffset,zoom));
+            start = pos;
+        }
     }
 
 }

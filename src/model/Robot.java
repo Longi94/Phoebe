@@ -6,6 +6,7 @@ import skeleton.PhoebeLogger;
 import view.*;
 
 import java.awt.*;
+import java.util.LinkedList;
 
 /**
  * Robotot megvalósító osztály
@@ -76,6 +77,8 @@ public class Robot extends TrackObjectBase implements Comparable<Robot> {
      */
     private Color color;
 
+    private LinkedList<Position> previousPath;
+
     /**
      * Erre két okból lesz szükség. Egyrészt azért, hogy miután lépett, akkor utána ne tudjon vele még egyet lépni a játékos.
      * Másrészt, hogyha olajfolton áll éppen akkor ne tudjon módosítani a sebességén
@@ -107,6 +110,7 @@ public class Robot extends TrackObjectBase implements Comparable<Robot> {
         this.enabled = true;
 
         vel = new Velocity();
+        previousPath = new LinkedList<Position>();
     }
 
     public Robot(Position pos, Track track, String name) {
@@ -126,6 +130,11 @@ public class Robot extends TrackObjectBase implements Comparable<Robot> {
         }
         //Kezdő pozíció elmentése
         Position oldPos = new Position(pos.getX(), pos.getY());
+
+        previousPath.add(0, oldPos);
+        if (previousPath.size() == 6) {
+            previousPath.remove(previousPath.size() - 1);
+        }
 
         //Robot mozgatása új pozícióba
         PhoebeLogger.message("pos", "move", "vel");
@@ -147,8 +156,6 @@ public class Robot extends TrackObjectBase implements Comparable<Robot> {
 
         PhoebeLogger.returnMessage();
     }
-
-
 
     /**
      * Azt vizsgálja, hogy a robot az adott körben léphet-e
@@ -361,5 +368,9 @@ public class Robot extends TrackObjectBase implements Comparable<Robot> {
         } else {
             return -1;
         }
+    }
+
+    public LinkedList<Position> getPreviousPath() {
+        return previousPath;
     }
 }
