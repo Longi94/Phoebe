@@ -2,9 +2,7 @@ package model;
 
 import model.basic.Position;
 import model.basic.Velocity;
-import view.CleaningRobotView;
-import view.TrackObjectBaseView;
-import view.TrackView;
+import view.*;
 
 /**
  * Created by bence on 2015.03.27..
@@ -45,6 +43,8 @@ public class CleaningRobot extends TrackObjectBase {
         if (actuallyCleaning != null) {
             actuallyCleaning.setUnderCleaning(false);                   //többé már nem takarítják
         }
+        GameView gw = MainWindow.getInstance().getController().getGameView();
+        gw.addItem(new OilView(new Oil(getPos(), track), gw.getTrackView()));
         track.removeObject(this);
     }
 
@@ -56,6 +56,11 @@ public class CleaningRobot extends TrackObjectBase {
     @Override
     public TrackObjectBaseView createView(TrackView t) {
         return new CleaningRobotView(this,t);
+    }
+
+    @Override
+    public double getRadius() {
+        return this.RADIUS;
     }
 
     public double targetClosestObstacle() {

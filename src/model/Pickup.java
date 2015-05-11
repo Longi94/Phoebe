@@ -56,6 +56,11 @@ public class Pickup extends TrackObjectBase {
         return new PickupView(this,t);
     }
 
+    @Override
+    public double getRadius() {
+        return this.RADIUS;
+    }
+
     /**
      * Akkor hívódik meg, ha egy robot felszedi (ütközik vele)
      *

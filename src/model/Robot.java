@@ -265,6 +265,11 @@ public class Robot extends TrackObjectBase implements Comparable<Robot> {
         return new RobotView(this,t);
     }
 
+    @Override
+    public double getRadius() {
+        return RADIUS;
+    }
+
     /**
      * Ragacs lerakása
      */
