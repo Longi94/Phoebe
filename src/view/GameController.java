@@ -475,4 +475,21 @@ public class GameController {
     public boolean isPlayerAlive(Robot r) {
         return playerOrder.contains(new Integer(players.indexOf(r)));
     }
+
+    public void removeRobot(Robot r) {
+        int idx = players.indexOf(r);
+        playerOrder.remove((Integer)idx);
+        players.remove(r);
+        gameView.removeItem(r.getTobv());
+        int j = 0;
+        for (Integer i : playerOrder) {
+            if (i > idx) {
+                i--;
+            }
+            playerOrder.set(j,i);
+            j++;
+        }
+
+    }
+
 }
