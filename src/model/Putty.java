@@ -2,6 +2,7 @@ package model;
 
 import model.basic.Position;
 import skeleton.PhoebeLogger;
+import view.MainWindow;
 import view.PuttyView;
 import view.TrackObjectBaseView;
 import view.TrackView;
@@ -50,6 +51,10 @@ public class Putty extends Obstacle {
         //megfelezi a sebességet, de lehetőség van annak változtatására
         PhoebeLogger.message("r", "halveVelocity");
         r.halveVelocity();
+
+        MainWindow.getInstance().getController().getGameView().notifyHud(r.getName() + " stepped into a putty stain.");
+        MainWindow.getInstance().getController().getGameView().notifyHud(r.getName() + " got his velocity halved");
+
 
         PhoebeLogger.returnMessage();
     }
