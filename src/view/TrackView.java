@@ -153,7 +153,10 @@ public class TrackView extends JPanel implements MouseListener, MouseMotionListe
             modVelocity.setMagnitude(0);
         }
 
-        tempVel.add(modVelocity);
+        if (robot.isEnabled()) {
+            tempVel.add(modVelocity);
+        }
+
         tempPos.move(tempVel);
         graph.setColor(robot.getColor().brighter());
         int radius = (int) (robot.getRadius() * zoom * 2);
