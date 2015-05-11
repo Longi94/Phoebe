@@ -68,11 +68,11 @@ public class Pickup extends TrackObjectBase {
             case -1:
                 if (random.nextInt(2) == 1) {
                     PhoebeLogger.message("r", "addOil");
-                    MainWindow.getInstance().getController().getHudView().showNotification("The actual robot got oil from the pickup");
+                    MainWindow.getInstance().getController().getHudView().showNotification(r.getName() + " got oil from the pickup");
                     r.addOil();
                 } else {
                     PhoebeLogger.message("r", "addPutty");
-                    MainWindow.getInstance().getController().getHudView().showNotification("The actual robot got putty from the pickup");
+                    MainWindow.getInstance().getController().getHudView().showNotification(r.getName() + " got putty from the pickup");
                     r.addPutty();
                 }
                 break;
