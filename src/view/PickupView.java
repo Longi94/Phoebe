@@ -10,7 +10,7 @@ import java.awt.*;
  * @author Gergely Reményi
  * @since 2015.04.25.
  */
-public class PickupView extends TrackObjectBaseView{
+public class PickupView extends TrackObjectBaseView {
 
     private Pickup pickup;
 
@@ -24,12 +24,12 @@ public class PickupView extends TrackObjectBaseView{
 
 
         int radius = (int) (pickup.getRadius() * zoom * 2);
-        graph.fillOval(pickup.getPos().convertX(xOffset, zoom) - radius/2, pickup.getPos().convertY(yOffset, zoom) - radius/2,
+        graph.fillOval(pickup.getPos().convertX(xOffset, zoom) - radius / 2, pickup.getPos().convertY(yOffset, zoom) - radius / 2,
                 radius, radius);
 
-        graph.setColor(Color.BLACK);
-        graph.drawString("P", pickup.getPos().convertX(xOffset,zoom),pickup.getPos().convertY(yOffset,zoom));
-
+        graph.setColor(Color.blue);
+        graph.fillOval(pickup.getPos().convertX(xOffset, zoom) - radius / 4, pickup.getPos().convertY(yOffset, zoom) - radius / 4,
+                radius/2, radius/2);
     }
 
 }
