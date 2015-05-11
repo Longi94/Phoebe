@@ -305,6 +305,7 @@ public class GameController {
         CleaningRobot cr = new CleaningRobot(new Position(x, y));
         track.addObject(cr);
         gameView.addItem(new CleaningRobotView(cr, gameView.getTrackView()));
+        hudView.showNotification("A janitor entered the track at position " + Math.round(100*x)/100 + ", " + Math.round(100*y)/100);
     }
 
     /**
@@ -317,6 +318,7 @@ public class GameController {
 
         //Robot feladja a játékot
         currentRobot.forfeit();
+        hudView.showNotification(currentRobot.getName() + " forfeited the game");
 
         //Eltávolítása a játékos sorrendből
         playerOrder.remove(currentPlayer);
@@ -499,6 +501,7 @@ public class GameController {
             playerOrder.set(j, i);
             j++;
         }
+        hudView.showNotification(r.getName()  + " died due to a collision.");
 
     }
 

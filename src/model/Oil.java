@@ -2,6 +2,7 @@ package model;
 
 import model.basic.Position;
 import skeleton.PhoebeLogger;
+import view.MainWindow;
 import view.OilView;
 import view.TrackObjectBaseView;
 import view.TrackView;
@@ -55,6 +56,9 @@ public class Oil extends Obstacle {
         //megtartja a sebességet, és tiltja annak módosítását
         PhoebeLogger.message("r", "setEnabled", "false");
         r.setEnabled(false);
+        MainWindow.getInstance().getController().getGameView().notifyHud(r.getName() + " stepped into an oil stain.");
+        MainWindow.getInstance().getController().getGameView().notifyHud(r.getName() + " can't change his speed during the next turn");
+
 
         PhoebeLogger.returnMessage();
     }
