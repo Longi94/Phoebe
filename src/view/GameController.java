@@ -93,6 +93,9 @@ public class GameController {
      */
     private HudView hudView;
 
+    /**
+     * Randomizálásra használt objektumok
+     */
     private Random generator = new Random();
     private int nextCleaner;
 
@@ -108,7 +111,7 @@ public class GameController {
         gameView = new GameView(track, this);
 
         // Azért kell +1 mert egy újkör hívással kezdünk!
-        turnsLeft = rounds+1;
+        turnsLeft = rounds + 1;
 
         Robot.resetIds();
 
@@ -121,9 +124,9 @@ public class GameController {
         int realPlayers = 0;
         int placedPlayers = 0;
 
-        for (int i = 1; i<= names.size();i++) {
-            if (names.get(i-1) != null)
-            realPlayers++;
+        for (int i = 1; i <= names.size(); i++) {
+            if (names.get(i - 1) != null)
+                realPlayers++;
         }
 
         // Robotok felállítása a startvonalra és hozzáadásuk a listához
@@ -206,7 +209,7 @@ public class GameController {
         track.newRound();
 
         turnsLeft -= 1;
-        
+
         hudView.refreshRoundLeft(turnsLeft);
 
         if (players.size() != 0 && (turnsLeft == 0 || playerOrder.size() == 0)) {
@@ -244,8 +247,8 @@ public class GameController {
             }
 
             putJanitor(
-                    generator.nextInt((int) (trackWidthMax-trackWidthMin)) + trackWidthMin,
-                    generator.nextInt((int) (trackHeightMax-trackHeightMin)) + trackHeightMin);
+                    generator.nextInt((int) (trackWidthMax - trackWidthMin)) + trackWidthMin,
+                    generator.nextInt((int) (trackHeightMax - trackHeightMin)) + trackHeightMin);
 
             //takarító robotok megjelenési gyakorisága 2-5 kör
             nextCleaner = generator.nextInt(4) + 2;
@@ -322,7 +325,7 @@ public class GameController {
         numberOfPlayers--;
 
         // Ha elfogytak a játékosok vége a mókának
-        if(playerOrder.size() == 0) {
+        if (playerOrder.size() == 0) {
             endGame();
         }
         //Kövi játékos, kör vége ha nincs több
@@ -362,18 +365,18 @@ public class GameController {
         Robot currentRobot = getActualPlayer();
 
         if (willPutOil) {
-            gameView.addItem(new OilView(currentRobot.putOil(),gameView.getTrackView()));
+            gameView.addItem(new OilView(currentRobot.putOil(), gameView.getTrackView()));
             willPutOil = false;
 
-            hudView.showNotification(currentRobot.getName() + " placed an oil stain at " + + Math.round(currentRobot.getPos().getX() * 100.0) / 100.0 + ", "
+            hudView.showNotification(currentRobot.getName() + " placed an oil stain at " + +Math.round(currentRobot.getPos().getX() * 100.0) / 100.0 + ", "
                     + Math.round(currentRobot.getPos().getY() * 100.0) / 100.0);
             hudView.showNotification("Has " + currentRobot.getOilAmount() + " more remaining.");
         }
         if (willPutPutty) {
-            gameView.addItem(new PuttyView(currentRobot.putPutty(),gameView.getTrackView()));
+            gameView.addItem(new PuttyView(currentRobot.putPutty(), gameView.getTrackView()));
             willPutPutty = false;
 
-            hudView.showNotification(currentRobot.getName() + " placed a putty stain at " + + Math.round(currentRobot.getPos().getX() * 100.0) / 100.0 + ", "
+            hudView.showNotification(currentRobot.getName() + " placed a putty stain at " + +Math.round(currentRobot.getPos().getX() * 100.0) / 100.0 + ", "
                     + Math.round(currentRobot.getPos().getY() * 100.0) / 100.0);
             hudView.showNotification("Has " + currentRobot.getPuttyAmount() + " more remaining.");
         }
@@ -468,17 +471,24 @@ public class GameController {
         return gameStarted;
     }
 
-    public List<Integer> getPlayerOrder() {
-        return playerOrder;
-    }
-
+    /**
+     * Életben van - az adott robot.
+     *
+     * @param r a robot amiről el kell dönteni, hogy életben van-e.
+     * @return életben van-e a robot
+     */
     public boolean isPlayerAlive(Robot r) {
         return playerOrder.contains(new Integer(players.indexOf(r)));
     }
 
+    /**
+     * Robot eltávolítása a játékból
+     *
+     * @param r a robot amit el kell távolítani
+     */
     public void removeRobot(Robot r) {
         int idx = players.indexOf(r);
-        playerOrder.remove((Integer)idx);
+        playerOrder.remove((Integer) idx);
         players.remove(r);
         gameView.removeItem(r.getTobv());
         int j = 0;
@@ -486,7 +496,7 @@ public class GameController {
             if (i > idx) {
                 i--;
             }
-            playerOrder.set(j,i);
+            playerOrder.set(j, i);
             j++;
         }
 
