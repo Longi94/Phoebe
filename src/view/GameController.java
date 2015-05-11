@@ -471,4 +471,8 @@ public class GameController {
     public List<Integer> getPlayerOrder() {
         return playerOrder;
     }
+
+    public boolean isPlayerAlive(Robot r) {
+        return playerOrder.contains(new Integer(players.indexOf(r)));
+    }
 }
