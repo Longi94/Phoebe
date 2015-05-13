@@ -170,7 +170,7 @@ public class GameController {
         gameView.setVisible(true);
         mainWindow.add(gameView);
 
-        mainWindow.revalidate();
+        mainWindow.getRootPane().revalidate();
 
         hudView.showNotification("Game Started!");
 
@@ -289,7 +289,7 @@ public class GameController {
         mainWindow.add(new MenuView());
         mainWindow.pack();
         mainWindow.setLocationRelativeTo(null);
-        mainWindow.revalidate();
+        mainWindow.getRootPane().revalidate();
 
     }
 

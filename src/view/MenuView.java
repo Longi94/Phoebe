@@ -62,7 +62,7 @@ public class MenuView extends JPanel implements ActionListener {
         trackList = new JComboBox();
 
         // Elérhető pályák beállítása a listához
-        trackList= new JComboBox<String>(GameController.getAvailableTrackNames());
+        trackList= new JComboBox(GameController.getAvailableTrackNames());
 
         // A label beállítása a listához
         trackLabel.setLabelFor(trackList);

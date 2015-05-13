@@ -318,7 +318,7 @@ public class HudView extends JPanel {
     private class HistoryPanel extends JPanel {
 
         private final DefaultListModel listModel;
-        private JList<Object> list;
+        private JList list;
         private JScrollPane scrollPane;
 
         /**
@@ -330,7 +330,7 @@ public class HudView extends JPanel {
 
             //Lista inicializálása
             listModel = new DefaultListModel();
-            list = new JList<Object>(listModel);
+            list = new JList(listModel);
 
             //Lehessen görgetni
             scrollPane = new JScrollPane(list);
